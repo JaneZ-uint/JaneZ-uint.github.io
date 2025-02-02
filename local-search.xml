@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>Maths-Analysis1</title>
+    <link href="/2025/02/02/Maths-Analysis1/"/>
+    <url>/2025/02/02/Maths-Analysis1/</url>
+    
+    <content type="html"><![CDATA[<h5 id="好消息：JaneZ开始学习数分了！-坏消息：JaneZ的数分要丸辣"><a href="#好消息：JaneZ开始学习数分了！-坏消息：JaneZ的数分要丸辣" class="headerlink" title="好消息：JaneZ开始学习数分了！ 坏消息：JaneZ的数分要丸辣"></a>好消息：JaneZ开始学习数分了！ 坏消息：JaneZ的数分要丸辣</h5><h2 id="Maths-Analysis-1-函数列与一致收敛性"><a href="#Maths-Analysis-1-函数列与一致收敛性" class="headerlink" title="Maths Analysis 1  函数列与一致收敛性"></a>Maths Analysis 1  函数列与一致收敛性</h2><h3 id="首先，给出函数列定义！"><a href="#首先，给出函数列定义！" class="headerlink" title="首先，给出函数列定义！"></a>首先，给出函数列定义！</h3><p>！<a href="/img/%E5%87%BD%E6%95%B0%E5%88%97%E5%AE%9A%E4%B9%89.png">函数列定义</a></p><h4 id="是不是很简单？让我们来看一个例子——经典-x-n"><a href="#是不是很简单？让我们来看一个例子——经典-x-n" class="headerlink" title="是不是很简单？让我们来看一个例子——经典 $x^n$"></a>是不是很简单？让我们来看一个例子——经典 $x^n$</h4><p>！<a href="/img/%E5%87%BD%E6%95%B0%E5%88%97%E4%BE%8B%E5%AD%90.png">函数列例子</a></p><h3 id="接着隆重推出：《一致收敛》"><a href="#接着隆重推出：《一致收敛》" class="headerlink" title="接着隆重推出：《一致收敛》"></a>接着隆重推出：《一致收敛》</h3><p>！<a href="/img/%E4%B8%80%E8%87%B4%E6%94%B6%E6%95%9B%E5%AE%9A%E4%B9%89.png">一致收敛定义</a></p><h4 id="看上去有点绕啊？这跟函数列收敛有何区别？（鼠鼠菜菜不明白"><a href="#看上去有点绕啊？这跟函数列收敛有何区别？（鼠鼠菜菜不明白" class="headerlink" title="看上去有点绕啊？这跟函数列收敛有何区别？（鼠鼠菜菜不明白"></a>看上去有点绕啊？这跟函数列收敛有何区别？（鼠鼠菜菜不明白</h4><h4 id="哦菜菜鼠鼠似乎明白了些什么"><a href="#哦菜菜鼠鼠似乎明白了些什么" class="headerlink" title="哦菜菜鼠鼠似乎明白了些什么"></a>哦菜菜鼠鼠似乎明白了些什么</h4><h3 id="函数列收敛的-epsilon-N语言中，N与-epsilon-和x的取值皆有关，而一致收敛中的N只和-epsilon-有关-（回忆一下连续与一致连续）"><a href="#函数列收敛的-epsilon-N语言中，N与-epsilon-和x的取值皆有关，而一致收敛中的N只和-epsilon-有关-（回忆一下连续与一致连续）" class="headerlink" title="函数列收敛的$\epsilon$-N语言中，N与$\epsilon$和x的取值皆有关，而一致收敛中的N只和$\epsilon$有关 （回忆一下连续与一致连续）"></a>函数列收敛的$\epsilon$-N语言中，N与$\epsilon$和x的取值皆有关，而一致收敛中的N只和$\epsilon$有关 （回忆一下连续与一致连续）</h3><h4 id="接下来从几何上看看一致收敛"><a href="#接下来从几何上看看一致收敛" class="headerlink" title="接下来从几何上看看一致收敛"></a>接下来从几何上看看一致收敛</h4><p>！<a href="/img/%E4%B8%80%E8%87%B4%E6%94%B6%E6%95%9B%E5%87%A0%E4%BD%95%E6%84%8F%E4%B9%89.png">一致收敛几何意义</a></p><h3 id="将收敛自然绕不开柯西收敛准则，Cauchy依然可以推广到函数列一致收敛性上"><a href="#将收敛自然绕不开柯西收敛准则，Cauchy依然可以推广到函数列一致收敛性上" class="headerlink" title="将收敛自然绕不开柯西收敛准则，Cauchy依然可以推广到函数列一致收敛性上"></a>将收敛自然绕不开柯西收敛准则，Cauchy依然可以推广到函数列一致收敛性上</h3><p>！<a href="/img/%E6%9F%AF%E8%A5%BF%E6%94%B6%E6%95%9B%E5%87%86%E5%88%99.png">柯西收敛准则</a></p><h4 id="证明还是很简单的"><a href="#证明还是很简单的" class="headerlink" title="证明还是很简单的"></a>证明还是很简单的</h4><h3 id="接下来看一个和上确界相关的定理及推论吧"><a href="#接下来看一个和上确界相关的定理及推论吧" class="headerlink" title="接下来看一个和上确界相关的定理及推论吧"></a>接下来看一个和上确界相关的定理及推论吧</h3><p>！<a href="/img/%E4%B8%80%E8%87%B4%E6%94%B6%E6%95%9B%E5%AE%9A%E7%90%86%E5%8F%8A%E6%8E%A8%E8%AE%BA.png">一致收敛定理及推论</a></p><h4 id="And-An-Example"><a href="#And-An-Example" class="headerlink" title="And An Example~"></a>And An Example~</h4><p>！<a href="/img/%E4%B8%80%E8%87%B4%E6%94%B6%E6%95%9B%E5%AE%9A%E7%90%86%E4%BE%8B%E5%AD%90.png">一致收敛定理例子</a></p><h5 id="JaneZ要做回数分皇帝😎😎😎（口嗨中）"><a href="#JaneZ要做回数分皇帝😎😎😎（口嗨中）" class="headerlink" title="JaneZ要做回数分皇帝😎😎😎（口嗨中）"></a>JaneZ要做回数分皇帝😎😎😎（口嗨中）</h5>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Data-Structure2</title>
     <link href="/2025/02/01/Data-Structure2/"/>
     <url>/2025/02/01/Data-Structure2/</url>
