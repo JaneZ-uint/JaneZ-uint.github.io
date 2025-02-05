@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Maths-Analysis2</title>
+    <link href="/2025/02/05/Maths-Analysis2/"/>
+    <url>/2025/02/05/Maths-Analysis2/</url>
+    
+    <content type="html"><![CDATA[<h5 id="Before-好的，又来水文章了。今天要讲的是："><a href="#Before-好的，又来水文章了。今天要讲的是：" class="headerlink" title="Before: 好的，又来水文章了。今天要讲的是："></a>Before: 好的，又来水文章了。今天要讲的是：</h5><h2 id="Maths-Analysis-2-一致收敛判别法"><a href="#Maths-Analysis-2-一致收敛判别法" class="headerlink" title="Maths Analysis 2 一致收敛判别法"></a>Maths Analysis 2 一致收敛判别法</h2><h3 id="第一种：比较判别法"><a href="#第一种：比较判别法" class="headerlink" title="第一种：比较判别法"></a>第一种：比较判别法</h3><p><img src="/img/%E6%AF%94%E8%BE%83%E5%88%A4%E5%88%AB.png" alt="比较判别法"></p><h3 id="第二种：Dirichlet判别法"><a href="#第二种：Dirichlet判别法" class="headerlink" title="第二种：Dirichlet判别法"></a>第二种：Dirichlet判别法</h3><p><img src="/img/%E8%BF%AA%E5%88%A9%E5%85%8B%E9%9B%B7%E5%88%A4%E5%88%AB.png" alt="Dirichlet判别法"></p><h3 id="第三种：Abel判别法"><a href="#第三种：Abel判别法" class="headerlink" title="第三种：Abel判别法"></a>第三种：Abel判别法</h3><p><img src="/img/%E9%98%BF%E8%B4%9D%E5%B0%94%E5%88%A4%E5%88%AB.png" alt="Abel判别法"></p><h3 id="总结一下：这三种判别法跟上学期所学的反常积分敛散性判别法和级数敛散性的判别法是很相似的，甚至还更为简洁一些"><a href="#总结一下：这三种判别法跟上学期所学的反常积分敛散性判别法和级数敛散性的判别法是很相似的，甚至还更为简洁一些" class="headerlink" title="总结一下：这三种判别法跟上学期所学的反常积分敛散性判别法和级数敛散性的判别法是很相似的，甚至还更为简洁一些"></a>总结一下：这三种判别法跟上学期所学的反常积分敛散性判别法和级数敛散性的判别法是很相似的，甚至还更为简洁一些</h3><ul><li>收敛 &lt;-&gt; 一致收敛</li><li>有界 &lt;-&gt; 一致有界</li><li>其实今天仔细一想，对于函数列的问题，好像就应该讨论一致收敛而不是普通的收敛。主要是我觉得吧，普通收敛引入了一个很麻烦的x 😅😅😅</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>Maths Analysis</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Maths Analysis</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Java-Basic1</title>
     <link href="/2025/02/03/Java-Basic1/"/>
     <url>/2025/02/03/Java-Basic1/</url>
