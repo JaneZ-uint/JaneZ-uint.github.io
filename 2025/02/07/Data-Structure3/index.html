@@ -1,0 +1,664 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/JaneIcon.png">
+  <link rel="icon" href="/img/JaneIcon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yihan Zhu">
+  <meta name="keywords" content="SJTU Student CS Maths Life">
+  
+    <meta name="description" content="Before: 最近装了个虚拟机（ 为了Games101配的环境 ），结果很不幸出了一点小小的问题，使得正宫WSL用不了辣（正在紧急维修中）。但是DS的学习是不可中断的！冲！（ 打下这段文字时JaneZ正坐在拥挤的省人民医院诊室门口的地上，脚都麻了 ）Data Structure 3 双链表 容器 迭代器在上一节中，我们非常详细地实现了一个单链表类（算是对上学期所学进行了一个复习），我个人认为，双">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Data-Structure3">
+<meta property="og:url" content="http://example.com/2025/02/07/Data-Structure3/index.html">
+<meta property="og:site_name" content="JaneZ&#39;s Learning Space">
+<meta property="og:description" content="Before: 最近装了个虚拟机（ 为了Games101配的环境 ），结果很不幸出了一点小小的问题，使得正宫WSL用不了辣（正在紧急维修中）。但是DS的学习是不可中断的！冲！（ 打下这段文字时JaneZ正坐在拥挤的省人民医院诊室门口的地上，脚都麻了 ）Data Structure 3 双链表 容器 迭代器在上一节中，我们非常详细地实现了一个单链表类（算是对上学期所学进行了一个复习），我个人认为，双">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/%E8%BF%AD%E4%BB%A3%E5%99%A8.png">
+<meta property="og:image" content="http://example.com/img/%E8%BF%AD%E4%BB%A3%E5%99%A8%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C.png">
+<meta property="article:published_time" content="2025-02-07T06:28:03.000Z">
+<meta property="article:modified_time" content="2025-02-07T06:29:41.940Z">
+<meta property="article:author" content="Yihan Zhu">
+<meta property="article:tag" content="Data Structure">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/%E8%BF%AD%E4%BB%A3%E5%99%A8.png">
+  
+  
+  
+  <title>Data-Structure3 - JaneZ&#39;s Learning Space</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>JaneZ&#39;s Learning Space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Data-Structure3"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-02-07 14:28" pubdate>
+          February 7, 2025 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          954 words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          8 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Data-Structure3</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h5 id="Before-最近装了个虚拟机（-为了Games101配的环境-），结果很不幸出了一点小小的问题，使得正宫WSL用不了辣（正在紧急维修中）。但是DS的学习是不可中断的！冲！（-打下这段文字时JaneZ正坐在拥挤的省人民医院诊室门口的地上，脚都麻了-）"><a href="#Before-最近装了个虚拟机（-为了Games101配的环境-），结果很不幸出了一点小小的问题，使得正宫WSL用不了辣（正在紧急维修中）。但是DS的学习是不可中断的！冲！（-打下这段文字时JaneZ正坐在拥挤的省人民医院诊室门口的地上，脚都麻了-）" class="headerlink" title="Before: 最近装了个虚拟机（ 为了Games101配的环境 ），结果很不幸出了一点小小的问题，使得正宫WSL用不了辣（正在紧急维修中）。但是DS的学习是不可中断的！冲！（ 打下这段文字时JaneZ正坐在拥挤的省人民医院诊室门口的地上，脚都麻了 ）"></a>Before: 最近装了个虚拟机（ 为了Games101配的环境 ），结果很不幸出了一点小小的问题，使得正宫WSL用不了辣（正在紧急维修中）。但是DS的学习是不可中断的！冲！（ 打下这段文字时JaneZ正坐在拥挤的省人民医院诊室门口的地上，脚都麻了 ）</h5><h2 id="Data-Structure-3-双链表-容器-迭代器"><a href="#Data-Structure-3-双链表-容器-迭代器" class="headerlink" title="Data Structure 3 双链表 容器 迭代器"></a>Data Structure 3 双链表 容器 迭代器</h2><p>在上一节中，我们非常详细地实现了一个单链表类（算是对上学期所学进行了一个复习），我个人认为，双链表与单链表并不存在多么显著的区别。所以本章节中关于双链表的部分会相对比较简洁。</p>
+<h3 id="双链表"><a href="#双链表" class="headerlink" title="双链表"></a>双链表</h3><ul>
+<li>定义：（和单链表不同的地方）每个结点既保存直接后继结点的地址，也保存直接前驱结点的地址（单链表只保存直接后继结点的地址）</li>
+<li>拥有直接前驱结点的地址实际上意味着双链表可以从后向前访问</li>
+<li>双链表中既包含了一个头结点head ,还包含了一个尾结点tail；保存一个双链表事实上就是保存头尾两个结点的地址<br>下面是一个双链表类的定义：<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">elemType</span>&gt;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">dLinkList</span>: <span class="hljs-keyword">public</span> list &lt;elemType&gt;&#123;<br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">node</span>&#123;<br>        elemType data;<br>        node *prev;<br>        node *next;<br><br>        <span class="hljs-built_in">node</span>(<span class="hljs-type">const</span> elemType&amp; x ,node *p = <span class="hljs-literal">nullptr</span>, node *n = <span class="hljs-literal">nullptr</span>)&#123;<br>            data = x;<br>            prev = p;<br>            next = n;<br>        &#125;<br>        <span class="hljs-built_in">node</span>():<span class="hljs-built_in">prev</span>(<span class="hljs-literal">nullptr</span>),<span class="hljs-built_in">next</span>(<span class="hljs-literal">nullptr</span>)&#123;&#125;<br>        ~<span class="hljs-built_in">node</span>()&#123;&#125;<br>    &#125;;<br>node *head;<br>node *tail;<br><span class="hljs-type">int</span> currentLength;<br><span class="hljs-function">node *<span class="hljs-title">move</span><span class="hljs-params">(<span class="hljs-type">int</span> i)</span><span class="hljs-type">const</span></span>;<br><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">dLinkList</span>();<br>    ~<span class="hljs-built_in">dLinkList</span>()&#123;<br>        <span class="hljs-built_in">clear</span>();<br>        <span class="hljs-keyword">delete</span> head;<br>        <span class="hljs-keyword">delete</span> tail;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">clear</span><span class="hljs-params">()</span></span>;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">length</span><span class="hljs-params">()</span> <span class="hljs-type">const</span></span>&#123;<br>        <span class="hljs-keyword">return</span> currentLength;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(<span class="hljs-type">int</span> i , <span class="hljs-type">const</span> elemType &amp;x)</span></span>;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">remove</span><span class="hljs-params">(<span class="hljs-type">int</span> i)</span></span>;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">search</span><span class="hljs-params">(<span class="hljs-type">const</span> elemType &amp;x)</span><span class="hljs-type">const</span></span>;<br>    <span class="hljs-function">elemType <span class="hljs-title">visit</span><span class="hljs-params">(<span class="hljs-type">int</span> i)</span> <span class="hljs-type">const</span></span>;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">traverse</span><span class="hljs-params">()</span> <span class="hljs-type">const</span></span>;<br>&#125;;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="容器与迭代器"><a href="#容器与迭代器" class="headerlink" title="容器与迭代器"></a>容器与迭代器</h3><ul>
+<li>本质上我们所说的数据结构，就是在<strong>保存一组相互之间具有某种关系的数据元素</strong>。而C++把每个数据结构的实现称为<strong>一个容器</strong></li>
+<li>在设计容器时，我们通常为每种容器定义一个相应的表示其中对象位置的类型，称作<strong>迭代器</strong>，相当于指向容器中对象的指针</li>
+<li>设计一个迭代器包括2个部分:<br>(1) 如何标识容器中某一对象的位置<br>(2) 如何实现迭代器的操作</li>
+<li>为了方便用户使用，STL将迭代器类（iterator , const_iterator）定义成相应容器类的公有内嵌类</li>
+<li>注意：iterator类可通过迭代器修改指向元素的值，而const_iterator只可以通过迭代器读取指向元素的值</li>
+</ul>
+<h4 id="下面是一些迭代器自身的常见操作："><a href="#下面是一些迭代器自身的常见操作：" class="headerlink" title="下面是一些迭代器自身的常见操作："></a>下面是一些迭代器自身的常见操作：</h4><p><img src="/img/%E8%BF%AD%E4%BB%A3%E5%99%A8.png" srcset="/img/loading.gif" lazyload alt="迭代器自身操作"></p>
+<h4 id="这是我手搓的STL-list类中内嵌iterator类（-const-iterator类几乎同理，只是const版本🤣🤣🤣-）的实现："><a href="#这是我手搓的STL-list类中内嵌iterator类（-const-iterator类几乎同理，只是const版本🤣🤣🤣-）的实现：" class="headerlink" title="这是我手搓的STL list类中内嵌iterator类（ const_iterator类几乎同理，只是const版本🤣🤣🤣 ）的实现："></a>这是我手搓的STL list类中内嵌iterator类（ const_iterator类几乎同理，只是const版本🤣🤣🤣 ）的实现：</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">class</span> <span class="hljs-title class_">iterator</span> &#123;<br>    <span class="hljs-keyword">private</span>:<br>        node* ptr;<br>    <span class="hljs-keyword">public</span>:<br>        iterator(node* p = nullptr) : ptr(p) &#123;&#125;<br><br>        iterator&amp; <span class="hljs-keyword">operator</span>++() &#123;<br>            ptr = ptr-&gt;next;<br>            <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>        &#125;<br><br>        iterator&amp; <span class="hljs-keyword">operator</span>--() &#123;<br>            ptr = ptr-&gt;prev;<br>            <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>        &#125;<br><br>        iterator <span class="hljs-keyword">operator</span>++(int) &#123;<br>            iterator tmp = *<span class="hljs-keyword">this</span>;<br>            ++(*<span class="hljs-keyword">this</span>);<br>            <span class="hljs-keyword">return</span> tmp;<br>        &#125;<br><br>        iterator <span class="hljs-keyword">operator</span>--(int) &#123;<br>            iterator tmp = *<span class="hljs-keyword">this</span>;<br>            --(*<span class="hljs-keyword">this</span>);<br>            <span class="hljs-keyword">return</span> tmp;<br>        &#125;<br><br>        T&amp; <span class="hljs-keyword">operator</span>*() <span class="hljs-keyword">const</span> noexcept &#123;<br>            <span class="hljs-keyword">return</span> ptr-&gt;<span class="hljs-keyword">data</span>;<br>        &#125;<br><br>        T* <span class="hljs-keyword">operator</span>-&gt;() <span class="hljs-keyword">const</span> noexcept &#123;<br>            <span class="hljs-keyword">return</span> &amp;(ptr-&gt;<span class="hljs-keyword">data</span>);<br>        &#125;<br><br>        <span class="hljs-comment">/* A operator to check whether two iterators are same (pointing to the same memory) */</span><br>        friend bool <span class="hljs-keyword">operator</span>==(<span class="hljs-keyword">const</span> iterator&amp; a, <span class="hljs-keyword">const</span> iterator&amp; b) &#123;<br>           <span class="hljs-keyword">return</span> (a.ptr == b.ptr);<br>        &#125;<br><br>        friend bool <span class="hljs-keyword">operator</span>!=(<span class="hljs-keyword">const</span> iterator&amp; a, <span class="hljs-keyword">const</span> iterator&amp; b) &#123;<br>            <span class="hljs-keyword">return</span> (a.ptr != b.ptr);<br>        &#125;<br><br>        friend <span class="hljs-keyword">class</span> <span class="hljs-title class_">list</span>;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h3 id="以线性表为例"><a href="#以线性表为例" class="headerlink" title="以线性表为例"></a>以线性表为例</h3><h4 id="下面是一些list类和vector类中的迭代器相关操作："><a href="#下面是一些list类和vector类中的迭代器相关操作：" class="headerlink" title="下面是一些list类和vector类中的迭代器相关操作："></a>下面是一些list类和vector类中的迭代器相关操作：</h4><p><img src="/img/%E8%BF%AD%E4%BB%A3%E5%99%A8%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C.png" srcset="/img/loading.gif" lazyload alt="迭代器相关操作"></p>
+<h4 id="这是我手搓的STL-list类中与迭代器相关的一些操作的实现🫡🫡🫡："><a href="#这是我手搓的STL-list类中与迭代器相关的一些操作的实现🫡🫡🫡：" class="headerlink" title="这是我手搓的STL list类中与迭代器相关的一些操作的实现🫡🫡🫡："></a>这是我手搓的STL list类中与迭代器相关的一些操作的实现🫡🫡🫡：</h4><p>注：其实存在一些问题（ 因为我的实现并没有考虑模板类型T 不具有默认构造函数的情况 😢 ）</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-comment">/* Return an iterator pointing to the first element. */</span><br>iterator <span class="hljs-built_in">begin</span>() noexcept &#123;<br>    return <span class="hljs-built_in">iterator</span>(head-&gt;next);<br>&#125;<br><br>const_iterator <span class="hljs-built_in">cbegin</span>() const noexcept &#123;<br>    return <span class="hljs-built_in">const_iterator</span>(head-&gt;next);<br>&#125;<br><br><span class="hljs-comment">/* Return an iterator pointing to one past the last element. */</span><br>iterator <span class="hljs-built_in">end</span>() noexcept &#123;<br>    return <span class="hljs-built_in">iterator</span>(tail);<br>&#125;<br><br>const_iterator <span class="hljs-built_in">cend</span>() const noexcept &#123;<br>    return <span class="hljs-built_in">const_iterator</span>(tail);<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight nim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs nim"><span class="hljs-keyword">iterator</span> insert(<span class="hljs-keyword">iterator</span> pos, <span class="hljs-keyword">const</span> T&amp; value) &#123;<br>    node* n = new node(value, pos.<span class="hljs-keyword">ptr</span>-&gt;prev, pos.<span class="hljs-keyword">ptr</span>);<br>    pos.<span class="hljs-keyword">ptr</span>-&gt;prev-&gt;next = n;<br>    pos.<span class="hljs-keyword">ptr</span>-&gt;prev = n;<br>    ++ currentLength;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">iterator</span>(n);<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs xl">iterator erase(iterator pos) noexcept &#123;<br>    <span class="hljs-keyword">if</span> (pos == end()) &#123;<br>        return end();<br>    &#125;<br>    node* tmp = pos.ptr;<br>    <span class="hljs-function"><span class="hljs-title">iterator</span> it(tmp-&gt;</span>next);<br>    <span class="hljs-function"><span class="hljs-title">tmp</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">prev</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">next</span> = tmp-&gt;</span>next;<br>    <span class="hljs-function"><span class="hljs-title">tmp</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">next</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">prev</span> = tmp-&gt;</span>prev;<br>    delete tmp;<br>    -- currentLength;<br>    return it;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Data-Structure/" class="category-chain-item">Data Structure</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Data-Structure/" class="print-no-link">#Data Structure</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Data-Structure3</div>
+      <div>http://example.com/2025/02/07/Data-Structure3/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yihan Zhu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>February 7, 2025</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/02/05/Maths-Analysis2/" title="Maths-Analysis2">
+                        <span class="hidden-mobile">Maths-Analysis2</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
