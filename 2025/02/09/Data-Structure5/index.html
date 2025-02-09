@@ -1,0 +1,664 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/JaneIcon.png">
+  <link rel="icon" href="/img/JaneIcon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yihan Zhu">
+  <meta name="keywords" content="SJTU Student CS Maths Life">
+  
+    <meta name="description" content="Before：JaneZ今天更新频率有点高啊😎😎😎（ 这么良心的up还不快三连一下🤣🤣🤣 ）南京几个月前新开通了7号线，作为资深轨道交通爱好者的JaneZ也是在回到南京的第二天光速打卡了（ 应该坐完了永初路——福建路这一段 ），比较熟悉的几个站点就是中胜、大士茶亭、草场门、古平岗还有福建路（ nsfz校车！）吧。前2天去省人民看病，顺带打卡了7号线网红站点——清凉山！真的好看！地下6层">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Data-Structure5">
+<meta property="og:url" content="http://example.com/2025/02/09/Data-Structure5/index.html">
+<meta property="og:site_name" content="JaneZ&#39;s Learning Space">
+<meta property="og:description" content="Before：JaneZ今天更新频率有点高啊😎😎😎（ 这么良心的up还不快三连一下🤣🤣🤣 ）南京几个月前新开通了7号线，作为资深轨道交通爱好者的JaneZ也是在回到南京的第二天光速打卡了（ 应该坐完了永初路——福建路这一段 ），比较熟悉的几个站点就是中胜、大士茶亭、草场门、古平岗还有福建路（ nsfz校车！）吧。前2天去省人民看病，顺带打卡了7号线网红站点——清凉山！真的好看！地下6层">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/Metro.png">
+<meta property="og:image" content="http://example.com/img/%E9%A1%BA%E5%BA%8F%E6%A0%88%E5%AD%98%E5%82%A8.png">
+<meta property="article:published_time" content="2025-02-09T04:10:35.000Z">
+<meta property="article:modified_time" content="2025-02-09T04:11:40.953Z">
+<meta property="article:author" content="Yihan Zhu">
+<meta property="article:tag" content="Data Structure">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/Metro.png">
+  
+  
+  
+  <title>Data-Structure5 - JaneZ&#39;s Learning Space</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>JaneZ&#39;s Learning Space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Data-Structure5"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-02-09 12:10" pubdate>
+          February 9, 2025 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          517 words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          5 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Data-Structure5</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h5 id="Before：JaneZ今天更新频率有点高啊😎😎😎（-这么良心的up还不快三连一下🤣🤣🤣-）南京几个月前新开通了7号线，作为资深轨道交通爱好者的JaneZ也是在回到南京的第二天光速打卡了（-应该坐完了永初路——福建路这一段-），比较熟悉的几个站点就是中胜、大士茶亭、草场门、古平岗还有福建路（-nsfz校车！）吧。前2天去省人民看病，顺带打卡了7号线网红站点——清凉山！真的好看！地下6层是真的厉害！附上图片一张💕💕💕"><a href="#Before：JaneZ今天更新频率有点高啊😎😎😎（-这么良心的up还不快三连一下🤣🤣🤣-）南京几个月前新开通了7号线，作为资深轨道交通爱好者的JaneZ也是在回到南京的第二天光速打卡了（-应该坐完了永初路——福建路这一段-），比较熟悉的几个站点就是中胜、大士茶亭、草场门、古平岗还有福建路（-nsfz校车！）吧。前2天去省人民看病，顺带打卡了7号线网红站点——清凉山！真的好看！地下6层是真的厉害！附上图片一张💕💕💕" class="headerlink" title="Before：JaneZ今天更新频率有点高啊😎😎😎（ 这么良心的up还不快三连一下🤣🤣🤣 ）南京几个月前新开通了7号线，作为资深轨道交通爱好者的JaneZ也是在回到南京的第二天光速打卡了（ 应该坐完了永初路——福建路这一段 ），比较熟悉的几个站点就是中胜、大士茶亭、草场门、古平岗还有福建路（ nsfz校车！）吧。前2天去省人民看病，顺带打卡了7号线网红站点——清凉山！真的好看！地下6层是真的厉害！附上图片一张💕💕💕"></a>Before：JaneZ今天更新频率有点高啊😎😎😎（ 这么良心的up还不快三连一下🤣🤣🤣 ）南京几个月前新开通了7号线，作为资深轨道交通爱好者的JaneZ也是在回到南京的第二天光速打卡了（ 应该坐完了永初路——福建路这一段 ），比较熟悉的几个站点就是中胜、大士茶亭、草场门、古平岗还有福建路（ nsfz校车！）吧。前2天去省人民看病，顺带打卡了7号线网红站点——清凉山！真的好看！地下6层是真的厉害！附上图片一张💕💕💕</h5><p><img src="/img/Metro.png" srcset="/img/loading.gif" lazyload alt="清凉山地铁站"></p>
+<h2 id="Data-Structure-5-栈"><a href="#Data-Structure-5-栈" class="headerlink" title="Data Structure 5 栈"></a>Data Structure 5 栈</h2><h3 id="栈的定义"><a href="#栈的定义" class="headerlink" title="栈的定义"></a>栈的定义</h3><ul>
+<li>一种特殊的线性表，插入删除运算限定在表的某一端进行</li>
+<li>允许进行插入删除操作的一端称为<strong>栈顶</strong>，另一端称为<strong>栈底</strong></li>
+<li>处于栈顶位置中的数据元素称为<strong>栈顶元素</strong>，若栈中没有元素，则称为<strong>空栈</strong></li>
+<li>LIFO表（后进先出表）</li>
+</ul>
+<h3 id="栈的抽象类"><a href="#栈的抽象类" class="headerlink" title="栈的抽象类"></a>栈的抽象类</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">elemType</span>&gt;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">stack</span>&#123;<br>    <span class="hljs-keyword">public</span>:<br>        <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">bool</span> <span class="hljs-title">isEmpty</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>; <span class="hljs-comment">//判栈空</span><br>        <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">push</span><span class="hljs-params">(<span class="hljs-type">const</span> elemType &amp;x)</span> </span>= <span class="hljs-number">0</span>; <span class="hljs-comment">//进栈</span><br>        <span class="hljs-function"><span class="hljs-keyword">virtual</span> elemType <span class="hljs-title">pop</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>; <span class="hljs-comment">//出栈</span><br>        <span class="hljs-function"><span class="hljs-keyword">virtual</span> elemType <span class="hljs-title">top</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>; <span class="hljs-comment">//取栈顶元素</span><br>        <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">stack</span>(); <span class="hljs-comment">//虚析构函数</span><br>&#125;;<br></code></pre></td></tr></table></figure>
+<h3 id="栈的顺序实现"><a href="#栈的顺序实现" class="headerlink" title="栈的顺序实现"></a>栈的顺序实现</h3><p>栈的顺序实现称为<strong>顺序栈</strong><br>顺序栈的实现需要3个变量：</p>
+<ul>
+<li>一个指向栈元素类型的指针（指向动态数组的首地址）</li>
+<li>一个表示数组规模的整型数</li>
+<li>一个表示栈顶位置的整型数<br><img src="/img/%E9%A1%BA%E5%BA%8F%E6%A0%88%E5%AD%98%E5%82%A8.png" srcset="/img/loading.gif" lazyload alt="顺序栈存储"></li>
+</ul>
+<h4 id="下面是一个顺序栈类的定义"><a href="#下面是一个顺序栈类的定义" class="headerlink" title="下面是一个顺序栈类的定义"></a>下面是一个顺序栈类的定义</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">elemType</span>&gt;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">seqStack</span> : <span class="hljs-keyword">public</span> stack&lt;elemType&gt;&#123;<br>    <span class="hljs-keyword">private</span>:<br>        elemType *elem;<br>        <span class="hljs-type">int</span> top_p;<br>        <span class="hljs-type">int</span> maxSize;<br>        <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">doubleSpace</span><span class="hljs-params">()</span></span>;<br>    <span class="hljs-keyword">public</span>:<br>        <span class="hljs-built_in">seqStack</span>(<span class="hljs-type">int</span> initSize = <span class="hljs-number">10</span>);<br>        ~<span class="hljs-built_in">seqStack</span>();<br>        <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">isEmpty</span><span class="hljs-params">()</span> <span class="hljs-type">const</span></span>;<br>        <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">push</span><span class="hljs-params">(<span class="hljs-type">const</span> elemType &amp;x)</span></span>;<br>        <span class="hljs-function">elemType <span class="hljs-title">pop</span><span class="hljs-params">()</span></span>;<br>        <span class="hljs-function">elemType <span class="hljs-title">top</span><span class="hljs-params">()</span> <span class="hljs-type">const</span></span>;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h4 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h4><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">template &lt;<span class="hljs-keyword">class</span> <span class="hljs-symbol">elemType</span>&gt;<br><span class="hljs-symbol">bool</span> <span class="hljs-symbol">seqList</span>&lt;<span class="hljs-symbol">elemType</span>&gt;::<span class="hljs-symbol">isEmpty</span>() <span class="hljs-symbol">const</span>&#123;<br>    <span class="hljs-keyword">return</span> top_p == <span class="hljs-number">-1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">template &lt;<span class="hljs-keyword">class</span> <span class="hljs-symbol">elemType</span>&gt;<br><span class="hljs-symbol">void</span> <span class="hljs-symbol">seqList</span>&lt;<span class="hljs-symbol">elemType</span>&gt;::<span class="hljs-symbol">push</span>(<span class="hljs-symbol">const</span> <span class="hljs-symbol">elemType</span> &amp;<span class="hljs-symbol">x</span>)&#123;<br>    <span class="hljs-keyword">if</span>(top_p == maxSize <span class="hljs-number">-1</span>)&#123;<br>        <span class="hljs-built_in">double</span>Space();<br>    &#125;<br>    top_p ++;<br>    elem[top_p] == x;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">template &lt;<span class="hljs-keyword">class</span> <span class="hljs-symbol">elemType</span>&gt;<br><span class="hljs-symbol">elemType</span> <span class="hljs-symbol">seqList</span>&lt;<span class="hljs-symbol">elemType</span>&gt;::<span class="hljs-symbol">pop</span>()&#123;<br>    top_p --;<br>    <span class="hljs-keyword">return</span> elem[top_p + <span class="hljs-number">1</span>];<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">template &lt;<span class="hljs-keyword">class</span> <span class="hljs-symbol">elemType</span>&gt;<br><span class="hljs-symbol">elemType</span> <span class="hljs-symbol">seqList</span>&lt;<span class="hljs-symbol">elemType</span>&gt;::<span class="hljs-symbol">top</span>() <span class="hljs-symbol">const</span>&#123;<br>    <span class="hljs-keyword">return</span> elem[top_p];<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs perl">template &lt;<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">elemType</span>&gt;</span><br><span class="hljs-class"><span class="hljs-title">void</span> <span class="hljs-title">seqList</span>&lt;<span class="hljs-title">elemType</span>&gt;::<span class="hljs-title">doubleSpace</span>()</span>&#123;<br>    elemType *tmp = elem;<br>    elem = new elemType[<span class="hljs-number">2</span> * maxSize];<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; maxSize ; i ++)&#123;<br>        elem[i] = tmp[i];<br>    &#125;<br>    maxSize *= <span class="hljs-number">2</span>;<br>    <span class="hljs-keyword">delete</span> []tmp;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Data-Structure/" class="category-chain-item">Data Structure</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Data-Structure/" class="print-no-link">#Data Structure</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Data-Structure5</div>
+      <div>http://example.com/2025/02/09/Data-Structure5/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yihan Zhu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>February 9, 2025</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/02/07/Data-Structure4/" title="Data-Structure4">
+                        <span class="hidden-mobile">Data-Structure4</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
