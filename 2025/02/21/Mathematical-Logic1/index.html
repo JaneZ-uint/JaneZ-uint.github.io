@@ -1,0 +1,676 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/JaneIcon.png">
+  <link rel="icon" href="/img/JaneIcon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yihan Zhu">
+  <meta name="keywords" content="SJTU Student CS Maths Life">
+  
+    <meta name="description" content="Before: 数理逻辑是ACM班大一下要求修的一门课，这门课本质上还是一门数学课，一般也是数学系的同学可能会上的（而不是计算机系🤣）。Prof是Yin Qiang，Yijia Chen的学生。后续会更新这门“抽象”的课的Lecture Notes❤️Methematical Logic 1 Introduction &amp; The Syntax of First-order LogicCo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mathematical-Logic1">
+<meta property="og:url" content="http://example.com/2025/02/21/Mathematical-Logic1/index.html">
+<meta property="og:site_name" content="JaneZ&#39;s Learning Space">
+<meta property="og:description" content="Before: 数理逻辑是ACM班大一下要求修的一门课，这门课本质上还是一门数学课，一般也是数学系的同学可能会上的（而不是计算机系🤣）。Prof是Yin Qiang，Yijia Chen的学生。后续会更新这门“抽象”的课的Lecture Notes❤️Methematical Logic 1 Introduction &amp; The Syntax of First-order LogicCo">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/Formula.png">
+<meta property="article:published_time" content="2025-02-21T12:45:16.000Z">
+<meta property="article:modified_time" content="2025-02-21T12:49:12.271Z">
+<meta property="article:author" content="Yihan Zhu">
+<meta property="article:tag" content="Mathematical Logic">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/Formula.png">
+  
+  
+  
+  <title>Mathematical-Logic1 - JaneZ&#39;s Learning Space</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>JaneZ&#39;s Learning Space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Mathematical-Logic1"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-02-21 20:45" pubdate>
+          February 21, 2025 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          241 words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          3 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Mathematical-Logic1</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h5 id="Before-数理逻辑是ACM班大一下要求修的一门课，这门课本质上还是一门数学课，一般也是数学系的同学可能会上的（而不是计算机系🤣）。Prof是Yin-Qiang，Yijia-Chen的学生。后续会更新这门“抽象”的课的Lecture-Notes❤️"><a href="#Before-数理逻辑是ACM班大一下要求修的一门课，这门课本质上还是一门数学课，一般也是数学系的同学可能会上的（而不是计算机系🤣）。Prof是Yin-Qiang，Yijia-Chen的学生。后续会更新这门“抽象”的课的Lecture-Notes❤️" class="headerlink" title="Before: 数理逻辑是ACM班大一下要求修的一门课，这门课本质上还是一门数学课，一般也是数学系的同学可能会上的（而不是计算机系🤣）。Prof是Yin Qiang，Yijia Chen的学生。后续会更新这门“抽象”的课的Lecture Notes❤️"></a>Before: 数理逻辑是ACM班大一下要求修的一门课，这门课本质上还是一门数学课，一般也是数学系的同学可能会上的（而不是计算机系🤣）。Prof是Yin Qiang，Yijia Chen的学生。后续会更新这门“抽象”的课的Lecture Notes❤️</h5><h1 id="Methematical-Logic-1-Introduction-The-Syntax-of-First-order-Logic"><a href="#Methematical-Logic-1-Introduction-The-Syntax-of-First-order-Logic" class="headerlink" title="Methematical Logic 1 Introduction &amp; The Syntax of First-order Logic"></a>Methematical Logic 1 Introduction &amp; The Syntax of First-order Logic</h1><h2 id="Course-Introduction"><a href="#Course-Introduction" class="headerlink" title="Course Introduction"></a>Course Introduction</h2><p>Four Problems mainly</p>
+<ul>
+<li>What is a mathematical proof</li>
+<li>What makes a proof correct</li>
+<li>Is there a boundary of provability</li>
+<li>Can computers find proofs</li>
+</ul>
+<h3 id="Q1-What-is-a-mathematical-proof"><a href="#Q1-What-is-a-mathematical-proof" class="headerlink" title="Q1.What is a mathematical proof"></a>Q1.What is a mathematical proof</h3><p>Based on first-order logic</p>
+<h3 id="Q2-What-makes-a-proof-correct"><a href="#Q2-What-makes-a-proof-correct" class="headerlink" title="Q2.What makes a proof correct"></a>Q2.What makes a proof correct</h3><p>Gödel Completeness Theorem</p>
+<h3 id="Q3-Is-there-a-boundary-of-provability"><a href="#Q3-Is-there-a-boundary-of-provability" class="headerlink" title="Q3.Is there a boundary of provability"></a>Q3.Is there a boundary of provability</h3><p>Gödel’s First Incompleteness Theorem</p>
+<h3 id="Q4-Can-computers-find-proofs"><a href="#Q4-Can-computers-find-proofs" class="headerlink" title="Q4.Can computers find proofs"></a>Q4.Can computers find proofs</h3><p>Any computer program cannot decide whether an arbitrary input mathematical statement has a proof.<br>Turing’s undecidability of the halting problem.(图灵停机问题不可判定)</p>
+<p>Below is A Proof of Q4:<br>φP,x has a proof | P will eventually halt on input x<br>1.construct the mathematical statement φx,x<br>2.call the program T on input φx,x<br>3.if T(φx,x) &#x3D; yes then run forever else halt</p>
+<p>Then we can get that H(H) haltss iff H(H) does not halt.(Using what we know up)</p>
+<h2 id="The-Syntax-of-First-order-Logic"><a href="#The-Syntax-of-First-order-Logic" class="headerlink" title="The Syntax of First-order Logic"></a>The Syntax of First-order Logic</h2><h3 id="Alphabets-字母表"><a href="#Alphabets-字母表" class="headerlink" title="Alphabets 字母表"></a>Alphabets 字母表</h3><p>an nonempty set of symbols 非空符号的集合</p>
+<h3 id="Word-词"><a href="#Word-词" class="headerlink" title="Word 词"></a>Word 词</h3><p>A word w over A(an Alphabet) is a finite sequence of symbols in A,i.e,<br>$$<br>w &#x3D; w_1w_2…w_n<br>$$<br>$<br>w_i \in A<br>$<br>$A^*$ denotes the set of all words over A</p>
+<h3 id="Countable-Set"><a href="#Countable-Set" class="headerlink" title="Countable Set"></a>Countable Set</h3><p>There exists an injective function(单射) α from N onto M<br>At most countable: if M is either finite or countable</p>
+<p>Two lemmas<br>1.These three equivalent:<br>(1)M is at most countable<br>(2)an surjective function f:N -&gt; M<br>(3)an injective function f:M -&gt; N<br>2.A is most countable,then $A^*$ is countable.</p>
+<h3 id="Terms-项"><a href="#Terms-项" class="headerlink" title="Terms 项"></a>Terms 项</h3><p>Variable Constant are both S-terms.<br>And if f is a n-ary function symbol in S,then f(S-terms) is also a S-term.</p>
+<h3 id="Formula-公式"><a href="#Formula-公式" class="headerlink" title="Formula 公式"></a>Formula 公式</h3><p>The set $L^S$ of S-formulas contains precisely those words in $A^∗_S$ which can be obtained by applying the following rules finitely many times.<br><img src="/img/Formula.png" srcset="/img/loading.gif" lazyload alt="Formula Rules"></p>
+<h3 id="Variables-变量"><a href="#Variables-变量" class="headerlink" title="Variables 变量"></a>Variables 变量</h3><p>Let t be a S-term, then var(t) is the set of variables in t.</p>
+<h3 id="Free-Variables-自由变元"><a href="#Free-Variables-自由变元" class="headerlink" title="Free Variables 自由变元"></a>Free Variables 自由变元</h3><p>We say that an occurrence of x in φ is free if it is not in the scope of any ∀x or ∃x.<br>只有出现在约束范围内的变量才算是约束出现的</p>
+<h3 id="Sentence-句子"><a href="#Sentence-句子" class="headerlink" title="Sentence 句子"></a>Sentence 句子</h3><p>If free(φ) is ∅,then it’s a sentence. 没有自由变元<br>Reflect Mathematical characteristics.<br>$L_N^S$:&#x3D; {φ | φ an S-formula with free(φ) ⊆ {v0, . . . , vn−1}}.</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Mathematical-Logic/" class="category-chain-item">Mathematical Logic</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Mathematical-Logic/" class="print-no-link">#Mathematical Logic</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Mathematical-Logic1</div>
+      <div>http://example.com/2025/02/21/Mathematical-Logic1/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yihan Zhu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>February 21, 2025</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/02/20/Data-Structure8/" title="Data-Structure8">
+                        <span class="hidden-mobile">Data-Structure8</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
