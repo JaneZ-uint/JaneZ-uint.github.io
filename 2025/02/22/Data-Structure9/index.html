@@ -19,24 +19,28 @@
   <meta name="author" content="Yihan Zhu">
   <meta name="keywords" content="SJTU Student CS Maths Life">
   
-    <meta name="description" content="Before: 数理逻辑是ACM班大一下要求修的一门课，这门课本质上还是一门数学课，一般也是数学系的同学可能会上的（而不是计算机系🤣）。Prof是Yin Qiang，Yijia Chen的学生。后续会更新这门“抽象”的课的Lecture Notes❤️Methematical Logic 1 Introduction &amp; The Syntax of First-order LogicCo">
+    <meta name="description" content="Before：这一章，我们要进入一种新的数据结构类型——树🌲🌳🌴🎄。lz早就听闻各种神奇的树（二叉树、平衡树、红黑树、线段树、B树、B+树…）😇😭😥，今天中午和学长吃饭得知他红黑树调了1个月找不出bug只好重构的事迹，已经开始害怕了😰咱们还是快开始吧！Data Structure 9 树为了满足以下某人的好奇心，决定先贴一张树的归纳总结的图，作为开端（自己宠自己） 树的定义首先，回">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mathematical-Logic1">
-<meta property="og:url" content="http://example.com/2025/02/21/Mathematical-Logic1/index.html">
+<meta property="og:title" content="Data-Structure9">
+<meta property="og:url" content="http://example.com/2025/02/22/Data-Structure9/index.html">
 <meta property="og:site_name" content="JaneZ&#39;s Learning Space">
-<meta property="og:description" content="Before: 数理逻辑是ACM班大一下要求修的一门课，这门课本质上还是一门数学课，一般也是数学系的同学可能会上的（而不是计算机系🤣）。Prof是Yin Qiang，Yijia Chen的学生。后续会更新这门“抽象”的课的Lecture Notes❤️Methematical Logic 1 Introduction &amp; The Syntax of First-order LogicCo">
+<meta property="og:description" content="Before：这一章，我们要进入一种新的数据结构类型——树🌲🌳🌴🎄。lz早就听闻各种神奇的树（二叉树、平衡树、红黑树、线段树、B树、B+树…）😇😭😥，今天中午和学长吃饭得知他红黑树调了1个月找不出bug只好重构的事迹，已经开始害怕了😰咱们还是快开始吧！Data Structure 9 树为了满足以下某人的好奇心，决定先贴一张树的归纳总结的图，作为开端（自己宠自己） 树的定义首先，回">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/img/Formula.png">
-<meta property="article:published_time" content="2025-02-21T12:45:16.000Z">
-<meta property="article:modified_time" content="2025-02-21T12:49:12.271Z">
+<meta property="og:image" content="http://example.com/img/%E6%A0%91%E5%A4%A7%E5%85%A8.png">
+<meta property="og:image" content="http://example.com/img/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%BD%A2%E6%80%81.png">
+<meta property="article:published_time" content="2025-02-22T13:38:39.000Z">
+<meta property="article:modified_time" content="2025-02-22T13:39:49.325Z">
 <meta property="article:author" content="Yihan Zhu">
-<meta property="article:tag" content="Mathematical Logic">
+<meta property="article:tag" content="Data Structure">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="Tree">
+<meta property="article:tag" content="Binary Tree">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/Formula.png">
+<meta name="twitter:image" content="http://example.com/img/%E6%A0%91%E5%A4%A7%E5%85%A8.png">
   
   
   
-  <title>Mathematical-Logic1 - JaneZ&#39;s Learning Space</title>
+  <title>Data-Structure9 - JaneZ&#39;s Learning Space</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -213,7 +217,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Mathematical-Logic1"></span>
+            <span id="subtitle" data-typed-text="Data-Structure9"></span>
           
         </div>
 
@@ -224,8 +228,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-02-21 20:45" pubdate>
-          February 21, 2025 pm
+        <time datetime="2025-02-22 21:38" pubdate>
+          February 22, 2025 pm
         </time>
       </span>
     
@@ -236,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          241 words
+          1.2k words
         
       </span>
     
@@ -247,7 +251,7 @@
         
         
         
-          3 mins
+          14 mins
         
       </span>
     
@@ -284,33 +288,32 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Mathematical-Logic1</h1>
+            <h1 id="seo-header">Data-Structure9</h1>
             
             
               <div class="markdown-body">
                 
-                <h5 id="Before-数理逻辑是ACM班大一下要求修的一门课，这门课本质上还是一门数学课，一般也是数学系的同学可能会上的（而不是计算机系🤣）。Prof是Yin-Qiang，Yijia-Chen的学生。后续会更新这门“抽象”的课的Lecture-Notes❤️"><a href="#Before-数理逻辑是ACM班大一下要求修的一门课，这门课本质上还是一门数学课，一般也是数学系的同学可能会上的（而不是计算机系🤣）。Prof是Yin-Qiang，Yijia-Chen的学生。后续会更新这门“抽象”的课的Lecture-Notes❤️" class="headerlink" title="Before: 数理逻辑是ACM班大一下要求修的一门课，这门课本质上还是一门数学课，一般也是数学系的同学可能会上的（而不是计算机系🤣）。Prof是Yin Qiang，Yijia Chen的学生。后续会更新这门“抽象”的课的Lecture Notes❤️"></a>Before: 数理逻辑是ACM班大一下要求修的一门课，这门课本质上还是一门数学课，一般也是数学系的同学可能会上的（而不是计算机系🤣）。Prof是Yin Qiang，Yijia Chen的学生。后续会更新这门“抽象”的课的Lecture Notes❤️</h5><h1 id="Methematical-Logic-1-Introduction-The-Syntax-of-First-order-Logic"><a href="#Methematical-Logic-1-Introduction-The-Syntax-of-First-order-Logic" class="headerlink" title="Methematical Logic 1 Introduction &amp; The Syntax of First-order Logic"></a>Methematical Logic 1 Introduction &amp; The Syntax of First-order Logic</h1><h2 id="Course-Introduction"><a href="#Course-Introduction" class="headerlink" title="Course Introduction"></a>Course Introduction</h2><p>Four Problems mainly</p>
+                <h5 id="Before：这一章，我们要进入一种新的数据结构类型——树🌲🌳🌴🎄。lz早就听闻各种神奇的树（二叉树、平衡树、红黑树、线段树、B树、B-树…）😇😭😥，今天中午和学长吃饭得知他红黑树调了1个月找不出bug只好重构的事迹，已经开始害怕了😰咱们还是快开始吧！"><a href="#Before：这一章，我们要进入一种新的数据结构类型——树🌲🌳🌴🎄。lz早就听闻各种神奇的树（二叉树、平衡树、红黑树、线段树、B树、B-树…）😇😭😥，今天中午和学长吃饭得知他红黑树调了1个月找不出bug只好重构的事迹，已经开始害怕了😰咱们还是快开始吧！" class="headerlink" title="Before：这一章，我们要进入一种新的数据结构类型——树🌲🌳🌴🎄。lz早就听闻各种神奇的树（二叉树、平衡树、红黑树、线段树、B树、B+树…）😇😭😥，今天中午和学长吃饭得知他红黑树调了1个月找不出bug只好重构的事迹，已经开始害怕了😰咱们还是快开始吧！"></a>Before：这一章，我们要进入一种新的数据结构类型——树🌲🌳🌴🎄。lz早就听闻各种神奇的树（二叉树、平衡树、红黑树、线段树、B树、B+树…）😇😭😥，今天中午和学长吃饭得知他红黑树调了1个月找不出bug只好重构的事迹，已经开始害怕了😰咱们还是快开始吧！</h5><h1 id="Data-Structure-9-树"><a href="#Data-Structure-9-树" class="headerlink" title="Data Structure 9 树"></a>Data Structure 9 树</h1><p>为了满足以下某人的好奇心，决定先贴一张树的归纳总结的图，作为开端（自己宠自己）<br><img src="/img/%E6%A0%91%E5%A4%A7%E5%85%A8.png" srcset="/img/loading.gif" lazyload alt="树的总结"></p>
+<h2 id="树的定义"><a href="#树的定义" class="headerlink" title="树的定义"></a>树的定义</h2><p>首先，回顾一下树状结构的特点：只有一个直接前驱（除根结点外），但可以有多个直接后继。</p>
+<p>树的递归定义：有n个结点的有限集合，或者是空集。拥有1个根结点，其余结点可分成m个互不相交的集合，这些集合本质上也是树，称作根节点的子树。<br>下面是树的一些基本术语：</p>
 <ul>
-<li>What is a mathematical proof</li>
-<li>What makes a proof correct</li>
-<li>Is there a boundary of provability</li>
-<li>Can computers find proofs</li>
+<li>根节点  叶节点（没有直接后继的结点） 内部结点（除根叶结点外）</li>
+<li>结点的度（一个结点的直接后继数目）  树的度（所有结点的度的最大值）</li>
+<li>子结点（结点的直接后继结点） 父结点（结点的直接前驱） 祖先节点（每个结点通向根结点的唯一路径上的所有结点） 子孙结点（该结点所有子树中的全部结点）</li>
+<li>兄弟结点（同一个结点的子结点互为兄弟结点）</li>
+<li>结点层次（相当于家谱中的第几代） 树的高度（结点的最大层次） 结点高度（以该结点为根的子树高度）</li>
+<li>有序树（把树中每个结点的子树看成自左向右有序的）</li>
+<li>森林（M棵互不相交的树的集合）</li>
 </ul>
-<h3 id="Q1-What-is-a-mathematical-proof"><a href="#Q1-What-is-a-mathematical-proof" class="headerlink" title="Q1.What is a mathematical proof"></a>Q1.What is a mathematical proof</h3><p>Based on first-order logic</p>
-<h3 id="Q2-What-makes-a-proof-correct"><a href="#Q2-What-makes-a-proof-correct" class="headerlink" title="Q2.What makes a proof correct"></a>Q2.What makes a proof correct</h3><p>Gödel Completeness Theorem</p>
-<h3 id="Q3-Is-there-a-boundary-of-provability"><a href="#Q3-Is-there-a-boundary-of-provability" class="headerlink" title="Q3.Is there a boundary of provability"></a>Q3.Is there a boundary of provability</h3><p>Gödel’s First Incompleteness Theorem</p>
-<h3 id="Q4-Can-computers-find-proofs"><a href="#Q4-Can-computers-find-proofs" class="headerlink" title="Q4.Can computers find proofs"></a>Q4.Can computers find proofs</h3><p>Any computer program cannot decide whether an arbitrary input mathematical statement has a proof.<br>Turing’s undecidability of the halting problem.(图灵停机问题不可判定)</p>
-<p>Below is A Proof of Q4:<br>φP,x has a proof | P will eventually halt on input x<br>1.construct the mathematical statement φx,x<br>2.call the program T on input φx,x<br>3.if T(φx,x) &#x3D; yes then run forever else halt</p>
-<p>Then we can get that H(H) haltss iff H(H) does not halt.(Using what we know up)</p>
-<h2 id="The-Syntax-of-First-order-Logic"><a href="#The-Syntax-of-First-order-Logic" class="headerlink" title="The Syntax of First-order Logic"></a>The Syntax of First-order Logic</h2><h3 id="Alphabets-字母表"><a href="#Alphabets-字母表" class="headerlink" title="Alphabets 字母表"></a>Alphabets 字母表</h3><p>an nonempty set of symbols 非空符号的集合</p>
-<h3 id="Word-词"><a href="#Word-词" class="headerlink" title="Word 词"></a>Word 词</h3><p>A word w over A(an Alphabet) is a finite sequence of symbols in A,i.e,<br>$$<br>w &#x3D; w_1w_2…w_n<br>$$<br>$<br>w_i \in A<br>$<br>$A^*$ denotes the set of all words over A</p>
-<h3 id="Countable-Set"><a href="#Countable-Set" class="headerlink" title="Countable Set"></a>Countable Set</h3><p>There exists an injective function(单射) α from N onto M<br>At most countable: if M is either finite or countable</p>
-<p>Two lemmas<br>1.These three equivalent:<br>(1)M is at most countable<br>(2)an surjective function f:N -&gt; M<br>(3)an injective function f:M -&gt; N<br>2.A is most countable,then $A^*$ is countable.</p>
-<h3 id="Terms-项"><a href="#Terms-项" class="headerlink" title="Terms 项"></a>Terms 项</h3><p>Variable Constant are both S-terms.<br>And if f is a n-ary function symbol in S,then f(S-terms) is also a S-term.</p>
-<h3 id="Formula-公式"><a href="#Formula-公式" class="headerlink" title="Formula 公式"></a>Formula 公式</h3><p>The set $L^S$ of S-formulas contains precisely those words in $A^∗_S$ which can be obtained by applying the following rules finitely many times.<br><img src="/img/Formula.png" srcset="/img/loading.gif" lazyload alt="Formula Rules"></p>
-<h3 id="Variables-变量"><a href="#Variables-变量" class="headerlink" title="Variables 变量"></a>Variables 变量</h3><p>Let t be a S-term, then var(t) is the set of variables in t.</p>
-<h3 id="Free-Variables-自由变元"><a href="#Free-Variables-自由变元" class="headerlink" title="Free Variables 自由变元"></a>Free Variables 自由变元</h3><p>We say that an occurrence of x in φ is free if it is not in the scope of any ∀x or ∃x.<br>只有出现在约束范围内的变量才算是约束出现的</p>
-<h3 id="Sentence-句子"><a href="#Sentence-句子" class="headerlink" title="Sentence 句子"></a>Sentence 句子</h3><p>If free(φ) is ∅,then it’s a sentence. 没有自由变元<br>Reflect Mathematical characteristics.<br>$L_N^S$:&#x3D; {φ | φ an S-formula with free(φ) ⊆ {v0, . . . , vn−1}}.</p>
+<h2 id="树的基本运算"><a href="#树的基本运算" class="headerlink" title="树的基本运算"></a>树的基本运算</h2><p>（1）create() 创建空树<br>（2）clear() 清除树中所有结点<br>（3）isEmpty() 判别空树<br>（4）root() 找到根结点的值<br>（5）parent(x) 找到结点x的父结点值<br>（6）child(x,i) 找结点x的第i个子结点值<br>（7）remove(x,i) 删除结点i的第i棵子树<br>（8）traverse() 访问树上每一个结点<br>还是老样子，给出树的抽象类：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">tree</span>&#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">clear</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">bool</span> <span class="hljs-title">isEmpty</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> T <span class="hljs-title">root</span><span class="hljs-params">(T flag)</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>; <span class="hljs-comment">//flag是结点不存在时的返回值</span><br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> T <span class="hljs-title">parent</span><span class="hljs-params">(T x,T flag)</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> T <span class="hljs-title">child</span><span class="hljs-params">(T x,<span class="hljs-type">int</span> i,T flag)</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">remove</span><span class="hljs-params">(T x,<span class="hljs-type">int</span> i)</span> </span>= <span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">traverse</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h2 id="二叉树-binary-tree"><a href="#二叉树-binary-tree" class="headerlink" title="二叉树 binary tree"></a>二叉树 binary tree</h2><p>放在第一个，那自然是因为它《简单且应用广泛》</p>
+<p>二叉树是结点的有限集合，它或者为空，或者由一个根结点及两棵互不相交的左右子树构成，而其左、右子树又都是二叉树。<strong>注意：二叉树是有序树，必须严格区分左右子树。</strong>即使只有一棵子树，也要说明它是左子树还是右子树。</p>
+<p>二叉树有5种基本形态：<br><img src="/img/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%BD%A2%E6%80%81.png" srcset="/img/loading.gif" lazyload alt="二叉树的5种基本形态"></p>
+<p>满二叉树：一棵二叉树中任意一层结点数量都达到了最大值<br>完全二叉树：在满二叉树的最底层自右向左依次去掉若干个结点（不能跳过任何一个结点）。即满二叉树一定是完全二叉树，但完全二叉树不一定是满二叉树。</p>
+<p>下面是二叉树的一些常用性质：<br>1.一棵二叉树第i层最多有2^(i - 1)个结点<br>2.一棵高度为k的二叉树上，最多有2^k - 1 个结点<br>3.对于一棵非空二叉树，如果叶子结点数为n_0，度为2的结点数为n_2，则有n_0 &#x3D; n_2 + 1<br>证明：设二叉树中度数为1的结点数量为n_1，结点总数为n，那么自然有：<br>n &#x3D; n_0 + n_1 + n_2<br>再看树枝数量B，二叉树中每个结点（除根结点外）都有一根指向他们的树枝，所以有：<br>B &#x3D; n - 1<br>这些树枝都是由度为1、2的结点发出的，所以<br>n_1 + 2 * n_2 &#x3D; n - 1<br>所以<br>n_0 &#x3D; n_2 + 1<br>4.具有n个结点的完全二叉树高度为[log_2 n] + 1<br>5.如果对一棵有n个结点的完全二叉树中的结点按层自上而下，每一层按自左至右依次编号，若设根结点的编号为1，则对任一编号为i的结点，有：<br>（1）若i &#x3D; 1，则为根结点；若i&gt;1，则父结点编号为[i&#x2F;2]<br>（2）如果2i&gt;n，则编号为i的结点为叶子结点，没有儿子；否则，其左儿子的编号为2i<br>（3）如果2i + 1&gt;n，则编号为i的结点无右儿子；否则，其右儿子的编号为2i + 1</p>
+<h2 id="二叉树的基本操作"><a href="#二叉树的基本操作" class="headerlink" title="二叉树的基本操作"></a>二叉树的基本操作</h2><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="https://www.pdai.tech/md/algorithm/alg-basic-tree.html">https://www.pdai.tech/md/algorithm/alg-basic-tree.html</a></p>
 
                 
               </div>
@@ -329,7 +332,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Mathematical-Logic/" class="category-chain-item">Mathematical Logic</a>
+  <a href="/categories/Data-Structure/" class="category-chain-item">Data Structure</a>
   
   
 
@@ -344,7 +347,13 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Mathematical-Logic/" class="print-no-link">#Mathematical Logic</a>
+        <a href="/tags/Data-Structure/" class="print-no-link">#Data Structure</a>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
+      
+        <a href="/tags/Tree/" class="print-no-link">#Tree</a>
+      
+        <a href="/tags/Binary-Tree/" class="print-no-link">#Binary Tree</a>
       
     </div>
   
@@ -356,8 +365,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Mathematical-Logic1</div>
-      <div>http://example.com/2025/02/21/Mathematical-Logic1/</div>
+      <div>Data-Structure9</div>
+      <div>http://example.com/2025/02/22/Data-Structure9/</div>
     </div>
     <div class="license-meta">
       
@@ -369,7 +378,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>February 21, 2025</div>
+          <div>February 22, 2025</div>
         </div>
       
       
@@ -401,18 +410,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/02/22/Data-Structure9/" title="Data-Structure9">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Data-Structure9</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/02/20/Data-Structure8/" title="Data-Structure8">
-                        <span class="hidden-mobile">Data-Structure8</span>
+                      <a href="/2025/02/21/Mathematical-Logic1/" title="Mathematical-Logic1">
+                        <span class="hidden-mobile">Mathematical-Logic1</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
