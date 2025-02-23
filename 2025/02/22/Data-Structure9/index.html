@@ -19,17 +19,18 @@
   <meta name="author" content="Yihan Zhu">
   <meta name="keywords" content="SJTU Student CS Maths Life">
   
-    <meta name="description" content="Before：这一章，我们要进入一种新的数据结构类型——树🌲🌳🌴🎄。lz早就听闻各种神奇的树（二叉树、平衡树、红黑树、线段树、B树、B+树…）😇😭😥，今天中午和学长吃饭得知他红黑树调了1个月找不出bug只好重构的事迹，已经开始害怕了😰咱们还是快开始吧！Data Structure 9 树为了满足以下某人的好奇心，决定先贴一张树的归纳总结的图，作为开端（自己宠自己） 树的定义首先，回">
+    <meta name="description" content="Before：这一章，我们要进入一种新的数据结构类型——树🌲🌳🌴🎄。lz早就听闻各种神奇的树（二叉树、平衡树、红黑树、线段树、B树、B+树…）😇😭😥，今天中午和学长吃饭得知他红黑树调了1个月找不出bug只好重构的事迹，已经开始害怕了😰咱们还是快开始吧！Data Structure 9 树为了满足一下某人的好奇心，决定先贴一张树的归纳总结的图，作为开端（自己宠自己） 树的定义首先，回">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Data-Structure9">
 <meta property="og:url" content="http://example.com/2025/02/22/Data-Structure9/index.html">
 <meta property="og:site_name" content="JaneZ&#39;s Learning Space">
-<meta property="og:description" content="Before：这一章，我们要进入一种新的数据结构类型——树🌲🌳🌴🎄。lz早就听闻各种神奇的树（二叉树、平衡树、红黑树、线段树、B树、B+树…）😇😭😥，今天中午和学长吃饭得知他红黑树调了1个月找不出bug只好重构的事迹，已经开始害怕了😰咱们还是快开始吧！Data Structure 9 树为了满足以下某人的好奇心，决定先贴一张树的归纳总结的图，作为开端（自己宠自己） 树的定义首先，回">
+<meta property="og:description" content="Before：这一章，我们要进入一种新的数据结构类型——树🌲🌳🌴🎄。lz早就听闻各种神奇的树（二叉树、平衡树、红黑树、线段树、B树、B+树…）😇😭😥，今天中午和学长吃饭得知他红黑树调了1个月找不出bug只好重构的事迹，已经开始害怕了😰咱们还是快开始吧！Data Structure 9 树为了满足一下某人的好奇心，决定先贴一张树的归纳总结的图，作为开端（自己宠自己） 树的定义首先，回">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/img/%E6%A0%91%E5%A4%A7%E5%85%A8.png">
 <meta property="og:image" content="http://example.com/img/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%BD%A2%E6%80%81.png">
+<meta property="og:image" content="http://example.com/img/%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86.png">
 <meta property="article:published_time" content="2025-02-22T13:38:39.000Z">
-<meta property="article:modified_time" content="2025-02-22T13:39:49.325Z">
+<meta property="article:modified_time" content="2025-02-23T06:04:30.389Z">
 <meta property="article:author" content="Yihan Zhu">
 <meta property="article:tag" content="Data Structure">
 <meta property="article:tag" content="C++">
@@ -240,7 +241,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k words
+          1.6k words
         
       </span>
     
@@ -251,7 +252,7 @@
         
         
         
-          14 mins
+          18 mins
         
       </span>
     
@@ -293,7 +294,7 @@
             
               <div class="markdown-body">
                 
-                <h5 id="Before：这一章，我们要进入一种新的数据结构类型——树🌲🌳🌴🎄。lz早就听闻各种神奇的树（二叉树、平衡树、红黑树、线段树、B树、B-树…）😇😭😥，今天中午和学长吃饭得知他红黑树调了1个月找不出bug只好重构的事迹，已经开始害怕了😰咱们还是快开始吧！"><a href="#Before：这一章，我们要进入一种新的数据结构类型——树🌲🌳🌴🎄。lz早就听闻各种神奇的树（二叉树、平衡树、红黑树、线段树、B树、B-树…）😇😭😥，今天中午和学长吃饭得知他红黑树调了1个月找不出bug只好重构的事迹，已经开始害怕了😰咱们还是快开始吧！" class="headerlink" title="Before：这一章，我们要进入一种新的数据结构类型——树🌲🌳🌴🎄。lz早就听闻各种神奇的树（二叉树、平衡树、红黑树、线段树、B树、B+树…）😇😭😥，今天中午和学长吃饭得知他红黑树调了1个月找不出bug只好重构的事迹，已经开始害怕了😰咱们还是快开始吧！"></a>Before：这一章，我们要进入一种新的数据结构类型——树🌲🌳🌴🎄。lz早就听闻各种神奇的树（二叉树、平衡树、红黑树、线段树、B树、B+树…）😇😭😥，今天中午和学长吃饭得知他红黑树调了1个月找不出bug只好重构的事迹，已经开始害怕了😰咱们还是快开始吧！</h5><h1 id="Data-Structure-9-树"><a href="#Data-Structure-9-树" class="headerlink" title="Data Structure 9 树"></a>Data Structure 9 树</h1><p>为了满足以下某人的好奇心，决定先贴一张树的归纳总结的图，作为开端（自己宠自己）<br><img src="/img/%E6%A0%91%E5%A4%A7%E5%85%A8.png" srcset="/img/loading.gif" lazyload alt="树的总结"></p>
+                <h5 id="Before：这一章，我们要进入一种新的数据结构类型——树🌲🌳🌴🎄。lz早就听闻各种神奇的树（二叉树、平衡树、红黑树、线段树、B树、B-树…）😇😭😥，今天中午和学长吃饭得知他红黑树调了1个月找不出bug只好重构的事迹，已经开始害怕了😰咱们还是快开始吧！"><a href="#Before：这一章，我们要进入一种新的数据结构类型——树🌲🌳🌴🎄。lz早就听闻各种神奇的树（二叉树、平衡树、红黑树、线段树、B树、B-树…）😇😭😥，今天中午和学长吃饭得知他红黑树调了1个月找不出bug只好重构的事迹，已经开始害怕了😰咱们还是快开始吧！" class="headerlink" title="Before：这一章，我们要进入一种新的数据结构类型——树🌲🌳🌴🎄。lz早就听闻各种神奇的树（二叉树、平衡树、红黑树、线段树、B树、B+树…）😇😭😥，今天中午和学长吃饭得知他红黑树调了1个月找不出bug只好重构的事迹，已经开始害怕了😰咱们还是快开始吧！"></a>Before：这一章，我们要进入一种新的数据结构类型——树🌲🌳🌴🎄。lz早就听闻各种神奇的树（二叉树、平衡树、红黑树、线段树、B树、B+树…）😇😭😥，今天中午和学长吃饭得知他红黑树调了1个月找不出bug只好重构的事迹，已经开始害怕了😰咱们还是快开始吧！</h5><h1 id="Data-Structure-9-树"><a href="#Data-Structure-9-树" class="headerlink" title="Data Structure 9 树"></a>Data Structure 9 树</h1><p>为了满足一下某人的好奇心，决定先贴一张树的归纳总结的图，作为开端（自己宠自己）<br><img src="/img/%E6%A0%91%E5%A4%A7%E5%85%A8.png" srcset="/img/loading.gif" lazyload alt="树的总结"></p>
 <h2 id="树的定义"><a href="#树的定义" class="headerlink" title="树的定义"></a>树的定义</h2><p>首先，回顾一下树状结构的特点：只有一个直接前驱（除根结点外），但可以有多个直接后继。</p>
 <p>树的递归定义：有n个结点的有限集合，或者是空集。拥有1个根结点，其余结点可分成m个互不相交的集合，这些集合本质上也是树，称作根节点的子树。<br>下面是树的一些基本术语：</p>
 <ul>
@@ -313,7 +314,19 @@
 <p>二叉树有5种基本形态：<br><img src="/img/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%BD%A2%E6%80%81.png" srcset="/img/loading.gif" lazyload alt="二叉树的5种基本形态"></p>
 <p>满二叉树：一棵二叉树中任意一层结点数量都达到了最大值<br>完全二叉树：在满二叉树的最底层自右向左依次去掉若干个结点（不能跳过任何一个结点）。即满二叉树一定是完全二叉树，但完全二叉树不一定是满二叉树。</p>
 <p>下面是二叉树的一些常用性质：<br>1.一棵二叉树第i层最多有2^(i - 1)个结点<br>2.一棵高度为k的二叉树上，最多有2^k - 1 个结点<br>3.对于一棵非空二叉树，如果叶子结点数为n_0，度为2的结点数为n_2，则有n_0 &#x3D; n_2 + 1<br>证明：设二叉树中度数为1的结点数量为n_1，结点总数为n，那么自然有：<br>n &#x3D; n_0 + n_1 + n_2<br>再看树枝数量B，二叉树中每个结点（除根结点外）都有一根指向他们的树枝，所以有：<br>B &#x3D; n - 1<br>这些树枝都是由度为1、2的结点发出的，所以<br>n_1 + 2 * n_2 &#x3D; n - 1<br>所以<br>n_0 &#x3D; n_2 + 1<br>4.具有n个结点的完全二叉树高度为[log_2 n] + 1<br>5.如果对一棵有n个结点的完全二叉树中的结点按层自上而下，每一层按自左至右依次编号，若设根结点的编号为1，则对任一编号为i的结点，有：<br>（1）若i &#x3D; 1，则为根结点；若i&gt;1，则父结点编号为[i&#x2F;2]<br>（2）如果2i&gt;n，则编号为i的结点为叶子结点，没有儿子；否则，其左儿子的编号为2i<br>（3）如果2i + 1&gt;n，则编号为i的结点无右儿子；否则，其右儿子的编号为2i + 1</p>
-<h2 id="二叉树的基本操作"><a href="#二叉树的基本操作" class="headerlink" title="二叉树的基本操作"></a>二叉树的基本操作</h2><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="https://www.pdai.tech/md/algorithm/alg-basic-tree.html">https://www.pdai.tech/md/algorithm/alg-basic-tree.html</a></p>
+<h2 id="二叉树的基本操作"><a href="#二叉树的基本操作" class="headerlink" title="二叉树的基本操作"></a>二叉树的基本操作</h2><p>（1）create() 创建空二叉树<br>（2）clear() 清除二叉树中所有结点<br>（3）isEmpty() 判别空二叉树<br>（4）root() 找到二叉树根结点的值<br>（5）parent(x) 找到结点x的父结点值<br>（6）lchild(x) 找结点x的左结点值<br>（7）rchild(x) 找结点x的右结点值<br>（8）deLeft(x) 删除结点x的左子树<br>（9）deRight(x) 删除结点x的右子树<br>（10）traverse() 访问二叉树上每一个结点<br>对于最后一个操作——traverse()，我们有以下几种方式实现遍历：</p>
+<ul>
+<li>前序遍历（先根遍历）：先访问根结点，然后前序遍历左子树，然后前序遍历右子树</li>
+<li>中序遍历（中根遍历）：先中序遍历左子树，然后访问根结点，然后中序遍历右子树<br><img src="/img/%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86.png" srcset="/img/loading.gif" lazyload alt="二叉树中序遍历"></li>
+<li>后序遍历（后根遍历）：先后序遍历左子树，然后后序遍历右子树，最后访问根结点</li>
+<li>层次遍历：在访问了第k层的所有结点后，再按从左到右的次序访问第k+1层</li>
+</ul>
+<p>前序遍历+中序遍历可以确定一棵二叉树（通过前序遍历找到根结点，然后得到左子树右子树，下面就是递归了），同理，后序遍历+中序遍历也可以确定一棵二叉树，但前序遍历+后序遍历无法确定一棵二叉树（易举反例）</p>
+<p>下面是二叉树的抽象类：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">bTree</span>&#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">clear</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">bool</span> <span class="hljs-title">isEmpty</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> T <span class="hljs-title">Root</span><span class="hljs-params">(T flag)</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> T <span class="hljs-title">parent</span><span class="hljs-params">(T x,T flag)</span> <span class="hljs-type">const</span> </span>= O;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> T <span class="hljs-title">lchild</span><span class="hljs-params">(T x,T flag)</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> T <span class="hljs-title">rchild</span><span class="hljs-params">(T x,T flag)</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">delLeft</span><span class="hljs-params">(T x)</span> </span>= <span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">delRight</span><span class="hljs-params">(T x)</span> </span>= <span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">preOreder</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">midOrder</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">postOrder</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">levelOrder</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="https://www.pdai.tech/md/algorithm/alg-basic-tree.html">https://www.pdai.tech/md/algorithm/alg-basic-tree.html</a></p>
 
                 
               </div>
@@ -409,6 +422,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2025/02/23/Java-Basic4/" title="Java-Basic4">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Java-Basic4</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
