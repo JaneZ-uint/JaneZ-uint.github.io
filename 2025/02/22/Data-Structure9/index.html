@@ -29,8 +29,11 @@
 <meta property="og:image" content="http://example.com/img/%E6%A0%91%E5%A4%A7%E5%85%A8.png">
 <meta property="og:image" content="http://example.com/img/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%BD%A2%E6%80%81.png">
 <meta property="og:image" content="http://example.com/img/%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86.png">
+<meta property="og:image" content="http://example.com/img/%E8%99%9A%E7%BB%93%E7%82%B9%E4%BA%8C%E5%8F%89%E6%A0%91.png">
+<meta property="og:image" content="http://example.com/img/%E4%BA%8C%E5%8F%89%E9%93%BE%E8%A1%A8%E5%AD%98%E5%82%A8.png">
+<meta property="og:image" content="http://example.com/img/%E4%B8%89%E5%8F%89%E9%93%BE%E8%A1%A8%E5%AD%98%E5%82%A8.png">
 <meta property="article:published_time" content="2025-02-22T13:38:39.000Z">
-<meta property="article:modified_time" content="2025-02-23T06:04:30.389Z">
+<meta property="article:modified_time" content="2025-02-24T10:34:36.362Z">
 <meta property="article:author" content="Yihan Zhu">
 <meta property="article:tag" content="Data Structure">
 <meta property="article:tag" content="C++">
@@ -241,7 +244,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k words
+          1.9k words
         
       </span>
     
@@ -252,7 +255,7 @@
         
         
         
-          18 mins
+          22 mins
         
       </span>
     
@@ -325,7 +328,15 @@
 <p>下面是二叉树的抽象类：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">bTree</span>&#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">clear</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">bool</span> <span class="hljs-title">isEmpty</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> T <span class="hljs-title">Root</span><span class="hljs-params">(T flag)</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> T <span class="hljs-title">parent</span><span class="hljs-params">(T x,T flag)</span> <span class="hljs-type">const</span> </span>= O;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> T <span class="hljs-title">lchild</span><span class="hljs-params">(T x,T flag)</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> T <span class="hljs-title">rchild</span><span class="hljs-params">(T x,T flag)</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">delLeft</span><span class="hljs-params">(T x)</span> </span>= <span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">delRight</span><span class="hljs-params">(T x)</span> </span>= <span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">preOreder</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">midOrder</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">postOrder</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;<br>    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">levelOrder</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>= <span class="hljs-number">0</span>;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
-
+<h2 id="二叉树的顺序实现"><a href="#二叉树的顺序实现" class="headerlink" title="二叉树的顺序实现"></a>二叉树的顺序实现</h2><p>与线性结构一样，所谓的顺序存储就是将数据元素存放在一个<strong>数组</strong>中<br>若是完全二叉树，那显然用数组实现将会非常简单，结点的存储位置可以直接反应出结点的存储关系。</p>
+<p>但如果需要存储的二叉树不是完全二叉树，情况就会比较不同。父子间数量关系（性质5）并不成立。可能的解决方案是在残缺位置上添加“虚结点”使之变成一棵完全二叉树。<br>如下图所示：<br><img src="/img/%E8%99%9A%E7%BB%93%E7%82%B9%E4%BA%8C%E5%8F%89%E6%A0%91.png" srcset="/img/loading.gif" lazyload alt="虚结点二叉树"></p>
+<h2 id="二叉树的链接实现"><a href="#二叉树的链接实现" class="headerlink" title="二叉树的链接实现"></a>二叉树的链接实现</h2><h3 id="标准存储方式——二叉链表"><a href="#标准存储方式——二叉链表" class="headerlink" title="标准存储方式——二叉链表"></a>标准存储方式——二叉链表</h3><p>在二叉链表中，每个存储结点由3个字段组成，存储数据元素值的数据字段以及指向左、右儿子的指针字段。如下所示：<br>| left | data | right | </p>
+<p>下面是二叉链表存储示例：</p>
+<p><img src="/img/%E4%BA%8C%E5%8F%89%E9%93%BE%E8%A1%A8%E5%AD%98%E5%82%A8.png" srcset="/img/loading.gif" lazyload alt="二叉链表存储"></p>
+<h3 id="广义标准存储方式——三叉链表"><a href="#广义标准存储方式——三叉链表" class="headerlink" title="广义标准存储方式——三叉链表"></a>广义标准存储方式——三叉链表</h3><p>在标准存储结构的基础上，再增加一个指向其父亲结点的指针，这就是广义标准存储方式<br>| data | left | parent | right |</p>
+<p>下面是三叉链表存储示例：</p>
+<p><img src="/img/%E4%B8%89%E5%8F%89%E9%93%BE%E8%A1%A8%E5%AD%98%E5%82%A8.png" srcset="/img/loading.gif" lazyload alt="三叉链表存储"></p>
+<h3 id="Conclude"><a href="#Conclude" class="headerlink" title="Conclude"></a>Conclude</h3><p>由于二叉链表的简洁，且查找父亲的操作较为少见，所以我们更为常用的还是<strong>二叉链表</strong></p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="https://www.pdai.tech/md/algorithm/alg-basic-tree.html">https://www.pdai.tech/md/algorithm/alg-basic-tree.html</a></p>
 
                 
