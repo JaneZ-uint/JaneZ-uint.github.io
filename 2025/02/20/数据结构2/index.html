@@ -27,7 +27,7 @@
 <meta property="og:description" content="数据结构2 线性表线性表线性表的抽象类中，少了构造函数（对应create函数），多了析构函数。我们将create函数交给了具体类的构造函数。那为什么要加析构函数呢？这里的虚析构函数是为了防止派生类中出现内存泄漏。计算机看到抽象类的析构函数时，才回去找到派生类中的析构函数，防止派生类出现内存泄漏。virtual ~list()&#123;&#125;; 什么是顺序实现？线性表中结点存放在存储器上一块">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-02-20T09:15:21.000Z">
-<meta property="article:modified_time" content="2025-02-25T11:50:38.698Z">
+<meta property="article:modified_time" content="2025-02-27T05:08:09.679Z">
 <meta property="article:author" content="Yihan Zhu">
 <meta property="article:tag" content="Data Structure">
 <meta property="article:tag" content="C++">
@@ -236,7 +236,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          961 words
+          1.5k words
         
       </span>
     
@@ -247,7 +247,7 @@
         
         
         
-          11 mins
+          17 mins
         
       </span>
     
@@ -310,8 +310,33 @@
 <h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><p>FILO 先进后出结构<br>进栈运算在最坏情况下的时间复杂度是O(N)，这很不公平，因为很少发生doubleSpace()的情况。为了更加合理，我们提出均摊分析法，把多出的次数分摊到先前进栈、出栈操作中每个插入只多了一个复制操作，因此从平均的意义上讲，插入运算的时间复杂度还是常批的。</p>
 <p>STL中的栈是一个容器适配器，借助vector、list、deque</p>
 <h2 id="栈的应用（QUITE-IMPORTANT-FOR-THE-COMPILER）"><a href="#栈的应用（QUITE-IMPORTANT-FOR-THE-COMPILER）" class="headerlink" title="栈的应用（QUITE IMPORTANT FOR THE COMPILER）"></a>栈的应用（QUITE IMPORTANT FOR THE COMPILER）</h2><h3 id="递归函数的非递归实现"><a href="#递归函数的非递归实现" class="headerlink" title="递归函数的非递归实现"></a>递归函数的非递归实现</h3><p>递归函数中，每次递归调用都要花费系统时间和空间。于是我们的想法是：把递归函数变成非递归函数。</p>
-<p>首先，我们需要知道计算机是如何进行函数调用的————栈！！！</p>
-<h3 id="符号平衡检查"><a href="#符号平衡检查" class="headerlink" title="符号平衡检查"></a>符号平衡检查</h3><h3 id="表达式计算"><a href="#表达式计算" class="headerlink" title="表达式计算"></a>表达式计算</h3>
+<p>首先，我们需要知道计算机是如何进行函数调用的————栈！！！<br>栈中保存的是调用结束后回到的地址，如果递归函数调用层次过深，可能会导致Stack Over Flow(爆栈)。</p>
+<p>为了变成一个非递归函数，我们可以考虑<strong>自己维护一个栈</strong>。<br>举个例子：快速排序<br>递归实现：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-built_in">quickSort</span>(a,low,mid-<span class="hljs-number">1</span>);<br><span class="hljs-built_in">quickSort</span>(a,mid+<span class="hljs-number">1</span>,high);<br></code></pre></td></tr></table></figure>
+
+<p>非递归实现：设置一个栈，记录要做的工作（即要排序的数据段）</p>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs excel">struct Node &#123;<br>    <span class="hljs-built_in">int</span> <span class="hljs-built_in">left</span>;<br>    <span class="hljs-built_in">int</span> <span class="hljs-built_in">right</span>;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p>先将整个数组进栈，弹出一个区间，将区间分成两半，若区间长度大于2，则进栈</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-type">void</span> quickSort(<span class="hljs-type">int</span> a[],<span class="hljs-type">int</span> size)&#123;<br>    seqStack&lt;Node&gt; st;<br>    <span class="hljs-type">int</span> mid,<span class="hljs-keyword">start</span>,<span class="hljs-keyword">end</span>;<br>    Node s;<br><br>    <span class="hljs-keyword">if</span>(size &lt;= <span class="hljs-number">1</span>)&#123;<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br><br>    s.left = <span class="hljs-number">0</span>;<br>    s.right = size - <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span>(!st.isEmpty())&#123;<br>        s = st.pop();<br>        start = s.left;<br>        end = s.right;<br>        mid = divide(a,<span class="hljs-keyword">start</span>,<span class="hljs-keyword">end</span>);<br><br>        <span class="hljs-keyword">if</span>(mid - <span class="hljs-keyword">start</span> &gt; <span class="hljs-number">1</span>)&#123;<br>            s.left = <span class="hljs-keyword">start</span>;<br>            s.right = mid <span class="hljs-number">-1</span>;<br>            st.push(s);<br>        &#125;<br>        <span class="hljs-keyword">if</span>(<span class="hljs-keyword">end</span> - mid &gt; <span class="hljs-number">1</span>)&#123;<br>            s.left = mid + <span class="hljs-number">1</span>;<br>            s.right = <span class="hljs-keyword">end</span>;<br>            st.push(s);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="符号平衡检查"><a href="#符号平衡检查" class="headerlink" title="符号平衡检查"></a>符号平衡检查</h3><ul>
+<li>检查程序中括号是否匹配<br><strong>遇到右括号时，与最近遇到的、没有匹配的左括号匹配</strong><br>使用栈的思想：<br>遇到左括号，进栈，遇到右括号，将栈顶元素出栈并进行比较</li>
+</ul>
+<p>还有几个特殊情况：<br>当括号出现在注释、字符常量、字符串常量</p>
+<ul>
+<li>balance类实现<br>在balance类中，为什么用输入文件流对象ifstream而不是string类文件名？<br>读文件是通过文件流对象的，类中各种小函数可能都需要对文件进行读写，使用文件流对象会更加简洁。</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">class</span> <span class="hljs-title">balance</span>&#123;<br><span class="hljs-keyword">private</span>:<br>    ifstream fin;<br>    <span class="hljs-built_in">int</span> currentLines;<br>    <span class="hljs-built_in">int</span> errors;<br>    <span class="hljs-keyword">struct</span> Symbol&#123;<br>        <span class="hljs-built_in">char</span> Token;<br>        <span class="hljs-built_in">int</span> theLine;<br>    &#125;; <br>    <span class="hljs-built_in">enum</span> CommentType&#123;<br>        <span class="hljs-comment">//C++和C注释风格不一样</span><br>        SlashSlash;<br>        SlashStar;<br>    &#125;;<br><br><span class="hljs-keyword">public</span>:<br>    balance(<span class="hljs-keyword">const</span> <span class="hljs-built_in">char</span> *s);<br>    <span class="hljs-function"><span class="hljs-built_in">int</span> <span class="hljs-title">checkBalance</span>()</span>; <span class="hljs-comment">// 返回出错数</span><br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>balance类有2种执行方式：</p>
+<ul>
+<li>用户通过键盘输入文件名</li>
+<li>将要检查的源文件名作为命令行参数<br>我们就可以利用main函数的参数<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc,<span class="hljs-type">const</span> <span class="hljs-type">char</span> **argv)</span></span>&#123;<br>    <span class="hljs-comment">//...</span><br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="表达式计算"><a href="#表达式计算" class="headerlink" title="表达式计算"></a>表达式计算</h3><ul>
+<li>中缀和后缀表达式<br>中缀表达式：运算符在2个运算数之间 a + b<br>中缀表达式的计算：运算符的优先级和结合性<br>后缀表达式：运算符在运算数后面 a b +<br>这就可以采用栈来存储最近的2个运算数了</li>
+</ul>
+<p>Wait to be updated</p>
+
                 
               </div>
             
