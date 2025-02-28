@@ -26,8 +26,11 @@
 <meta property="og:site_name" content="JaneZ&#39;s Learning Space">
 <meta property="og:description" content="Before：priority_queue终于启动了！情书只有三行，爱意起于一瞬，结局愿是一生Data Structure 13 优先级队列优先级队列是什么？元素之间的关系是由元素的优先级决定的，而不是由入队的先后次序决定。在优先级队列中，优先级最高的元素是队头元素，优先级最低的元素是队尾元素。 基于树的优先级队列基于线性表的优先级队列入队出队的时间复杂度总有一个会到O(N)，我们不可以接受这个时">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/%E5%B7%A6%E5%81%8F%E6%A0%911.png">
+<meta property="og:image" content="http://example.com/img/%E5%B7%A6%E5%81%8F%E6%A0%912.png">
+<meta property="og:image" content="http://example.com/img/%E4%BA%8C%E9%A1%B9%E6%A0%91%E7%BB%93%E6%9E%84.png">
 <meta property="article:published_time" content="2025-02-27T13:30:16.000Z">
-<meta property="article:modified_time" content="2025-02-27T13:31:46.272Z">
+<meta property="article:modified_time" content="2025-02-28T08:13:24.596Z">
 <meta property="article:author" content="Yihan Zhu">
 <meta property="article:tag" content="Data Structure">
 <meta property="article:tag" content="C++">
@@ -35,6 +38,7 @@
 <meta property="article:tag" content="Binary Tree">
 <meta property="article:tag" content="Priority Queue">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/%E5%B7%A6%E5%81%8F%E6%A0%911.png">
   
   
   
@@ -238,7 +242,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k words
+          2.2k words
         
       </span>
     
@@ -249,7 +253,7 @@
         
         
         
-          14 mins
+          25 mins
         
       </span>
     
@@ -307,7 +311,22 @@
 <p>最后就是如何构造这个二叉堆了<br>最简单的做法是执行N次enQueue操作（类似于二分查找），时间复杂度达到了O(NlogN)，考虑一种复杂度更低的建堆方法。</p>
 <p>我们可以从编号最大的非叶结点开始，对结点进行<strong>向下过滤</strong>，这样计算下来的时间复杂度来到了O(N)（具体推导可见Introduction to Algorithms）</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">template&lt;<span class="hljs-keyword">class</span> <span class="hljs-symbol">Type</span>&gt;<br><span class="hljs-symbol">void</span> <span class="hljs-symbol">priorityQueue</span>&lt;<span class="hljs-symbol">Type</span>&gt;::<span class="hljs-symbol">buildHeap</span>()&#123;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i = currentSize / <span class="hljs-number">2</span>;i &gt;= <span class="hljs-number">1</span>;i--)&#123;<br>        percolateDown(i);<br>    &#125;<br>&#125;<br><br>template&lt;<span class="hljs-keyword">class</span> <span class="hljs-symbol">Type</span>&gt;<br><span class="hljs-symbol">priorityQueue</span>&lt;<span class="hljs-symbol">Type</span>&gt;::<span class="hljs-symbol">priorityQueue</span>(<span class="hljs-symbol">const</span> <span class="hljs-symbol">Type</span> <span class="hljs-symbol">data</span>[],<span class="hljs-symbol">int</span> <span class="hljs-symbol">size</span>)&#123;<br>    currentSize = size;<br>    maxSize = size + <span class="hljs-number">10</span>;<br>    <span class="hljs-built_in">array</span> = new Type[maxSize];<br>    <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i = <span class="hljs-number">1</span>;i &lt;= currentSize;i++)&#123;<br>        <span class="hljs-built_in">array</span>[i] = data[i - <span class="hljs-number">1</span>];<br>    &#125;<br>    buildHeap();<br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="https://oi-wiki.org/ds/heap/">https://oi-wiki.org/ds/heap/</a></p>
+
+<h2 id="However"><a href="#However" class="headerlink" title="However"></a>However</h2><p>我觉得这样写却有一些不美观，虽然利用数组下标节省了很多空间，但在处理归并堆时，使用数组就不太合适了，所以priority_queue同样可以用二叉链表实现，而且我们可以将push和pop的操作都统一到merge里去，就非常简洁了。</p>
+<p>我在STLite2025——priority_queue类的实现中用了一个二叉链表来实现大根堆（实则维护了一棵<strong>左偏树</strong>）。害还不是因为一定要归并队列，不然谁还用链表写啊（真占内存）</p>
+<p>先介绍一下<strong>左偏树</strong>（也可以叫<strong>左偏堆</strong>）<br>左偏树具有堆的性质，优点在于<strong>可以快速合并</strong>。对于一棵二叉树，我们定义外节点为子节点数小于两个的节点（省流：有空子节点的结点），定义一个节点的 <strong>dist</strong> 为其到子树中最近的外节点所经过的边的数量。空节点的 <strong>dist</strong> 为0。<br>特别注意：左偏树并不是一棵完全二叉树，故dist与树的深度没有关系</p>
+<p>如下图所示，这是一棵左偏树：<br><img src="/img/%E5%B7%A6%E5%81%8F%E6%A0%911.png" srcset="/img/loading.gif" lazyload alt="左偏树"></p>
+<p>这，也是一棵左偏树：<br><img src="/img/%E5%B7%A6%E5%81%8F%E6%A0%912.png" srcset="/img/loading.gif" lazyload alt="左偏树"></p>
+<p>左偏树作为一个可并堆，核心操作在于归并堆merge操作：</p>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs xl">Node *mergeHeap(Node *l,Node *r) &#123;<br>    <span class="hljs-keyword">if</span>(l == nullptr) &#123;<br>        return r;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(r == nullptr) &#123;<br>        return l;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-title">if</span>(Compare()(l -&gt;</span> <span class="hljs-function"><span class="hljs-title">data</span>,r -&gt;</span> <span class="hljs-keyword">data</span>)) &#123;<br>        std::swap(l ,r ); <span class="hljs-comment">//这一步是为了维护左子树的根结点一定较大</span><br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-title">l</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">right</span> = mergeHeap(l -&gt;</span> right,r);<br>    <span class="hljs-comment">// 这一步将左子树的右子树与右子树合并，这样左偏值最多增大 1</span><br>    <span class="hljs-function"><span class="hljs-title">if</span>(l -&gt;</span> left == nullptr) &#123;<br>        <span class="hljs-function"><span class="hljs-title">std</span>::swap(l -&gt;</span> <span class="hljs-function"><span class="hljs-title">left</span>, l -&gt;</span> right);<br>    &#125;<span class="hljs-function"><span class="hljs-title">else</span> <span class="hljs-keyword">if</span>(l -&gt;</span> <span class="hljs-function"><span class="hljs-title">right</span> != nullptr &amp;&amp; l -&gt;</span> <span class="hljs-function"><span class="hljs-title">left</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">dist</span> &lt; l -&gt;</span> <span class="hljs-function"><span class="hljs-title">right</span> -&gt;</span> dist) &#123;<br>        <span class="hljs-function"><span class="hljs-title">std</span>::swap(l -&gt;</span> <span class="hljs-function"><span class="hljs-title">left</span>, l -&gt;</span> right);<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-title">if</span>(l -&gt;</span> right == nullptr) &#123;<br>        <span class="hljs-function"><span class="hljs-title">l</span> -&gt;</span> dist = <span class="hljs-number">0</span>;<br>    &#125;<span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-function"><span class="hljs-title">l</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">dist</span> = l -&gt;</span> <span class="hljs-function"><span class="hljs-title">right</span> -&gt;</span> dist + <span class="hljs-number">1</span>;<br>    &#125;<br>    return l;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>merge操作合并两个大小分别为 n 和 m 的堆复杂度是O(logN + logM)，实现了对数级复杂度</p>
+<h2 id="其他可并堆"><a href="#其他可并堆" class="headerlink" title="其他可并堆"></a>其他可并堆</h2><h3 id="斜堆"><a href="#斜堆" class="headerlink" title="斜堆"></a>斜堆</h3><p>斜堆是满足堆的有序性，但没有任何平衡条件限定的二叉树。在斜堆中，不能保证树的深度是对数的。但从平均的概念上能够保证所有的操作都是对数的时间性能。它比左偏堆简单，不需要为结点保存空路径信息。</p>
+<p>归并策略是：根结点值比较大的堆与根结点比较小的堆的右子堆归并，在完成一个归并前，对产生的临时树的右路径上的每个结点交换它们的左右孩子。</p>
+<h3 id="二项堆"><a href="#二项堆" class="headerlink" title="二项堆"></a>二项堆</h3><p>二项堆不是用一棵满足堆的有序性的二叉树表示，而是用一个森林表示。森林中的每一棵树都有一定的约束，称为二项树。二项树是满足堆的有序性的树。高度为0的二项树是只有根结点的树，高度为k的二项树凡是将一棵B_(k - 1)加到另一棵B_(k - 1)的根上形成的。在这片森林中，每个高度的二项树之多只有一棵。</p>
+<p><img src="/img/%E4%BA%8C%E9%A1%B9%E6%A0%91%E7%BB%93%E6%9E%84.png" srcset="/img/loading.gif" lazyload alt="二项树结构"></p>
+<p>从二项树的特性可以看出，对给定的元素个数，可以构造唯一的一个二项堆。（二进制表示整数）<br>二项堆的归并操作：由低到高依次归并两个优先级队列中高度相同的树，也就是<strong>归并两个二项堆中对应的树</strong>。入队操作可以看成是归并的特例，出队操作只需删除最小根结点的二项树，将其裂成一个二项堆，再将其与原有二叉堆合并即可。</p>
+<h2 id="END"><a href="#END" class="headerlink" title="END"></a>END</h2><p>树状结构正式结束！明天（尽量）进入集合结构！</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="https://oi-wiki.org/ds/heap/">https://oi-wiki.org/ds/heap/</a><br><a target="_blank" rel="noopener" href="https://oi-wiki.org/ds/leftist-tree/">https://oi-wiki.org/ds/leftist-tree/</a><br><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/uoeyv3gq">https://www.luogu.com.cn/article/uoeyv3gq</a></p>
 
                 
               </div>
