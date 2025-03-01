@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>Introduction-to-Algorithms2</title>
+    <link href="/2025/03/01/Introduction-to-Algorithms2/"/>
+    <url>/2025/03/01/Introduction-to-Algorithms2/</url>
+    
+    <content type="html"><![CDATA[<h5 id="Before：风止于秋水，我止于你"><a href="#Before：风止于秋水，我止于你" class="headerlink" title="Before：风止于秋水，我止于你"></a>Before：风止于秋水，我止于你</h5><h1 id="Introduction-to-Algorithms-1-Binary-Search-Tree-Binary-Search-Sort"><a href="#Introduction-to-Algorithms-1-Binary-Search-Tree-Binary-Search-Sort" class="headerlink" title="Introduction to Algorithms 1 Binary Search Tree &amp; Binary Search Sort"></a>Introduction to Algorithms 1 Binary Search Tree &amp; Binary Search Sort</h1><h2 id="Base-on"><a href="#Base-on" class="headerlink" title="Base on ?"></a>Base on ?</h2><p><strong>Runway Reservation System</strong>!!!(My favourite plane! We’re saved!)</p><p><img src="/img/Runway.png" alt="Runway Reservation System"></p><h2 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h2><p>Each node x in the binary tree has a key <strong>key(x)</strong>.Nodes other than the root have a <strong>parent p(x)</strong>.Nodes may have a left child <strong>left(x)</strong> and&#x2F;or a right child <strong>right(x)</strong>.<br>ps：ALL POINTERS!Unlike in the Heap.</p><p><strong>Characteristics</strong>：for any node x, for all nodes y in the left subtree of x, key(y) ≤ key(x). For all nodes y in the right subtree of x key(y) ≥ key(x).</p><h2 id="Insert"><a href="#Insert" class="headerlink" title="Insert"></a>Insert</h2><p>As the picture shows below🤓<br><img src="/img/BST%E6%8F%92%E5%85%A5.png" alt="BST insert operation"></p><p>Under the problem,we need to do the “Within K minutes Check” before inserting.If doesn’t follow,then stop the insertion.</p><h2 id="Find-Exists-find-val"><a href="#Find-Exists-find-val" class="headerlink" title="Find Exists : find(val)"></a>Find Exists : find(val)</h2><p>Follow left and right pointers until you find it or hit NIL.</p><h2 id="Find-the-minimum-element-in-a-BST-findmin"><a href="#Find-the-minimum-element-in-a-BST-findmin" class="headerlink" title="Find the minimum element in a BST : findmin()"></a>Find the minimum element in a BST : findmin()</h2><p>Just go left until you can’t.</p><h2 id="Complexity"><a href="#Complexity" class="headerlink" title="Complexity"></a>Complexity</h2><p>All the operations above have an O(h) time complexity.<br>ps: <strong>h is the height of BST</strong></p><p>We may find a problem: somehow in a tricky (or abstract) way of insertion, the BST may turn to a <strong>List</strong>.So the complexity will be O(n),but we hope O(logn).😣😣😣</p><p>We’re gonna talk about it next time in the <strong>AVL Chapter</strong>😋😋😋<br>Balanced BSTs to the rescue in the next lecture!</p><h2 id="Find-the-next-larger-element-next-larger-x"><a href="#Find-the-next-larger-element-next-larger-x" class="headerlink" title="Find the next larger element: next_larger(x)"></a>Find the next larger element: next_larger(x)</h2><p>IF right child is not NIL,return minimun(x -&gt; right)<br>    else y &#x3D; parent(x)</p><pre><code class="hljs">while y not NIL and x = right(y)    x =  y    y = parent(y)return y;</code></pre><h2 id="How-many-planes-are-scheduled-to-land-at-times-≤-t"><a href="#How-many-planes-are-scheduled-to-land-at-times-≤-t" class="headerlink" title="How many planes are scheduled to land at times ≤ t?"></a>How many planes are scheduled to land at times ≤ t?</h2><p>Algorithm:<br>1.Walk down tree to find desired time( find t pos )<br>2.Add in nodes that are smaller<br>3.Add in subtree sizes to the left( record the size of the subtrees)</p><h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Still an easy one.Can’t wait to see AVL!<br>立下flag，争取这周搞定用AVL实现的map!😋</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Algorithms</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Data Structure</tag>
+      
+      <tag>Algorithm</tag>
+      
+      <tag>BST</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Introduction to Algorithms1</title>
     <link href="/2025/03/01/Introduction-to-Algorithms1/"/>
     <url>/2025/03/01/Introduction-to-Algorithms1/</url>
