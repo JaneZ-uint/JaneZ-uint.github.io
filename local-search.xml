@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>Introduction to Algorithms1</title>
+    <link href="/2025/03/01/Introduction-to-Algorithms1/"/>
+    <url>/2025/03/01/Introduction-to-Algorithms1/</url>
+    
+    <content type="html"><![CDATA[<h4 id="Before：去年12月从班主任口中得知了我们的主角——MIT-6-006-Introduction-to-Algorithms这门非常经典的课（被誉为“MIT-EECS系的瑰宝”）。室友-three-hats-user-同学在我的推荐下（自己没学别人学了🤡）在寒假卷了这门课（虽然还没学完），对它评价也很高。于是今天入手了这门课，一句话：不愧是MIT-EECS🧎‍♀️🧎‍♀️🧎‍♀️另外，鉴于这门课程全部学完需要100hr，且有些算法在上学期的上机课中已经有所接触，故JaneZ并不会更新全部（有空一定会学完的呜呜呜），而是挑选一些结合这学期所学的数据结构的课程，提升辣鸡的算法能力😭😭😭"><a href="#Before：去年12月从班主任口中得知了我们的主角——MIT-6-006-Introduction-to-Algorithms这门非常经典的课（被誉为“MIT-EECS系的瑰宝”）。室友-three-hats-user-同学在我的推荐下（自己没学别人学了🤡）在寒假卷了这门课（虽然还没学完），对它评价也很高。于是今天入手了这门课，一句话：不愧是MIT-EECS🧎‍♀️🧎‍♀️🧎‍♀️另外，鉴于这门课程全部学完需要100hr，且有些算法在上学期的上机课中已经有所接触，故JaneZ并不会更新全部（有空一定会学完的呜呜呜），而是挑选一些结合这学期所学的数据结构的课程，提升辣鸡的算法能力😭😭😭" class="headerlink" title="Before：去年12月从班主任口中得知了我们的主角——MIT 6.006 Introduction to Algorithms这门非常经典的课（被誉为“MIT-EECS系的瑰宝”）。室友 @three-hats-user 同学在我的推荐下（自己没学别人学了🤡）在寒假卷了这门课（虽然还没学完），对它评价也很高。于是今天入手了这门课，一句话：不愧是MIT EECS🧎‍♀️🧎‍♀️🧎‍♀️另外，鉴于这门课程全部学完需要100hr，且有些算法在上学期的上机课中已经有所接触，故JaneZ并不会更新全部（有空一定会学完的呜呜呜），而是挑选一些结合这学期所学的数据结构的课程，提升辣鸡的算法能力😭😭😭"></a>Before：去年12月从班主任口中得知了我们的主角——MIT 6.006 Introduction to Algorithms这门非常经典的课（被誉为“MIT-EECS系的瑰宝”）。室友 @three-hats-user 同学在我的推荐下（自己没学别人学了🤡）在寒假卷了这门课（虽然还没学完），对它评价也很高。于是今天入手了这门课，一句话：不愧是MIT EECS🧎‍♀️🧎‍♀️🧎‍♀️另外，鉴于这门课程全部学完需要100hr，且有些算法在上学期的上机课中已经有所接触，故JaneZ并不会更新全部（有空一定会学完的呜呜呜），而是挑选一些结合这学期所学的数据结构的课程，提升辣鸡的算法能力😭😭😭</h4><h1 id="Introduction-to-Algorithms-1-Heaps-and-heap-sort"><a href="#Introduction-to-Algorithms-1-Heaps-and-heap-sort" class="headerlink" title="Introduction to Algorithms 1  Heaps and heap sort"></a>Introduction to Algorithms 1  Heaps and heap sort</h1><h2 id="Priority-Queues-Definition"><a href="#Priority-Queues-Definition" class="headerlink" title="Priority Queues Definition"></a>Priority Queues Definition</h2><p>A data structure implementing a set S of elements,each associated with a key,supporting the following operations: </p><ul><li>insert(S,x)</li><li>max(S)</li><li>extract_max(S):return element of S with largest key and remove it from S</li><li>increase_key(S,x,k):increase the value of element x’ s key to new value k</li></ul><p>Priority Queues can be built by using Heap or AVL.</p><h2 id="Heap"><a href="#Heap" class="headerlink" title="Heap"></a>Heap</h2><p>As I said seconds before,<strong>Heap</strong> is one of the Implementations of a priority queue.</p><p>First,we are going to visualize an <strong>Array</strong> as a <strong>nearly complete binary tree</strong>（完全二叉树）</p><p>Let’s just talk about <strong>Max Heap</strong> here（Min Heap is exactly the same）</p><p><strong>Max Heap Property</strong>:The key of a node is $\geq$ than the key children.<br>For example:</p><p><img src="/img/%E5%A4%A7%E6%A0%B9%E5%A0%86%E4%BE%8B%E5%AD%90.png" alt="Max Heap Example"></p><p>Almost the same basic characteristics as Binary Tree</p><p>Here’re some simple Heap Operations:</p><ul><li>build max heap: produce a max-heap from an unordered array</li><li><strong>max_heapify</strong>: correct a single violation(违反) of the heap property in a subtree at its root</li><li>insert,extract_max,heapsort</li></ul><h3 id="The-most-important-procedure-Max-heapify"><a href="#The-most-important-procedure-Max-heapify" class="headerlink" title="The most important procedure: Max_heapify"></a>The most important procedure: Max_heapify</h3><p>• Assume that the trees rooted at left(i) and right(i) are max-heaps.</p><p>• If element A[i] violates the max-heap property, correct violation by “trickling” element A[i] down the tree, making the subtree rooted at index i a max-heap.</p><p>Here is an example of Max_heapify:<br><img src="/img/Heapify1.png" alt="Max_heapify1"><br><img src="/img/Heapify2.png" alt="Max_heapify2"><br><img src="/img/Heapify3.png" alt="Max_heapify3"></p><p>Time Complexity: O(logN)</p><h3 id="Build-Max-Heap"><a href="#Build-Max-Heap" class="headerlink" title="Build Max Heap"></a>Build Max Heap</h3><p>For n&#x2F;2 to 1  &#x2F;&#x2F;从后往前第一个非叶节点开始<br>    do Max_heapify(A,i)</p><p>这里我们很容易“看出”时间复杂度是O(NlogN)，然而真的如此嘛？<br>可以想一下，最底一层的非叶结点进行的操作次数至多只有1次，而并非logN次，只有根结点才会进行logN次操作，所以经过数学推导，我们可以验证，建堆操作的时间复杂度是O(N)</p><h2 id="Heap-Sort"><a href="#Heap-Sort" class="headerlink" title="Heap Sort"></a>Heap Sort</h2><p>I think it’s just a simple use of Max_Heap.Easy to understand and I will just show the thoughts.<br>(1)Build Max_Heap from an unordered array.<br>(2)Find A[1] (the biggest element)<br>(3)Swap elements A[1] and A[n]<br>(4)Discard(移除) n from the heap<br>(5)Run MaxHeapify to fix the missing 1 place<br>(6)Go to Step 2 until empty</p><p>The time complexity of Heap Sort is O(NlogN)</p><h2 id="Last"><a href="#Last" class="headerlink" title="Last"></a>Last</h2><p>这节的内容整体还是挺容易的，特别是在写完priority_queue之后😋<br>Keep Going!</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Algorithms</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Data Structure</tag>
+      
+      <tag>Algorithm</tag>
+      
+      <tag>Heap</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Mathematical-Logic2</title>
     <link href="/2025/02/28/Mathematical-Logic2/"/>
     <url>/2025/02/28/Mathematical-Logic2/</url>
