@@ -1,0 +1,690 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/JaneIcon.png">
+  <link rel="icon" href="/img/JaneIcon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yihan Zhu">
+  <meta name="keywords" content="SJTU Student CS Maths Life">
+  
+    <meta name="description" content="Before：哎呀数理逻辑真的好抽象😭本来英语就烂，还有一大堆新定义的符号，绕在一起，感觉更像是在学语言而不是数学😥再加上周五晚上连上3节😅Result：果断重开了Decision：我一定要用中文把这门课搞清楚，抵制洋文！！！Mathematical Logic 2 一阶逻辑的语义Structure 结构在不同的场合下，同一个一阶逻辑命题可能有不同的含义。如对∀v0Rv0v0，既可以解读成“">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mathematical-Logic2">
+<meta property="og:url" content="http://example.com/2025/02/28/Mathematical-Logic2/index.html">
+<meta property="og:site_name" content="JaneZ&#39;s Learning Space">
+<meta property="og:description" content="Before：哎呀数理逻辑真的好抽象😭本来英语就烂，还有一大堆新定义的符号，绕在一起，感觉更像是在学语言而不是数学😥再加上周五晚上连上3节😅Result：果断重开了Decision：我一定要用中文把这门课搞清楚，抵制洋文！！！Mathematical Logic 2 一阶逻辑的语义Structure 结构在不同的场合下，同一个一阶逻辑命题可能有不同的含义。如对∀v0Rv0v0，既可以解读成“">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/%E8%A7%A3%E9%87%8A%E6%BB%A1%E8%B6%B3%E5%85%AC%E5%BC%8F.png">
+<meta property="og:image" content="http://example.com/img/Assignment.png">
+<meta property="og:image" content="http://example.com/img/%E6%96%B0%E8%A7%A3%E9%87%8A.png">
+<meta property="og:image" content="http://example.com/img/%E9%80%BB%E8%BE%91%E7%AD%89%E4%BB%B7.png">
+<meta property="article:published_time" content="2025-02-28T14:17:48.000Z">
+<meta property="article:modified_time" content="2025-03-01T03:53:16.691Z">
+<meta property="article:author" content="Yihan Zhu">
+<meta property="article:tag" content="Mathematical Logic">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/%E8%A7%A3%E9%87%8A%E6%BB%A1%E8%B6%B3%E5%85%AC%E5%BC%8F.png">
+  
+  
+  
+  <title>Mathematical-Logic2 - JaneZ&#39;s Learning Space</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>JaneZ&#39;s Learning Space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Mathematical-Logic2"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-02-28 22:17" pubdate>
+          February 28, 2025 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Mathematical-Logic2</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h5 id="Before：哎呀数理逻辑真的好抽象😭本来英语就烂，还有一大堆新定义的符号，绕在一起，感觉更像是在学语言而不是数学😥再加上周五晚上连上3节😅"><a href="#Before：哎呀数理逻辑真的好抽象😭本来英语就烂，还有一大堆新定义的符号，绕在一起，感觉更像是在学语言而不是数学😥再加上周五晚上连上3节😅" class="headerlink" title="Before：哎呀数理逻辑真的好抽象😭本来英语就烂，还有一大堆新定义的符号，绕在一起，感觉更像是在学语言而不是数学😥再加上周五晚上连上3节😅"></a>Before：哎呀数理逻辑真的好抽象😭本来英语就烂，还有一大堆新定义的符号，绕在一起，感觉更像是在学语言而不是数学😥再加上周五晚上连上3节😅</h5><h5 id="Result：果断重开了"><a href="#Result：果断重开了" class="headerlink" title="Result：果断重开了"></a>Result：果断重开了</h5><h5 id="Decision：我一定要用中文把这门课搞清楚，抵制洋文！！！"><a href="#Decision：我一定要用中文把这门课搞清楚，抵制洋文！！！" class="headerlink" title="Decision：我一定要用中文把这门课搞清楚，抵制洋文！！！"></a>Decision：我一定要用中文把这门课搞清楚，抵制洋文！！！</h5><h1 id="Mathematical-Logic-2-一阶逻辑的语义"><a href="#Mathematical-Logic-2-一阶逻辑的语义" class="headerlink" title="Mathematical Logic 2 一阶逻辑的语义"></a>Mathematical Logic 2 一阶逻辑的语义</h1><h2 id="Structure-结构"><a href="#Structure-结构" class="headerlink" title="Structure 结构"></a>Structure 结构</h2><p>在不同的场合下，同一个一阶逻辑命题可能有不同的含义。如对∀v0Rv0v0，既可以解读成“任意自然数都整除自己”（真），也可以解读成“任何实数都小于自己”（假）<br>So：讨论语义时首先需要确定讨论的数学对象</p>
+<p>刚刚的例子中，自然数和实数明确了讨论对象取自怎样的集合，这个集合称作<strong>域</strong>（universe），记为A</p>
+<p>确定符号集中每个符号的含义，就是确定每个符号对应的元素、集合或映射具体是什么：</p>
+<ul>
+<li>一个n元关系就是某个A^n的子集 a(R)</li>
+<li>一个n元函数就是某个A^n到A的映射 a(f)</li>
+<li>每个常数符号对应A中某个特定元素 a(c)</li>
+</ul>
+<p>我们把这个从符号到其具体含义的映射记为a。<br>A 和 a 确定了一阶逻辑中变量的“定义域”和符号集中每个符号的含义。我们把二元组(A,a)记为 𝔄，称作<strong>S-结构</strong>。</p>
+<p>对于符号集S &#x3D; {R,f,c}，我们通常将a(R)写作$R^𝔄$或$R^A$，a(f)写作$f^𝔄$或$f^A$，a(c)写作$c^𝔄$或$c^A$。</p>
+<h2 id="Interpretation-解释"><a href="#Interpretation-解释" class="headerlink" title="Interpretation 解释"></a>Interpretation 解释</h2><p>Structure给出了变量的定义域和符号集的语义，但我们接下来还有<strong>terms</strong>和<strong>formulas</strong></p>
+<p><strong>一个term的语义是从一个term到universe中一个元素的映射</strong>——$\beta$<br>为了确定这个映射，我们首先需要知道term中的每个变量代表universe当中的哪个元素，这就是要我们给出一个$v_i$ -&gt; A 的映射$\beta$</p>
+<p>所以我们把一个S-structure和一个S-assignment的二元组称作I &#x3D; (𝔄,$\beta$)<br>定义<strong>解释</strong>的语义</p>
+<ul>
+<li>对于变量x，I(x) &#x3D; $\beta$(x)</li>
+<li>对于常量c，I(c) &#x3D; $c^𝔄$</li>
+<li>对于n元函数关系f $\in$ S，$t_1,t_2,…,t_n$均为S-terms。那么有I(ft_1 … t_n) &#x3D; $f^𝔄$(I(t_1),I(t_2),…,I(t_n))</li>
+</ul>
+<p><strong>formula的语义是从一个term到“真或假”的映射(类似于bool?)</strong><br>对于一个formula 𝜑  ，我们用记号 I |&#x3D; 𝜑  来表示 公式 𝜑 的语义为真，读作I 满足𝜑 ，|&#x3D; 即称为<strong>满足关系</strong>。（ 解释 I 满足公式 𝜑  ）</p>
+<p>下面是一些原子性&#x2F;关于逻辑连词&#x2F;量词的情况<br><img src="/img/%E8%A7%A3%E9%87%8A%E6%BB%A1%E8%B6%B3%E5%85%AC%E5%BC%8F.png" srcset="/img/loading.gif" lazyload alt="解释满足formulas"></p>
+<p>(a) 当且仅当I(t_1)，I(t_2)是universe下的同一个元素<br>(b) 当且仅当 (I(t_1),…,I(t_n)) 属于$R^𝔄$<br>(c) 当且仅当 解释I 不满足公式 𝜑<br>(d) 当且仅当 解释I 满足公式 𝜑 且 解释I 满足公式Ψ<br>(e) 当且仅当 解释I 满足公式 𝜑  或 解释I 满足公式Ψ<br>(f) （一个有点神奇的解释）当且仅当 I |&#x3D; φ（语法上）表明解释I 满足公式 𝜑 （语义上）<br>(g) 当且仅当（还有一个当且仅当，亿点点绕）（解释I 满足 公式 𝜑 当且仅当解释I 满足公式Ψ）</p>
+<p>比较复杂的就是 ∀ 和 ∃<br>(h) 想说的意思是：当且仅当universe中每个元素为公式 𝜑 中出现的x赋值并保持其他变量赋值不变，公式 𝜑 始终不变</p>
+<p>为此我们定义一个描述为formula中的某个特定变量赋特殊的值的方便的符号：<br><img src="/img/Assignment.png" srcset="/img/loading.gif" lazyload alt="修改赋值函数"></p>
+<p>于是新的解释I 变为了：<br><img src="/img/%E6%96%B0%E8%A7%A3%E9%87%8A.png" srcset="/img/loading.gif" lazyload alt="新的解释"><br>这表示在解释I 中，将变量 𝑥 的赋值修改为 𝑎，其他部分保持不变。</p>
+<p>于是(h)表示的即为：对于域 𝐴中的每一个元素 𝑎，如果将 𝑥 赋值为 𝑎，公式 𝜑 都为真。</p>
+<p>(i) （也是同理）存在域 𝐴中的一个元素 𝑎，如果将 𝑥 赋值为 𝑎，公式 𝜑 为真。</p>
+<p>如果一个公式 𝜑 是valid(恒真)，那么所有的解释都能满足公式 𝜑</p>
+<p>逻辑推论的定义：<br>Φ 是一个S-公式的集合；<br>公式 𝜑 是一个单独的S-公式<br>如果 Φ |&#x3D; 𝜑，表示 𝜑 是 Φ 的逻辑推论，即公式 𝜑 可以从 Φ 中逻辑推导出来</p>
+<p>我们称公式 𝜑 是可满足的，如果存在一个S-解释I，使得公式 𝜑 在解释I下为真</p>
+<p>公式 𝜑 和公式 Ψ 是逻辑等价的，如果 𝜑 |&#x3D; Ψ 且 Ψ |&#x3D; 𝜑</p>
+<p><img src="/img/%E9%80%BB%E8%BE%91%E7%AD%89%E4%BB%B7.png" srcset="/img/loading.gif" lazyload alt="逻辑等价例子"></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="https://xingershang.github.io/2024/08/30/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/%E4%B8%80%E9%98%B6%E9%80%BB%E8%BE%91%E7%9A%84%E8%AF%AD%E6%B3%95%E4%B8%8E%E8%AF%AD%E4%B9%89/">https://xingershang.github.io/2024/08/30/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/%E4%B8%80%E9%98%B6%E9%80%BB%E8%BE%91%E7%9A%84%E8%AF%AD%E6%B3%95%E4%B8%8E%E8%AF%AD%E4%B9%89/</a></p>
+<p>这位博主真的救命，讲的太清楚了</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Mathematical-Logic/" class="category-chain-item">Mathematical Logic</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Mathematical-Logic/" class="print-no-link">#Mathematical Logic</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Mathematical-Logic2</div>
+      <div>http://example.com/2025/02/28/Mathematical-Logic2/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yihan Zhu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>February 28, 2025</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/02/27/Data-Structure13/" title="Data-Structure13">
+                        <span class="hidden-mobile">Data-Structure13</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

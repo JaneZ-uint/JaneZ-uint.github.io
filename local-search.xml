@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Mathematical-Logic2</title>
+    <link href="/2025/02/28/Mathematical-Logic2/"/>
+    <url>/2025/02/28/Mathematical-Logic2/</url>
+    
+    <content type="html"><![CDATA[<h5 id="Before：哎呀数理逻辑真的好抽象😭本来英语就烂，还有一大堆新定义的符号，绕在一起，感觉更像是在学语言而不是数学😥再加上周五晚上连上3节😅"><a href="#Before：哎呀数理逻辑真的好抽象😭本来英语就烂，还有一大堆新定义的符号，绕在一起，感觉更像是在学语言而不是数学😥再加上周五晚上连上3节😅" class="headerlink" title="Before：哎呀数理逻辑真的好抽象😭本来英语就烂，还有一大堆新定义的符号，绕在一起，感觉更像是在学语言而不是数学😥再加上周五晚上连上3节😅"></a>Before：哎呀数理逻辑真的好抽象😭本来英语就烂，还有一大堆新定义的符号，绕在一起，感觉更像是在学语言而不是数学😥再加上周五晚上连上3节😅</h5><h5 id="Result：果断重开了"><a href="#Result：果断重开了" class="headerlink" title="Result：果断重开了"></a>Result：果断重开了</h5><h5 id="Decision：我一定要用中文把这门课搞清楚，抵制洋文！！！"><a href="#Decision：我一定要用中文把这门课搞清楚，抵制洋文！！！" class="headerlink" title="Decision：我一定要用中文把这门课搞清楚，抵制洋文！！！"></a>Decision：我一定要用中文把这门课搞清楚，抵制洋文！！！</h5><h1 id="Mathematical-Logic-2-一阶逻辑的语义"><a href="#Mathematical-Logic-2-一阶逻辑的语义" class="headerlink" title="Mathematical Logic 2 一阶逻辑的语义"></a>Mathematical Logic 2 一阶逻辑的语义</h1><h2 id="Structure-结构"><a href="#Structure-结构" class="headerlink" title="Structure 结构"></a>Structure 结构</h2><p>在不同的场合下，同一个一阶逻辑命题可能有不同的含义。如对∀v0Rv0v0，既可以解读成“任意自然数都整除自己”（真），也可以解读成“任何实数都小于自己”（假）<br>So：讨论语义时首先需要确定讨论的数学对象</p><p>刚刚的例子中，自然数和实数明确了讨论对象取自怎样的集合，这个集合称作<strong>域</strong>（universe），记为A</p><p>确定符号集中每个符号的含义，就是确定每个符号对应的元素、集合或映射具体是什么：</p><ul><li>一个n元关系就是某个A^n的子集 a(R)</li><li>一个n元函数就是某个A^n到A的映射 a(f)</li><li>每个常数符号对应A中某个特定元素 a(c)</li></ul><p>我们把这个从符号到其具体含义的映射记为a。<br>A 和 a 确定了一阶逻辑中变量的“定义域”和符号集中每个符号的含义。我们把二元组(A,a)记为 𝔄，称作<strong>S-结构</strong>。</p><p>对于符号集S &#x3D; {R,f,c}，我们通常将a(R)写作$R^𝔄$或$R^A$，a(f)写作$f^𝔄$或$f^A$，a(c)写作$c^𝔄$或$c^A$。</p><h2 id="Interpretation-解释"><a href="#Interpretation-解释" class="headerlink" title="Interpretation 解释"></a>Interpretation 解释</h2><p>Structure给出了变量的定义域和符号集的语义，但我们接下来还有<strong>terms</strong>和<strong>formulas</strong></p><p><strong>一个term的语义是从一个term到universe中一个元素的映射</strong>——$\beta$<br>为了确定这个映射，我们首先需要知道term中的每个变量代表universe当中的哪个元素，这就是要我们给出一个$v_i$ -&gt; A 的映射$\beta$</p><p>所以我们把一个S-structure和一个S-assignment的二元组称作I &#x3D; (𝔄,$\beta$)<br>定义<strong>解释</strong>的语义</p><ul><li>对于变量x，I(x) &#x3D; $\beta$(x)</li><li>对于常量c，I(c) &#x3D; $c^𝔄$</li><li>对于n元函数关系f $\in$ S，$t_1,t_2,…,t_n$均为S-terms。那么有I(ft_1 … t_n) &#x3D; $f^𝔄$(I(t_1),I(t_2),…,I(t_n))</li></ul><p><strong>formula的语义是从一个term到“真或假”的映射(类似于bool?)</strong><br>对于一个formula 𝜑  ，我们用记号 I |&#x3D; 𝜑  来表示 公式 𝜑 的语义为真，读作I 满足𝜑 ，|&#x3D; 即称为<strong>满足关系</strong>。（ 解释 I 满足公式 𝜑  ）</p><p>下面是一些原子性&#x2F;关于逻辑连词&#x2F;量词的情况<br><img src="/img/%E8%A7%A3%E9%87%8A%E6%BB%A1%E8%B6%B3%E5%85%AC%E5%BC%8F.png" alt="解释满足formulas"></p><p>(a) 当且仅当I(t_1)，I(t_2)是universe下的同一个元素<br>(b) 当且仅当 (I(t_1),…,I(t_n)) 属于$R^𝔄$<br>(c) 当且仅当 解释I 不满足公式 𝜑<br>(d) 当且仅当 解释I 满足公式 𝜑 且 解释I 满足公式Ψ<br>(e) 当且仅当 解释I 满足公式 𝜑  或 解释I 满足公式Ψ<br>(f) （一个有点神奇的解释）当且仅当 I |&#x3D; φ（语法上）表明解释I 满足公式 𝜑 （语义上）<br>(g) 当且仅当（还有一个当且仅当，亿点点绕）（解释I 满足 公式 𝜑 当且仅当解释I 满足公式Ψ）</p><p>比较复杂的就是 ∀ 和 ∃<br>(h) 想说的意思是：当且仅当universe中每个元素为公式 𝜑 中出现的x赋值并保持其他变量赋值不变，公式 𝜑 始终不变</p><p>为此我们定义一个描述为formula中的某个特定变量赋特殊的值的方便的符号：<br><img src="/img/Assignment.png" alt="修改赋值函数"></p><p>于是新的解释I 变为了：<br><img src="/img/%E6%96%B0%E8%A7%A3%E9%87%8A.png" alt="新的解释"><br>这表示在解释I 中，将变量 𝑥 的赋值修改为 𝑎，其他部分保持不变。</p><p>于是(h)表示的即为：对于域 𝐴中的每一个元素 𝑎，如果将 𝑥 赋值为 𝑎，公式 𝜑 都为真。</p><p>(i) （也是同理）存在域 𝐴中的一个元素 𝑎，如果将 𝑥 赋值为 𝑎，公式 𝜑 为真。</p><p>如果一个公式 𝜑 是valid(恒真)，那么所有的解释都能满足公式 𝜑</p><p>逻辑推论的定义：<br>Φ 是一个S-公式的集合；<br>公式 𝜑 是一个单独的S-公式<br>如果 Φ |&#x3D; 𝜑，表示 𝜑 是 Φ 的逻辑推论，即公式 𝜑 可以从 Φ 中逻辑推导出来</p><p>我们称公式 𝜑 是可满足的，如果存在一个S-解释I，使得公式 𝜑 在解释I下为真</p><p>公式 𝜑 和公式 Ψ 是逻辑等价的，如果 𝜑 |&#x3D; Ψ 且 Ψ |&#x3D; 𝜑</p><p><img src="/img/%E9%80%BB%E8%BE%91%E7%AD%89%E4%BB%B7.png" alt="逻辑等价例子"></p><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://xingershang.github.io/2024/08/30/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/%E4%B8%80%E9%98%B6%E9%80%BB%E8%BE%91%E7%9A%84%E8%AF%AD%E6%B3%95%E4%B8%8E%E8%AF%AD%E4%B9%89/">https://xingershang.github.io/2024/08/30/%E6%95%B0%E7%90%86%E9%80%BB%E8%BE%91/%E4%B8%80%E9%98%B6%E9%80%BB%E8%BE%91%E7%9A%84%E8%AF%AD%E6%B3%95%E4%B8%8E%E8%AF%AD%E4%B9%89/</a></p><p>这位博主真的救命，讲的太清楚了</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Mathematical Logic</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Mathematical Logic</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Data-Structure13</title>
     <link href="/2025/02/27/Data-Structure13/"/>
     <url>/2025/02/27/Data-Structure13/</url>
