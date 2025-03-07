@@ -1,0 +1,718 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/JaneIcon.png">
+  <link rel="icon" href="/img/JaneIcon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yihan Zhu">
+  <meta name="keywords" content="SJTU Student CS Maths Life">
+  
+    <meta name="description" content="Before: Am I noisy?I really regret.Why am I being so annoying?Why am I becoming jealous of something unnecessary?Maybe it’s because of something romantic,something secret,something I keep chasing,and">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Data-Structure15">
+<meta property="og:url" content="http://example.com/2025/03/07/Data-Structure15/index.html">
+<meta property="og:site_name" content="JaneZ&#39;s Learning Space">
+<meta property="og:description" content="Before: Am I noisy?I really regret.Why am I being so annoying?Why am I becoming jealous of something unnecessary?Maybe it’s because of something romantic,something secret,something I keep chasing,and">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/AVL%E6%97%8B%E8%BD%AC.png">
+<meta property="og:image" content="http://example.com/img/LL%E6%83%85%E5%86%B5.png">
+<meta property="og:image" content="http://example.com/img/LR%E6%83%85%E5%86%B5.png">
+<meta property="og:image" content="http://example.com/img/RR%E6%83%85%E5%86%B5.png">
+<meta property="og:image" content="http://example.com/img/RL%E6%83%85%E5%86%B5.png">
+<meta property="og:image" content="http://example.com/img/%E5%8F%B3%E6%97%8B%E6%93%8D%E4%BD%9C.png">
+<meta property="og:image" content="http://example.com/img/%E5%B7%A6%E6%97%8B%E6%83%85%E5%86%B5.png">
+<meta property="og:image" content="http://example.com/img/LR%E6%93%8D%E4%BD%9C.png">
+<meta property="og:image" content="http://example.com/img/RL%E6%93%8D%E4%BD%9C.png">
+<meta property="article:published_time" content="2025-03-07T08:47:34.000Z">
+<meta property="article:modified_time" content="2025-03-07T08:49:17.620Z">
+<meta property="article:author" content="Yihan Zhu">
+<meta property="article:tag" content="Data Structure">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="Tree">
+<meta property="article:tag" content="Binary Tree">
+<meta property="article:tag" content="BST">
+<meta property="article:tag" content="AVL">
+<meta property="article:tag" content="Balanced Binary Tree">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/AVL%E6%97%8B%E8%BD%AC.png">
+  
+  
+  
+  <title>Data-Structure15 - JaneZ&#39;s Learning Space</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>JaneZ&#39;s Learning Space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Data-Structure15"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-03-07 16:47" pubdate>
+          March 7, 2025 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Data-Structure15</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h5 id="Before-Am-I-noisy-I-really-regret-Why-am-I-being-so-annoying-Why-am-I-becoming-jealous-of-something-unnecessary-Maybe-it’s-because-of-something-romantic-something-secret-something-I-keep-chasing-and-that-is-you-Sometimes-I-find-out-that-she-is-not-that-perfect-but-I-still-ignore-all-those-stuffs-😢😢😢"><a href="#Before-Am-I-noisy-I-really-regret-Why-am-I-being-so-annoying-Why-am-I-becoming-jealous-of-something-unnecessary-Maybe-it’s-because-of-something-romantic-something-secret-something-I-keep-chasing-and-that-is-you-Sometimes-I-find-out-that-she-is-not-that-perfect-but-I-still-ignore-all-those-stuffs-😢😢😢" class="headerlink" title="Before: Am I noisy?I really regret.Why am I being so annoying?Why am I becoming jealous of something unnecessary?Maybe it’s because of something romantic,something secret,something I keep chasing,and that is you.Sometimes I find out that she is not that perfect,but I still ignore all those stuffs.😢😢😢"></a>Before: Am I noisy?I really regret.Why am I being so annoying?Why am I becoming jealous of something unnecessary?Maybe it’s because of something romantic,something secret,something I keep chasing,and that is you.Sometimes I find out that she is not that perfect,but I still ignore all those stuffs.😢😢😢</h5><p>有人又emo了，为什么呢？因为最近发生的那些吗…就忘了吧<br>是过去，是现在，是未来</p>
+<h1 id="Data-Structure-15-动态查找表-BST-AVL"><a href="#Data-Structure-15-动态查找表-BST-AVL" class="headerlink" title="Data Structure 15 动态查找表 BST &amp; AVL"></a>Data Structure 15 动态查找表 BST &amp; AVL</h1><p>既支持查找操作，又支持增、删操作的集合称为<strong>动态查找表</strong>。<br>动态查找表抽象类可以这样定义：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">KEY</span>,<span class="hljs-keyword">class</span> <span class="hljs-title class_">OTHER</span>&gt;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">dynamicSearchTable</span>&#123;<br>    <span class="hljs-keyword">public</span>:<br>        <span class="hljs-function"><span class="hljs-keyword">virtual</span> SET&lt;KEY,OTHER&gt;* <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-type">const</span> KEY&amp; x)</span> </span>== <span class="hljs-number">0</span>;<br>        <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(CONST SET&lt;KEY,OTHER&gt;&amp;x)</span> </span>= <span class="hljs-number">0</span>;<br>        <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">remove</span><span class="hljs-params">(<span class="hljs-type">const</span> KEY&amp; x)</span> </span>== <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">dynamicSearchTable</span>()&#123;&#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p>用于处理动态查找表的树称为<strong>查找树</strong>(Search Tree)。另一种动态查找表的实现是<strong>散列表</strong>，它是专用于集合查找的数据结构。</p>
+<h2 id="二叉查找树-Binary-Search-Tree"><a href="#二叉查找树-Binary-Search-Tree" class="headerlink" title="二叉查找树 Binary Search Tree"></a>二叉查找树 Binary Search Tree</h2><p>注：鉴于关于BST的实现已经在<a target="_blank" rel="noopener" href="https://janez-uint.github.io/2025/03/01/Introduction-to-Algorithms2/">Introduction to Algorithm 2</a>中实现了，这里只会简单说明一下一些要点</p>
+<p>首先是存储：与普通二叉树的存储一样，只需存储二叉查找树的根结点<br>下面是一些运算实现：</p>
+<ul>
+<li>查找：从根结点开始，决定是向左子树找还是向右子树找</li>
+<li>插入：原则上必须保证插入一个结点后，这棵树仍是一棵二叉查找树；且在插入前需要进行查找操作以确保插入的元素不会重复</li>
+<li>（最复杂的操作）删除：如果删除的是叶结点，那么直接删除；如果删除的结点只有一侧存在结点，则那一侧的结点作为新的根结点；最复杂的是删除结点仍有2个子结点的情况，我们在右子树中找到最小的元素，为了避免大量数据元素的移动，我们选择将r的信息与这个最小的结点进行值交换，最小的那个结点成为了新的根结点，我们只需要在右子树中删除原有结点即可（划归到了1.2两种情况）</li>
+</ul>
+<p>（老生常谈了）BST并不保证平衡，可能退化成链表，复杂度炸了</p>
+<h2 id="AVL树"><a href="#AVL树" class="headerlink" title="AVL树"></a>AVL树</h2><p>注：鉴于关于AVL的思想已经在<a target="_blank" rel="noopener" href="https://janez-uint.github.io/2025/03/01/Introduction-to-Algorithms3/">Introduction to Algorithm 3</a>中介绍了(<strong>特别是证明树有对数级高度</strong>)</p>
+<p><strong>AVL树中每个结点的左右子树的高度最多差 1</strong></p>
+<p>首先还是存储上，AVL结点多了一个量用于记录结点高度<br>具体成员函数上，有抽象类规定的插入、删除和查找函数，除此之外，在私有成员函数中还包括了一组工具函数。包括调整树的平衡的adjust函数，四种旋转函数LL、RR、LR、RL，一个求树高度的height函数，清空AVL树的clear函数。</p>
+<h3 id="旋转rotate操作"><a href="#旋转rotate操作" class="headerlink" title="旋转rotate操作"></a>旋转rotate操作</h3><p>具体来讲一讲AVL中一个特殊的操作：<strong>维护AVL的平衡</strong>。造成AVL失衡主要有四种情况：<br><img src="/img/AVL%E6%97%8B%E8%BD%AC.png" srcset="/img/loading.gif" lazyload alt="AVL四种失衡情况"></p>
+<p>首先，我们给出四种情形的示例图：<br><img src="/img/LL%E6%83%85%E5%86%B5.png" srcset="/img/loading.gif" lazyload alt="LL型情况"><br><img src="/img/LR%E6%83%85%E5%86%B5.png" srcset="/img/loading.gif" lazyload alt="LR型情况"><br><img src="/img/RR%E6%83%85%E5%86%B5.png" srcset="/img/loading.gif" lazyload alt="RR型情况"><br><img src="/img/RL%E6%83%85%E5%86%B5.png" srcset="/img/loading.gif" lazyload alt="RL型情况"></p>
+<p>观察树可以发现，导致出现LL、RR型进行的插入操作发生在<strong>树的外部</strong>，可以通过<strong>单旋转</strong>调整好，而LR、RL型就复杂一些，插入操作发生在<strong>树的内部</strong>，需更复杂的<strong>双旋转</strong>操作。</p>
+<p>不妨先看LL型：<br>插入前，结点A是平衡的，结点B原来的平衡度应该为0，否则A不会失去平衡或成为第一个失去平衡的结点。经过一次右旋的操作，树依然是有序的。如选图所示：<br><img src="/img/%E5%8F%B3%E6%97%8B%E6%93%8D%E4%BD%9C.png" srcset="/img/loading.gif" lazyload alt="右旋操作"></p>
+<p>下面是代码实现（应该或许大概还是挺易懂的😢，虽然笨人已经被搞红温了）</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">template&lt;<span class="hljs-keyword">class</span> <span class="hljs-symbol">KEY,<span class="hljs-symbol">class</span></span> <span class="hljs-symbol">OTHER</span>&gt;<br><span class="hljs-symbol">void</span> <span class="hljs-symbol">AVLTree</span>&lt;<span class="hljs-symbol">KEY,<span class="hljs-symbol">OTHER</span></span>&gt;::<span class="hljs-symbol">LL</span>(<span class="hljs-symbol">Avlnode</span> *&amp;<span class="hljs-symbol">t</span>)&#123;<br>    AVLnode *newRoot = t.left;<br>    t.left = newRoot.right;<br>    newRoot.right = t;<br>    t -&gt; height = max(t -&gt; left,t -&gt; right) + <span class="hljs-number">1</span>;<br>    newRoot -&gt; height = max(height(t),height(newRoot -&gt; left)) + <span class="hljs-number">1</span>;<br>    t = newRoot;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>同理可以得到RR型，需要进行左旋操作，如下图所示：<br><img src="/img/%E5%B7%A6%E6%97%8B%E6%83%85%E5%86%B5.png" srcset="/img/loading.gif" lazyload alt="左旋操作"></p>
+<p>下面是代码实现</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">template&lt;<span class="hljs-keyword">class</span> <span class="hljs-symbol">KEY,<span class="hljs-symbol">class</span></span> <span class="hljs-symbol">OTHER</span>&gt;<br><span class="hljs-symbol">void</span> <span class="hljs-symbol">AVLTree</span>&lt;<span class="hljs-symbol">KEY,<span class="hljs-symbol">OTHER</span></span>&gt;::<span class="hljs-symbol">RR</span>(<span class="hljs-symbol">Avlnode</span> *&amp;<span class="hljs-symbol">t</span>)&#123;<br>    AVLnode *newRoot = t.right;<br>    t.right = newRoot.left;<br>    newRoot.left = t;<br>    t -&gt; height = max(t -&gt; left,t -&gt; right) + <span class="hljs-number">1</span>;<br>    newRoot -&gt; height = max(height(t),height(newRoot -&gt; right)) + <span class="hljs-number">1</span>;<br>    t = newRoot;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>LR、RL实际上是把LL、RR的操作进行复合<br>还是先来看一下过程吧，如图所示：<br><img src="/img/LR%E6%93%8D%E4%BD%9C.png" srcset="/img/loading.gif" lazyload alt="LR操作"><br><img src="/img/RL%E6%93%8D%E4%BD%9C.png" srcset="/img/loading.gif" lazyload alt="RL操作"></p>
+<p>代码基于了LL、RR操作</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">template&lt;<span class="hljs-keyword">class</span> <span class="hljs-symbol">KEY,<span class="hljs-symbol">class</span></span> <span class="hljs-symbol">OTHER</span>&gt;<br><span class="hljs-symbol">void</span> <span class="hljs-symbol">AVLTree</span>&lt;<span class="hljs-symbol">KEY,<span class="hljs-symbol">OTHER</span></span>&gt;::<span class="hljs-symbol">LR</span>(<span class="hljs-symbol">Avlnode</span> *&amp;<span class="hljs-symbol">t</span>)&#123;<br>    RR(t -&gt; left);<br>    LL(t);<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">template&lt;<span class="hljs-keyword">class</span> <span class="hljs-symbol">KEY,<span class="hljs-symbol">class</span></span> <span class="hljs-symbol">OTHER</span>&gt;<br><span class="hljs-symbol">void</span> <span class="hljs-symbol">AVLTree</span>&lt;<span class="hljs-symbol">KEY,<span class="hljs-symbol">OTHER</span></span>&gt;::<span class="hljs-symbol">RL</span>(<span class="hljs-symbol">Avlnode</span> *&amp;<span class="hljs-symbol">t</span>)&#123;<br>    LL(t -&gt; right);<br>    RR(t);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>To be honest：我觉得写成LL、RR、LR、RL的样子不是很直观，不如写成leftRotate、rightRotate、leftAndrightRotate、rightAndleftRotate，这样写至少能告诉我下面要进行怎样的操作。但单看怎么Rotate又不知道对应的哪种情况😇😇😇区别在于实现函数和调用函数的方便程度吧</p>
+<h3 id="插入insert操作（kind-of-a-conclusion）"><a href="#插入insert操作（kind-of-a-conclusion）" class="headerlink" title="插入insert操作（kind of a conclusion）"></a>插入insert操作（kind of a conclusion）</h3><p><strong>递归算法</strong>可能是实现AVL树插入的最简单的方法，要在AVL树T中插入一个键值为x的结点，可以递归地将它插入T的某棵合适的子树（记作T’），如果插入后T’的高度没有改变，就完成了操作。否则，根据x和T及T’中的键值选择单旋转或双旋转（以T为根），操作也结束了。</p>
+<p>与二叉查找树一样，插入操作也是通过递归实现的。如果树是空树，将结点插入为根结点，递归结束。如果插入结点比根结点小，则在左子树上插入。如果插入结点比根结点大，则在右子树上插入。只是AVL树还要多做一件事，<strong>就是在插入后要检查从插入结点到根结点的路径上有没有结点失衡</strong>。如果有，则作相应的调整。从插入结点到根结点的回溯过程由递归函数自动完成，在递归调用返回后检查根结点的平衡度。</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">template&lt;<span class="hljs-keyword">class</span> <span class="hljs-symbol">KEY,<span class="hljs-symbol">class</span></span> <span class="hljs-symbol">OTHER</span>&gt;<br><span class="hljs-symbol">void</span> <span class="hljs-symbol">AVLTree</span>&lt;<span class="hljs-symbol">KEY,<span class="hljs-symbol">OTHER</span></span>&gt;::<span class="hljs-symbol">insert</span>(<span class="hljs-symbol">const</span> <span class="hljs-symbol">SET</span>&lt;<span class="hljs-symbol">KEY,<span class="hljs-symbol">OTHER</span></span>&gt;&amp;<span class="hljs-symbol">x</span>)&#123;<br>    insert(x,root);<br>&#125;<br><br>template&lt;<span class="hljs-keyword">class</span> <span class="hljs-symbol">KEY,<span class="hljs-symbol">class</span></span> <span class="hljs-symbol">OTHER</span>&gt;<br><span class="hljs-symbol">void</span> <span class="hljs-symbol">AVLTree</span>&lt;<span class="hljs-symbol">KEY,<span class="hljs-symbol">OTHER</span></span>&gt;::<span class="hljs-symbol">insert</span>(<span class="hljs-symbol">const</span> <span class="hljs-symbol">SET</span>&lt;<span class="hljs-symbol">KEY,<span class="hljs-symbol">OTHER</span></span>&gt;&amp;<span class="hljs-symbol">x,<span class="hljs-symbol">AvlNode</span></span> *&amp;<span class="hljs-symbol">t</span>)&#123;<br>    <span class="hljs-keyword">if</span>(t == <span class="hljs-literal">null</span>ptr)&#123;<br>        t = new AVLNode(x,<span class="hljs-literal">null</span>ptr,<span class="hljs-literal">null</span>ptr);<br>    &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(x.key &lt; t -&gt; data.key)&#123;<br>        insert(x,t -&gt; left);<br>        <span class="hljs-keyword">if</span>(height(t -&gt; left) - height(t -&gt; right) == <span class="hljs-number">2</span>)&#123;<br>            <span class="hljs-keyword">if</span>(x.key &lt; t -&gt; left -&gt; data.key)&#123;<br>                LL(t);<br>            &#125;<span class="hljs-keyword">else</span>&#123;<br>                LR(t);<br>            &#125;<br>        &#125;<br>    &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(x.key &gt; t -&gt; data.key)&#123;<br>        insert(x,t -&gt; right);<br>        <span class="hljs-keyword">if</span>(height(t -&gt; right) - height(t -&gt; left) == <span class="hljs-number">2</span>)&#123;<br>            <span class="hljs-keyword">if</span>(x.key &gt; t -&gt; right -&gt; data.key)&#123;<br>                RR(t);<br>            &#125;<span class="hljs-keyword">else</span>&#123;<br>                LR(t);<br>            &#125;<br>        &#125;<br>    &#125;<br>    t -&gt; height = max(height(t -&gt; left),height(t -&gt; right)) + <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这还是比较容易的😋😋😋</p>
+<h3 id="删除remove操作"><a href="#删除remove操作" class="headerlink" title="删除remove操作"></a>删除remove操作</h3><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_25806863/article/details/74755131">AVL树的旋转图解和简单实现</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_45067620/article/details/117913500">二叉平衡(AVL)树中的 LL旋转、RR旋转、LR旋转、RL旋转 的详细解释</a></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Data-Structure/" class="category-chain-item">Data Structure</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Data-Structure/" class="print-no-link">#Data Structure</a>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
+      
+        <a href="/tags/Tree/" class="print-no-link">#Tree</a>
+      
+        <a href="/tags/Binary-Tree/" class="print-no-link">#Binary Tree</a>
+      
+        <a href="/tags/BST/" class="print-no-link">#BST</a>
+      
+        <a href="/tags/AVL/" class="print-no-link">#AVL</a>
+      
+        <a href="/tags/Balanced-Binary-Tree/" class="print-no-link">#Balanced Binary Tree</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Data-Structure15</div>
+      <div>http://example.com/2025/03/07/Data-Structure15/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yihan Zhu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>March 7, 2025</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/03/06/Introduction-to-Algorithms3/" title="Introduction-to-Algorithms3">
+                        <span class="hidden-mobile">Introduction-to-Algorithms3</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
