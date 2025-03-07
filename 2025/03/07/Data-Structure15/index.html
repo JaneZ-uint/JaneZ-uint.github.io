@@ -36,7 +36,7 @@
 <meta property="og:image" content="http://example.com/img/LR%E6%93%8D%E4%BD%9C.png">
 <meta property="og:image" content="http://example.com/img/RL%E6%93%8D%E4%BD%9C.png">
 <meta property="article:published_time" content="2025-03-07T08:47:34.000Z">
-<meta property="article:modified_time" content="2025-03-07T08:49:17.620Z">
+<meta property="article:modified_time" content="2025-03-07T08:54:08.030Z">
 <meta property="article:author" content="Yihan Zhu">
 <meta property="article:tag" content="Data Structure">
 <meta property="article:tag" content="C++">
@@ -315,7 +315,7 @@
 <li>（最复杂的操作）删除：如果删除的是叶结点，那么直接删除；如果删除的结点只有一侧存在结点，则那一侧的结点作为新的根结点；最复杂的是删除结点仍有2个子结点的情况，我们在右子树中找到最小的元素，为了避免大量数据元素的移动，我们选择将r的信息与这个最小的结点进行值交换，最小的那个结点成为了新的根结点，我们只需要在右子树中删除原有结点即可（划归到了1.2两种情况）</li>
 </ul>
 <p>（老生常谈了）BST并不保证平衡，可能退化成链表，复杂度炸了</p>
-<h2 id="AVL树"><a href="#AVL树" class="headerlink" title="AVL树"></a>AVL树</h2><p>注：鉴于关于AVL的思想已经在<a target="_blank" rel="noopener" href="https://janez-uint.github.io/2025/03/01/Introduction-to-Algorithms3/">Introduction to Algorithm 3</a>中介绍了(<strong>特别是证明树有对数级高度</strong>)</p>
+<h2 id="AVL树"><a href="#AVL树" class="headerlink" title="AVL树"></a>AVL树</h2><p>注：鉴于关于AVL的思想已经在<a target="_blank" rel="noopener" href="https://janez-uint.github.io/2025/03/06/Introduction-to-Algorithms3/">Introduction to Algorithm 3</a>中介绍了(<strong>特别是证明树有对数级高度</strong>)</p>
 <p><strong>AVL树中每个结点的左右子树的高度最多差 1</strong></p>
 <p>首先还是存储上，AVL结点多了一个量用于记录结点高度<br>具体成员函数上，有抽象类规定的插入、删除和查找函数，除此之外，在私有成员函数中还包括了一组工具函数。包括调整树的平衡的adjust函数，四种旋转函数LL、RR、LR、RL，一个求树高度的height函数，清空AVL树的clear函数。</p>
 <h3 id="旋转rotate操作"><a href="#旋转rotate操作" class="headerlink" title="旋转rotate操作"></a>旋转rotate操作</h3><p>具体来讲一讲AVL中一个特殊的操作：<strong>维护AVL的平衡</strong>。造成AVL失衡主要有四种情况：<br><img src="/img/AVL%E6%97%8B%E8%BD%AC.png" srcset="/img/loading.gif" lazyload alt="AVL四种失衡情况"></p>
