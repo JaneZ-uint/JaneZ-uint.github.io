@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Mathematical-Logic3</title>
+    <link href="/2025/03/08/Mathematical-Logic3/"/>
+    <url>/2025/03/08/Mathematical-Logic3/</url>
+    
+    <content type="html"><![CDATA[<h5 id="Before：下课就去捞！3周没捞了😋😋😋上大学后捞的频率大幅增长🤣🤣🤣"><a href="#Before：下课就去捞！3周没捞了😋😋😋上大学后捞的频率大幅增长🤣🤣🤣" class="headerlink" title="Before：下课就去捞！3周没捞了😋😋😋上大学后捞的频率大幅增长🤣🤣🤣"></a>Before：下课就去捞！3周没捞了😋😋😋上大学后捞的频率大幅增长🤣🤣🤣</h5><p>🐖🐖🐖</p><h1 id="Mathematical-Logic-3-重合引理-同构引理"><a href="#Mathematical-Logic-3-重合引理-同构引理" class="headerlink" title="Mathematical Logic 3 重合引理 同构引理"></a>Mathematical Logic 3 重合引理 同构引理</h1><h2 id="概念回顾"><a href="#概念回顾" class="headerlink" title="概念回顾"></a>概念回顾</h2><p><strong>项</strong>是由<strong>变量、常量符号和函数符号</strong>通过递归方式构造的表达式。<br><strong>公式</strong>（formula）是由<strong>项</strong>通过<strong>谓词符号、逻辑连接词和量词构造</strong>的表达式。<br><strong>结构</strong>由<strong>域</strong>和<strong>解释函数</strong>组成。<br><strong>解释</strong>由<strong>结构</strong>和<strong>赋值函数</strong>（将自由变量映射到域中的元素）组成。</p><ul><li>原子公式：包括等式公式、谓词公式R</li><li>逻辑连接词：¬、∧、∨、→、↔</li><li>量词：∀xφ (x是变量，φ 是公式)、∃xφ (x是变量，φ 是公式)</li></ul><p>我们可以解释term、解释formula、解释sentence</p><h2 id="结构归纳法（对公式进行归纳）"><a href="#结构归纳法（对公式进行归纳）" class="headerlink" title="结构归纳法（对公式进行归纳）"></a>结构归纳法（对公式进行归纳）</h2><p>公式的归纳基于公式的结构，即公式的构造方式。由于公式是通过递归方式定义的（<strong>从原子公式逐步构造出复杂公式</strong>），因此我们可以使用结构归纳法来证明公式的性质。<br>公式的归纳证明通常分为以下几个步骤：</p><ul><li>证明性质𝑃对所有原子公式成立</li><li>归纳步骤：假设性质𝑃对某些公式𝜑和𝜓成立（归纳假设），然后证明𝑃对通过这些公式构造的复杂公式也成立。</li></ul><h2 id="重合引理（The-Coincidence-Lemma）"><a href="#重合引理（The-Coincidence-Lemma）" class="headerlink" title="重合引理（The Coincidence Lemma）"></a>重合引理（The Coincidence Lemma）</h2><p>设I1(A1,β1),I2(A2,β2)是2个S-解释，且满足以下条件：</p><ul><li>A1 &#x3D; A2（解释的域相同）</li><li>对于S：&#x3D; S1 ∩ S2中的每个符号，它们在A1、A2中的解释相同</li></ul><p>那么：</p><ul><li>对于任何S项t，如果β1(x) &#x3D; β2(x)对于t中的所有变量x成立，则I1(x) &#x3D; I2(x)<br>即需要满足<strong>结构的解释相同</strong>和<strong>变量的赋值相同</strong></li><li>对于任何S公式𝜑，如果β1(x) &#x3D; β2(x)对于𝜑中的所有自由变量x成立，则I1 |&#x3D; 𝜑 当且仅当 I2 |&#x3D; 𝜑<br>即需要满足<strong>结构的解释相同</strong>和<strong>自由变量的赋值相同</strong></li></ul><p>证明依赖于<strong>结构归纳法</strong></p><h2 id="同构引理（The-Isomorphism-Lemma）"><a href="#同构引理（The-Isomorphism-Lemma）" class="headerlink" title="同构引理（The Isomorphism Lemma）"></a>同构引理（The Isomorphism Lemma）</h2><p>首先给出<strong>同构</strong>的定义：<br>在模型论中，同构是指两个结构之间存在一个<strong>双射</strong>（bijection），这个双射<strong>保持了结构中的所有关系、函数和常量</strong>。<br>具体来说：<br>设A(A,I)和B(B,J)是2个S—结构，其中A和B是它们的域，I和J是解释函数。<br>一个同构𝜋：A → B是一个双射，满足以下条件：</p><ul><li>保持关系<br><img src="/img/%E4%BF%9D%E6%8C%81%E5%85%B3%E7%B3%BB.png" alt="保持关系"></li><li>保持运算<br><img src="/img/%E4%BF%9D%E6%8C%81%E8%BF%90%E7%AE%97.png" alt="保持运算"></li><li>保持常量<br><img src="/img/%E4%BF%9D%E6%8C%81%E5%B8%B8%E9%87%8F.png" alt="保持常量"></li></ul><p>如果存在这样的双射𝜋，则称结构A和B是同构的，记作A≅B<br>例子：群论 &amp; 图论中的同构</p><p>同构的性质：</p><ul><li>自反性（Reflexivity）：A ≅ A</li><li>对称性（Symmetry）：若A ≅ B，则B ≅ A</li><li>传递性（Transitivity）：若A ≅ B 且 B ≅ C ，则A ≅ C</li></ul><p>因此，同构是一个<strong>等价关系</strong></p><p>那么同构引理可以表示为：<br>如果A、B是两个同构的S-结构，则对于任何<strong>S-句子</strong>𝜑，有<br>A |&#x3D; 𝜑  ⟺  B |&#x3D; 𝜑<br>这意味着，同构的结构在一阶逻辑中无法被区分，它们满足相同的句子。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Mathematical Logic</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Mathematical Logic</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Data-Structure15</title>
     <link href="/2025/03/07/Data-Structure15/"/>
     <url>/2025/03/07/Data-Structure15/</url>
