@@ -19,26 +19,26 @@
   <meta name="author" content="Yihan Zhu">
   <meta name="keywords" content="SJTU Student CS Maths Life">
   
-    <meta name="description" content="Before：下课就去捞！3周没捞了😋😋😋上大学后捞的频率大幅增长🤣🤣🤣🐖🐖🐖 Mathematical Logic 3 重合引理 同构引理概念回顾项是由变量、常量符号和函数符号通过递归方式构造的表达式。公式（formula）是由项通过谓词符号、逻辑连接词和量词构造的表达式。结构由域和解释函数组成。解释由结构和赋值函数（将自由变量映射到域中的元素）组成。  原子公式：包括等式公式">
+    <meta name="description" content="数据结构 4 字符串 树状结构字符串实现方式当然也有顺序实现和链接实现。顺序存储使用字符数组存储字符串。C语言中使用普通数组进行处理，将每个操作由一个函数实现，这些函数实现在ctring库中，但无法用运算符操纵字符串，还存在内存溢出的问题。而C++采用动态数组进行存储，实现了一个string类，根据字符串长度重新分配空间，解决了C语言存在的缺陷，但在时间性能上有所下降。 链接存储我们自然而然想到使">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mathematical-Logic3">
-<meta property="og:url" content="http://example.com/2025/03/08/Mathematical-Logic3/index.html">
+<meta property="og:title" content="数据结构4">
+<meta property="og:url" content="http://example.com/2025/03/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%844/index.html">
 <meta property="og:site_name" content="JaneZ&#39;s Learning Space">
-<meta property="og:description" content="Before：下课就去捞！3周没捞了😋😋😋上大学后捞的频率大幅增长🤣🤣🤣🐖🐖🐖 Mathematical Logic 3 重合引理 同构引理概念回顾项是由变量、常量符号和函数符号通过递归方式构造的表达式。公式（formula）是由项通过谓词符号、逻辑连接词和量词构造的表达式。结构由域和解释函数组成。解释由结构和赋值函数（将自由变量映射到域中的元素）组成。  原子公式：包括等式公式">
+<meta property="og:description" content="数据结构 4 字符串 树状结构字符串实现方式当然也有顺序实现和链接实现。顺序存储使用字符数组存储字符串。C语言中使用普通数组进行处理，将每个操作由一个函数实现，这些函数实现在ctring库中，但无法用运算符操纵字符串，还存在内存溢出的问题。而C++采用动态数组进行存储，实现了一个string类，根据字符串长度重新分配空间，解决了C语言存在的缺陷，但在时间性能上有所下降。 链接存储我们自然而然想到使">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/img/%E4%BF%9D%E6%8C%81%E5%85%B3%E7%B3%BB.png">
-<meta property="og:image" content="http://example.com/img/%E4%BF%9D%E6%8C%81%E8%BF%90%E7%AE%97.png">
-<meta property="og:image" content="http://example.com/img/%E4%BF%9D%E6%8C%81%E5%B8%B8%E9%87%8F.png">
-<meta property="article:published_time" content="2025-03-08T03:16:58.000Z">
-<meta property="article:modified_time" content="2025-03-08T03:21:10.422Z">
+<meta property="article:published_time" content="2025-03-10T06:59:44.000Z">
+<meta property="article:modified_time" content="2025-03-10T07:37:49.054Z">
 <meta property="article:author" content="Yihan Zhu">
-<meta property="article:tag" content="Mathematical Logic">
+<meta property="article:tag" content="Data Structure">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="String">
+<meta property="article:tag" content="Tree">
+<meta property="article:tag" content="Binary Tree">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/%E4%BF%9D%E6%8C%81%E5%85%B3%E7%B3%BB.png">
   
   
   
-  <title>Mathematical-Logic3 - JaneZ&#39;s Learning Space</title>
+  <title>数据结构4 - JaneZ&#39;s Learning Space</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -215,7 +215,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Mathematical-Logic3"></span>
+            <span id="subtitle" data-typed-text="数据结构4"></span>
           
         </div>
 
@@ -226,8 +226,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-03-08 11:16" pubdate>
-          March 8, 2025 am
+        <time datetime="2025-03-10 14:59" pubdate>
+          March 10, 2025 pm
         </time>
       </span>
     
@@ -238,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          766 words
+          808 words
         
       </span>
     
@@ -286,50 +286,44 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Mathematical-Logic3</h1>
+            <h1 id="seo-header">数据结构4</h1>
             
             
               <div class="markdown-body">
                 
-                <h5 id="Before：下课就去捞！3周没捞了😋😋😋上大学后捞的频率大幅增长🤣🤣🤣"><a href="#Before：下课就去捞！3周没捞了😋😋😋上大学后捞的频率大幅增长🤣🤣🤣" class="headerlink" title="Before：下课就去捞！3周没捞了😋😋😋上大学后捞的频率大幅增长🤣🤣🤣"></a>Before：下课就去捞！3周没捞了😋😋😋上大学后捞的频率大幅增长🤣🤣🤣</h5><p>🐖🐖🐖</p>
-<h1 id="Mathematical-Logic-3-重合引理-同构引理"><a href="#Mathematical-Logic-3-重合引理-同构引理" class="headerlink" title="Mathematical Logic 3 重合引理 同构引理"></a>Mathematical Logic 3 重合引理 同构引理</h1><h2 id="概念回顾"><a href="#概念回顾" class="headerlink" title="概念回顾"></a>概念回顾</h2><p><strong>项</strong>是由<strong>变量、常量符号和函数符号</strong>通过递归方式构造的表达式。<br><strong>公式</strong>（formula）是由<strong>项</strong>通过<strong>谓词符号、逻辑连接词和量词构造</strong>的表达式。<br><strong>结构</strong>由<strong>域</strong>和<strong>解释函数</strong>组成。<br><strong>解释</strong>由<strong>结构</strong>和<strong>赋值函数</strong>（将自由变量映射到域中的元素）组成。</p>
+                <h1 id="数据结构-4-字符串-树状结构"><a href="#数据结构-4-字符串-树状结构" class="headerlink" title="数据结构 4 字符串 树状结构"></a>数据结构 4 字符串 树状结构</h1><h2 id="字符串实现方式"><a href="#字符串实现方式" class="headerlink" title="字符串实现方式"></a>字符串实现方式</h2><p>当然也有<strong>顺序实现和链接实现</strong>。<br>顺序存储使用字符数组存储字符串。C语言中使用<strong>普通数组</strong>进行处理，将每个操作由一个函数实现，这些函数实现在<strong>ctring</strong>库中，但无法用运算符操纵字符串，还存在内存溢出的问题。而C++采用<strong>动态数组</strong>进行存储，实现了一个<strong>string类</strong>，根据字符串长度重新分配空间，解决了C语言存在的缺陷，但在时间性能上有所下降。</p>
+<p>链接存储我们自然而然想到使用单链表，虽然在时间上有了很大优化，但空间利用率较低，于是我们可以考虑<strong>块状链表</strong>。<br>我们允许一个结点存在空余空间。进行分裂结点和合并结点的操作。</p>
+<h2 id="树状结构——处理层次关系的数据结构"><a href="#树状结构——处理层次关系的数据结构" class="headerlink" title="树状结构——处理层次关系的数据结构"></a>树状结构——处理层次关系的数据结构</h2><p>树是由n个结点组成的有限集合T，并且满足：<br>1.有一个根结点<br>2.其余结点分为m个集合，这些集合本身也是一棵树<br>有些问题可以看成是树的结构，如八皇后问题（本质是DFS）</p>
+<p>树有一些特殊的术语：</p>
 <ul>
-<li>原子公式：包括等式公式、谓词公式R</li>
-<li>逻辑连接词：¬、∧、∨、→、↔</li>
-<li>量词：∀xφ (x是变量，φ 是公式)、∃xφ (x是变量，φ 是公式)</li>
+<li>根结点、叶结点、内部结点</li>
+<li>结点的度（一个结点的直接后继数）和树的度（结点的最大度）</li>
+<li>儿子结点</li>
+<li>父亲结点</li>
+<li>兄弟结点</li>
+<li>祖先结点</li>
+<li>子孙结点</li>
+<li>结点所处层次</li>
+<li>树的高度（一棵树上最大的层次号）</li>
+<li>有序树</li>
+<li>无序树</li>
+<li>森林</li>
 </ul>
-<p>我们可以解释term、解释formula、解释sentence</p>
-<h2 id="结构归纳法（对公式进行归纳）"><a href="#结构归纳法（对公式进行归纳）" class="headerlink" title="结构归纳法（对公式进行归纳）"></a>结构归纳法（对公式进行归纳）</h2><p>公式的归纳基于公式的结构，即公式的构造方式。由于公式是通过递归方式定义的（<strong>从原子公式逐步构造出复杂公式</strong>），因此我们可以使用结构归纳法来证明公式的性质。<br>公式的归纳证明通常分为以下几个步骤：</p>
+<h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2><p>满二叉树：任意一层的结点个数都达到了最大值<br>完全二叉树：在满二叉树的最底层自右向左依次去掉若干结点</p>
+<p>二叉树的性质：</p>
 <ul>
-<li>证明性质𝑃对所有原子公式成立</li>
-<li>归纳步骤：假设性质𝑃对某些公式𝜑和𝜓成立（归纳假设），然后证明𝑃对通过这些公式构造的复杂公式也成立。</li>
+<li>第 i 层最多 2^(i - 1)个结点</li>
+<li>高度为k，最多有2^k - 1个结点</li>
+<li>n0 &#x3D; n2 + 1</li>
+<li>具有n个结点的完全二叉树高度是[log_2 n] + 1</li>
+<li>对于完全二叉树，左儿子为2i，右儿子为2i + 1</li>
 </ul>
-<h2 id="重合引理（The-Coincidence-Lemma）"><a href="#重合引理（The-Coincidence-Lemma）" class="headerlink" title="重合引理（The Coincidence Lemma）"></a>重合引理（The Coincidence Lemma）</h2><p>设I1(A1,β1),I2(A2,β2)是2个S-解释，且满足以下条件：</p>
-<ul>
-<li>A1 &#x3D; A2（解释的域相同）</li>
-<li>对于S：&#x3D; S1 ∩ S2中的每个符号，它们在A1、A2中的解释相同</li>
-</ul>
-<p>那么：</p>
-<ul>
-<li>对于任何S项t，如果β1(x) &#x3D; β2(x)对于t中的所有变量x成立，则I1(x) &#x3D; I2(x)<br>即需要满足<strong>结构的解释相同</strong>和<strong>变量的赋值相同</strong></li>
-<li>对于任何S公式𝜑，如果β1(x) &#x3D; β2(x)对于𝜑中的所有自由变量x成立，则I1 |&#x3D; 𝜑 当且仅当 I2 |&#x3D; 𝜑<br>即需要满足<strong>结构的解释相同</strong>和<strong>自由变量的赋值相同</strong></li>
-</ul>
-<p>证明依赖于<strong>结构归纳法</strong></p>
-<h2 id="同构引理（The-Isomorphism-Lemma）"><a href="#同构引理（The-Isomorphism-Lemma）" class="headerlink" title="同构引理（The Isomorphism Lemma）"></a>同构引理（The Isomorphism Lemma）</h2><p>首先给出<strong>同构</strong>的定义：<br>在模型论中，同构是指两个结构之间存在一个<strong>双射</strong>（bijection），这个双射<strong>保持了结构中的所有关系、函数和常量</strong>。<br>具体来说：<br>设A(A,I)和B(B,J)是2个S—结构，其中A和B是它们的域，I和J是解释函数。<br>一个同构𝜋：A → B是一个双射，满足以下条件：</p>
-<ul>
-<li>保持关系<br><img src="/img/%E4%BF%9D%E6%8C%81%E5%85%B3%E7%B3%BB.png" srcset="/img/loading.gif" lazyload alt="保持关系"></li>
-<li>保持运算<br><img src="/img/%E4%BF%9D%E6%8C%81%E8%BF%90%E7%AE%97.png" srcset="/img/loading.gif" lazyload alt="保持运算"></li>
-<li>保持常量<br><img src="/img/%E4%BF%9D%E6%8C%81%E5%B8%B8%E9%87%8F.png" srcset="/img/loading.gif" lazyload alt="保持常量"></li>
-</ul>
-<p>如果存在这样的双射𝜋，则称结构A和B是同构的，记作A≅B<br>例子：群论 &amp; 图论中的同构</p>
-<p>同构的性质：</p>
-<ul>
-<li>自反性（Reflexivity）：A ≅ A</li>
-<li>对称性（Symmetry）：若A ≅ B，则B ≅ A</li>
-<li>传递性（Transitivity）：若A ≅ B 且 B ≅ C ，则A ≅ C</li>
-</ul>
-<p>因此，同构是一个<strong>等价关系</strong></p>
-<p>那么同构引理可以表示为：<br>如果A、B是两个同构的S-结构，则对于任何<strong>S-句子</strong>𝜑，有<br>A |&#x3D; 𝜑  ⟺  B |&#x3D; 𝜑<br>这意味着，同构的结构在一阶逻辑中无法被区分，它们满足相同的句子。</p>
+<h2 id="二叉树的运算"><a href="#二叉树的运算" class="headerlink" title="二叉树的运算"></a>二叉树的运算</h2><p>一个重要的操作：遍历<br>前序遍历、中序遍历、后序遍历</p>
+<p>如斐波那契数列的求解过程，我们采用<strong>后序遍历</strong><br>再如快速排序过程，我们采用<strong>前序遍历</strong>（先进行划分）</p>
+<p>前序+中序可以确定一棵二叉树<br>后序+中序也可确定一棵二叉树<br>但前序+后序不可确定一棵二叉树</p>
+<h2 id="二叉树的存储"><a href="#二叉树的存储" class="headerlink" title="二叉树的存储"></a>二叉树的存储</h2><p>把树的层次关系映射成线性关系，对于完全二叉树来说这是容易做到的，但对于非完全二叉树来说，就需要添加一些哑结点，把一棵普通的树修补成一棵完全二叉树（空间浪费）。<br>更多情况下我们选择<strong>链接存储</strong>二叉树。<br>标准形式：二叉链表（只存储儿子结点）<br>广义的存储方式：三叉链表（2个儿子结点+父结点）</p>
+<p>二叉树是递归定义的，所以操作可用递归实现，我们一般把这些递归函数设为二叉树类的私有成员函数。</p>
+<p>Wait to be updated…</p>
 
                 
               </div>
@@ -348,7 +342,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Mathematical-Logic/" class="category-chain-item">Mathematical Logic</a>
+  <a href="/categories/Data-Structure/" class="category-chain-item">Data Structure</a>
   
   
 
@@ -363,7 +357,15 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Mathematical-Logic/" class="print-no-link">#Mathematical Logic</a>
+        <a href="/tags/Data-Structure/" class="print-no-link">#Data Structure</a>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
+      
+        <a href="/tags/String/" class="print-no-link">#String</a>
+      
+        <a href="/tags/Tree/" class="print-no-link">#Tree</a>
+      
+        <a href="/tags/Binary-Tree/" class="print-no-link">#Binary Tree</a>
       
     </div>
   
@@ -375,8 +377,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Mathematical-Logic3</div>
-      <div>http://example.com/2025/03/08/Mathematical-Logic3/</div>
+      <div>数据结构4</div>
+      <div>http://example.com/2025/03/10/数据结构4/</div>
     </div>
     <div class="license-meta">
       
@@ -388,7 +390,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>March 8, 2025</div>
+          <div>March 10, 2025</div>
         </div>
       
       
@@ -420,18 +422,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/03/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%844/" title="数据结构4">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">数据结构4</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/03/07/Data-Structure15/" title="Data-Structure15">
-                        <span class="hidden-mobile">Data-Structure15</span>
+                      <a href="/2025/03/08/Mathematical-Logic3/" title="Mathematical-Logic3">
+                        <span class="hidden-mobile">Mathematical-Logic3</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
