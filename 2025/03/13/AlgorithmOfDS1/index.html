@@ -1,0 +1,714 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/JaneIcon.png">
+  <link rel="icon" href="/img/JaneIcon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yihan Zhu">
+  <meta name="keywords" content="SJTU Student CS Maths Life">
+  
+    <meta name="description" content="Before：最近在de STLite的最后一个数据结构map。周二用一个下午+一个晚上搓完后，开始了《漫长》的debug环节，目前来看问题出在erase上（AVL倒也合理），RE麻了…😰😰😰遂开始了算法学习呜呜呜。立个小目标，这周结束前把map过了吧求求了😢😢😢最近还是很开心的，也很轻松，希望能轻松一学期（bushi🤣🤣🤣）今天知道了一件事，让我觉得人间值得😣😉☺️Algo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AlgorithmOfDS1">
+<meta property="og:url" content="http://example.com/2025/03/13/AlgorithmOfDS1/index.html">
+<meta property="og:site_name" content="JaneZ&#39;s Learning Space">
+<meta property="og:description" content="Before：最近在de STLite的最后一个数据结构map。周二用一个下午+一个晚上搓完后，开始了《漫长》的debug环节，目前来看问题出在erase上（AVL倒也合理），RE麻了…😰😰😰遂开始了算法学习呜呜呜。立个小目标，这周结束前把map过了吧求求了😢😢😢最近还是很开心的，也很轻松，希望能轻松一学期（bushi🤣🤣🤣）今天知道了一件事，让我觉得人间值得😣😉☺️Algo">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-03-13T14:24:52.000Z">
+<meta property="article:modified_time" content="2025-03-13T14:27:11.047Z">
+<meta property="article:author" content="Yihan Zhu">
+<meta property="article:tag" content="Data Structure">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="Monotonic Stack">
+<meta property="article:tag" content="Monotonic Queue">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>AlgorithmOfDS1 - JaneZ&#39;s Learning Space</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>JaneZ&#39;s Learning Space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="AlgorithmOfDS1"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-03-13 22:24" pubdate>
+          March 13, 2025 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">AlgorithmOfDS1</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h5 id="Before：最近在de-STLite的最后一个数据结构map。周二用一个下午-一个晚上搓完后，开始了《漫长》的debug环节，目前来看问题出在erase上（AVL倒也合理），RE麻了…😰😰😰遂开始了算法学习呜呜呜。立个小目标，这周结束前把map过了吧求求了😢😢😢最近还是很开心的，也很轻松，希望能轻松一学期（bushi🤣🤣🤣）今天知道了一件事，让我觉得人间值得😣😉☺️"><a href="#Before：最近在de-STLite的最后一个数据结构map。周二用一个下午-一个晚上搓完后，开始了《漫长》的debug环节，目前来看问题出在erase上（AVL倒也合理），RE麻了…😰😰😰遂开始了算法学习呜呜呜。立个小目标，这周结束前把map过了吧求求了😢😢😢最近还是很开心的，也很轻松，希望能轻松一学期（bushi🤣🤣🤣）今天知道了一件事，让我觉得人间值得😣😉☺️" class="headerlink" title="Before：最近在de STLite的最后一个数据结构map。周二用一个下午+一个晚上搓完后，开始了《漫长》的debug环节，目前来看问题出在erase上（AVL倒也合理），RE麻了…😰😰😰遂开始了算法学习呜呜呜。立个小目标，这周结束前把map过了吧求求了😢😢😢最近还是很开心的，也很轻松，希望能轻松一学期（bushi🤣🤣🤣）今天知道了一件事，让我觉得人间值得😣😉☺️"></a>Before：最近在de STLite的最后一个数据结构map。周二用一个下午+一个晚上搓完后，开始了《漫长》的debug环节，目前来看问题出在erase上（AVL倒也合理），RE麻了…😰😰😰遂开始了算法学习呜呜呜。立个小目标，这周结束前把map过了吧求求了😢😢😢最近还是很开心的，也很轻松，希望能轻松一学期（bushi🤣🤣🤣）今天知道了一件事，让我觉得人间值得😣😉☺️</h5><h1 id="Algorithm-of-Data-Structure-1-单调栈-单调队列-栈模拟递归"><a href="#Algorithm-of-Data-Structure-1-单调栈-单调队列-栈模拟递归" class="headerlink" title="Algorithm of Data Structure 1 单调栈&amp;单调队列&amp;栈模拟递归"></a>Algorithm of Data Structure 1 单调栈&amp;单调队列&amp;栈模拟递归</h1><h2 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h2><p>定义：栈内元素满足某种单调性质，可以单增也可以单减</p>
+<p>在处理每个元素时，将其与栈顶元素进行比较，如果当前元素大于（或小于）栈顶元素，则将栈顶元素出栈，直到满足单调性质为止。然后，将当前元素入栈，继续处理下一个元素（<strong>当前元素必须入栈</strong>）</p>
+<p>单调栈可以快速找到每个元素的下一个更大（或更小）元素，时间复杂度为O(n)（n为序列的长度）</p>
+<p>具体来说，<strong>单调递增栈可用于寻找下一个更小元素，而单调递减栈可用于寻找下一个更大元素</strong>，并且只需要遍历整个序列一次</p>
+<p>Example：找到数列中每个元素下一个比它大的元素下标（1 — base）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> top = <span class="hljs-number">0</span>; <span class="hljs-comment">//栈顶位置</span><br>stack[top] = <span class="hljs-number">0</span>; <span class="hljs-comment">//a[0]入栈  stack数组记录栈内元素下标</span><br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;i &lt; n;i ++)&#123;<br>    <span class="hljs-keyword">while</span>(top &gt;= <span class="hljs-number">0</span> &amp;&amp; a[stack[top]] &lt; a[i])&#123;<br>        ans[stack[top]] = i + <span class="hljs-number">1</span>; <span class="hljs-comment">//记录答案</span><br>        top --; <span class="hljs-comment">//当前栈顶元素出栈</span><br>    &#125;<br>    stack[++ top] = i;<br>&#125;<br><span class="hljs-keyword">while</span>(top &gt;=<span class="hljs-number">0</span>)&#123;<br>    ans[stack[top --]] = <span class="hljs-number">0</span>; <span class="hljs-comment">//栈内剩余元素不存在下一个比它大的元素</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>总结：需要一个stack数组记录栈内情况，一个top记录栈顶位置，一个a存储原本序列数据，和一个ans存储答案</p>
+<h2 id="单调栈例题"><a href="#单调栈例题" class="headerlink" title="单调栈例题"></a>单调栈例题</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1901">luogu P1901</a></p>
+<ul>
+<li>某地有N个能量发射站排成一行，每个发射站i都有不相同的高度Hi，并能向两边（两端的发射站只能向一边）同时发射能量值为Vi的能量，发出的能量只被两边最近的且比它高的发射站接收。</li>
+<li>显然，每个发射站发出的能量有可能被0~2个其他发射站所接受。</li>
+<li>请计算出接收最多能量的发射站接收的能量是多少。</li>
+</ul>
+<p>小黄题，15分钟速通😋 Strong女也只能切黄题了呜呜呜</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><code class="hljs smali"><span class="hljs-comment">#include&lt;bits/stdc++.h&gt;</span><br>using namespace std;<span class="hljs-built_in"></span><br><span class="hljs-built_in">int </span>h1[1000005];<span class="hljs-built_in"></span><br><span class="hljs-built_in">int </span>h2[1000005];<span class="hljs-built_in"></span><br><span class="hljs-built_in">int </span>stack1[1000005];<span class="hljs-built_in"></span><br><span class="hljs-built_in">int </span>stack2[1000005];<span class="hljs-built_in"></span><br><span class="hljs-built_in">int </span>v1[1000005];<span class="hljs-built_in"></span><br><span class="hljs-built_in">int </span>v2[1000005];<span class="hljs-built_in"></span><br><span class="hljs-built_in">int </span>ans1[1000005];<span class="hljs-built_in"></span><br><span class="hljs-built_in">int </span>ans2[1000005];<span class="hljs-built_in"></span><br><span class="hljs-built_in">int </span>total1[1000005];<span class="hljs-built_in"></span><br><span class="hljs-built_in">int </span>total2[1000005];<span class="hljs-built_in"></span><br><span class="hljs-built_in">int </span>main() &#123;<br>   <span class="hljs-built_in"> int </span>n;<br>    cin &gt;&gt; n;<br>    for(int i = 0;i &lt; n;i ++) &#123;<br>        cin &gt;&gt; h1[i];<br>        cin &gt;&gt; v1[i];<br>    &#125;<br>    for(int i = 0;i &lt; n;i ++) &#123;<br>        h2[i] = h1[n - 1 -i];<br>        v2[i] = v1[n - 1- i];<br>    &#125;<br>   <span class="hljs-built_in"> int </span>top1 = 0;<br>   <span class="hljs-built_in"> int </span>top2 = 0;<br>    stack1[top1] = 0;<br>    for(int i = 1;i &lt; n;i ++) &#123;<br>        while(top1 &gt;= 0 &amp;&amp; h1[stack1[top1]] &lt; h1[i]) &#123;<br>            ans1[stack1[top1]] = i;<br>            total1[i] += v1[stack1[top1]];<br>            top1 --;<br>        &#125;<br>        stack1[++ top1] = i;<br>    &#125;<br>    while(top1 &gt;= 0) &#123;<br>        ans1[stack1[top1 --]] = -1;<br>    &#125;<br><br>    stack2[top2] = 0;<br>    for(int i = 1;i &lt; n;i ++) &#123;<br>        while(top2 &gt;= 0 &amp;&amp; h2[stack2[top2]] &lt; h2[i]) &#123;<br>            ans2[stack2[top2]] = i;<br>            total2[i] += v2[stack2[top2]];<br>            top2 --;<br>        &#125;<br>        stack2[++ top2] = i;<br>    &#125;<br>    while(top2 &gt;= 0) &#123;<br>        ans2[stack2[top2 --]] = -1;<br>    &#125;<br><br>   <span class="hljs-built_in"> int </span>maxE = 0;<br>    for(int i = 0;i &lt; n;i ++) &#123;<br>       <span class="hljs-built_in"> int </span>current = total1[i] + total2[n - 1 - i];<br>        if(current &gt; maxE) &#123;<br>            maxE = current;<br>        &#125;<br>    &#125;<br>    cout &lt;&lt; maxE;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="单调队列"><a href="#单调队列" class="headerlink" title="单调队列"></a>单调队列</h2><p>高效地维护队列中元素的单调性（递增或递减），同时支持在队列两端的插入和删除操作</p>
+<ul>
+<li>可在队首出队</li>
+<li>仅在队尾入队</li>
+<li>如果影响单调性，可能从队尾出队</li>
+</ul>
+<p>省流：其实是一个双端队列（deque）（这不是隔壁这次大作业嘛🤣有福了）</p>
+<p><strong>它通常用于解决需要在一个滑动窗口（或固定长度的子数组）内找到最大值或最小值的问题</strong></p>
+<ul>
+<li>插入元素：当新元素进入窗口时，从队列尾部移除所有小于新元素的元素，然后将新元素插入队列尾部。</li>
+<li>移除元素：当元素离开窗口时，如果它是队列头部的元素，则从队列头部移除。</li>
+<li>获取最值：队列头部的元素始终是当前窗口的最大值（或最小值，取决于单调性）</li>
+</ul>
+<p>可实现在O(1)的时间复杂度下获得最值<br>比如我们现在要一个递增的单调队列</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-built_in">int</span> minFront = <span class="hljs-number">0</span>;<br><span class="hljs-built_in">int</span> minBack = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i = <span class="hljs-number">1</span>;i &lt; n;i ++)&#123;<br>    <span class="hljs-built_in">num</span>[i] = read();<br>    <span class="hljs-keyword">while</span>(minBack &gt;= minFront &amp;&amp; minWin[minFront] &lt;= i - k)&#123; <span class="hljs-comment">//队头指针小于等于队尾指针 &amp;&amp; 队头元素索引已经不在窗口范围内</span><br>        ++ minFront;<br>    &#125;<br>    <span class="hljs-keyword">while</span>(minBack &gt;= minFront &amp;&amp; <span class="hljs-built_in">num</span>[i] &lt; minWin[minBack])&#123;<br>        -- minBack; <span class="hljs-comment">// 将破坏单调性的元素出列</span><br>    &#125;<br>    <span class="hljs-comment">//加入队列</span><br>    minWin[++ minBack] = <span class="hljs-built_in">num</span>[i];<br>    <span class="hljs-keyword">if</span>(i &gt;= k)&#123;<br>        cout &lt;&lt; minWin[minFront];<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="单调队列例子"><a href="#单调队列例子" class="headerlink" title="单调队列例子"></a>单调队列例子</h2><p>小Z的家门口种了N棵树，第i棵树在目标点xi，高度hi。<br>如果一棵树左边D距离内和右边D距离内有高度至少是它的两倍的树，那么小Z认为这棵树不够茁壮。<br>春天到了，他想给不够茁壮的树多施点肥，请你帮忙数数有几棵不够茁壮的树。</p>
+<p>思路：长度为D（若不足D 也可）的数组（窗口），移动即可。两个方向都扫一遍</p>
+<h2 id="栈模拟递归"><a href="#栈模拟递归" class="headerlink" title="栈模拟递归"></a>栈模拟递归</h2><p>递归过程：</p>
+<ol>
+<li>执行代码块0</li>
+<li><strong>保存现场准备进入下一层</strong></li>
+<li>接受下层返回的数据</li>
+<li><strong>恢复现场</strong></li>
+<li>继续执行代码块1</li>
+</ol>
+<p>直接用递归程序实现递归时，第二步和第四步都是编译器在帮助你完成<br>而非递归实现，我们期望：自己用实现保存现场和恢复现场</p>
+<p>用栈模拟递归的优势在于：</p>
+<ol>
+<li>避免递归深度限制</li>
+<li>更直观的控制流程</li>
+<li>避免递归调用的开销</li>
+</ol>
+<h2 id="END"><a href="#END" class="headerlink" title="END"></a>END</h2><p>你可以当我哑巴一样<br>你不会看见我的抵抗<br>请别怕我受伤 我自己会圆场</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Algorithms/" class="category-chain-item">Algorithms</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Data-Structure/" class="print-no-link">#Data Structure</a>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
+      
+        <a href="/tags/Algorithm/" class="print-no-link">#Algorithm</a>
+      
+        <a href="/tags/Monotonic-Stack/" class="print-no-link">#Monotonic Stack</a>
+      
+        <a href="/tags/Monotonic-Queue/" class="print-no-link">#Monotonic Queue</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>AlgorithmOfDS1</div>
+      <div>http://example.com/2025/03/13/AlgorithmOfDS1/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yihan Zhu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>March 13, 2025</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/03/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%844/" title="数据结构4">
+                        <span class="hidden-mobile">数据结构4</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
