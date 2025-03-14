@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Mathematical-Logic4</title>
+    <link href="/2025/03/14/Mathematical-Logic4/"/>
+    <url>/2025/03/14/Mathematical-Logic4/</url>
+    
+    <content type="html"><![CDATA[<h5 id="Before：昨天立的flag要在这周结束前finish-map，经过昨天一下午-一晚上和今天一上午-一下午艰难地debug（快被leak卡死了呜呜呜），终于过啦！至此，STLite-2025这个轻量级STL库的大作业全部完成🥳🥳🥳比ddl提前了一整个月，本学期只剩下最后一个大作业——Ticket-System了，所以：现在可以美美开始BPT啦（bushi）但是，数理逻辑还是好抽象啊😣😣😣鼠鼠菜菜"><a href="#Before：昨天立的flag要在这周结束前finish-map，经过昨天一下午-一晚上和今天一上午-一下午艰难地debug（快被leak卡死了呜呜呜），终于过啦！至此，STLite-2025这个轻量级STL库的大作业全部完成🥳🥳🥳比ddl提前了一整个月，本学期只剩下最后一个大作业——Ticket-System了，所以：现在可以美美开始BPT啦（bushi）但是，数理逻辑还是好抽象啊😣😣😣鼠鼠菜菜" class="headerlink" title="Before：昨天立的flag要在这周结束前finish map，经过昨天一下午+一晚上和今天一上午+一下午艰难地debug（快被leak卡死了呜呜呜），终于过啦！至此，STLite-2025这个轻量级STL库的大作业全部完成🥳🥳🥳比ddl提前了一整个月，本学期只剩下最后一个大作业——Ticket System了，所以：现在可以美美开始BPT啦（bushi）但是，数理逻辑还是好抽象啊😣😣😣鼠鼠菜菜"></a>Before：昨天立的flag要在这周结束前finish map，经过昨天一下午+一晚上和今天一上午+一下午艰难地debug（快被leak卡死了呜呜呜），终于过啦！至此，STLite-2025这个轻量级STL库的大作业全部完成🥳🥳🥳比ddl提前了一整个月，本学期只剩下最后一个大作业——Ticket System了，所以：现在可以美美开始BPT啦（bushi）但是，数理逻辑还是好抽象啊😣😣😣鼠鼠菜菜</h5><h1 id="Mathematical-Logic-4-同构引理的证明-替换"><a href="#Mathematical-Logic-4-同构引理的证明-替换" class="headerlink" title="Mathematical Logic 4 同构引理的证明 &amp; 替换"></a>Mathematical Logic 4 同构引理的证明 &amp; 替换</h1><h2 id="Call-back-previous-一阶逻辑语义"><a href="#Call-back-previous-一阶逻辑语义" class="headerlink" title="Call back previous 一阶逻辑语义"></a>Call back previous 一阶逻辑语义</h2><p><strong>同构</strong><br>存在一个A -&gt; B 的映射满足：</p><ol><li>是双摄</li><li>保持关系（n元关系运算符）</li><li>保持运算（n元函数运算符）</li><li>保持常量（常数c）</li></ol><p>则结构A、结构B同构</p><p>在上周的作业中，我们证明了同构是一种等价关系。回忆，等价关系需要满足三个条件：</p><ol><li>自反性</li><li>对称性</li><li>传递性</li></ol><h2 id="同构引理的证明"><a href="#同构引理的证明" class="headerlink" title="同构引理的证明"></a>同构引理的证明</h2><p>Recall:<br>A、B是2个同构的S-结构，那么对于所有S-sentence 𝜑，有：</p><p>A |&#x3D; 𝜑  ⟺  B |&#x3D; 𝜑 </p><p>Prof:<br>由重合引理可知：<br>A |&#x3D; 𝜑 ⟺ (A,β) |&#x3D; 𝜑<br>B |&#x3D; 𝜑 ⟺ (B,β’) |&#x3D; 𝜑</p><p>so A |&#x3D; 𝜑  ⟺  B |&#x3D; 𝜑  ⟺  (A,β) |&#x3D; 𝜑 ⟺ (B,β’) |&#x3D; 𝜑</p><p>定义β^𝜋(x) :&#x3D; 𝜋(β(x))<br>那么我们要证：<br>(A,β) |&#x3D; 𝜑 ⟺ (B,β^𝜋) |&#x3D; 𝜑 (𝜑 是任意S-公式)<br>&#x2F;&#x2F; 这不就从句子推广到公式上了嘛 </p><p>也就是要证明：<br>I:&#x3D; (A,β) I^𝜋:&#x3D; (B,β^𝜋)<br>𝜋(I(t)) &#x3D; I^𝜋(t)</p><p>这里改写成解释，也就可以进行结构归纳法（对公式的归纳了）<br>略</p><h2 id="项的替换-Substitution"><a href="#项的替换-Substitution" class="headerlink" title="项的替换 Substitution"></a>项的替换 Substitution</h2><p>设t 是一个S-term，x0,…,xr是变量，且t0,…,tr是S-terms。那么我们可以这样定义项的替换：<br><img src="/img/%E6%9B%BF%E6%8D%A2.png" alt="替换"></p><p>(a)如果t &#x3D; x是一个变量，那么：<br><img src="/img/%E5%8F%98%E9%87%8F%E6%9B%BF%E6%8D%A2.png" alt="变量替换"></p><p>(b)如果t &#x3D; c是一个常数，那么：<br><img src="/img/%E5%B8%B8%E9%87%8F%E6%9B%BF%E6%8D%A2.png" alt="常量替换"></p><p>(c)对于一个函数项<br><img src="/img/%E5%87%BD%E6%95%B0%E9%A1%B9%E6%9B%BF%E6%8D%A2.png" alt="函数项替换"></p><h2 id="公式上的替换"><a href="#公式上的替换" class="headerlink" title="公式上的替换"></a>公式上的替换</h2><p>设𝜑 是一个S-formula，x0,…,xr是变量，且t0,…,tr是S-terms。那么我们可以这样定义：<br><img src="/img/%E5%85%AC%E5%BC%8F%E6%9B%BF%E6%8D%A21.png" alt="公式替换"><br><img src="/img/%E5%85%AC%E5%BC%8F%E6%9B%BF%E6%8D%A22.png" alt="公式替换"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Mathematical Logic</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Mathematical Logic</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Algorithm Of DS1</title>
     <link href="/2025/03/13/AlgorithmOfDS1/"/>
     <url>/2025/03/13/AlgorithmOfDS1/</url>
