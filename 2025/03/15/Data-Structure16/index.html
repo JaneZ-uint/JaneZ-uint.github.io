@@ -37,9 +37,9 @@
 <meta property="og:image" content="http://example.com/img/erase2.png">
 <meta property="og:image" content="http://example.com/img/erase3.png">
 <meta property="og:image" content="http://example.com/img/Erase4.png">
-<meta property="og:image" content="http://example.com/img/erase4.png">
+<meta property="og:image" content="http://example.com/img/erase5.png">
 <meta property="article:published_time" content="2025-03-15T14:26:01.000Z">
-<meta property="article:modified_time" content="2025-03-16T06:10:24.745Z">
+<meta property="article:modified_time" content="2025-03-16T06:14:55.616Z">
 <meta property="article:author" content="Yihan Zhu">
 <meta property="article:tag" content="Data Structure">
 <meta property="article:tag" content="JaneZ&#39;s Wonderland">
@@ -326,7 +326,7 @@
 <p>下面进行分类讨论：<br><strong>1.结点 X 有两个黑色儿子</strong>  意味着结点X可以放心地变红<br>（1）T 有两个黑色儿子，调整颜色，将 P 变成黑色， X 和 T 变成红色，如下图所示：<br><img src="/img/erase1.png" srcset="/img/loading.gif" lazyload alt="Erase1"></p>
 <p>（2）T 有一个外侧的红色儿子，让 T 和 P 进行一次单旋转，并重新着色，如下图所示：<br><img src="/img/erase2.png" srcset="/img/loading.gif" lazyload alt="Erase2"></p>
 <p>（3）T 有一个内侧的红色儿子，对 P 执行一次双旋转，让 T 的红儿子旋转到 P ，并重新着色，如下图所示：<br><img src="/img/erase3.png" srcset="/img/loading.gif" lazyload alt="Erase3"><br>注意：如果T有2个红色儿子，那么单旋双旋均可（显然单旋简单一些）</p>
-<p><strong>2.结点 X 至少有一个儿子是红色的</strong><br><strong>如果 X 不是被删结点</strong>：<br>可以继续前进到下一层。<br>（1）幸运的话，“前进”一层之后，新的 X 正好就是红色结点😋，回归到情况一，问题就解决了，这大概有一半的可能性。 （走向红色）<br>（2）否则，当前结点 X 是黑色的（走向黑色），结点 T 是红色的，父结点 P 是黑色的，如下图所示：<br><img src="/img/Erase4.png" srcset="/img/loading.gif" lazyload alt="Bad Situation"><br>进行一次旋转：<br><img src="/img/erase4.png" srcset="/img/loading.gif" lazyload alt="Erase4"><br>由于旋转后结点 X 仍然不是红色的，但父结点已经是红色的，即转换为情况一，按情况一继续调整结点 X 的颜色。</p>
+<p><strong>2.结点 X 至少有一个儿子是红色的</strong><br><strong>如果 X 不是被删结点</strong>：<br>可以继续前进到下一层。<br>（1）幸运的话，“前进”一层之后，新的 X 正好就是红色结点😋，回归到情况一，问题就解决了，这大概有一半的可能性。 （走向红色）<br>（2）否则，当前结点 X 是黑色的（走向黑色），结点 T 是红色的，父结点 P 是黑色的，如下图所示：<br><img src="/img/Erase4.png" srcset="/img/loading.gif" lazyload alt="Bad Situation"><br>进行一次旋转：<br><img src="/img/erase5.png" srcset="/img/loading.gif" lazyload alt="Erase4"><br>由于旋转后结点 X 仍然不是红色的，但父结点已经是红色的，即转换为情况一，按情况一继续调整结点 X 的颜色。</p>
 <p><strong>如果X不巧就是被删结点</strong>（且有2个儿子）<br>（1）有2个儿子<br>此时将在右子树上寻找“替身”。如果 X 的右孩子是红结点，无须调整，直接沿右孩子往下走一层。否则左孩子一定是个红结点。对 X 执行一次 LL 旋转使 X 变成红色。<br>（2）只有1个儿子<br>则该孩子必为红结点，将 X 与孩子结点做一个单旋转。此时 X 变成了红结点。</p>
 <h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>其实我删除操作有一小部分并不是很理解，但已经深切地认识到RBT的调整着色的思想，且RBT调整的次数确实要小于AVL，性能上有一定的优越性。但是insert操作应该能写出来，remove是真的难写啊！（相较之下AVL的remove操作已经好写很多了）</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/cy973071263/article/details/122543826">【数据结构】史上最好理解的红黑树讲解，让你彻底搞懂红黑树</a></p>
