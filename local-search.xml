@@ -4,6 +4,37 @@
   
   
   <entry>
+    <title>数据结构5</title>
+    <link href="/2025/03/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%845/"/>
+    <url>/2025/03/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%845/</url>
+    
+    <content type="html"><![CDATA[<h1 id="数据结构-5-优先级队列"><a href="#数据结构-5-优先级队列" class="headerlink" title="数据结构 5 优先级队列"></a>数据结构 5 优先级队列</h1><h2 id="优先级队列"><a href="#优先级队列" class="headerlink" title="优先级队列"></a>优先级队列</h2><p>结点间的关系由结点的优先级决定，而不是入队的先后顺序。</p><p>我们最先想到的是使用线性结构进行优先级队列的实现</p><ul><li>如果按优先级排序<br>但是入队操作复杂度达到了O(N)</li><li>如果按到达时间排序<br>但是出队操作复杂度达到了O(N)</li></ul><p>于是我们考虑…</p><h2 id="二叉堆"><a href="#二叉堆" class="headerlink" title="二叉堆"></a>二叉堆</h2><p>堆是一棵完全二叉树（<strong>结构性</strong>），且满足下列2个条件之一：父结点小于等于子结点（小根堆）or 父结点大于等于子结点（大根堆）（<strong>有序性</strong>）</p><p>基于二叉堆的优先级队列<br>成员函数：实现队列的所有操作<br>数据成员：基于二叉堆的结构性（完全二叉树）可以使用顺序存储——数组</p><h2 id="优先级队列的定义"><a href="#优先级队列的定义" class="headerlink" title="优先级队列的定义"></a>优先级队列的定义</h2><p>入队enQueue的过程：</p><ul><li>插入在最底层的一个空位</li><li>向上移动到合适的位置（<strong>向上过滤</strong>）<br>和父结点进行比较</li><li>时间复杂度：最坏的时间性能是对数级的O(logN)，也可通过数学证明平均时间复杂度</li></ul><p>出队deQueue的过程：</p><ul><li>删除根结点</li><li>将最后一个结点移到根结点（保持结构性）</li><li>向下移动到合适的位置（<strong>向下过滤</strong>）</li><li>很少有能提前结束的</li></ul><p>建堆：<br><strong>方法一</strong>：在空堆中执行N次连续插入<br>中间不保证二叉堆结构</p><p><strong>方法二</strong>：不考虑中间状态，保证所有元素加入后满足堆的特性<br>最坏情况下时间复杂度达到O(N)（在<a href="https://janez-uint.github.io/2025/03/01/Introduction-to-Algorithms1/">MIT6.006 1</a>中介绍了证明）<br>将左子树和右子树调整成堆<br>对根结点调用percolateDown，以恢复堆的有序性<br>也就是说，对<strong>所有非叶结点向下过滤</strong></p><h2 id="其他堆"><a href="#其他堆" class="headerlink" title="其他堆"></a>其他堆</h2><p>D-堆 “完全D叉树” O(logN)<br>可能用于队列太大，要放在外存中时</p><p><strong>左堆、斜堆、二项堆——支持归并</strong></p><h3 id="左堆"><a href="#左堆" class="headerlink" title="左堆"></a>左堆</h3><p>满足堆的有序性，但平衡稍弱一些的堆，不要求是完全二叉树<br>npl(x)为<strong>x到不满两个孩子的节点的最短路径</strong>，即具有0个或一个孩子的结点的npl为0，npl(NULL) &#x3D; -1<br><strong>对每个节点x，左孩子的npl不小于右孩子的npl</strong><br>显然，左堆是一棵像左倾斜的树<br>归并方法：将根结点稍大的堆与另一个堆的右子树归并（对于小根堆） 不会很偏<br>递归终止条件：当某个堆为空时，另一个堆就是归并结果。<br>入队、出队操作均可以用归并操作实现</p><h3 id="斜堆"><a href="#斜堆" class="headerlink" title="斜堆"></a>斜堆</h3><p>斜堆是自调整的左堆，将根结点较大的堆和另一个堆的右子树归并，然后交换左右子树（更简单，不用维护左偏值信息）</p><h3 id="二项堆"><a href="#二项堆" class="headerlink" title="二项堆"></a>二项堆</h3><p>一个二项树的集合，每个高度的二项树至多出现一次。</p><p><strong>二项树</strong><br>有序性：满足堆的有序性<br>结构性：高度为0的二项树是单个节点，高度为k的二项树Bk是将一棵Bk-1加到另一棵Bk-1的根上</p><p>由于元素数可以二进制表示，故堆的结构是唯一的。</p><p><strong>归并操作</strong>：<br>由低到高依次归并两个优先级队列中高度相同的树。<br>高度相同的树归并时，将根结点大的作为根结点小的子树（小根堆）。<br>若由于前一次归并导致有3棵高度形同的树，则归并其中2棵。<br>由于N个结点最多有logN棵二项树，故时间复杂度为O(logN)。</p><p><strong>入队操作</strong>：<br>将入队结点形成一棵单结点的树组成的集合，归并2个集合。<br>最坏情况下，原集合每个高度的树都有，则时间复杂度为O(logN)。</p><p><strong>删除操作</strong>：<br>找出具有最小根值的树T<br>将T从原先的集合中删掉，在T中删除根结点，归并T与原先的集合。<br>最坏情况时间复杂度依然是O(logN)。</p><h2 id="STL中的优先级队列"><a href="#STL中的优先级队列" class="headerlink" title="STL中的优先级队列"></a>STL中的优先级队列</h2><p>头文件：#include<queue><br>类模板：priority_queue<br>实现方式：二叉堆</p><h2 id="排队系统的模拟"><a href="#排队系统的模拟" class="headerlink" title="排队系统的模拟"></a>排队系统的模拟</h2><p>单服务台系统 VS 多服务台系统<br>多服务台系统中，需要将产生的到达事件和离开事件都加入优先级队列中。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Data Structure</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Data Structure</tag>
+      
+      <tag>C++</tag>
+      
+      <tag>Priority Queue</tag>
+      
+      <tag>Heap</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Data-Structure16</title>
     <link href="/2025/03/15/Data-Structure16/"/>
     <url>/2025/03/15/Data-Structure16/</url>

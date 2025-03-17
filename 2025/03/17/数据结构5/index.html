@@ -1,0 +1,697 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/JaneIcon.png">
+  <link rel="icon" href="/img/JaneIcon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yihan Zhu">
+  <meta name="keywords" content="SJTU Student CS Maths Life">
+  
+    <meta name="description" content="数据结构 5 优先级队列优先级队列结点间的关系由结点的优先级决定，而不是入队的先后顺序。 我们最先想到的是使用线性结构进行优先级队列的实现  如果按优先级排序但是入队操作复杂度达到了O(N) 如果按到达时间排序但是出队操作复杂度达到了O(N)  于是我们考虑… 二叉堆堆是一棵完全二叉树（结构性），且满足下列2个条件之一：父结点小于等于子结点（小根堆）or 父结点大于等于子结点（大根堆）（有序性）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构5">
+<meta property="og:url" content="http://example.com/2025/03/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%845/index.html">
+<meta property="og:site_name" content="JaneZ&#39;s Learning Space">
+<meta property="og:description" content="数据结构 5 优先级队列优先级队列结点间的关系由结点的优先级决定，而不是入队的先后顺序。 我们最先想到的是使用线性结构进行优先级队列的实现  如果按优先级排序但是入队操作复杂度达到了O(N) 如果按到达时间排序但是出队操作复杂度达到了O(N)  于是我们考虑… 二叉堆堆是一棵完全二叉树（结构性），且满足下列2个条件之一：父结点小于等于子结点（小根堆）or 父结点大于等于子结点（大根堆）（有序性）">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-03-17T06:01:42.000Z">
+<meta property="article:modified_time" content="2025-03-17T07:03:17.333Z">
+<meta property="article:author" content="Yihan Zhu">
+<meta property="article:tag" content="Data Structure">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="Priority Queue">
+<meta property="article:tag" content="Heap">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>数据结构5 - JaneZ&#39;s Learning Space</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>JaneZ&#39;s Learning Space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="数据结构5"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-03-17 14:01" pubdate>
+          March 17, 2025 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">数据结构5</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="数据结构-5-优先级队列"><a href="#数据结构-5-优先级队列" class="headerlink" title="数据结构 5 优先级队列"></a>数据结构 5 优先级队列</h1><h2 id="优先级队列"><a href="#优先级队列" class="headerlink" title="优先级队列"></a>优先级队列</h2><p>结点间的关系由结点的优先级决定，而不是入队的先后顺序。</p>
+<p>我们最先想到的是使用线性结构进行优先级队列的实现</p>
+<ul>
+<li>如果按优先级排序<br>但是入队操作复杂度达到了O(N)</li>
+<li>如果按到达时间排序<br>但是出队操作复杂度达到了O(N)</li>
+</ul>
+<p>于是我们考虑…</p>
+<h2 id="二叉堆"><a href="#二叉堆" class="headerlink" title="二叉堆"></a>二叉堆</h2><p>堆是一棵完全二叉树（<strong>结构性</strong>），且满足下列2个条件之一：父结点小于等于子结点（小根堆）or 父结点大于等于子结点（大根堆）（<strong>有序性</strong>）</p>
+<p>基于二叉堆的优先级队列<br>成员函数：实现队列的所有操作<br>数据成员：基于二叉堆的结构性（完全二叉树）可以使用顺序存储——数组</p>
+<h2 id="优先级队列的定义"><a href="#优先级队列的定义" class="headerlink" title="优先级队列的定义"></a>优先级队列的定义</h2><p>入队enQueue的过程：</p>
+<ul>
+<li>插入在最底层的一个空位</li>
+<li>向上移动到合适的位置（<strong>向上过滤</strong>）<br>和父结点进行比较</li>
+<li>时间复杂度：最坏的时间性能是对数级的O(logN)，也可通过数学证明平均时间复杂度</li>
+</ul>
+<p>出队deQueue的过程：</p>
+<ul>
+<li>删除根结点</li>
+<li>将最后一个结点移到根结点（保持结构性）</li>
+<li>向下移动到合适的位置（<strong>向下过滤</strong>）</li>
+<li>很少有能提前结束的</li>
+</ul>
+<p>建堆：<br><strong>方法一</strong>：在空堆中执行N次连续插入<br>中间不保证二叉堆结构</p>
+<p><strong>方法二</strong>：不考虑中间状态，保证所有元素加入后满足堆的特性<br>最坏情况下时间复杂度达到O(N)（在<a target="_blank" rel="noopener" href="https://janez-uint.github.io/2025/03/01/Introduction-to-Algorithms1/">MIT6.006 1</a>中介绍了证明）<br>将左子树和右子树调整成堆<br>对根结点调用percolateDown，以恢复堆的有序性<br>也就是说，对<strong>所有非叶结点向下过滤</strong></p>
+<h2 id="其他堆"><a href="#其他堆" class="headerlink" title="其他堆"></a>其他堆</h2><p>D-堆 “完全D叉树” O(logN)<br>可能用于队列太大，要放在外存中时</p>
+<p><strong>左堆、斜堆、二项堆——支持归并</strong></p>
+<h3 id="左堆"><a href="#左堆" class="headerlink" title="左堆"></a>左堆</h3><p>满足堆的有序性，但平衡稍弱一些的堆，不要求是完全二叉树<br>npl(x)为<strong>x到不满两个孩子的节点的最短路径</strong>，即具有0个或一个孩子的结点的npl为0，npl(NULL) &#x3D; -1<br><strong>对每个节点x，左孩子的npl不小于右孩子的npl</strong><br>显然，左堆是一棵像左倾斜的树<br>归并方法：将根结点稍大的堆与另一个堆的右子树归并（对于小根堆） 不会很偏<br>递归终止条件：当某个堆为空时，另一个堆就是归并结果。<br>入队、出队操作均可以用归并操作实现</p>
+<h3 id="斜堆"><a href="#斜堆" class="headerlink" title="斜堆"></a>斜堆</h3><p>斜堆是自调整的左堆，将根结点较大的堆和另一个堆的右子树归并，然后交换左右子树（更简单，不用维护左偏值信息）</p>
+<h3 id="二项堆"><a href="#二项堆" class="headerlink" title="二项堆"></a>二项堆</h3><p>一个二项树的集合，每个高度的二项树至多出现一次。</p>
+<p><strong>二项树</strong><br>有序性：满足堆的有序性<br>结构性：高度为0的二项树是单个节点，高度为k的二项树Bk是将一棵Bk-1加到另一棵Bk-1的根上</p>
+<p>由于元素数可以二进制表示，故堆的结构是唯一的。</p>
+<p><strong>归并操作</strong>：<br>由低到高依次归并两个优先级队列中高度相同的树。<br>高度相同的树归并时，将根结点大的作为根结点小的子树（小根堆）。<br>若由于前一次归并导致有3棵高度形同的树，则归并其中2棵。<br>由于N个结点最多有logN棵二项树，故时间复杂度为O(logN)。</p>
+<p><strong>入队操作</strong>：<br>将入队结点形成一棵单结点的树组成的集合，归并2个集合。<br>最坏情况下，原集合每个高度的树都有，则时间复杂度为O(logN)。</p>
+<p><strong>删除操作</strong>：<br>找出具有最小根值的树T<br>将T从原先的集合中删掉，在T中删除根结点，归并T与原先的集合。<br>最坏情况时间复杂度依然是O(logN)。</p>
+<h2 id="STL中的优先级队列"><a href="#STL中的优先级队列" class="headerlink" title="STL中的优先级队列"></a>STL中的优先级队列</h2><p>头文件：#include<queue><br>类模板：priority_queue<br>实现方式：二叉堆</p>
+<h2 id="排队系统的模拟"><a href="#排队系统的模拟" class="headerlink" title="排队系统的模拟"></a>排队系统的模拟</h2><p>单服务台系统 VS 多服务台系统<br>多服务台系统中，需要将产生的到达事件和离开事件都加入优先级队列中。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Data-Structure/" class="category-chain-item">Data Structure</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Data-Structure/" class="print-no-link">#Data Structure</a>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
+      
+        <a href="/tags/Priority-Queue/" class="print-no-link">#Priority Queue</a>
+      
+        <a href="/tags/Heap/" class="print-no-link">#Heap</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>数据结构5</div>
+      <div>http://example.com/2025/03/17/数据结构5/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yihan Zhu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>March 17, 2025</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/03/15/Data-Structure16/" title="Data-Structure16">
+                        <span class="hidden-mobile">Data-Structure16</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
