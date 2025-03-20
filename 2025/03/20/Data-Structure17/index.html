@@ -1,0 +1,704 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/JaneIcon.png">
+  <link rel="icon" href="/img/JaneIcon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yihan Zhu">
+  <meta name="keywords" content="SJTU Student CS Maths Life">
+  
+    <meta name="description" content="Before：感觉红黑树的实现好困难啊，即便是学完了一遍有些删除操作的细节都没有特别搞懂，感觉是一个实现和理解上都相当有难度的数据结构。今天要讲的是红黑树的一种特殊情况——AA树，希望会简单一点？（毕竟是B班写的呜呜呜）Data Structure 17 AA树AA树的定义开幕雷击：《一种简单但却很有竞争力的平衡查找树》好好好！ AA树是一类特殊的红黑树，它对红黑树增加了一个限制条件：左儿子不能为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Data-Structure17">
+<meta property="og:url" content="http://example.com/2025/03/20/Data-Structure17/index.html">
+<meta property="og:site_name" content="JaneZ&#39;s Learning Space">
+<meta property="og:description" content="Before：感觉红黑树的实现好困难啊，即便是学完了一遍有些删除操作的细节都没有特别搞懂，感觉是一个实现和理解上都相当有难度的数据结构。今天要讲的是红黑树的一种特殊情况——AA树，希望会简单一点？（毕竟是B班写的呜呜呜）Data Structure 17 AA树AA树的定义开幕雷击：《一种简单但却很有竞争力的平衡查找树》好好好！ AA树是一类特殊的红黑树，它对红黑树增加了一个限制条件：左儿子不能为">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/AA.png">
+<meta property="og:image" content="http://example.com/img/AA1.png">
+<meta property="og:image" content="http://example.com/img/%E6%B0%B4%E5%B9%B3%E5%B7%A6%E9%93%BE.png">
+<meta property="og:image" content="http://example.com/img/%E6%B0%B4%E5%B9%B3%E5%8F%B3%E9%93%BE.png">
+<meta property="og:image" content="http://example.com/img/AA%E8%B0%83%E6%95%B4.png">
+<meta property="article:published_time" content="2025-03-20T14:28:14.000Z">
+<meta property="article:modified_time" content="2025-03-20T14:29:45.232Z">
+<meta property="article:author" content="Yihan Zhu">
+<meta property="article:tag" content="Data Structure">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="Tree">
+<meta property="article:tag" content="Binary Tree">
+<meta property="article:tag" content="Balanced Binary Tree">
+<meta property="article:tag" content="Red Black Tree">
+<meta property="article:tag" content="AA Tree">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/AA.png">
+  
+  
+  
+  <title>Data-Structure17 - JaneZ&#39;s Learning Space</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>JaneZ&#39;s Learning Space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/LA.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Data-Structure17"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-03-20 22:28" pubdate>
+          March 20, 2025 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Data-Structure17</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h5 id="Before：感觉红黑树的实现好困难啊，即便是学完了一遍有些删除操作的细节都没有特别搞懂，感觉是一个实现和理解上都相当有难度的数据结构。今天要讲的是红黑树的一种特殊情况——AA树，希望会简单一点？（毕竟是B班写的呜呜呜）"><a href="#Before：感觉红黑树的实现好困难啊，即便是学完了一遍有些删除操作的细节都没有特别搞懂，感觉是一个实现和理解上都相当有难度的数据结构。今天要讲的是红黑树的一种特殊情况——AA树，希望会简单一点？（毕竟是B班写的呜呜呜）" class="headerlink" title="Before：感觉红黑树的实现好困难啊，即便是学完了一遍有些删除操作的细节都没有特别搞懂，感觉是一个实现和理解上都相当有难度的数据结构。今天要讲的是红黑树的一种特殊情况——AA树，希望会简单一点？（毕竟是B班写的呜呜呜）"></a>Before：感觉红黑树的实现好困难啊，即便是学完了一遍有些删除操作的细节都没有特别搞懂，感觉是一个实现和理解上都相当有难度的数据结构。今天要讲的是红黑树的一种特殊情况——AA树，希望会简单一点？（毕竟是B班写的呜呜呜）</h5><h1 id="Data-Structure-17-AA树"><a href="#Data-Structure-17-AA树" class="headerlink" title="Data Structure 17 AA树"></a>Data Structure 17 AA树</h1><h2 id="AA树的定义"><a href="#AA树的定义" class="headerlink" title="AA树的定义"></a>AA树的定义</h2><p>开幕雷击：《一种简单但却很有竞争力的平衡查找树》<br>好好好！</p>
+<p>AA树是一类特殊的红黑树，它对红黑树增加了一个限制条件：左儿子不能为红色。<br>所以一棵AA树需要满足如下条件：</p>
+<ol>
+<li>每个节点都可以是红色或黑色。</li>
+<li>根节点总是黑色。</li>
+<li>叶节点（NULL）总是黑色。</li>
+<li>红色节点的两个子节点必须都是黑色，即没有两个相邻的红色节点。</li>
+<li>从根节点到 NULL 节点的每条路径都有相同数量的黑色节点。</li>
+<li>红色节点只能作为右子节点。</li>
+</ol>
+<p>为了更进一步简化实现，可以用一种更直接的方法来表示平衡信息，即采用<strong>结点的层次</strong>，<strong>而不是结点的颜色</strong>。 所谓的<strong>结点层次</strong>就是结点到空结点的路径上左链的数量。<br>so，你自然会发现，AATree类中不再有枚举类型colorType了（欢呼.jpg）<br>如果把结构上的要求由颜色转为层次表示，左儿子肯定比它的父亲低1个层次，右儿子可能比父亲的层次低0或1层（右儿子可红可黑）。<br>将层次的概念的概念用图的方式表示就形成了<strong>水平链表示法</strong>。水平链连接层次相同的父子结点。下图就是一棵简单的AA树的水平链表示：<br><img src="/img/AA.png" srcset="/img/loading.gif" lazyload alt="AA树水平链表示法"></p>
+<p>这张可能更好看一些？<br><img src="/img/AA1.png" srcset="/img/loading.gif" lazyload alt="AA树水平链表示法"></p>
+<p>允许单独的右水平链接，但不允许连续的右水平链接；不允许左水平链接。</p>
+<h2 id="AA树的存储实现"><a href="#AA树的存储实现" class="headerlink" title="AA树的存储实现"></a>AA树的存储实现</h2><p>由于AA树的平衡信息用层次表示，所以结点层次是一个成员变量。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">KEY</span>,<span class="hljs-keyword">class</span> <span class="hljs-title class_">OTHER</span>&gt;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">AATree</span>:<span class="hljs-keyword">public</span> dynamicSearchTable&lt;KEY,OTHER&gt;&#123;<br>    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">AANode</span>&#123;<br>        SET&lt;KEY,OTHER&gt; data;<br>        AANode *left;<br>        AANode *right;<br>        <span class="hljs-type">int</span> level; <span class="hljs-comment">//结点层次</span><br><br>        <span class="hljs-built_in">AANode</span>(<span class="hljs-type">const</span> SET&lt;KEY,OTHER&gt; &amp;d,AANode *l = <span class="hljs-literal">nullptr</span>,AANode *r = <span class="hljs-literal">nullptr</span>,<span class="hljs-type">int</span> lv = <span class="hljs-number">1</span>):<span class="hljs-built_in">data</span>(d),<span class="hljs-built_in">left</span>(l),<span class="hljs-built_in">right</span>(r),<span class="hljs-built_in">level</span>(lv)&#123;&#125;<br>    &#125;;<br>    AANode *root;<br><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">AATree</span>():<span class="hljs-built_in">root</span>(<span class="hljs-literal">nullptr</span>)&#123;&#125;<br>    ~<span class="hljs-built_in">AATree</span>() &#123;<br>        <span class="hljs-built_in">makeEmpty</span>(root);<br>    &#125;<br>    <span class="hljs-function">SET&lt;KEY,OTHER&gt; *<span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-type">const</span> KEY &amp;x)</span><span class="hljs-type">const</span></span>;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(<span class="hljs-type">const</span> SET&lt;KEY,OTHER&gt; &amp;x)</span> </span>&#123;<br>        <span class="hljs-built_in">insert</span>(x,root);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">remove</span><span class="hljs-params">(<span class="hljs-type">const</span> KEY &amp;k)</span> </span>&#123;<br>        <span class="hljs-built_in">remove</span>(k,root);<br>    &#125;<br><br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(<span class="hljs-type">const</span> SET&lt;KEY,OTHER&gt; &amp;x,AANode *&amp;t)</span></span>;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">remove</span><span class="hljs-params">(<span class="hljs-type">const</span> KEY &amp;k,AANode *&amp;t)</span></span>;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">makeEmpty</span><span class="hljs-params">(AANode *&amp;t)</span></span>;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">LL</span><span class="hljs-params">(AANode *&amp;t)</span></span>;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">RR</span><span class="hljs-params">(AANode *&amp;t)</span></span>;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">min</span><span class="hljs-params">(<span class="hljs-type">int</span> a,<span class="hljs-type">int</span> b)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(a &lt; b) &#123;<br>            <span class="hljs-keyword">return</span> a;<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">return</span> b;<br>        &#125;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h2 id="AA树的运算实现"><a href="#AA树的运算实现" class="headerlink" title="AA树的运算实现"></a>AA树的运算实现</h2><p>AA树的查找和删除操作和RBT、AVL、BST均相同，不做实现了😢😉重点还是插入和删除操作</p>
+<h3 id="AA树的插入操作"><a href="#AA树的插入操作" class="headerlink" title="AA树的插入操作"></a>AA树的插入操作</h3><p>与红黑树相同，新的数据元素总是插入为红色结点，但这可能会导致<strong>水平左链</strong>和<strong>连续水平右链</strong>的出现，显然与AA树的要求不符。<br>但无论哪种情况，都可以通过一次单旋转解决问题。如下图所示的两种情况：<br><img src="/img/%E6%B0%B4%E5%B9%B3%E5%B7%A6%E9%93%BE.png" srcset="/img/loading.gif" lazyload alt="出现水平左链的情况"></p>
+<p><img src="/img/%E6%B0%B4%E5%B9%B3%E5%8F%B3%E9%93%BE.png" srcset="/img/loading.gif" lazyload alt="出现连续水平右链的情况"></p>
+<p>我还是喜欢先上代码😣</p>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs xl">template&lt;class KEY,class OTHER&gt;<br>void AATree&lt;KEY,OTHER&gt;::insert(const SET&lt;KEY,OTHER&gt; &amp;x,AANode *&amp;t) &#123;<br>    <span class="hljs-keyword">if</span>(t == nullptr) &#123;<br>        t = new AANode(x,nullptr,nullptr);<br>    &#125;<span class="hljs-function"><span class="hljs-title">else</span> <span class="hljs-keyword">if</span>(x.KEY &lt; t-&gt;</span><span class="hljs-keyword">data</span>.KEY) &#123;<br>        <span class="hljs-function"><span class="hljs-title">insert</span>(x,t -&gt;</span> left);<br>    &#125;<span class="hljs-function"><span class="hljs-title">else</span> <span class="hljs-keyword">if</span>(x.KEY &gt; t -&gt;</span> <span class="hljs-keyword">data</span>.KEY) &#123;<br>        <span class="hljs-function"><span class="hljs-title">insert</span>(x,t -&gt;</span> right);<br>    &#125;<span class="hljs-keyword">else</span> &#123;<br>        return;<br>    &#125;<br>    LL(t);<br>    RR(t);<br>&#125;<br><br>template&lt;class KEY,class OTHER&gt;<br>void AATree&lt;KEY,OTHER&gt;::LL(AANode *&amp;t) &#123;<br>    <span class="hljs-function"><span class="hljs-title">if</span>(t -&gt;</span> <span class="hljs-function"><span class="hljs-title">left</span> != nullptr &amp;&amp; t -&gt;</span> <span class="hljs-function"><span class="hljs-title">left</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">level</span> == t -&gt;</span> level) &#123;<br>        AAN<span class="hljs-function"><span class="hljs-title">ode</span> *newRoot = t -&gt;</span> left;<br>        <span class="hljs-function"><span class="hljs-title">t</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">left</span> = newRoot -&gt;</span> right;<br>        <span class="hljs-function"><span class="hljs-title">newRoot</span> -&gt;</span> right = t;<br>        t = newRoot;<br>    &#125;<br>&#125;<br><br>template&lt;class KEY,class OTHER&gt;<br>void AATree&lt;KEY,OTHER&gt;::RR(AANode *&amp;t) &#123;<br>    <span class="hljs-function"><span class="hljs-title">if</span>(t -&gt;</span> <span class="hljs-function"><span class="hljs-title">right</span> != nullptr &amp;&amp; t -&gt;</span> <span class="hljs-function"><span class="hljs-title">right</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">level</span> == t -&gt;</span> level) &#123;<br>        <span class="hljs-function"><span class="hljs-title">if</span>(t -&gt;</span> <span class="hljs-function"><span class="hljs-title">right</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">right</span> != nullptr &amp;&amp; t -&gt;</span> <span class="hljs-function"><span class="hljs-title">right</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">right</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">level</span> == t -&gt;</span> level) &#123;<br>            AAN<span class="hljs-function"><span class="hljs-title">ode</span> *newRoot = t -&gt;</span> right;<br>            <span class="hljs-function"><span class="hljs-title">t</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">right</span> = newRoot -&gt;</span> left;<br>            <span class="hljs-function"><span class="hljs-title">newRoot</span> -&gt;</span> left = t;<br>            t = newRoot;<br>            <span class="hljs-function"><span class="hljs-title">t</span> -&gt;</span> level ++;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>AA树对水平左链、连续水平右链的调整在某些《不好的时候》可能会发生多次，下面就是一个例子：（这例子真不错）<br><img src="/img/AA%E8%B0%83%E6%95%B4.png" srcset="/img/loading.gif" lazyload alt="Bad Situation"></p>
+<p>不管是什么问题，都可以通过在向根回溯的过程中反复应用 LL&#x2F;RR 策略来解决。如果使用递归函数，这些回溯过程都是自动的。（就很好了😋）</p>
+<h3 id="AA树的删除操作"><a href="#AA树的删除操作" class="headerlink" title="AA树的删除操作"></a>AA树的删除操作</h3><p>与BST相同，AA 树的删除也是归结为删除一个叶结点和删除一个只有一个儿子的结点。<br>AA 树的删除与 AVL 和红黑树一样，在结点被删除后要检查是否失去平衡。如果失去平衡，则需要调整。<br>我们分3种情况进行讨论：<br>（1） 删除结点是红结点，那么：无事发生<br>（2） 删除结点是黑结点，但有右孩子（这涵盖了一个条件：这个右孩子一定是红结点）。所以：直接将右孩子替换成被删结点，无事发生<br>（3）删除结点是黑结点，而且很不幸没有孩子。删除它将会影响平衡。</p>
+<p>鉴于本人患有ADHD，所以还是先上代码😅😅😅</p>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs xl">template&lt;class KEY,class OTHER&gt;<br>void AATree&lt;KEY,OTHER&gt;::remove(const KEY &amp;k,AANode *&amp;t) &#123;<br>    <span class="hljs-keyword">if</span>(t == nullptr) &#123;<br>        return;<br>    &#125;<span class="hljs-function"><span class="hljs-title">else</span> <span class="hljs-keyword">if</span>(k &lt; t -&gt;</span> <span class="hljs-keyword">data</span>.KEY) &#123;<br>        <span class="hljs-function"><span class="hljs-title">remove</span>(k,t -&gt;</span> left);<br>    &#125;<span class="hljs-function"><span class="hljs-title">else</span> <span class="hljs-keyword">if</span>(k &gt; t -&gt;</span> <span class="hljs-keyword">data</span>.KEY) &#123;<br>        <span class="hljs-function"><span class="hljs-title">remove</span>(k,t -&gt;</span> right);<br>    &#125;<span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-function"><span class="hljs-title">if</span>(t -&gt;</span> <span class="hljs-function"><span class="hljs-title">left</span> != nullptr &amp;&amp; t -&gt;</span> right != nullptr) &#123;<br>            AAN<span class="hljs-function"><span class="hljs-title">ode</span> *tmp = t -&gt;</span> right;<span class="hljs-comment">//找到下一个结点替代当前结点</span><br>            <span class="hljs-function"><span class="hljs-title">while</span>(tmp -&gt;</span> left != nullptr) &#123;<br>                <span class="hljs-function"><span class="hljs-title">tmp</span> = tmp -&gt;</span> left;<br>            &#125;<br>            <span class="hljs-function"><span class="hljs-title">t</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">data</span> = tmp -&gt;</span> <span class="hljs-keyword">data</span>;<br>            <span class="hljs-function"><span class="hljs-title">remove</span>(t -&gt;</span> <span class="hljs-function"><span class="hljs-title">data</span>.KEY,t -&gt;</span> right);<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-comment">//划归到那2种情况</span><br>            AANode *oldNode = t;<br>            <span class="hljs-function"><span class="hljs-title">if</span>(t -&gt;</span> left != nullptr) &#123;<br>                <span class="hljs-function"><span class="hljs-title">t</span> = t -&gt;</span> left;<br>            &#125;<span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-function"><span class="hljs-title">t</span> = t -&gt;</span> right;<br>            &#125;<br>            delete oldNode;<br>            return;<br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">//最后进行平衡的调整</span><br>    <span class="hljs-function"><span class="hljs-title">if</span>(t -&gt;</span> <span class="hljs-function"><span class="hljs-title">left</span> == nullptr || t -&gt;</span> right == nullptr) &#123;<br>        <span class="hljs-function"><span class="hljs-title">t</span> -&gt;</span> level = <span class="hljs-number">1</span>;<br>    &#125;<span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-function"><span class="hljs-title">t</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">level</span> = min(t -&gt;</span> <span class="hljs-function"><span class="hljs-title">left</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">level</span> ,t -&gt;</span> <span class="hljs-function"><span class="hljs-title">right</span> -&gt;</span> level) + <span class="hljs-number">1</span>;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-title">if</span>(t -&gt;</span> <span class="hljs-function"><span class="hljs-title">right</span> != nullptr &amp;&amp; t -&gt;</span> <span class="hljs-function"><span class="hljs-title">right</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">level</span> &gt; t -&gt;</span> level) &#123;<br>        <span class="hljs-function"><span class="hljs-title">t</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">right</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">level</span> = t -&gt;</span> level;<br>    &#125;<br>    LL(t);<br>    <span class="hljs-function"><span class="hljs-title">if</span>(t -&gt;</span> right != nullptr) &#123;<br>        LL(<span class="hljs-function"><span class="hljs-title">t</span> -&gt;</span> right);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-title">if</span>(t -&gt;</span> <span class="hljs-function"><span class="hljs-title">right</span> != nullptr &amp;&amp; t -&gt;</span> <span class="hljs-function"><span class="hljs-title">right</span> -&gt;</span> right != nullptr) &#123;<br>        LL(<span class="hljs-function"><span class="hljs-title">t</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">right</span> -&gt;</span> right);<br>    &#125;<br>    RR(t);<br>    <span class="hljs-function"><span class="hljs-title">if</span>(t -&gt;</span> right != nullptr) &#123;<br>        RR(<span class="hljs-function"><span class="hljs-title">t</span> -&gt;</span> right);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>是不是关于调整的部分几乎完全看不懂？没事，因为我也一样😰😰😰<br>如果需要，对根结点执行 LL 旋转；如果需要，对根结点的右儿子执行 LL 旋转；如果需要，对根结点的右儿子的右儿子执行 LL 旋转；如果需要，对根结点执行 RR 旋转；如果需要，对根结点的右儿子执行RR旋转。<br>最坏情况下需要进行3次LL操作和2次RR操作<br>luogu上的一篇文章很详细地用图片展示了这一过程，指路👇：<br><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/9gwe0tgz">AA树的删除操作</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>AA树确实比AVL和RBT来的简洁不少。但是我个人认为AA树的删除操作可以通过具体的例子来说服我，但是依然从理论上来说并不能让我完全信服，我觉得我们有必要进行更深入的思考。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Data-Structure/" class="category-chain-item">Data Structure</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Data-Structure/" class="print-no-link">#Data Structure</a>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
+      
+        <a href="/tags/Tree/" class="print-no-link">#Tree</a>
+      
+        <a href="/tags/Binary-Tree/" class="print-no-link">#Binary Tree</a>
+      
+        <a href="/tags/Balanced-Binary-Tree/" class="print-no-link">#Balanced Binary Tree</a>
+      
+        <a href="/tags/Red-Black-Tree/" class="print-no-link">#Red Black Tree</a>
+      
+        <a href="/tags/AA-Tree/" class="print-no-link">#AA Tree</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Data-Structure17</div>
+      <div>http://example.com/2025/03/20/Data-Structure17/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yihan Zhu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>March 20, 2025</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/03/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%845/" title="数据结构5">
+                        <span class="hidden-mobile">数据结构5</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

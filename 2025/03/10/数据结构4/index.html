@@ -27,7 +27,7 @@
 <meta property="og:description" content="数据结构 4 字符串 树状结构字符串实现方式当然也有顺序实现和链接实现。顺序存储使用字符数组存储字符串。C语言中使用普通数组进行处理，将每个操作由一个函数实现，这些函数实现在ctring库中，但无法用运算符操纵字符串，还存在内存溢出的问题。而C++采用动态数组进行存储，实现了一个string类，根据字符串长度重新分配空间，解决了C语言存在的缺陷，但在时间性能上有所下降。 链接存储我们自然而然想到使">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-03-10T06:59:44.000Z">
-<meta property="article:modified_time" content="2025-03-17T07:40:50.056Z">
+<meta property="article:modified_time" content="2025-03-20T03:41:27.071Z">
 <meta property="article:author" content="Yihan Zhu">
 <meta property="article:tag" content="Data Structure">
 <meta property="article:tag" content="C++">
@@ -238,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1k words
+          2k words
         
       </span>
     
@@ -249,7 +249,7 @@
         
         
         
-          12 mins
+          23 mins
         
       </span>
     
@@ -330,6 +330,43 @@
 <h2 id="前序、中序、后序遍历的非递归实现——栈的模拟递归"><a href="#前序、中序、后序遍历的非递归实现——栈的模拟递归" class="headerlink" title="前序、中序、后序遍历的非递归实现——栈的模拟递归"></a>前序、中序、后序遍历的非递归实现——栈的模拟递归</h2><p>（联系2025.03.16晚上机课）<br>栈的模拟递归中元素为Data</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Data</span>&#123;<br>    Node *p;<span class="hljs-comment">//参数</span><br>    <span class="hljs-type">int</span> pc;<span class="hljs-comment">//程序计数器（核心数据）</span><br>&#125;;<br></code></pre></td></tr></table></figure>
 <p>为任务设定状态（也就是通过pc这一变量确认进行到哪一步了）</p>
+<h2 id="表达式树"><a href="#表达式树" class="headerlink" title="表达式树"></a>表达式树</h2><p><strong>中缀表达式</strong><br>构建过程总结：顺序扫描中缀表达式直至结束</p>
+<ol>
+<li><p>运算数<br>先检查当前的表达式树是否存在。如果不存在，则表示扫描到的是第一个运算数，将它作为树根。如果树存在，则将此运算数作为<strong>前一运算符的右孩子</strong>。</p>
+</li>
+<li><ul>
+<li>&amp; -<br>运算优先级低，将它作为根结点，原来的树作为它的左子树</li>
+</ul>
+</li>
+<li><ul>
+<li>&amp; &#x2F;<br>与根结点比较：（1）如果根结点也是 * 或 &#x2F;，则根结点先执行，故将当前运算符作为根结点，原来的树作为左子树；（2）如果根结点是 + 或 - ，则根结点应该后执行，所以将当前运算符作为右子树的根结点，原来的右子树作为新根结点的左子树。</li>
+</ul>
+</li>
+</ol>
+<p><strong>括号的处理</strong><br>用递归的观点看这个问题：将括号内的子表达式构建一棵子树作为整个表达式的一个运算数</p>
+<h2 id="表达式树类的设计——二叉链表"><a href="#表达式树类的设计——二叉链表" class="headerlink" title="表达式树类的设计——二叉链表"></a>表达式树类的设计——二叉链表</h2><p>数据成员：指向根结点的指针<br>结点类型：值的类型、值及左右指针<br>公有成员函数：构造函数、result函数（后序遍历整棵树）<br>私有成员函数：递归的create、带有递归参数的result函数、getToken（create函数的子函数，获取语法单位）</p>
+<h2 id="哈夫曼树"><a href="#哈夫曼树" class="headerlink" title="哈夫曼树"></a>哈夫曼树</h2><p>在计算机中，每个字符用一个编码来表示<br>大多数编码系统都采用等长编码，如ASCII编码<br><strong>前缀编码</strong><br>字符只放在叶结点中，由于字符只放在叶结点中，所以每个字符的编码都不可能是其他字符编码的前缀。故前缀编码可被<strong>唯一解码</strong>！<br>让出现频率高的字符拥有较短的编码可以节省空间，于是我们有了：<br><strong>哈夫曼树</strong>！<br>哈夫曼树是一棵最小代价的二叉树，在这棵树上，所有的字符都包含在叶结点上。<br>要使得整棵树的代价最小，显然权值大的叶子应当尽量靠近树根，权值小的叶子可以适当离树根远一些。<br>哈夫曼算法很巧妙：<br>给定一个具有n个权值{ w1,w2,………wn }的结点的集合</p>
+<ol>
+<li>F &#x3D; { T1,T2,………Tn } </li>
+<li>初始时，设集合 A &#x3D; F。</li>
+<li>执行 i &#x3D; 1 至 n -1 的循环，在每次循环时执行以下操作:</li>
+</ol>
+<ul>
+<li>从当前集合中选取权值最小、次最小的两个结点，以这两个结点作为内部结点 bi 的左右儿子，bi 的权值为其左右儿子权值之和。</li>
+<li>在集合中去除这两个权值最小、次最小的结点，并将内部结点bi 加入其中。这样，在集合A中，结点个数便减少了一个。</li>
+</ul>
+<p>这样，在经过了n-1 次循环之后，集合A中只剩下了一个结点，这个结点就是根结点。 </p>
+<p>哈夫曼树只有度数为0和2的结点，所以一棵哈夫曼树有2n-1个结点。由于编码的获得需要父结点信息，所以我们采用用数组表示的三叉链表。被编码元素存储在数组的后一半。哈夫曼树的生成是从右向左填写数组的前一半。<br>特别注意的是：哈夫曼树的实现仍然是链接存储，不是顺序存储！（又不是完全二叉树，只是事先开好空间）</p>
+<p>存储设计：</p>
+<ul>
+<li>结点表示：结点的数据、权值和父结点和左右孩子的位置</li>
+<li>哈夫曼树的存储：一个动态结点数组</li>
+</ul>
+<p>操作：</p>
+<ul>
+<li>构造函数：构建一棵哈夫曼树，给出节点数据数组，权值数组和数据个数</li>
+<li>获取树上结点的哈夫曼编码，返回一个数组，数组的元素由数据和编码两部分组成的</li>
+</ul>
 
                 
               </div>
