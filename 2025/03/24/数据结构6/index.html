@@ -27,7 +27,7 @@
 <meta property="og:description" content="数据结构6 集合 动态查找表 查找操作 静态查找表 &amp; 动态查找表  静态查找表：元素个数不变，元素值不变一般使用C++ 的原始数组 动态查找表：允许插入删除的查找表不能用线性表存储，会造成大量数据的移动  无序表&amp;有序表的查找 无序表查找的复杂度是O(n)的。有序表查找可以采用顺序查找、二分查找、插值查找、分块查找。 顺序查找 与无序表查找唯一的不同在于若元素不存在无需查到表头">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-03-24T07:01:43.000Z">
-<meta property="article:modified_time" content="2025-03-31T07:38:04.287Z">
+<meta property="article:modified_time" content="2025-04-03T05:22:18.152Z">
 <meta property="article:author" content="Yihan Zhu">
 <meta property="article:tag" content="Data Structure">
 <meta property="article:tag" content="C++">
@@ -238,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          999 words
+          1.7k words
         
       </span>
     
@@ -249,7 +249,7 @@
         
         
         
-          12 mins
+          19 mins
         
       </span>
     
@@ -368,6 +368,69 @@ P(n) = 1.38logN</p>
 <p>如果你的叔叔是黑色的，那么进行LL or RR or LR or RL旋转，可以维护根结点的黑色，同时不会再出现连续红色节点。（认为空结点是黑结点）</p>
 <p>综上可见，红黑树的插入操作并不复杂。</p>
 <p>与其他各种树一样，红黑树的插入同样也是递归函数，借助于私有成员函数来实现。</p>
+<h3 id="红黑树的删除">红黑树的删除</h3>
+<p>被删结点的情况：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>红色叶结点：直接删除</p>
+</li>
+<li class="lvl-2">
+<p>只有一个儿子的叶结点：肯定是黑结点，儿子是红结点，修改儿子为黑节点</p>
+</li>
+<li class="lvl-2">
+<p>黑色叶结点：导致该路径上少了一个黑结点，需要调整</p>
+</li>
+</ul>
+<p>调整的思想是让兄弟的某个红孩子转移到这条路径上，并改为黑结点（借一个）</p>
+<p>鉴于笔者并没有听懂翁阿姨课上的各种《红孩子》《黑孩子》《脱贫》，于是在课上打开了OIWIKI，发现出人意料地清晰，于是附上链接：<br>
+<a target="_blank" rel="noopener" href="https://oi-wiki.org/ds/rbtree/#%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C">OIWIKI红黑树删除操作</a></p>
+<p>删除操作：<br>
+case0：只有一个结点<br>
+case1：删除结点既有左又有右结点，找到直接前驱或直接后继进行替换。<br>
+case2：删除结点只有一个叶结点，则该结点一定为黑色，其孩子一定为红色，则将其删除，用子结点替换，并将该结点染成黑色。<br>
+case3：删除结点为红色叶结点，直接删除。<br>
+**case4：**删除结点为黑色叶结点，需要进行调整（唯一一个需要调整的情况）</p>
+<p>删除调整操作：（情况太多不做罗列的，对着图写就好呜呜呜）</p>
+<h2 id="AA树">AA树</h2>
+<p>定义：左孩子不能为红色的红黑树用结点层次表示平衡信息，水平链表示法：将指向红结点的链画成水平的，可以看出所有叶子结点的高度都是相同的。</p>
+<p>不可以出现<strong>水平左链</strong>和<strong>连续水平右链</strong>！！！</p>
+<h3 id="AA树插入操作">AA树插入操作</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>水平左链的解决：对结点执行一个LL旋转但是这可能会产生连续水平右链，需要继续调整</p>
+</li>
+<li class="lvl-2">
+<p>连续水平右链的解决：对结点执行一个RR旋转但是会导致层次的增长，需要继续调整</p>
+</li>
+</ul>
+<p>AA树插入的调整可能会一直回溯到根结点（提高了一个层次）</p>
+<h3 id="AA树的删除操作">AA树的删除操作</h3>
+<p>最终总能归结到删除第一层的结点</p>
+<p>被删结点情况：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>被删结点是红结点：直接删除</p>
+</li>
+<li class="lvl-2">
+<p>被删结点有一个红结点的儿子：将此红结点替换为被删结点</p>
+</li>
+<li class="lvl-2">
+<p>被删结点是黑结点：会影响平衡，需进行调整</p>
+</li>
+</ul>
+<p><strong>删除调整</strong>：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>被删结点是黑色的右孩子（最简单情况）：删除后产生水平左链，进行LL旋转，后向上调整</p>
+</li>
+<li class="lvl-2">
+<p>被删结点是黑色的右孩子（最复杂情况）：删除后父节点LL，根右孩子LL，对根执行RR，无需向上调整</p>
+</li>
+<li class="lvl-2">
+<p>若被删结点是黑色的左孩子（更加复杂）</p>
+</li>
+</ul>
+<p>Wait to be updated…</p>
 
                 
               </div>
@@ -436,7 +499,7 @@ P(n) = 1.38logN</p>
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>March 31, 2025</div>
+          <div>April 3, 2025</div>
         </div>
       
       
