@@ -19,15 +19,17 @@
   <meta name="author" content="Yihan Zhu">
   <meta name="keywords" content="SJTU Student CS Maths Life">
   
-    <meta name="description" content="Computer Science &amp; Mathematics &amp; Anything I want to share">
+    <meta name="description" content="Before：2025.03.29，must be one of the best days in 2025.I can’t tell you why and I beg you don’t ask me why.I just hope to be like her and continue chasing after my dream,just like her and them.Whateve">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Algorithm Of DS——Fenwick Tree &amp; Sparse Table">
 <meta property="og:url" content="http://example.com/2025/04/05/AlgorithmOfDS2/index.html">
 <meta property="og:site_name" content="JaneZ&#39;s Learning Space">
-<meta property="og:description" content="Computer Science &amp; Mathematics &amp; Anything I want to share">
+<meta property="og:description" content="Before：2025.03.29，must be one of the best days in 2025.I can’t tell you why and I beg you don’t ask me why.I just hope to be like her and continue chasing after my dream,just like her and them.Whateve">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/xuhui.jpg">
+<meta property="og:image" content="http://example.com/img/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84.png">
 <meta property="article:published_time" content="2025-04-05T08:04:58.000Z">
-<meta property="article:modified_time" content="2025-04-05T08:07:07.076Z">
+<meta property="article:modified_time" content="2025-04-05T09:22:46.065Z">
 <meta property="article:author" content="Yihan Zhu">
 <meta property="article:tag" content="Data Structure">
 <meta property="article:tag" content="Algorithm">
@@ -35,6 +37,7 @@
 <meta property="article:tag" content="Sparse Table">
 <meta property="article:tag" content="RMQ">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/xuhui.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -240,7 +243,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 words
+          840 words
         
       </span>
     
@@ -251,7 +254,7 @@
         
         
         
-          1 mins
+          10 mins
         
       </span>
     
@@ -302,7 +305,56 @@
             
               <div class="markdown-body">
                 
-                
+                <h4 id="Before：2025-03-29，must-be-one-of-the-best-days-in-2025-I-can’t-tell-you-why-and-I-beg-you-don’t-ask-me-why-I-just-hope-to-be-like-her-and-continue-chasing-after-my-dream-just-like-her-and-them-Whatever-it-takes-I-just-can’t-help-being-excited-about-this-wonderful-meeting-in-Xuhui-Shanghai-Hope-everything-will-be-alright">Before：2025.03.29，must be one of the best days in 2025.I can’t tell you why and I beg you don’t ask me why.I just hope to be like her and continue chasing after my dream,just like her and them.Whatever it takes.I just can’t help being excited about this wonderful meeting in Xuhui,Shanghai. Hope everything will be alright.</h4>
+<p><img src="/img/xuhui.jpg" srcset="/img/loading.gif" lazyload alt="2025.03.29晚-徐家汇-上海"></p>
+<h1>Algorithm of DS 2 Fenwick Tree and Sparse Table</h1>
+<h1>Fenwick Tree 树状数组</h1>
+<p>一点点feeling：1~base在算法题里还是很香的😢</p>
+<h2 id="单点修改与区间查询">单点修改与区间查询</h2>
+<p>对于序列$a_1,a_2,…,a_n$我们要支持一下操作：（1）单点修改其中某个数$a_i$<br>
+（2）查询$\Sigma_{i = 1}^{k} a_i$</p>
+<p>A problem we first met in the <strong>Chunking</strong> with a time complexity of O(n$\sqrt{n}$).（上机课上助教反复说过，可以用《线段树和树状数组解决》）所以要介绍的就是《<strong>树状数组</strong>》来解决这个经典问题。</p>
+<p>如下图所示，就展示了一个树状数组求解前缀和的很好的例子：<br>
+<img src="/img/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84.png" srcset="/img/loading.gif" lazyload alt="树状数组"></p>
+<p>首先我们介绍树状数组中的<strong>预处理函数</strong>——lowbit函数！</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">lowbit</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;<br>    <span class="hljs-keyword">return</span> x &amp; (-x);<span class="hljs-comment">//有时可能需要开成long long int</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>不难知道，这其实是x二进制表示下从右往左第一个出现1的位置。每一个树状数组c[x]管辖的范围其实是：[x - lowbit(x) + 1,x]<br>
+为求得前缀和，每次回退lowbit(x)，得到新的x（新的起点）。如此往复，直到x = 0，代码实现如下：</p>
+<figure class="highlight gml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs gml">int query(int <span class="hljs-variable language_">x</span>)&#123;<br>    int ans = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span>(<span class="hljs-variable language_">x</span> &gt; <span class="hljs-number">0</span>)&#123;<br>        ans += c[<span class="hljs-variable language_">x</span>];<br>        <span class="hljs-variable language_">x</span> -= lowbit(<span class="hljs-variable language_">x</span>);<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>如果我需要得到区间[x,y]之间的和，则：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scss">return <span class="hljs-built_in">query</span>(y) - <span class="hljs-built_in">query</span>(x - <span class="hljs-number">1</span>);<br></code></pre></td></tr></table></figure>
+<p>而对于更新操作，我们需要对第x位后包括x的所有树状数组的和进行加w的操作，相当于是一个逆过程：</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs llvm"><span class="hljs-type">void</span> update(int <span class="hljs-keyword">x</span><span class="hljs-punctuation">,</span>int w)&#123;<br>    while(<span class="hljs-keyword">x</span> &lt;<span class="hljs-operator">=</span> n)&#123;<br>        <span class="hljs-keyword">c</span>[<span class="hljs-keyword">x</span>] +<span class="hljs-operator">=</span> w<span class="hljs-comment">;</span><br>        <span class="hljs-keyword">x</span> +<span class="hljs-operator">=</span> lowbit(<span class="hljs-keyword">x</span>)<span class="hljs-comment">;</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="区间修改和单点查询">区间修改和单点查询</h2>
+<p>似乎略有变化，实则并无变化，只是我们维护的树状数组c[x]是对于差分数组的。</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs inform7">d<span class="hljs-comment">[i]</span> = a<span class="hljs-comment">[i]</span> - a<span class="hljs-comment">[i-1]</span>;<br></code></pre></td></tr></table></figure>
+<p>查询操作很简单，就是对差分数组求一个前缀和，函数实现一模一样。如果要对某一区间[x,y]内的所有数进行一个 + w的操作，观察到，当i $\in$ [x + 1,y]时，d[i]不会发生变化，我们只需要修改首尾两处的d[i]即可，进行操作:</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-built_in">update</span>(x,w);<br><span class="hljs-built_in">update</span>(y + <span class="hljs-number">1</span>,-w);<br></code></pre></td></tr></table></figure>
+<h2 id="区间修改与区间查询">区间修改与区间查询</h2>
+<p>又有了一些小变化，不妨列出来看一看：<br>
+$\Sigma_{i = 1}^{k} a_i$<br>
+= $\Sigma_{i = 1}^{k} \Sigma_{j = 1}^{i} d[i]$<br>
+= k * d[1] + (k - 1) * d[2] + … + 1 * d[k]<br>
+= (k + 1) $\Sigma_{i = 1}^{k} d[i]$ - $\Sigma_{i = 1}^{k} i * d[i]$</p>
+<p>可见事实上我们只需要再多维护一个id[i]的树状数组就可以了(in fact 是这次小作业的某一题)，召唤术：<a target="_blank" rel="noopener" href="https://acm.sjtu.edu.cn/OnlineJudge/problem/2665">区间修改与查找</a><br>
+hint：校外用户对不住了，ACMOJ只对sjtu内部开放😢😢</p>
+<h2 id="二维树状数组">二维树状数组</h2>
+<p>Show me the Problem!<br>
+给定一个二维数组A，要求实现以下操作：（1）单点修改A[x][y]<br>
+（2）单点查询A[x][y]<br>
+（3）子矩阵和查询：($x_1$,$y_1$)为左上角，($x_2$,$y_2$)为右下角（4）子矩阵修改：($x_1$,$y_1$)为左上角，($x_2$,$y_2$)为右下角，所有元素加w</p>
+<p>类似地建立树状数组c[x][y]表示以(x - lowbit(x) + 1,y - lowbit(y) + 1)为左上角，(x,y)为右下角的子矩阵的信息。对于单点修改，思路大致不变，核心在于先固定一个然后修改另一个，使用循环嵌套：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-type">int</span> x,<span class="hljs-type">int</span> y,<span class="hljs-type">int</span> w)</span></span>&#123;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = x;i &lt;= n;i += <span class="hljs-built_in">lowbit</span>(i))&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = y;j &lt;= m;j += <span class="hljs-built_in">lowbit</span>(j))&#123;<br>            c[i][j] += w;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="Reference">Reference</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><a target="_blank" rel="noopener" href="https://oi-wiki.org/ds/fenwick/">树状数组</a></p>
+</li>
+<li class="lvl-2">
+<p><a target="_blank" rel="noopener" href="https://oi-wiki.org/ds/sparse-table/">ST表</a></p>
+</li>
+</ul>
+
                 
               </div>
             
