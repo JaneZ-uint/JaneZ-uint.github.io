@@ -19,21 +19,24 @@
   <meta name="author" content="Yihan Zhu">
   <meta name="keywords" content="SJTU Student CS Maths Life">
   
-    <meta name="description" content="Computer Science &amp; Mathematics &amp; Anything I want to share">
+    <meta name="description" content="Before：Long Time No See Guys!~ I’ve been busy struggling with my Maths Analysis,Physics and Mathematical Logic learning,also busy building connections with others.But I realize that I have to keep lea">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Data-Structure19">
 <meta property="og:url" content="http://example.com/2025/04/03/Data-Structure19/index.html">
 <meta property="og:site_name" content="JaneZ&#39;s Learning Space">
-<meta property="og:description" content="Computer Science &amp; Mathematics &amp; Anything I want to share">
+<meta property="og:description" content="Before：Long Time No See Guys!~ I’ve been busy struggling with my Maths Analysis,Physics and Mathematical Logic learning,also busy building connections with others.But I realize that I have to keep lea">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/%E7%A3%81%E7%9B%98.png">
 <meta property="article:published_time" content="2025-04-03T03:09:44.000Z">
-<meta property="article:modified_time" content="2025-04-03T03:19:14.633Z">
+<meta property="article:modified_time" content="2025-04-07T13:24:26.459Z">
 <meta property="article:author" content="Yihan Zhu">
 <meta property="article:tag" content="Data Structure">
+<meta property="article:tag" content="C++">
 <meta property="article:tag" content="Disk">
 <meta property="article:tag" content="B Tree">
 <meta property="article:tag" content="B Plus Tree">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/%E7%A3%81%E7%9B%98.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -239,7 +242,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 words
+          909 words
         
       </span>
     
@@ -250,7 +253,7 @@
         
         
         
-          1 mins
+          11 mins
         
       </span>
     
@@ -301,7 +304,44 @@
             
               <div class="markdown-body">
                 
-                
+                <h5 id="Before：Long-Time-No-See-Guys-I’ve-been-busy-struggling-with-my-Maths-Analysis-Physics-and-Mathematical-Logic-learning-also-busy-building-connections-with-others-But-I-realize-that-I-have-to-keep-learning-my-data-structure-in-order-to-start-B-Plus-Tree-as-soon-as-possible">Before：Long Time No See Guys!~ I’ve been busy struggling with my Maths Analysis,Physics and Mathematical Logic learning,also busy building connections with others.But I realize that I have to keep learning my data structure in order to start B Plus Tree as soon as possible.</h5>
+<p>记得她泪水涟涟</p>
+<h1>Data Structure 19 外部查找与排序</h1>
+<h2 id="主存储器与外存储器">主存储器与外存储器</h2>
+<p>主存储器与外存储器是计算机的两类不同存储物质。主存储器也称<strong>内存</strong>，用于存储正在运行的的程序代码及运行数据。外存储器用于存储长期保存的信息，常用的外存储器有<strong>磁盘、磁带、光盘、U盘</strong>。</p>
+<p>相比于内存，外存储器有价格低廉、存储址大和永久保存等优点。但也有<strong>访问速度慢</strong>的缺点。在考虑处理外存储器上数据的算法时应该重点考虑<strong>如何减少访问次数</strong>。</p>
+<p>磁盘是一种可以直接存取的外存设备，它不仅可以顺序存取，也可以直接存取。它的存取速度比磁带快得多。磁盘表面上有很多同心圆的轨道，称为<strong>磁道</strong>，信息被存储在磁道上。所有磁盘上的同一位置的磁道称为一个<strong>柱面</strong>。每条磁道又被分成若干段，每一段称为一个扇区。一个扇区相当于磁带上的一个数据块，也称为<strong>磁盘块</strong>，是一次<strong>磁盘读写的单位</strong>。</p>
+<p><img src="/img/%E7%A3%81%E7%9B%98.png" srcset="/img/loading.gif" lazyload alt="磁盘结构"></p>
+<p>一次磁盘访问所需的时间相当于执行几百万条甚至几千万条指令所需的时间😰。由于磁盘和磁带的访问特性，在设计基于外存的箕法时，宁愿做很多的计算来避免一次外存访问。在包含外存操作的情况下，外存访问的次数决定了操作的运行时间。外存访问次数要能减半，运行时间也就减半了。</p>
+<h2 id="B树">B树</h2>
+<h3 id="B树的定义">B树的定义</h3>
+<p>提高外存储器中查找表的查找效率，最直接的方法就是<strong>减少磁盘访问的次数</strong>。在查找树中，访问的次数与查找树的高度成正比。在外存储器中，每次访问对应了一次磁盘访问。因此，要减少磁盘访问次数，必须<strong>降低查找树的高度</strong>。解决方案也很简单：只需要增加树的分支。一棵M叉查找树的高度约为$log_M N$</p>
+<p>在M叉查找树中，我们同样需要保存M - 1个键来判断到哪个分支继续操作。同时，为了保证最坏情况下依然具有高效性，我们需要一些措施来保证M叉查找树的平衡。</p>
+<p>1970 年，R.Bayer 和 E.Macreight 提出了 B 树的概念。B 树是一棵平衡的 m 叉的查找树，主要被用作为<strong>大型文件的索引</strong>。B 树的定义如下：一棵M阶B树或者为空，或者满足以下条件：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>根结点要么是叶子，要么至少有2个儿子，至多有M个儿子</p>
+</li>
+<li class="lvl-2">
+<p>除根结点和叶结点之外，每个结点的的儿子个数s满足[ m/2 ]$\leq s\leq$m</p>
+</li>
+<li class="lvl-2">
+<p>有s个儿子的非叶结点具有n = s - 1个关键字，故s = n + 1.<br>
+这些结点的数据信息为：(n,$A_0$,($K_1$,$R_1$),$A_1$,($K_2$,$R_2$),$A_2$,…,($K_n$,$R_n$),$A_n$)<br>
+其中：<br>
+n：关键字个数<br>
+$K_i$：结点的关键字<br>
+$A_0$：B树中小于$K_1$的结点地址<br>
+$R_j$：关键字值等于$K_j$的数据记录在硬盘中的地址<br>
+$A_j$：B树中大于$K_j$小于$K_{j + 1}$的结点的地址<br>
+$A_n$：B树中大于$K_n$的结点的地址</p>
+</li>
+<li class="lvl-2">
+<p>所有的叶子结点都出现在同一层上（深度相同），并且不带信息（可以认为是查找失败的结点）</p>
+</li>
+</ul>
+<p>Wait to be updated…</p>
+
                 
               </div>
             
@@ -335,6 +375,8 @@
       <i class="iconfont icon-tags"></i>
       
         <a href="/tags/Data-Structure/" class="print-no-link">#Data Structure</a>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
       
         <a href="/tags/Disk/" class="print-no-link">#Disk</a>
       
@@ -371,7 +413,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>April 3, 2025</div>
+          <div>April 7, 2025</div>
         </div>
       
       
