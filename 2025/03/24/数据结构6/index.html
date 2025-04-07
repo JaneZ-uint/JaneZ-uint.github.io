@@ -27,7 +27,7 @@
 <meta property="og:description" content="数据结构6 集合 动态查找表 查找操作 静态查找表 &amp; 动态查找表  静态查找表：元素个数不变，元素值不变一般使用C++ 的原始数组 动态查找表：允许插入删除的查找表不能用线性表存储，会造成大量数据的移动  无序表&amp;有序表的查找 无序表查找的复杂度是O(n)的。有序表查找可以采用顺序查找、二分查找、插值查找、分块查找。 顺序查找 与无序表查找唯一的不同在于若元素不存在无需查到表头">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-03-24T07:01:43.000Z">
-<meta property="article:modified_time" content="2025-04-03T05:22:18.152Z">
+<meta property="article:modified_time" content="2025-04-07T06:28:23.213Z">
 <meta property="article:author" content="Yihan Zhu">
 <meta property="article:tag" content="Data Structure">
 <meta property="article:tag" content="C++">
@@ -238,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.7k words
+          1.8k words
         
       </span>
     
@@ -249,7 +249,7 @@
         
         
         
-          19 mins
+          20 mins
         
       </span>
     
@@ -427,10 +427,11 @@ case3：删除结点为红色叶结点，直接删除。<br>
 <p>被删结点是黑色的右孩子（最复杂情况）：删除后父节点LL，根右孩子LL，对根执行RR，无需向上调整</p>
 </li>
 <li class="lvl-2">
-<p>若被删结点是黑色的左孩子（更加复杂）</p>
+<p>若被删结点是黑色的左孩子（更加复杂）：删除后根结点右儿子LL，对根右儿子的右儿子LL，对根RR，对根右儿子RR</p>
 </li>
 </ul>
-<p>Wait to be updated…</p>
+<p>综上分析，我们只需要在BST的删除操作上增加如下调整即可实现AA树的删除：</p>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs xl">LL(t);<br><span class="hljs-function"><span class="hljs-title">if</span>(t -&gt;</span> right != nullptr)&#123;<br>    LL(<span class="hljs-function"><span class="hljs-title">t</span> -&gt;</span> right);<br>&#125;<br><span class="hljs-function"><span class="hljs-title">if</span>(t -&gt;</span> <span class="hljs-function"><span class="hljs-title">right</span> != nullptr &amp;&amp; t -&gt;</span> <span class="hljs-function"><span class="hljs-title">right</span> -&gt;</span> right != nullptr)&#123;<br>    LL(<span class="hljs-function"><span class="hljs-title">t</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">right</span> -&gt;</span> right);<br>&#125;<br>RR(t);<br><span class="hljs-function"><span class="hljs-title">if</span>(t -&gt;</span> right != nullptr)&#123;<br>    RR(<span class="hljs-function"><span class="hljs-title">t</span> -&gt;</span> right);<br>&#125;<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -499,7 +500,7 @@ case3：删除结点为红色叶结点，直接删除。<br>
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>April 3, 2025</div>
+          <div>April 7, 2025</div>
         </div>
       
       
