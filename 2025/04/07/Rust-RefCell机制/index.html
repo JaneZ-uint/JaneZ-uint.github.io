@@ -1,0 +1,794 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/JaneIcon.png">
+  <link rel="icon" href="/img/JaneIcon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yihan Zhu">
+  <meta name="keywords" content="SJTU Student CS Maths Life">
+  
+    <meta name="description" content="Before：为什么要出一期挺莫名其妙的东西？起因还是机考，连续2次机考工程题一分没拿了（太菜了bushi），感觉对C++的各种机制很不熟悉，而Rust又是重要的一门现代编程语言。援引StanfordCS110L前言的一段话： 如果你学过 C 并接触过一些系统编程的话，应该对 C 的内存泄漏以及指针的危险有所耳闻，但 C 的底层特性以及高效仍然让它在系统级编程中无法被例如 Java 等自带垃圾收集">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rust RefCell机制">
+<meta property="og:url" content="http://example.com/2025/04/07/Rust-RefCell%E6%9C%BA%E5%88%B6/index.html">
+<meta property="og:site_name" content="JaneZ&#39;s Learning Space">
+<meta property="og:description" content="Before：为什么要出一期挺莫名其妙的东西？起因还是机考，连续2次机考工程题一分没拿了（太菜了bushi），感觉对C++的各种机制很不熟悉，而Rust又是重要的一门现代编程语言。援引StanfordCS110L前言的一段话： 如果你学过 C 并接触过一些系统编程的话，应该对 C 的内存泄漏以及指针的危险有所耳闻，但 C 的底层特性以及高效仍然让它在系统级编程中无法被例如 Java 等自带垃圾收集">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-04-07T11:44:31.000Z">
+<meta property="article:modified_time" content="2025-04-07T12:13:59.500Z">
+<meta property="article:author" content="Yihan Zhu">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="Rust">
+<meta property="article:tag" content="Const">
+<meta property="article:tag" content="Memory Management">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Rust RefCell机制 - JaneZ&#39;s Learning Space</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>JaneZ&#39;s Learning Space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/LA.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Rust RefCell机制"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-04-07 19:44" pubdate>
+          April 7, 2025 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Rust RefCell机制</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h4 id="Before：为什么要出一期挺莫名其妙的东西？起因还是机考，连续2次机考工程题一分没拿了（太菜了bushi），感觉对C-的各种机制很不熟悉，而Rust又是重要的一门现代编程语言。援引StanfordCS110L前言的一段话：">Before：为什么要出一期挺莫名其妙的东西？起因还是机考，连续2次机考工程题一分没拿了（太菜了bushi），感觉对C++的各种机制很不熟悉，而Rust又是重要的一门现代编程语言。援引<a target="_blank" rel="noopener" href="https://reberhardt.com/cs110l/spring-2020/">StanfordCS110L</a>前言的一段话：</h4>
+<h5 id="如果你学过-C-并接触过一些系统编程的话，应该对-C-的内存泄漏以及指针的危险有所耳闻，但-C-的底层特性以及高效仍然让它在系统级编程中无法被例如-Java-等自带垃圾收集机制的高级语言所替代。而-Rust-的目标则是希望在-C-的高效基础上，弥补其安全不足的缺点。因此-Rust-在设计之初，就有带有很多系统编程的观点。学习-Rust，也能让你之后能用-C-语言编写出更安全更优雅的系统级代码（例如操作系统等）。"><em>如果你学过 C 并接触过一些系统编程的话，应该对 C 的内存泄漏以及指针的危险有所耳闻，但 C 的底层特性以及高效仍然让它在系统级编程中无法被例如 Java 等自带垃圾收集机制的高级语言所替代。而 Rust 的目标则是希望在 C 的高效基础上，弥补其安全不足的缺点。因此 Rust 在设计之初，就有带有很多系统编程的观点。学习 Rust，也能让你之后能用 C 语言编写出更安全更优雅的系统级代码（例如操作系统等）。</em></h5>
+<h1>Rust Learning _RefCell机制</h1>
+<h2 id="Rust的所有权机制">Rust的所有权机制</h2>
+<p>Rust的所有权机制要求每个值都有<strong>唯一的所有者</strong>（通常是变量），并且在同一时间内只能有一个所有者。所有权的转移可以通过赋值、函数参数传递或返回值来实现。相当于 C++ 中的移动语义（std::move()）</p>
+<p>在一个值的所有者变量的作用域之外（例如在另外一个函数中）对该值的访问必须通过借用（相当于 C++ 中指向变量的指针）来实现。Rust 中的借用分为两种：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>不可变借用（Immutable Borrow）：相当于 C++ 中的 const T*，允许读取但不允许修改</p>
+</li>
+<li class="lvl-2">
+<p>可变借用（Mutable Borrow）：相当于 C++ 中的 T*，允许读取和修改</p>
+</li>
+</ul>
+<p>Rust 对变量的借用有着严格的限制：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>在同一时间内，只能有<strong>一个可变借用，或者多个不可变借用</strong></p>
+</li>
+<li class="lvl-2">
+<p><strong>不能同时存在可变借用和不可变借用</strong></p>
+</li>
+<li class="lvl-2">
+<p>所有借用都必须在拥有变量的生命周期内有效，对以上规则的违反会导致编译错误。</p>
+</li>
+</ul>
+<p>Rust 的借用机制对编译器优化非常有帮助。由于不可变借用不能与可变借用共存，**被不可变借用指向的值只需要从堆内存中获取一次，之后可以安全地存储在寄存器或栈上缓存中。*<em>相比之下，C++ 中也进行类似的优化，但其他函数修改 const</em> 指针指向的值是未定义行为，可能导致不安全的代码。</p>
+<p>Rust 的编译器可以在编译时就能“静态”地检查所有权和借用关系，在运行时无需额外检查。然而，<strong>对于堆上对象，在编译期检查所有权和借用关系是非常困难的</strong>。因此，Rust 提供了 RefCell<T> 类型来在运行时检查所有权和借用关系。它有如下方法：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>borrow() 与 try_borrow()：获取一个不可变借用，返回 Ref<T> 类型。如果当前存在可变借用则失败。borrow() 会 panic，相当于 C++ 中的 abort，而 try_borrow() 返回一个 Result&lt;Ref<T>, BorrowError&gt;，相当于 C++ 中的 std::optional&lt;Ref<T>&gt;</p>
+</li>
+<li class="lvl-2">
+<p>borrow_mut() 与 try_borrow_mut()：获取一个可变借用，返回 RefMut<T> 类型。如果当前存在任何借用则会失败</p>
+</li>
+<li class="lvl-2">
+<p>返回的 Ref<T> 和 RefMut<T> 包装器实现了解引用操作符，可以像使用普通引用一样使用</p>
+</li>
+<li class="lvl-2">
+<p>当 Ref<T> 和 RefMut<T> 的生命周期结束时，会自动减少或重置借用计数</p>
+</li>
+<li class="lvl-2">
+<p>当 RefCell<T> 的生命周期结束时，若仍有借用存在，则会 panic</p>
+</li>
+</ul>
+<h2 id="C-中的std-optional">C++中的std::optional</h2>
+<p>编程中，我们经常会需要表示或处理一个“可能为空”的变量，可能是一个为包含任何元素的容器，可能是一个类型的指针没有指向任何有效的对象实例，再或者是一个对象没有被赋予有效的值。</p>
+<p>C++17中的std::optional<T>为解决这类问题提供了简单的解决方案。optional<T>可以看作是T类型变脸与一个布尔值的打包。其中的布尔值用来表示T是否为“空”。<br>
+std::optional<T>可以：<strong>包含一个类型为T的值或者不包含任何值(处于&quot;空&quot;状态)</strong><br>
+不包含任何值显示表示为：std::nullopt</p>
+<p>Advantage: 明确表示值可能存在或不存在；强制使用者考虑值缺失的情况；通常比使用指针或额外标志更高效</p>
+<h2 id="C-中的const-成员函数">C++中的const 成员函数</h2>
+<p><strong>在C++中，只有被声明为const的成员函数才能被一个const类对象调用。</strong><br>
+const 成员函数<strong>不能修改类的普通成员变量</strong><br>
+如果想修改，需加上mutable关键字，允许 const 成员函数修改内部计数器（确实这个关键字常见于计数器）</p>
+<h2 id="剩余代码的实现">剩余代码的实现</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;optional&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdexcept&gt;</span></span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">RefCellError</span> : <span class="hljs-keyword">public</span> std::runtime_error &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">RefCellError</span><span class="hljs-params">(<span class="hljs-type">const</span> std::string&amp; message)</span> : std::runtime_error(message) &#123;</span>&#125;<br>    <span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">RefCellError</span>() = <span class="hljs-keyword">default</span>;<br>&#125;;<span class="hljs-comment">// Abstract class as base class</span><br><br><span class="hljs-comment">//invalidly call an immutable borrow</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">BorrowError</span> : <span class="hljs-keyword">public</span> RefCellError &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">BorrowError</span><span class="hljs-params">(<span class="hljs-type">const</span> std::string&amp; message)</span> : RefCellError(message) &#123;</span>&#125;<br>&#125;;<br><span class="hljs-comment">//invalidly call a mutable borrow</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">BorrowMutError</span> : <span class="hljs-keyword">public</span> RefCellError &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">BorrowMutError</span><span class="hljs-params">(<span class="hljs-type">const</span> std::string&amp; message)</span> : RefCellError(message) &#123;</span>&#125;<br>&#125;;<br><span class="hljs-comment">//still has refs when destructed</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">DestructionError</span> : <span class="hljs-keyword">public</span> RefCellError &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">DestructionError</span><span class="hljs-params">(<span class="hljs-type">const</span> std::string&amp; message)</span> : RefCellError(message) &#123;</span>&#125;<br>&#125;;<br><br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">RefCell</span> &#123;<br><span class="hljs-keyword">private</span>:<br>    T value;<br>    <span class="hljs-comment">// TODO(student)</span><br>    <span class="hljs-keyword">mutable</span> <span class="hljs-type">size_t</span> borrow_num;<br>    <span class="hljs-keyword">mutable</span> <span class="hljs-type">size_t</span> borrow_mut_num;<br><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">// Forward declarations</span><br>    <span class="hljs-keyword">class</span> <span class="hljs-title class_">Ref</span>;<br>    <span class="hljs-keyword">class</span> <span class="hljs-title class_">RefMut</span>;<br><br>    <span class="hljs-comment">// Constructor</span><br>    <span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">RefCell</span><span class="hljs-params">(<span class="hljs-type">const</span> T&amp; initial_value)</span>:value(initial_value),borrow_mut_num(<span class="hljs-number">0</span>),borrow_num(<span class="hljs-number">0</span>) &#123;</span>&#125;<br>    <span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">RefCell</span><span class="hljs-params">(T &amp;&amp; initial_value)</span>:value(std::move(initial_value)),borrow_mut_num(<span class="hljs-number">0</span>),borrow_num(<span class="hljs-number">0</span>) &#123;</span>&#125;<br><br>    <span class="hljs-comment">// Disable copying and moving for simplicity</span><br>    <span class="hljs-built_in">RefCell</span>(<span class="hljs-type">const</span> RefCell&amp;) = <span class="hljs-keyword">delete</span>;<br>    RefCell&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-type">const</span> RefCell&amp;) = <span class="hljs-keyword">delete</span>;<br>    <span class="hljs-built_in">RefCell</span>(RefCell&amp;&amp;) = <span class="hljs-keyword">delete</span>;<br>    RefCell&amp; <span class="hljs-keyword">operator</span>=(RefCell&amp;&amp;) = <span class="hljs-keyword">delete</span>;<br><br>    <span class="hljs-comment">// Borrow methods</span><br>    <span class="hljs-function">Ref <span class="hljs-title">borrow</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>&#123;<br>        <span class="hljs-comment">// TODO(student)</span><br>        <span class="hljs-keyword">if</span>(borrow_mut_num != <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-built_in">BorrowError</span>(<span class="hljs-string">&quot;RuntimeError&quot;</span>);<br>        &#125;<br>        ++ borrow_num;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Ref</span>(*<span class="hljs-keyword">this</span>);<br>    &#125;<br><br>    <span class="hljs-function">std::optional&lt;Ref&gt; <span class="hljs-title">try_borrow</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>&#123;<br>        <span class="hljs-comment">// TODO(student)</span><br>        <span class="hljs-keyword">if</span>(borrow_mut_num != <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span> std::<span class="hljs-literal">nullopt</span>;<br>        &#125;<br>        ++ borrow_num;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Ref</span>(*<span class="hljs-keyword">this</span>);<br>    &#125;<br><br>    <span class="hljs-function">RefMut <span class="hljs-title">borrow_mut</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-comment">// TODO(student)</span><br>        <span class="hljs-keyword">if</span>(borrow_num != <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-built_in">BorrowMutError</span>(<span class="hljs-string">&quot;RuntimeError&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">if</span>(borrow_mut_num != <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-built_in">BorrowMutError</span>(<span class="hljs-string">&quot;RuntimeError&quot;</span>);<br>        &#125;<br>        ++ borrow_mut_num;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">RefMut</span>(*<span class="hljs-keyword">this</span>);<br>    &#125;<br><br>    <span class="hljs-function">std::optional&lt;RefMut&gt; <span class="hljs-title">try_borrow_mut</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-comment">// TODO(student)</span><br>        <span class="hljs-keyword">if</span>(borrow_num != <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span> std::<span class="hljs-literal">nullopt</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(borrow_mut_num != <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span> std::<span class="hljs-literal">nullopt</span>;<br>        &#125;<br>        ++ borrow_mut_num;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">RefMut</span>(*<span class="hljs-keyword">this</span>);<br>    &#125;<br><br>    <span class="hljs-comment">// Inner classes for borrows</span><br>    <span class="hljs-keyword">class</span> <span class="hljs-title class_">Ref</span> &#123;<br>    <span class="hljs-keyword">private</span>:<br>        <span class="hljs-comment">// TODO(student)</span><br>        <span class="hljs-type">const</span> RefCell* refcell;<br>        <span class="hljs-type">bool</span> valid = <span class="hljs-literal">true</span>;<br><br>    <span class="hljs-keyword">public</span>:<br>        <span class="hljs-built_in">Ref</span>(<span class="hljs-type">const</span> RefCell &amp;c):<span class="hljs-built_in">refcell</span>(&amp;c),<span class="hljs-built_in">valid</span>(<span class="hljs-literal">true</span>) &#123;&#125;<br><br>        ~<span class="hljs-built_in">Ref</span>() &#123;<br>            <span class="hljs-keyword">if</span>(valid ) &#123;<br>                -- refcell-&gt;borrow_num;<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-type">const</span> T&amp; <span class="hljs-keyword">operator</span>*() <span class="hljs-type">const</span> &#123;<br>            <span class="hljs-keyword">if</span>(!valid || refcell-&gt;borrow_num == <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-keyword">throw</span> <span class="hljs-built_in">BorrowError</span>(<span class="hljs-string">&quot;RuntimeError&quot;</span>);<br>            &#125;<br>            <span class="hljs-keyword">return</span> refcell-&gt;value;<br>        &#125;<br><br>        <span class="hljs-type">const</span> T* <span class="hljs-keyword">operator</span>-&gt;() <span class="hljs-type">const</span> &#123;<br>            <span class="hljs-keyword">if</span>(!valid || refcell-&gt;borrow_num == <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-keyword">throw</span> <span class="hljs-built_in">BorrowError</span>(<span class="hljs-string">&quot;RuntimeError&quot;</span>);<br>            &#125;<br>            <span class="hljs-keyword">return</span> &amp;refcell-&gt;value;<br>        &#125;<br><br>        <span class="hljs-comment">// Allow copying</span><br>        <span class="hljs-built_in">Ref</span>(<span class="hljs-type">const</span> Ref&amp; other):<span class="hljs-built_in">refcell</span>(other.refcell),<span class="hljs-built_in">valid</span>(other.valid) &#123;<br>            <span class="hljs-keyword">if</span>(valid)&#123;<br>                ++ refcell-&gt;borrow_num;<br>            &#125;<br>        &#125;<br>        Ref&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-type">const</span> Ref&amp; other) &#123;<br>            <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span> != &amp;other) &#123;<br>                <span class="hljs-keyword">if</span>(valid) &#123;<br>                    -- refcell-&gt;borrow_num;<br>                &#125;<br>                refcell = other.refcell;<br>                valid = other.valid;<br>                <span class="hljs-keyword">if</span>(valid)&#123;<br>                    ++ refcell-&gt;borrow_num;<br>                &#125;<br>            &#125;<br>            <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>        &#125;<br><br>        <span class="hljs-comment">// Allow moving</span><br>        <span class="hljs-built_in">Ref</span>(Ref&amp;&amp; other) <span class="hljs-keyword">noexcept</span>:<span class="hljs-built_in">refcell</span>(other.refcell),<span class="hljs-built_in">valid</span>(other.valid) &#123;<br>            <span class="hljs-comment">//TODO</span><br>            other.valid = <span class="hljs-literal">false</span>;<br>        &#125;<br><br>        Ref&amp; <span class="hljs-keyword">operator</span>=(Ref&amp;&amp; other) &#123;<br>            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span> != &amp;other) &#123;<br>                <span class="hljs-keyword">if</span> (valid) &#123;<br>                    --refcell-&gt;borrow_num;<br>                &#125;<br>                refcell = other.refcell;<br>                valid = <span class="hljs-literal">true</span>;<br>                other.valid = <span class="hljs-literal">false</span>;<br>                <span class="hljs-comment">//other = nullptr;</span><br>            &#125;<br>            <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>        &#125;<br>    &#125;;<br><br>    <span class="hljs-keyword">class</span> <span class="hljs-title class_">RefMut</span> &#123;<br>    <span class="hljs-keyword">private</span>:<br>        <span class="hljs-comment">// TODO(student)</span><br>        RefCell* refcell;<br>        <span class="hljs-type">bool</span> valid = <span class="hljs-literal">true</span>;<br><br>    <span class="hljs-keyword">public</span>:<br>        <span class="hljs-built_in">RefMut</span>(RefCell &amp;c):<span class="hljs-built_in">refcell</span>(&amp;c),<span class="hljs-built_in">valid</span>(<span class="hljs-literal">true</span>) &#123;&#125;<br><br>        ~<span class="hljs-built_in">RefMut</span>() &#123;<br>        <span class="hljs-comment">// TODO(student)</span><br>            <span class="hljs-keyword">if</span>(valid ) &#123;<br>                -- refcell-&gt;borrow_mut_num;<br>            &#125;<br>        &#125;<br><br>        T&amp; <span class="hljs-keyword">operator</span>*() &#123;<br>        <span class="hljs-comment">// TODO(student)</span><br>            <span class="hljs-keyword">if</span>(!valid || refcell-&gt;borrow_mut_num == <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-keyword">throw</span> <span class="hljs-built_in">BorrowMutError</span>(<span class="hljs-string">&quot;RuntimeError&quot;</span>);<br>            &#125;<br>            <span class="hljs-keyword">return</span> refcell-&gt;value;<br>        &#125;<br><br>        T* <span class="hljs-keyword">operator</span>-&gt;() &#123;<br>        <span class="hljs-comment">// TODO(student)</span><br>            <span class="hljs-keyword">if</span>(!valid || refcell-&gt;borrow_mut_num == <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-keyword">throw</span> <span class="hljs-built_in">BorrowMutError</span>(<span class="hljs-string">&quot;RuntimeError&quot;</span>);<br>            &#125;<br>            <span class="hljs-keyword">return</span> &amp;refcell-&gt;value;<br>        &#125;<br><br>        <span class="hljs-comment">// Disable copying to ensure correct borrow rules</span><br>        <span class="hljs-built_in">RefMut</span>(<span class="hljs-type">const</span> RefMut&amp;) = <span class="hljs-keyword">delete</span>;<br>        RefMut&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-type">const</span> RefMut&amp;) = <span class="hljs-keyword">delete</span>;<br><br>        <span class="hljs-comment">// Allow moving</span><br>        <span class="hljs-built_in">RefMut</span>(RefMut&amp;&amp; other) <span class="hljs-keyword">noexcept</span>:<span class="hljs-built_in">refcell</span>(other.refcell),<span class="hljs-built_in">valid</span>(other.valid)  &#123;<br>        <span class="hljs-comment">// TODO(student)</span><br>            other.valid = <span class="hljs-literal">false</span>;<br>        &#125;<br><br>        RefMut&amp; <span class="hljs-keyword">operator</span>=(RefMut&amp;&amp; other) &#123;<br>            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span> != &amp;other) &#123;<br>                <span class="hljs-keyword">if</span> (valid) &#123;<br>                    --refcell-&gt;borrow_mut_num;<br>                &#125;<br>                refcell = other.refcell;<br>                valid = other.valid;<br>                other.valid = <span class="hljs-literal">false</span>;<br>                <span class="hljs-comment">//other = nullptr;</span><br>            &#125;<br>            <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>        &#125;<br>    &#125;;<br><br>    <span class="hljs-comment">// Destructor</span><br>    ~<span class="hljs-built_in">RefCell</span>() &#123;<br>        <span class="hljs-comment">// TODO(student)</span><br>        <span class="hljs-keyword">if</span>(borrow_mut_num &gt; <span class="hljs-number">0</span> || borrow_num &gt; <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-built_in">DestructionError</span>(<span class="hljs-string">&quot;RuntimeError&quot;</span>);<br>        &#125;<br>        borrow_mut_num = <span class="hljs-number">0</span>;<br>        borrow_num = <span class="hljs-number">0</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h2 id="Reference">Reference</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><a target="_blank" rel="noopener" href="https://acm.sjtu.edu.cn/OnlineJudge/problem/2641">stargazer 的 RefCell</a></p>
+</li>
+<li class="lvl-2">
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/hhdshg/article/details/103433781">C++17之std::optional全方位详解</a></p>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Language-Learning/" class="category-chain-item">Language Learning</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
+      
+        <a href="/tags/Rust/" class="print-no-link">#Rust</a>
+      
+        <a href="/tags/Const/" class="print-no-link">#Const</a>
+      
+        <a href="/tags/Memory-Management/" class="print-no-link">#Memory Management</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Rust RefCell机制</div>
+      <div>http://example.com/2025/04/07/Rust-RefCell机制/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yihan Zhu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>April 7, 2025</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Updated on</div>
+          <div>April 7, 2025</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/04/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%847/" title="数据结构7">
+                        <span class="hidden-mobile">数据结构7</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
