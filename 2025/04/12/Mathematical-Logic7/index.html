@@ -19,28 +19,27 @@
   <meta name="author" content="Yihan Zhu">
   <meta name="keywords" content="SJTU Student CS Maths Life">
   
-    <meta name="description" content="Before:第10章排序并未提前进行学习，所以会结合翁阿姨上课的笔记和课后学习，内容比较完善 数据结构 8 排序 所谓排序就是把集合中的数据元素按照它们的关键字的非递减或非递增序排成一个序列。 插入排序 首先将由第一个数据元素组成的序列看成是有序的，然后将剩余的n-1个元素依次插入到前面的已排好序的子序列中去，使得每次插入后的子序列也是有序的。 插入排序又分为： 直接插入排序 暴力插入，复杂度O">
+    <meta name="description" content="Before：久违的数理逻辑课！上了7节课终于觉得有点入门了，还是挺有意思的。周四下午闪击南京，周五下午又闪击回来。虽然只有1天，但很开心在这短短的20个小时内帮助了不少人（都是无意间）。我要永远做个善良的人！ Mathematical Logic 7 Completeness 1 我们继续完备性的证明！我们知道，要证明一阶逻辑的完备性，我们只需要证明： Given a consisitent $">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构 8 Sorting">
-<meta property="og:url" content="http://example.com/2025/04/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%848/index.html">
+<meta property="og:title" content="Mathematical Logic 7 Completeness 1">
+<meta property="og:url" content="http://example.com/2025/04/12/Mathematical-Logic7/index.html">
 <meta property="og:site_name" content="JaneZ&#39;s Learning Space">
-<meta property="og:description" content="Before:第10章排序并未提前进行学习，所以会结合翁阿姨上课的笔记和课后学习，内容比较完善 数据结构 8 排序 所谓排序就是把集合中的数据元素按照它们的关键字的非递减或非递增序排成一个序列。 插入排序 首先将由第一个数据元素组成的序列看成是有序的，然后将剩余的n-1个元素依次插入到前面的已排好序的子序列中去，使得每次插入后的子序列也是有序的。 插入排序又分为： 直接插入排序 暴力插入，复杂度O">
+<meta property="og:description" content="Before：久违的数理逻辑课！上了7节课终于觉得有点入门了，还是挺有意思的。周四下午闪击南京，周五下午又闪击回来。虽然只有1天，但很开心在这短短的20个小时内帮助了不少人（都是无意间）。我要永远做个善良的人！ Mathematical Logic 7 Completeness 1 我们继续完备性的证明！我们知道，要证明一阶逻辑的完备性，我们只需要证明： Given a consisitent $">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-04-10T09:44:43.000Z">
-<meta property="article:modified_time" content="2025-04-10T13:01:59.351Z">
+<meta property="og:image" content="http://example.com/img/Lemma9.png">
+<meta property="og:image" content="http://example.com/img/Henkin.png">
+<meta property="article:published_time" content="2025-04-12T03:49:30.000Z">
+<meta property="article:modified_time" content="2025-04-12T03:50:29.532Z">
 <meta property="article:author" content="Yihan Zhu">
-<meta property="article:tag" content="Data Structure">
-<meta property="article:tag" content="C++">
-<meta property="article:tag" content="Algorithm">
-<meta property="article:tag" content="Time and Space Complexity">
-<meta property="article:tag" content="Sorting">
+<meta property="article:tag" content="Mathematical Logic">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/Lemma9.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>数据结构 8 Sorting - JaneZ&#39;s Learning Space</title>
+  <title>Mathematical Logic 7 Completeness 1 - JaneZ&#39;s Learning Space</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -217,7 +216,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="数据结构 8 Sorting"></span>
+            <span id="subtitle" data-typed-text="Mathematical Logic 7 Completeness 1"></span>
           
         </div>
 
@@ -228,8 +227,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-04-10 17:44" pubdate>
-          April 10, 2025 pm
+        <time datetime="2025-04-12 11:49" pubdate>
+          April 12, 2025 am
         </time>
       </span>
     
@@ -240,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k words
+          841 words
         
       </span>
     
@@ -251,7 +250,7 @@
         
         
         
-          13 mins
+          10 mins
         
       </span>
     
@@ -297,62 +296,154 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">数据结构 8 Sorting</h1>
+            <h1 id="seo-header">Mathematical Logic 7 Completeness 1</h1>
             
             
               <div class="markdown-body">
                 
-                <h4 id="Before-第10章排序并未提前进行学习，所以会结合翁阿姨上课的笔记和课后学习，内容比较完善">Before:第10章排序并未提前进行学习，所以会结合翁阿姨上课的笔记和课后学习，内容比较完善</h4>
-<h1>数据结构 8 排序</h1>
-<p><strong>所谓排序就是把集合中的数据元素按照它们的关键字的非递减或非递增序排成一个序列。</strong></p>
-<h2 id="插入排序">插入排序</h2>
-<p>首先将由第一个数据元素组成的序列看成是有序的，然后将剩余的n-1个元素依次插入到前面的已排好序的子序列中去，使得每次插入后的子序列也是有序的。</p>
-<p>插入排序又分为：</p>
-<h3 id="直接插入排序">直接插入排序</h3>
-<p>暴力插入，复杂度O($N^2$)</p>
-<h3 id="折半插入排序">折半插入排序</h3>
-<p>利用二分查找法，快速地找到a[j]的插入位置，但这只会减少比较次数，并不会改变元素的移动，所以复杂度还是O($N^2$)</p>
-<h3 id="希尔排序-缩小增量排序法">希尔排序 缩小增量排序法</h3>
-<p>1.将待排序序列分为若干子序列（每个子序列的元素在原始数组中间距相同）；<br>
-2.对这些子序列进行插入排序；<br>
-3.减小每个子序列中元素之间的间距，重复上述过程直至间距减少为 1。</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> KEY,<span class="hljs-keyword">class</span> OTHER&gt;</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">shell_sort</span><span class="hljs-params">(SET&lt;KEY,OTHER&gt;a[],<span class="hljs-type">int</span> size)</span></span>&#123;<br>    <span class="hljs-type">int</span> step;<br>    <span class="hljs-type">int</span> i,j;<br>    SET&lt;KEY,OTHER&gt; tmp;<br>    <span class="hljs-keyword">for</span>(step = size/<span class="hljs-number">2</span>;step &gt; <span class="hljs-number">0</span>;step /= <span class="hljs-number">2</span>)&#123;<br>        <span class="hljs-comment">//希尔增量</span><br>        <span class="hljs-keyword">for</span>(i = step;i &lt; size;i ++)&#123;<br>            tmp = a[i];<br>            <span class="hljs-keyword">for</span>(j = i - step;a[j].KEY &gt; tmp.KEY;j -= step)&#123;<br>                a[j + step] = a[j];<br>            &#125;<br>            a[j + step] = tmp;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="选择排序">选择排序</h2>
-<p>首先，从n个元素中选出关键字最小的元素。再从剩下的(n-1)个元素中选出关键字最小的元素，依次类推，每次从剩下的元素序列中挑出关键字最小的元素，直至序列中最后只剩下一个元素为止。</p>
-<h3 id="直接选择排序">直接选择排序</h3>
-<p>暴力，复杂度O($N^2$)(<strong>不能存在最好最坏情况，必须全做</strong>)</p>
-<h3 id="堆排序-HeapSort！">堆排序 <strong>HeapSort！</strong></h3>
-<p>建堆复杂度：O(N) （we’ve already proved this in <strong>priority_queue</strong>）出队操作：O(logN)<br>
-总时间复杂度：n次出队O(nlogn)</p>
-<h2 id="交换排序">交换排序</h2>
-<h3 id="冒泡排序（数据本就比较有序）">冒泡排序（数据本就比较有序）</h3>
-<p>从头到尾比较相邻的两个元素，将小的换到前面，大的换到后面。经过了从头到尾的一趟比较，就把最大的元素交换到了最后一个位置。这个过程称为一趟起泡。</p>
-<h3 id="快速排序（数据比较杂乱）">快速排序（数据比较杂乱）</h3>
-<p>在待排序的序列中选择一个数据元素，以该元素为标准，将所有数据元素分为两组，第一组的元素均小于或等于标准元素，第二组的数据元素均大于标准元素。第一组的元素放在数组的前面部分，第二组的数据元素放在数组的后面部分，标准元素放在中间。这个位置就是标准元素的最终位置。这称为一趟划分。然后对分成的两组数据重复上述过程，直到所有的元素都在适当的位置为止。</p>
-<p>我觉得我们有必要回忆一下快排是怎么写的😅</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">template&lt;<span class="hljs-keyword">class</span> <span class="hljs-symbol">KEY,<span class="hljs-symbol">class</span></span> <span class="hljs-symbol">OTHER</span>&gt;<br><span class="hljs-symbol">int</span> <span class="hljs-symbol">divide</span>(<span class="hljs-symbol">SET</span>&lt;<span class="hljs-symbol">KEY,<span class="hljs-symbol">OTHER</span></span>&gt; <span class="hljs-symbol">a</span>[],<span class="hljs-symbol">int</span> <span class="hljs-symbol">low,<span class="hljs-symbol">int</span></span> <span class="hljs-symbol">high</span>)&#123;<br>    SET&lt;KEY,OTHER&gt; tmp = a[low];<br>    <span class="hljs-keyword">do</span>&#123;<br>        <span class="hljs-keyword">while</span>(low &lt; high &amp;&amp; a[high].KEY &gt;= tmp.KEY)&#123;<br>            high --;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(low &lt; high)&#123;<br>            a[low] = a[high];<br>            ++ low;<br>        &#125;<br>        <span class="hljs-keyword">while</span>(low &lt; high &amp;&amp; a[low].KEY &lt;= tmp.KEY)&#123;<br>            low ++;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(low &lt; high)&#123;<br>            a[high] = a[low];<br>            high --;<br>        &#125;<br>    &#125;<span class="hljs-keyword">while</span>(low != high);<br>    a[low] = tmp;<br>    <span class="hljs-keyword">return</span> low;<br>&#125; <br></code></pre></td></tr></table></figure>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">template&lt;<span class="hljs-keyword">class</span> <span class="hljs-symbol">KEY,<span class="hljs-symbol">class</span></span> <span class="hljs-symbol">OTHER</span>&gt;<br><span class="hljs-symbol">void</span> <span class="hljs-symbol">quick_sort</span>(<span class="hljs-symbol">SET</span>&lt;<span class="hljs-symbol">KEY,<span class="hljs-symbol">OTHER</span></span>&gt; <span class="hljs-symbol">a</span>[],<span class="hljs-symbol">int</span> <span class="hljs-symbol">low,<span class="hljs-symbol">int</span></span> <span class="hljs-symbol">high</span>)&#123;<br>    <span class="hljs-built_in">int</span> mid;<br>    <span class="hljs-keyword">if</span>(low &gt;= high)&#123;<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>    mid = divide(a,low,high);<br>    quick_sort(a,low,mid - <span class="hljs-number">1</span>);<br>    quick_sort(a,mid + <span class="hljs-number">1</span>,high);<br>&#125;<br></code></pre></td></tr></table></figure>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">template&lt;<span class="hljs-keyword">class</span> <span class="hljs-symbol">KEY,<span class="hljs-symbol">class</span></span> <span class="hljs-symbol">OTHER</span>&gt;<br><span class="hljs-symbol">void</span> <span class="hljs-symbol">quicksort</span>(<span class="hljs-symbol">SET</span>&lt;<span class="hljs-symbol">KEY,<span class="hljs-symbol">OTHER</span></span>&gt; <span class="hljs-symbol">a</span>[],<span class="hljs-symbol">int</span> <span class="hljs-symbol">size</span>)&#123;<br>    quick_sort(a,<span class="hljs-number">0</span>,size - <span class="hljs-number">1</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-<p><strong>快速排序的性能分析</strong>：（递归函数时间性能分析）<br>
-T(N) = T(i) + T(N - i - 1) + c(N)<br>
-T(0) = T(1) = 1</p>
-<p><strong>快排的最坏情况</strong>：选择的元素最大or最小<br>
-T(N) = T(N - 1) +  c(N)<br>
-T(N - 1) = T(N - 2) + c(N - 1)<br>
-…<br>
-T(2) = T(1) + c(2)</p>
-<p>T(N) = T(1) + c(2 + 3 + … + N) = O($N^2$)</p>
-<p><strong>快排的最好情况</strong>：分成等长的2段<br>
-T(N) = 2T(N/2) + cN<br>
-将等式两边同时除N，可得：<br>
-T(N)/N = T(N/2)/(N/2) + c<br>
-T(N/2)/(N/2) = T(N/4)/(N/4) + c<br>
-…<br>
-T(2)/2 = T(1)/1 + c</p>
-<p>即：T(N) = cnlogn + n = O(nlogn)</p>
-<p><strong>平均情况分析</strong>：<br>
-T(N) = 2(T(0) + … + T(N - 1))/N + cN<br>
-经过数列计算可得：T(N) = O(nlogn)</p>
+                <h4 id="Before：久违的数理逻辑课！上了7节课终于觉得有点入门了，还是挺有意思的。周四下午闪击南京，周五下午又闪击回来。虽然只有1天，但很开心在这短短的20个小时内帮助了不少人（都是无意间）。我要永远做个善良的人！">Before：久违的数理逻辑课！上了7节课终于觉得有点入门了，还是挺有意思的。周四下午闪击南京，周五下午又闪击回来。虽然只有1天，但很开心在这短短的20个小时内帮助了不少人（都是无意间）。我要永远做个善良的人！</h4>
+<h1>Mathematical Logic 7 Completeness 1</h1>
+<p>我们继续完备性的证明！我们知道，要证明一阶逻辑的完备性，我们只需要证明：</p>
+<p>Given a consisitent $\Phi$,it suffices to construct a term model $\mathfrak{I}^{\Phi}$ = ($\mathfrak{T}<sup>{\Phi},\mathfrak{\beta}</sup>{\Phi}$) such that:<br>
+$\mathfrak{I}^{\Phi}$ $\models$ $\varphi$ $\iff$ $\Phi$ $\vdash$ $\varphi$.</p>
+<p>昨晚室友问我为了体现完备性，就是要证明$\Phi$ $\models$ $\varphi$, $\Phi$ $\models$ $\varphi$ 难道不是在说对于任何一个$\Phi$ 上的模型，都能使$\varphi$为真吗？但是这里不是只找了一个模型吗？我想这应该是由于<strong>Henkin’s Term Model</strong>的特殊性，但这个留到后几节课再讨论了。</p>
+<h2 id="Henkin’s-Term-Model-Recall-模型回顾">Henkin’s Term Model Recall 模型回顾</h2>
+<p>首先引入等价类的概念：<br>
+Let $t_1,t_2$ $\in$ $T^S$.Then $t_1$ ~ $t_2$ if $\Phi$ $\vdash$ $t_1\equiv t_2$.</p>
+<p>For every t $\in$ $T^S$ we define:<br>
+$\overline{t}$ := {t’ $\in$ $T^S$ |t’ ~ t}</p>
+<p><strong>Definition</strong><br>
+The term structure for (\Phi), denoted by (\mathfrak{I}^{\Phi}), is defined as follows.</p>
+<ol>
+<li class="lvl-3">
+<p><strong>Universe</strong>:<br>
+[<br>
+T^{\Phi} := {\overline{t} \mid t \in T^S}.<br>
+]</p>
+</li>
+<li class="lvl-3">
+<p><strong>Relation symbols</strong>:<br>
+For every (n)-ary relation symbol (R \in S), and (\overline{t_1}, \ldots, \overline{t_n} \in T^{\Phi}),<br>
+[<br>
+(\overline{t_1}, \ldots, \overline{t_n}) \in R<sup>{\mathfrak{I}</sup>{\Phi}} \quad \text{if} \quad \Phi \vdash R t_1 \ldots t_n.<br>
+]</p>
+</li>
+<li class="lvl-3">
+<p><strong>Function symbols</strong>:<br>
+For every (n)-ary function symbol (f \in S), and (\overline{t_1}, \ldots, \overline{t_n} \in T^{\Phi}),<br>
+[<br>
+f<sup>{\mathfrak{I}</sup>{\Phi}} (\overline{t_1}, \ldots, \overline{t_n}) := f \overline{t_1} \cdots t_n.<br>
+]</p>
+</li>
+<li class="lvl-3">
+<p><strong>Constants</strong>:<br>
+For every constant (c \in S),<br>
+[<br>
+c<sup>{\mathfrak{I}</sup>{\Phi}} := \overline{c}.<br>
+]</p>
+</li>
+</ol>
+<p>For every variable $v_i$,we let:<br>
+\mathfrak{\beta}^{\Phi}($v_i$) := $\overline{v_i}$</p>
+<h2 id="对于原子公式成立-atomic-varphi">对于原子公式成立 atomic $\varphi$</h2>
+<p><strong>Lemma 5</strong></p>
+<p>(i) For any ( t \in T^S ),<br>
+[<br>
+\mathfrak{I}^\Phi(t) = \bar{t}.<br>
+]</p>
+<p>(ii) For every atomic (\varphi),<br>
+[<br>
+\mathfrak{I}^\Phi \models \varphi \iff \Phi \vdash \varphi.<br>
+]</p>
+<p>(i)的证明，我们<strong>对项t进行归纳</strong>：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>t = $v_i$ is a variable</p>
+</li>
+<li class="lvl-2">
+<p>t = c is a constant</p>
+</li>
+<li class="lvl-2">
+<p>t = f$t_1…t_n$</p>
+</li>
+</ul>
+<p>根据定义可证</p>
+<p>(ii)的证明，对2个原子公式进行分类讨论：<br>
+[<br>
+\mathfrak{I}^\Phi \models t_1 \equiv t_2<br>
+]<br>
+[<br>
+\mathfrak{I}^\Phi \models Rt_1…t_n<br>
+]<br>
+利用(i)中所证，可证</p>
+<h2 id="Consistent-Negation-Complete-Contains-Witness">Consistent,Negation Complete,Contains Witness</h2>
+<h3 id="Lemma-8">Lemma 8</h3>
+<p>先看一个引理：</p>
+<h1>Lemma 8</h1>
+<p>Let (\varphi) be an (S)-formula and (x_1, \ldots, x_n) pairwise distinct variables. Then</p>
+<h3 id="i">(i)</h3>
+<p>[<br>
+\mathfrak{I}^\Phi \models \exists x_1 \ldots \exists x_n \varphi<br>
+]<br>
+<strong>if and only if</strong> there are (S)-terms (t_1, \ldots, t_n) such that<br>
+[<br>
+\mathfrak{I}^\Phi \models \varphi \frac{t_1 \ldots t_n}{x_1 \ldots x_n}.<br>
+]</p>
+<h3 id="ii">(ii)</h3>
+<p>[<br>
+\mathfrak{I}^\Phi \models \forall x_1 \ldots \forall x_n \varphi<br>
+]<br>
+<strong>if and only if</strong> for all (S)-terms (t_1, \ldots, t_n) we have<br>
+[<br>
+\mathfrak{I}^\Phi \models \varphi \frac{t_1 \ldots t_n}{x_1 \ldots x_n}.<br>
+]</p>
+<p>由替换引理等可证</p>
+<h3 id="Consistent">Consistent</h3>
+<p><strong>Definition</strong><br>
+<strong>$\Phi$ is consistent if there is no $\varphi$ such that both $\Phi$ ⊢ $\varphi$ and $\Phi$ ⊢ $\neg$$\varphi$. Otherwise,$\Phi$ is inconsistent.</strong></p>
+<h3 id="Negation-Complete">Negation Complete</h3>
+<p><strong>Definition</strong><br>
+A set (\Phi) is <em>negation complete</em> if for every (S)-formula (\varphi):<br>
+[<br>
+\Phi \vdash \varphi \text{ or } \Phi \vdash \neg \varphi.<br>
+]</p>
+<p>通俗的说，就是如果$\Phi$ 证不出来$\varphi$，那就一定能证出来$\neg \varphi$；证不出来$\neg \varphi$，那就一定能证出来$\varphi$</p>
+<h3 id="Contains-Witness">Contains Witness</h3>
+<h1>Definition</h1>
+<p>🔍 A set $\Phi$ <strong>contains witnesses</strong> if for every $\varphi \in L^S$ and every variable $x$, there exists a term $t \in T^S$ such that:</p>
+<p>$<br>
+\Phi \vdash \left( \exists x \varphi \to \varphi \frac{t}{x} \right).<br>
+$</p>
+<h2 id="Henkin’s-Theorem-Proof">Henkin’s Theorem Proof</h2>
+<p>First,还是先来证明一个引理：</p>
+<h3 id="Lemma-9">Lemma 9</h3>
+<p>Assume that $\Phi$ is <strong>consistent</strong>, <strong>negation complete</strong>, and <strong>contains witnesses</strong>. Then for all $S$-formulas $\varphi$ and $\psi$:</p>
+<p>(i)<br>
+$\Phi \vdash \varphi$ if and only if $\Phi \not\vdash \neg \varphi$.</p>
+<p>(ii)<br>
+$\Phi \vdash (\varphi \vee \psi)$ if and only if $\Phi \vdash \varphi$ or $\Phi \vdash \psi$.</p>
+<p>(iii)<br>
+$\Phi \vdash \exists x \varphi$ if and only if there is a term $t \in T^S$ such that $\Phi \vdash \varphi \frac{t}{x}$.</p>
+<p>(i)向右通过consistent定义说明，向左通过negation complete定义说明<br>
+(ii)向左利用V-intro by succedent证明，向右证明如下：<br>
+Assume that $\Phi \vdash \neg \varphi$<br>
+<strong>Proof Steps:</strong><br>
+<img src="/img/Lemma9.png" srcset="/img/loading.gif" lazyload alt="Lemma 9(ii)Proof"></p>
+<p>(iii)向右可通过Modus ponens证明，向左可通过$\exist$-intro in succedent证明</p>
+<h3 id="Henkin’s-Theorem">Henkin’s Theorem</h3>
+<p>由引理证明起来还是比较显然的：<br>
+<img src="/img/Henkin.png" srcset="/img/loading.gif" lazyload alt="Henkin's Theorem Proof"></p>
+<p>注意，这里对公式的归纳是对公式的<strong>connective rank</strong>归纳，保证要证的公式都更长：<br>
+<strong>Rank Definition:</strong><br>
+$<br>
+rk(\varphi) :=<br>
+\begin{cases}<br>
+0 &amp; \text{if } \varphi \text{ is atomic,} \<br>
+1 + rk(\psi) &amp; \text{if } \varphi = \neg\psi, \<br>
+1 + rk(\psi_1) + rk(\psi_2) &amp; \text{if } \varphi = (\psi_1 \lor \psi_2), \<br>
+1 + rk(\psi) &amp; \text{if } \varphi = \exists x \psi.<br>
+\end{cases}<br>
+$</p>
 
                 
               </div>
@@ -371,7 +462,7 @@ T(N) = 2(T(0) + … + T(N - 1))/N + cN<br>
     
       <span class="category-chain">
         
-  <a href="/categories/Data-Structure/" class="category-chain-item">Data Structure</a>
+  <a href="/categories/Mathematical-Logic/" class="category-chain-item">Mathematical Logic</a>
   
   
 
@@ -386,15 +477,7 @@ T(N) = 2(T(0) + … + T(N - 1))/N + cN<br>
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Data-Structure/" class="print-no-link">#Data Structure</a>
-      
-        <a href="/tags/C/" class="print-no-link">#C++</a>
-      
-        <a href="/tags/Algorithm/" class="print-no-link">#Algorithm</a>
-      
-        <a href="/tags/Time-and-Space-Complexity/" class="print-no-link">#Time and Space Complexity</a>
-      
-        <a href="/tags/Sorting/" class="print-no-link">#Sorting</a>
+        <a href="/tags/Mathematical-Logic/" class="print-no-link">#Mathematical Logic</a>
       
     </div>
   
@@ -406,8 +489,8 @@ T(N) = 2(T(0) + … + T(N - 1))/N + cN<br>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>数据结构 8 Sorting</div>
-      <div>http://example.com/2025/04/10/数据结构8/</div>
+      <div>Mathematical Logic 7 Completeness 1</div>
+      <div>http://example.com/2025/04/12/Mathematical-Logic7/</div>
     </div>
     <div class="license-meta">
       
@@ -419,13 +502,13 @@ T(N) = 2(T(0) + … + T(N - 1))/N + cN<br>
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>April 10, 2025</div>
+          <div>April 12, 2025</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>April 10, 2025</div>
+          <div>April 12, 2025</div>
         </div>
       
       
@@ -456,18 +539,12 @@ T(N) = 2(T(0) + … + T(N - 1))/N + cN<br>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/04/12/Mathematical-Logic7/" title="Mathematical Logic 7 Completeness 1">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Mathematical Logic 7 Completeness 1</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/04/07/Rust-RefCell%E6%9C%BA%E5%88%B6/" title="Rust RefCell机制">
-                        <span class="hidden-mobile">Rust RefCell机制</span>
+                      <a href="/2025/04/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%848/" title="数据结构 8 Sorting">
+                        <span class="hidden-mobile">数据结构 8 Sorting</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
