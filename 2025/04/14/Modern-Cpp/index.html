@@ -21,13 +21,13 @@
   
     <meta name="description" content="Before：上机课偶遇modern cpp，拼劲全力无法战胜 Modern Cpp Overview！ 关于C++的刻板印象是什么？😋 笔者在学习了Java（以及相当烂的py）后，深深地感受到了C++语法规则以及一些奇奇怪怪的规定的复杂😇😇。总结一下C++：  Old, out-dated, less-frequently used Unsafe （特别对，救命啊） Hard to use">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Modern Cpp ( upding... )">
+<meta property="og:title" content="Modern Cpp">
 <meta property="og:url" content="http://example.com/2025/04/14/Modern-Cpp/index.html">
 <meta property="og:site_name" content="JaneZ&#39;s Learning Space">
 <meta property="og:description" content="Before：上机课偶遇modern cpp，拼劲全力无法战胜 Modern Cpp Overview！ 关于C++的刻板印象是什么？😋 笔者在学习了Java（以及相当烂的py）后，深深地感受到了C++语法规则以及一些奇奇怪怪的规定的复杂😇😇。总结一下C++：  Old, out-dated, less-frequently used Unsafe （特别对，救命啊） Hard to use">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-04-14T00:27:26.000Z">
-<meta property="article:modified_time" content="2025-04-15T06:30:22.735Z">
+<meta property="article:modified_time" content="2025-04-17T12:39:03.862Z">
 <meta property="article:author" content="Yihan Zhu">
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="Modern Cpp">
@@ -37,7 +37,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Modern Cpp ( upding... ) - JaneZ&#39;s Learning Space</title>
+  <title>Modern Cpp - JaneZ&#39;s Learning Space</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -218,7 +218,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Modern Cpp ( upding... )"></span>
+            <span id="subtitle" data-typed-text="Modern Cpp"></span>
           
         </div>
 
@@ -241,7 +241,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          916 words
+          2.3k words
         
       </span>
     
@@ -252,7 +252,7 @@
         
         
         
-          11 mins
+          26 mins
         
       </span>
     
@@ -298,7 +298,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Modern Cpp ( upding... )</h1>
+            <h1 id="seo-header">Modern Cpp</h1>
             
             
               <div class="markdown-body">
@@ -370,7 +370,64 @@ Attach a test:</p>
 <p>Output:</p>
 <figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">2 </span><span class="hljs-number">4</span> <span class="hljs-number">6</span> <span class="hljs-number">8</span> <span class="hljs-number">10</span><br></code></pre></td></tr></table></figure>
 <h2 id="Important-Part-Smart-Pointers-智能指针">Important Part: Smart Pointers!智能指针</h2>
-<p>Wait to be updated…</p>
+<h3 id="unique-ptr">unique_ptr</h3>
+<p>一个Move Only的智能指针，只可以拥有一个拥有者。<br>
+Attach an example:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;memory&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span><br><br><span class="hljs-comment">// 定义一个简单的类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">MyClass</span>(<span class="hljs-type">const</span> std::string&amp; name) : <span class="hljs-built_in">name_</span>(name) &#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;MyClass created with name: &quot;</span> &lt;&lt; name_ &lt;&lt; std::endl;<br>    &#125;<br>    ~<span class="hljs-built_in">MyClass</span>() &#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;MyClass destroyed with name: &quot;</span> &lt;&lt; name_ &lt;&lt; std::endl;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Print</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>&#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;Name: &quot;</span> &lt;&lt; name_ &lt;&lt; std::endl;<br>    &#125;<br><br><span class="hljs-keyword">private</span>:<br>    std::string name_;<br>&#125;;<br><br><span class="hljs-comment">// 函数接受一个 unique_ptr 并打印内容</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">PrintUniquePtr</span><span class="hljs-params">(std::unique_ptr&lt;MyClass&gt; ptr)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (ptr) &#123;<br>        ptr-&gt;<span class="hljs-built_in">Print</span>();<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;unique_ptr is null&quot;</span> &lt;&lt; std::endl;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 函数返回一个 unique_ptr</span><br><span class="hljs-function">std::unique_ptr&lt;MyClass&gt; <span class="hljs-title">CreateUniquePtr</span><span class="hljs-params">(<span class="hljs-type">const</span> std::string&amp; name)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> std::<span class="hljs-built_in">make_unique</span>&lt;MyClass&gt;(name);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-comment">// 创建一个 unique_ptr</span><br>    std::unique_ptr&lt;MyClass&gt; myPtr = <span class="hljs-built_in">CreateUniquePtr</span>(<span class="hljs-string">&quot;Kimi&quot;</span>);<br><br>    <span class="hljs-comment">// 使用 unique_ptr</span><br>    myPtr-&gt;<span class="hljs-built_in">Print</span>();<br><br>    <span class="hljs-comment">// 将 unique_ptr 传递给另一个函数</span><br>    <span class="hljs-built_in">PrintUniquePtr</span>(std::<span class="hljs-built_in">move</span>(myPtr));<br><br>    <span class="hljs-comment">// myPtr 已经被移动，现在是空的</span><br>    <span class="hljs-keyword">if</span> (!myPtr) &#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;myPtr is now null&quot;</span> &lt;&lt; std::endl;<br>    &#125;<br><br>    <span class="hljs-comment">// 创建另一个 unique_ptr</span><br>    std::unique_ptr&lt;MyClass&gt; anotherPtr = <span class="hljs-built_in">CreateUniquePtr</span>(<span class="hljs-string">&quot;Moonshot AI&quot;</span>);<br><br>    <span class="hljs-comment">// 使用 unique_ptr 的 reset 方法</span><br>    anotherPtr-&gt;<span class="hljs-built_in">Print</span>();<br>    anotherPtr.<span class="hljs-built_in">reset</span>(); <span class="hljs-comment">// 手动释放资源</span><br>    <span class="hljs-keyword">if</span> (!anotherPtr) &#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;anotherPtr is now null&quot;</span> &lt;&lt; std::endl;<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">MyClass created <span class="hljs-keyword">with</span> <span class="hljs-type">name</span>: Kimi<br><span class="hljs-type">Name</span>: Kimi<br><span class="hljs-type">Name</span>: Kimi<br>MyClass destroyed <span class="hljs-keyword">with</span> <span class="hljs-type">name</span>: Kimi<br>myPtr <span class="hljs-keyword">is</span> now <span class="hljs-keyword">null</span><br>MyClass created <span class="hljs-keyword">with</span> <span class="hljs-type">name</span>: Moonshot AI<br><span class="hljs-type">Name</span>: Moonshot AI<br>MyClass destroyed <span class="hljs-keyword">with</span> <span class="hljs-type">name</span>: Moonshot AI<br>anotherPtr <span class="hljs-keyword">is</span> now <span class="hljs-keyword">null</span><br></code></pre></td></tr></table></figure>
+<h3 id="shared-ptr">shared_ptr</h3>
+<p>基本特性：</p>
+<ul>
+<li>可以有多个所有者，是可拷贝的，但需要注意循环引用问题。</li>
+<li>只有当所有拥有者都释放它时才会销毁（通过引用计数实现）。</li>
+</ul>
+<p><code>shared_ptr</code>的特殊用途<br>
+解决类之间的循环引用：<br>
+如果两个类相互包含对方的对象，会导致编译错误，因为C++需要在编译时知道类的大小。<br>
+使用shared_ptr可以解决这个问题，因为shared_ptr<T>只需要类的声明而不需要定义就可以使用。</p>
+<p>Attach an example:</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs perl"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span></span>;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>&#123;<br>    // 其他方法和成员<br>private:<br>    std::shared_ptr&lt;B&gt; b;<br>&#125;;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span> </span>&#123;<br>    // 其他方法和成员<br>private:<br>    std::shared_ptr&lt;A&gt; a;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h3 id="weak-ptr">weak_ptr</h3>
+<p>在使用智能指针shared_ptr的时候，可能会存在循环引用的问题，例如智能指针a指向智能指针b，智能指针b指向智能指针a。此时两个智能指针的引用计数都不为1，此时存在内存泄露，两个指针指向的内存不会被释放。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;memory&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Node</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    std::shared_ptr&lt;Node&gt; next;<br><br>    <span class="hljs-built_in">Node</span>() &#123; std::cout &lt;&lt; <span class="hljs-string">&quot;Node created\n&quot;</span>; &#125;<br><br>    ~<span class="hljs-built_in">Node</span>() &#123; std::cout &lt;&lt; <span class="hljs-string">&quot;Node destroyed\n&quot;</span>; &#125;<br>&#125;;<br><br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">test_bug_for_shared_ptr</span><span class="hljs-params">()</span> </span>&#123;<br>    std::shared_ptr&lt;Node&gt; ptr1 = std::<span class="hljs-built_in">make_shared</span>&lt;Node&gt;();<br>    std::shared_ptr&lt;Node&gt; ptr2 = std::<span class="hljs-built_in">make_shared</span>&lt;Node&gt;();<br>    ptr1-&gt;next = ptr2;<br>    ptr2-&gt;next = ptr1;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-built_in">test_bug_for_shared_ptr</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs crmsh"><span class="hljs-keyword">Node</span> <span class="hljs-title">created</span><br><span class="hljs-keyword">Node</span> <span class="hljs-title">created</span><br></code></pre></td></tr></table></figure>
+<p><code>weak_ptr</code> 是 C++11 引入的一种智能指针，用于解决 <code>shared_ptr</code> 的循环引用问题。它允许一个对象安全地引用另一个对象，但不会增加引用计数。<br>
+Attach a test:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;memory&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span><br><br><span class="hljs-comment">// 定义一个简单的类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">B</span>; <span class="hljs-comment">// 前置声明</span><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    std::shared_ptr&lt;B&gt; b_ptr;<br>    ~<span class="hljs-built_in">A</span>() &#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;A destroyed&quot;</span> &lt;&lt; std::endl;<br>    &#125;<br>&#125;;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">B</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    std::weak_ptr&lt;A&gt; a_ptr; <span class="hljs-comment">// 使用 weak_ptr 避免循环引用</span><br>    ~<span class="hljs-built_in">B</span>() &#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;B destroyed&quot;</span> &lt;&lt; std::endl;<br>    &#125;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-comment">// 创建两个对象，避免循环引用</span><br>    &#123;<br>        std::shared_ptr&lt;A&gt; a = std::<span class="hljs-built_in">make_shared</span>&lt;A&gt;();<br>        std::shared_ptr&lt;B&gt; b = std::<span class="hljs-built_in">make_shared</span>&lt;B&gt;();<br><br>        <span class="hljs-comment">// A 持有 B 的 shared_ptr</span><br>        a-&gt;b_ptr = b;<br><br>        <span class="hljs-comment">// B 持有 A 的 weak_ptr</span><br>        b-&gt;a_ptr = a;<br><br>        <span class="hljs-comment">// 当作用域结束时，a 和 b 会被正确销毁</span><br>    &#125; <span class="hljs-comment">// 这里不会导致内存泄漏</span><br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">A</span> destroyed<br><span class="hljs-selector-tag">B</span> destroyed<br></code></pre></td></tr></table></figure>
+<h2 id="std-any">std::any</h2>
+<p>功能：<br>
+允许在C++中以类似弱类型语言的方式使用变量。<br>
+可以存储任何类型的数据，并在需要时进行类型转换。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;any&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span> </span>&#123;<br>    std::any x = <span class="hljs-number">114514</span>; <span class="hljs-comment">// 1</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">auto</span> ptr = std::<span class="hljs-built_in">any_cast</span>&lt;<span class="hljs-type">int</span>&gt;(&amp;x); ptr != <span class="hljs-literal">nullptr</span>) &#123; <span class="hljs-comment">// 2</span><br>        std::cout &lt;&lt; *ptr &lt;&lt; std::endl; <span class="hljs-comment">// 3</span><br>    &#125;<br>    x = <span class="hljs-string">&quot;qwerty&quot;</span>; <span class="hljs-comment">// 4</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">auto</span> ptr = std::<span class="hljs-built_in">any_cast</span>&lt;<span class="hljs-type">int</span>&gt;(&amp;x); ptr != <span class="hljs-literal">nullptr</span>) &#123; <span class="hljs-comment">// 5</span><br>        std::cout &lt;&lt; (*ptr) + <span class="hljs-number">114514</span> &lt;&lt; std::endl; <span class="hljs-comment">// 6</span><br>    &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-built_in">foo</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs">114514<br><br></code></pre></td></tr></table></figure>
+<p><code>auto ptr = std::any_cast&lt;int&gt;(&amp;x)</code>会判断ptr是否可以转化为一个int*类型的指针，如果可以就做取地址，如果不可以就变成<code>nullptr</code></p>
+<h2 id="std-optional-and-std-variant">std::optional and std::variant</h2>
+<h3 id="std-optional">std::optional</h3>
+<ul>
+<li>可以存储类型T的值或者什么也不存储（类似于指针，但更安全）。</li>
+<li>用于表示可选值，避免使用裸指针带来的空指针问题。</li>
+</ul>
+<p>Attach a test:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;optional&gt;</span></span><br><br><span class="hljs-function">std::optional&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">getValue</span><span class="hljs-params">(<span class="hljs-type">bool</span> returnValue)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (returnValue) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">42</span>; <span class="hljs-comment">// 返回一个值</span><br>    &#125;<br>    <span class="hljs-keyword">return</span> std::<span class="hljs-literal">nullopt</span>; <span class="hljs-comment">// 返回空</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">auto</span> value = <span class="hljs-built_in">getValue</span>(<span class="hljs-literal">true</span>);<br>    <span class="hljs-keyword">if</span> (value) &#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;Value: &quot;</span> &lt;&lt; *value &lt;&lt; std::endl; <span class="hljs-comment">// 输出 42</span><br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;No value&quot;</span> &lt;&lt; std::endl;<br>    &#125;<br><br>    value = <span class="hljs-built_in">getValue</span>(<span class="hljs-literal">false</span>);<br>    <span class="hljs-keyword">if</span> (value) &#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;Value: &quot;</span> &lt;&lt; *value &lt;&lt; std::endl; <span class="hljs-comment">// 输出 42</span><br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;No value&quot;</span> &lt;&lt; std::endl;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">Value:</span> <span class="hljs-number">42</span><br><span class="hljs-literal">No</span> <span class="hljs-string">value</span><br></code></pre></td></tr></table></figure>
+<h3 id="std-variant">std::variant</h3>
+<ul>
+<li>可以存储多种类型的数据（类似于union，但使用起来更方便）。</li>
+<li>用于存储不同类型的数据，并且可以在运行时安全地访问和转换。</li>
+</ul>
+<p>Attach an example:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;variant&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span><br><br><span class="hljs-comment">// 定义一个 std::variant，可以存储 int 或 std::string</span><br><span class="hljs-keyword">using</span> MyVariant = std::variant&lt;<span class="hljs-type">int</span>, std::string&gt;;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">printVariant</span><span class="hljs-params">(<span class="hljs-type">const</span> MyVariant&amp; v)</span> </span>&#123;<br>    <span class="hljs-comment">// 使用 std::visit 访问 std::variant</span><br>    std::<span class="hljs-built_in">visit</span>([](<span class="hljs-type">const</span> <span class="hljs-keyword">auto</span>&amp; value) &#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;Value: &quot;</span> &lt;&lt; value &lt;&lt; std::endl;<br>    &#125;, v);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-comment">// 创建一个 std::variant，初始值为 int</span><br>    MyVariant v1 = <span class="hljs-number">42</span>;<br>    <span class="hljs-built_in">printVariant</span>(v1); <span class="hljs-comment">// 输出: Value: 42</span><br><br>    <span class="hljs-comment">// 修改 std::variant 的值为 std::string</span><br>    v1 = std::<span class="hljs-built_in">string</span>(<span class="hljs-string">&quot;Hello, World!&quot;</span>);<br>    <span class="hljs-built_in">printVariant</span>(v1); <span class="hljs-comment">// 输出: Value: Hello, World!</span><br><br>    <span class="hljs-comment">// 创建一个 std::variant，初始值为 std::string</span><br>    MyVariant v2 = <span class="hljs-string">&quot;Another string&quot;</span>;<br>    <span class="hljs-built_in">printVariant</span>(v2); <span class="hljs-comment">// 输出: Value: Another string</span><br><br>    <span class="hljs-comment">// 修改 std::variant 的值为 int</span><br>    v2 = <span class="hljs-number">123</span>;<br>    <span class="hljs-built_in">printVariant</span>(v2); <span class="hljs-comment">// 输出: Value: 123</span><br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="Reference">Reference</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://xiyuanyang-code.github.io/posts/Modern-C/">YXY 的Modern Cpp 学习笔记</a></li>
+<li>Kimi AI（发现了kimi的好）</li>
+</ul>
 
                 
               </div>
@@ -418,7 +475,7 @@ Attach a test:</p>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Modern Cpp ( upding... )</div>
+      <div>Modern Cpp</div>
       <div>http://example.com/2025/04/14/Modern-Cpp/</div>
     </div>
     <div class="license-meta">
@@ -437,7 +494,7 @@ Attach a test:</p>
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>April 15, 2025</div>
+          <div>April 17, 2025</div>
         </div>
       
       
@@ -468,9 +525,9 @@ Attach a test:</p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/04/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%849/" title="数据结构9">
+                      <a href="/2025/04/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%849/" title="数据结构 9 Disjoint Set">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">数据结构9</span>
+                        <span class="hidden-mobile">数据结构 9 Disjoint Set</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
