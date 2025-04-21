@@ -1,0 +1,801 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/JaneIcon.png">
+  <link rel="icon" href="/img/JaneIcon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yihan Zhu">
+  <meta name="keywords" content="SJTU Student CS Maths Life">
+  
+    <meta name="description" content="Before：Long time no see！最近强度激增，B+树de了一整天，还有MLE和TLE，感觉是某个地方写爆栈了😢数理逻辑作业还没写完，下周还要复习数分。 upd：昨天晚上过了，打算51把管理系统速通了，挑点bonus写一下（其实想全写但显然没空），弥补一下bookstore啥bonus都没写的遗憾。希望周五数分顺利！ Algorithm Of Data Structure —— S">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Segment Tree">
+<meta property="og:url" content="http://example.com/2025/04/20/AlgorithmOfDS3/index.html">
+<meta property="og:site_name" content="JaneZ&#39;s Learning Space">
+<meta property="og:description" content="Before：Long time no see！最近强度激增，B+树de了一整天，还有MLE和TLE，感觉是某个地方写爆栈了😢数理逻辑作业还没写完，下周还要复习数分。 upd：昨天晚上过了，打算51把管理系统速通了，挑点bonus写一下（其实想全写但显然没空），弥补一下bookstore啥bonus都没写的遗憾。希望周五数分顺利！ Algorithm Of Data Structure —— S">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/%E7%BA%BF%E6%AE%B5%E6%A0%91.png">
+<meta property="og:image" content="http://example.com/img/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%AD%98%E5%82%A8.png">
+<meta property="og:image" content="http://example.com/img/%E7%BA%BF%E6%AE%B5%E6%A0%91%E6%9F%A5%E8%AF%A2.png">
+<meta property="article:published_time" content="2025-04-20T08:30:07.000Z">
+<meta property="article:modified_time" content="2025-04-21T09:18:16.175Z">
+<meta property="article:author" content="Yihan Zhu">
+<meta property="article:tag" content="Data Structure">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="Segment Tree">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/%E7%BA%BF%E6%AE%B5%E6%A0%91.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Segment Tree - JaneZ&#39;s Learning Space</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/path/to/katex.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>JaneZ&#39;s Learning Space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/LA.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Segment Tree"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-04-20 16:30" pubdate>
+          April 20, 2025 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          890 words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Segment Tree</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h4 id="Before：Long-time-no-see！最近强度激增，B-树de了一整天，还有MLE和TLE，感觉是某个地方写爆栈了😢数理逻辑作业还没写完，下周还要复习数分。">Before：Long time no see！最近强度激增，B+树de了一整天，还有MLE和TLE，感觉是某个地方写爆栈了😢数理逻辑作业还没写完，下周还要复习数分。</h4>
+<h4 id="upd：昨天晚上过了，打算51把管理系统速通了，挑点bonus写一下（其实想全写但显然没空），弥补一下bookstore啥bonus都没写的遗憾。希望周五数分顺利！">upd：昨天晚上过了，打算51把管理系统速通了，挑点bonus写一下（其实想全写但显然没空），弥补一下bookstore啥bonus都没写的遗憾。希望周五数分顺利！</h4>
+<h1>Algorithm Of Data Structure —— Segment Tree</h1>
+<h2 id="Definition">Definition</h2>
+<ul>
+<li>二叉树</li>
+<li>每一个叶子节点维护原序列的信息</li>
+<li>每个中间结点维护一段区间信息</li>
+<li>通过子节点的高效信息合并得到中间节点的区间信息</li>
+</ul>
+<p>An example of Segment Tree:<br>
+<img src="/img/%E7%BA%BF%E6%AE%B5%E6%A0%91.png" srcset="/img/loading.gif" lazyload alt="Simple Segment Tree"></p>
+<h2 id="Basic-Rules">Basic Rules</h2>
+<ul>
+<li>Apparently,线段树是一棵完全二叉树，故树高 h = <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>2</mn></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">log_2 n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.69444em;"></span><span class="strut bottom" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">o</span><span class="mord"><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.03588em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathit">n</span></span></span></span></li>
+<li>结点总数约为 2n，故O(n) = 2n</li>
+<li>每个结点代表一个区间[l,r]，并维护该区间的信息，如区间内的数字和、最大(小)值等。该区间信息由两个分别代表[l, mid],[mid+1, r]的子结点合并而来。</li>
+</ul>
+<h2 id="Storage">Storage</h2>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs perl"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SegmentTree</span></span>&#123;<br>    struct TreeNode&#123;<br>        <span class="hljs-keyword">int</span> l,r; <span class="hljs-regexp">//</span>左右端点<br>        <span class="hljs-keyword">int</span> lson,rson; <span class="hljs-regexp">//</span>左右儿子编号<br>        <span class="hljs-keyword">int</span> data; <span class="hljs-regexp">//</span>关键数据<br>    &#125;nodes[maxN &lt;&lt; <span class="hljs-number">2</span>];<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>问题来了，存树的数组应该开多大？<br>
+通过一些数学证明，我们可以得到，数组应该开成 <strong>4n</strong>。</p>
+<h2 id="Build-Tree">Build Tree</h2>
+<p><img src="/img/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%AD%98%E5%82%A8.png" srcset="/img/loading.gif" lazyload alt="Build Segment Tree"></p>
+<p>Example：求区间最大值</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">void push_up(int <span class="hljs-keyword">node</span><span class="hljs-title">)&#123;</span><br><span class="hljs-title">    auto</span> &amp;cur = nodes[<span class="hljs-keyword">node</span><span class="hljs-title">];</span><br><span class="hljs-title">    cur</span>.data = max(nodes[cur.lson],nodes[cur.rson]);<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">void build(int <span class="hljs-keyword">node</span><span class="hljs-title">,int</span> l,int r)&#123;<br>    auto &amp;cur = nodes[<span class="hljs-keyword">node</span><span class="hljs-title">];</span><br><span class="hljs-title">    cur</span>.l = l;<br>    cur.r = r;<br>    if(l == r)&#123;<br>        cur.data = data[l];<br>        return;<br>    &#125;<br>    auto mid = (l + r) / <span class="hljs-number">2</span>;<br>    cur.lson = <span class="hljs-number">2</span> * <span class="hljs-keyword">node</span><span class="hljs-title">;</span><br><span class="hljs-title">    cur</span>.rson = <span class="hljs-number">2</span> * <span class="hljs-keyword">node</span> <span class="hljs-title">+ 1</span>;<br>    build(cur.lson,l,mid);<br>    build(cur.rson,mid + <span class="hljs-number">1</span>,r);<br>    push_up(<span class="hljs-keyword">node</span><span class="hljs-title">);</span><br><span class="hljs-title">&#125;</span><br></code></pre></td></tr></table></figure>
+<h2 id="Query">Query</h2>
+<p>A Good Picture!<br>
+<img src="/img/%E7%BA%BF%E6%AE%B5%E6%A0%91%E6%9F%A5%E8%AF%A2.png" srcset="/img/loading.gif" lazyload alt="Query"></p>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs excel"><span class="hljs-built_in">int</span> query(<span class="hljs-built_in">int</span> node,<span class="hljs-built_in">int</span> l,<span class="hljs-built_in">int</span> r)&#123;<br>    auto &amp;cur = nodes[node];<br>    <span class="hljs-built_in">if</span>(l &lt;= cur.l &amp;&amp; cur.r &lt;= r)&#123;<br>        return cur.data;<br>    &#125;<br>    <span class="hljs-built_in">int</span> res = <span class="hljs-number">0</span>;<br>    <span class="hljs-built_in">int</span> <span class="hljs-built_in">mid</span> = (l + r)/<span class="hljs-number">2</span>;<br>    <span class="hljs-built_in">if</span>(l &lt;= <span class="hljs-built_in">mid</span>)&#123;<br>        res = <span class="hljs-built_in">max</span>(res,query(cur.lson,l,r));<br>    &#125;<br>    <span class="hljs-built_in">if</span>(r &gt; <span class="hljs-built_in">mid</span>)&#123;<br>        res = <span class="hljs-built_in">max</span>(res,query(cur.rson,l,r));<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="Single-Point-Update">Single Point Update</h2>
+<figure class="highlight hsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs hsp">void update(<span class="hljs-keyword">int</span> node,<span class="hljs-keyword">int</span> <span class="hljs-keyword">pos</span>,<span class="hljs-keyword">int</span> val)&#123;<br>    auto &amp;cur = nodes[node]<span class="hljs-comment">;</span><br>    <span class="hljs-keyword">if</span>(cur.lson == cur.rson)&#123;<br>        cur.data = val<span class="hljs-comment">;</span><br>        <span class="hljs-keyword">return</span><span class="hljs-comment">;</span><br>    &#125;<br>    <span class="hljs-keyword">int</span> mid = (cur.l + cur.r)/<span class="hljs-number">2</span><span class="hljs-comment">;</span><br>    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">pos</span> &lt;= mid)&#123;<br>        update(cur.lson,<span class="hljs-keyword">pos</span>,val)<span class="hljs-comment">;</span><br>    &#125;<br>    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">pos</span> &gt; mid)&#123;<br>        update(cur.rson,<span class="hljs-keyword">pos</span>,val)<span class="hljs-comment">;</span><br>    &#125;<br>    push_up(node)<span class="hljs-comment">;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="Range-Update">Range Update</h2>
+<p>区间查询的核心思想：区间信息上放<br>
+复杂度：O(logN)</p>
+<p>区间修改能不能也使用相同的思想？<br>
+若将区间 [l, r] 内元素都加上某个值:</p>
+<ul>
+<li>若维护最值，直接 cur.data+=val</li>
+<li>若维护区间和，则 cur.data+=(r −l+1)∗ val <br>
+发现：有时我们会对整棵子树做同样的操作</li>
+</ul>
+<p>Solution: Lazy Tag!</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs perl"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SegmentTree</span></span>&#123;<br>    struct TreeNode&#123;<br>        <span class="hljs-keyword">int</span> l,r; <span class="hljs-regexp">//</span>左右端点<br>        <span class="hljs-keyword">int</span> lson,rson; <span class="hljs-regexp">//</span>左右儿子编号<br>        <span class="hljs-keyword">int</span> lazy_tag;<br>        <span class="hljs-keyword">int</span> data; <span class="hljs-regexp">//</span>关键数据<br>    &#125;nodes[maxN &lt;&lt; <span class="hljs-number">2</span>];<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs ocaml">void modify(<span class="hljs-built_in">int</span> node,<span class="hljs-built_in">int</span> l,<span class="hljs-built_in">int</span> r,<span class="hljs-built_in">int</span> <span class="hljs-keyword">val</span>)&#123;<br>    auto &amp;cur = nodes[node];<br>    <span class="hljs-keyword">if</span>(l &lt;= cur.l &amp;&amp; cur.r &lt;= r)&#123;<br>        cur.data += <span class="hljs-keyword">val</span>;<br>        cur.lazytag += <span class="hljs-keyword">val</span>;<br>        return;<br>    &#125;<br>    push_down(node);<br>    <span class="hljs-built_in">int</span> mid = (cur.l + cur.r)/<span class="hljs-number">2</span>;<br>    <span class="hljs-keyword">if</span>(l &lt;= mid)&#123;<br>        modify(cur.lson,l,r,<span class="hljs-keyword">val</span>);<br>    &#125;<br>    <span class="hljs-keyword">if</span>(r &gt; mid)&#123;<br>        modify(cur.rson,l,r,<span class="hljs-keyword">val</span>);<br>    &#125;<br>    push_up(node);<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">void push_down(int <span class="hljs-keyword">node</span><span class="hljs-title">)&#123;</span><br><span class="hljs-title">    auto</span> &amp;cur = nodes[<span class="hljs-keyword">node</span><span class="hljs-title">];</span><br><span class="hljs-title">    if</span>(cur.lazytag != <span class="hljs-number">0</span>)&#123;<br>        nodes[cur.lson].data += cur.lazytag;<br>        nodes[cur.rson].data += cur.lazytag;<br>        nodes[cur.lson].lazytag = cur.lazytag;<br>        nodes[cur.rson].lazytag = cur.lazytag;<br>        cur.lazytag = <span class="hljs-number">0</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="Template-Problem">Template Problem</h2>
+<p>已知一个数列，你需要进行下面三种操作：</p>
+<ul>
+<li>将某区间每一个数乘上 x；</li>
+<li>将某区间每一个数加上 x；</li>
+<li>求出某区间每一个数的和。</li>
+</ul>
+<p>(add_tag,mul_tag)------(* k)-----&gt;(add_tag * k,mul_tag * k)<br>
+(add_tag,mul_tag)------(+ k)-----&gt;(add_tag + k,mul_tag)</p>
+<h2 id="Classic-Problem">Classic Problem</h2>
+<p><a target="_blank" rel="noopener" href="http://poj.org/problem?id=3667">POJ 3667 - Hotel</a></p>
+<p>现有一排房间</p>
+<ul>
+<li>询问：是否有连续x个空房间；如果有，就将最靠前的连续x个房间填满</li>
+<li>修改：将任意一段房间清空(可能本来就是空的)</li>
+</ul>
+<p>每个结点维护子树区间内左端极长、右端极长和最长空房间（l_max,r_max,max）<br>
+Tag：full/null/empty</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Algorithms/" class="category-chain-item">Algorithms</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Data-Structure/" class="print-no-link">#Data Structure</a>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
+      
+        <a href="/tags/Algorithm/" class="print-no-link">#Algorithm</a>
+      
+        <a href="/tags/Segment-Tree/" class="print-no-link">#Segment Tree</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Segment Tree</div>
+      <div>http://example.com/2025/04/20/AlgorithmOfDS3/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yihan Zhu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>April 20, 2025</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Updated on</div>
+          <div>April 21, 2025</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/04/19/Mathematical-Logic8/" title="Mathematical-Logic8">
+                        <span class="hidden-mobile">Mathematical-Logic8</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
