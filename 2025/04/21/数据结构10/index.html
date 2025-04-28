@@ -19,24 +19,26 @@
   <meta name="author" content="Yihan Zhu">
   <meta name="keywords" content="SJTU Student CS Maths Life">
   
-    <meta name="description" content="Computer Science &amp; Mathematics &amp; Anything I want to share">
+    <meta name="description" content="Before：Start Of Graphics!虽然并非想象中组合数学里的图论，但，但，但至少是图吧 数据结构 10 图的基本概念 图的定义 多对多的关系 图可以用G&#x3D;(V, E)表示  V是顶点的集合，顶点代表数据元素，即V是数据元素集合 E是连接顶点的边的集合，边代表元素间的关系，即E是关系的集合  分为：  有向图 无向图 加权图：边被赋予一个权值，表示关系的程度 完全图：任意两个结点之间">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构10">
+<meta property="og:title" content="数据结构 10 Graphics">
 <meta property="og:url" content="http://example.com/2025/04/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%8410/index.html">
 <meta property="og:site_name" content="JaneZ&#39;s Learning Space">
-<meta property="og:description" content="Computer Science &amp; Mathematics &amp; Anything I want to share">
+<meta property="og:description" content="Before：Start Of Graphics!虽然并非想象中组合数学里的图论，但，但，但至少是图吧 数据结构 10 图的基本概念 图的定义 多对多的关系 图可以用G&#x3D;(V, E)表示  V是顶点的集合，顶点代表数据元素，即V是数据元素集合 E是连接顶点的边的集合，边代表元素间的关系，即E是关系的集合  分为：  有向图 无向图 加权图：边被赋予一个权值，表示关系的程度 完全图：任意两个结点之间">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-04-21T09:19:50.000Z">
-<meta property="article:modified_time" content="2025-04-21T09:19:50.789Z">
+<meta property="article:modified_time" content="2025-04-28T12:07:52.924Z">
 <meta property="article:author" content="Yihan Zhu">
-<meta property="article:tag" content="SJTU Student CS Maths Life">
+<meta property="article:tag" content="Data Structure">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="Graphics">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>数据结构10 - JaneZ&#39;s Learning Space</title>
+  <title>数据结构 10 Graphics - JaneZ&#39;s Learning Space</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -217,7 +219,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="数据结构10"></span>
+            <span id="subtitle" data-typed-text="数据结构 10 Graphics"></span>
           
         </div>
 
@@ -240,7 +242,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 words
+          725 words
         
       </span>
     
@@ -251,7 +253,7 @@
         
         
         
-          1 mins
+          9 mins
         
       </span>
     
@@ -297,12 +299,54 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">数据结构10</h1>
+            <h1 id="seo-header">数据结构 10 Graphics</h1>
             
             
               <div class="markdown-body">
                 
-                
+                <h4 id="Before：Start-Of-Graphics-虽然并非想象中组合数学里的图论，但，但，但至少是图吧">Before：Start Of Graphics!虽然并非想象中组合数学里的图论，但，但，但至少是图吧</h4>
+<h1>数据结构 10 图的基本概念</h1>
+<h2 id="图的定义">图的定义</h2>
+<p><strong>多对多的关系</strong></p>
+<p>图可以用G=(V, E)表示</p>
+<ul>
+<li>V是顶点的集合，顶点代表数据元素，即V是数据元素集合</li>
+<li>E是连接顶点的边的集合，边代表元素间的关系，即E是关系的集合</li>
+</ul>
+<p>分为：</p>
+<ul>
+<li>有向图</li>
+<li>无向图</li>
+<li>加权图：边被赋予一个权值，表示关系的程度</li>
+<li>完全图：任意两个结点之间都有边的无向图称为完全图；每两个结点之间都有两条弧的有向图称为有向完全图。</li>
+</ul>
+<p><strong>基本术语</strong>：</p>
+<ul>
+<li>度：图中连接于某一结点的边的总数</li>
+<li>入度：有向图中进入某一结点的边数，称为该结点的入度</li>
+<li>出度：有向图中离开某一结点的边数，称为该结点的出度</li>
+<li>子图：设有两个图G=（V，E）和G‘=（V’，E’），如果 V’<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⊂</mo></mrow><annotation encoding="application/x-tex">\subset</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.5391em;"></span><span class="strut bottom" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">⊂</span></span></span></span> V，E’<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⊂</mo></mrow><annotation encoding="application/x-tex">\subset</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.5391em;"></span><span class="strut bottom" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">⊂</span></span></span></span> E 则称G’是G的子图</li>
+<li>路径：用一个结点序列w1,w2,……wN</li>
+<li>简单路径：如果一条路径上的所有结点，除了起始结点和终止结点可能相同外，其余的结点都不相同，则称其为简单路径。</li>
+<li>环：环是一条简单路径，其起始结点和终止结点相同，且路径长度至少为1。</li>
+<li>非加权的路径长度：组成路径的边数，对于路径w1,w2,……wN ，非加权路径长度为N-1</li>
+<li>加权路径长度：路径上所有边的权值之和</li>
+<li>连通：顶点v至v’ 之间有路径存在</li>
+<li>连通图：无向图 G 的任意两点之间都是连通的，则称 G 是连通图。</li>
+<li>连通分量：非连通图中的极大连通子图</li>
+<li>强连通图：有向图 G 的任意两点之间都是连通的，则称 G 是强连通图。</li>
+<li>强连通分量：极大连通子图</li>
+<li>弱连通图：如有向图G不是强连通的，但如果把它看成是无向图时是连通的，则称该图是弱连通的。</li>
+<li>生成树：连通图的极小连通子图。包含图的所有 n 个结点，但只含图的 n-1 条边。在生成树中添加一条边之后，必定会形成回路或环。</li>
+</ul>
+<p>在图论中，树其实是连通、无环路的图</p>
+<p>其他结构都可以看成是图的特例，一个特殊的有向图</p>
+<ul>
+<li>集合结构：边集为空</li>
+<li>线性结构：有向无环图。除起始结点和终止结点外，每个结点的入度出度均为1。起始结点入度为0，终止结点出度为0</li>
+<li>树状结构：有向无环图。除根结点外，每个结点入度为1，出度为0 ~ N。根结点入度为0</li>
+</ul>
+
                 
               </div>
             
@@ -310,6 +354,38 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Data-Structure/" class="category-chain-item">Data Structure</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Data-Structure/" class="print-no-link">#Data Structure</a>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
+      
+        <a href="/tags/Graphics/" class="print-no-link">#Graphics</a>
+      
+    </div>
   
 </div>
 
@@ -319,7 +395,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>数据结构10</div>
+      <div>数据结构 10 Graphics</div>
       <div>http://example.com/2025/04/21/数据结构10/</div>
     </div>
     <div class="license-meta">
@@ -338,7 +414,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>April 21, 2025</div>
+          <div>April 28, 2025</div>
         </div>
       
       
@@ -368,6 +444,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2025/04/27/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%8411/" title="数据结构 11 Graph">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">数据结构 11 Graph</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
