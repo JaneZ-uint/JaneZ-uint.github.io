@@ -30,7 +30,7 @@
 <meta property="og:image" content="http://example.com/img/%E4%B8%83%E6%A1%A5%E6%8A%BD%E8%B1%A1.png">
 <meta property="og:image" content="http://example.com/img/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F.png">
 <meta property="article:published_time" content="2025-04-27T06:14:05.000Z">
-<meta property="article:modified_time" content="2025-05-04T07:08:03.986Z">
+<meta property="article:modified_time" content="2025-05-05T03:03:28.849Z">
 <meta property="article:author" content="Yihan Zhu">
 <meta property="article:tag" content="Data Structure">
 <meta property="article:tag" content="C++">
@@ -245,7 +245,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k words
+          2.9k words
         
       </span>
     
@@ -256,7 +256,7 @@
         
         
         
-          24 mins
+          33 mins
         
       </span>
     
@@ -399,6 +399,43 @@ Clone函数创建一份邻接表的拷贝，以便在找完路径后能恢复这
 </ul>
 <h3 id="拓扑排序算法实现">拓扑排序算法实现</h3>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">template &lt;<span class="hljs-keyword">class</span> <span class="hljs-symbol">TypeOfVer,<span class="hljs-symbol">class</span></span> <span class="hljs-symbol">TypeOfEdge</span>&gt;<br><span class="hljs-symbol">void</span> <span class="hljs-symbol">adjListGraph</span>&lt;<span class="hljs-symbol">TypeOfVer,<span class="hljs-symbol">TypeOfEdge</span></span>&gt;::<span class="hljs-symbol">topSort</span>()&#123;<br>    linkQueue&lt;<span class="hljs-built_in">int</span>&gt; q;<br>    edgeNode *p;<br>    <span class="hljs-built_in">int</span> current;<br>    <span class="hljs-built_in">int</span> *inDegree = new <span class="hljs-built_in">int</span>[Vers];<br>    <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>;i &lt; Vers;i ++)&#123;<br>        inDegree[i] = <span class="hljs-number">0</span>;<br>    &#125;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>;i &lt; Vers;i ++)&#123;<br>        p = verList[i].head;<br>        <span class="hljs-keyword">while</span>(p != <span class="hljs-literal">null</span>ptr)&#123;<br>            ++ inDegree[p-&gt;end];<br>            p = p-&gt;next;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>;i &lt; Vers;i ++)&#123;<br>        <span class="hljs-keyword">if</span>(inDegree[i] == <span class="hljs-number">0</span>)&#123;<br>            q.enQueue(i);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">while</span>(!q.empty())&#123;<br>        current = q.deQueue();<br>        cout &lt;&lt; verList[current].ver &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;<br>        p = verList[current].head;<br>        <span class="hljs-keyword">while</span>(p != <span class="hljs-literal">null</span>ptr)&#123;<br>            <span class="hljs-keyword">if</span>(-- inDegree[p-&gt;end] == <span class="hljs-number">0</span>)&#123;<br>                q.enQueue(p-&gt;end);<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="关键路径">关键路径</h2>
+<h3 id="AOV-网络-有向无环图">AOV 网络 有向无环图</h3>
+<p>顶点表示活动，边表示活动的先后次序<br>
+主要应用：安排活动的顺序，即拓扑排序</p>
+<h3 id="AOE网络-加权有向无环图">AOE网络 加权有向无环图</h3>
+<ul>
+<li>顶点表示事件，有向边的权值表示某个活动的持续时间，有向边的方向表示活动和事件的先后次序</li>
+<li>进入顶点的所有活动都结束后，顶点表示的事件发生了，从该顶点出发的所有活动可以开始了</li>
+</ul>
+<p>用途：可用于描述整个工程的各个活动之间的关系，活动安排的先后次序<br>
+<strong>完成整项工程至少需要多少时间：源点到收点的最长路径的长度，称为关键路径。</strong></p>
+<h3 id="关键路径算法">关键路径算法</h3>
+<p>找出每个顶点的最早发生时间和最迟发生时间</p>
+<ul>
+<li>最早发生时间：前面的活动都没有耽误时间，这个事件的发生时间</li>
+<li>最迟发生时间：不影响整个项目按时完成的前提下，这个事件最晚可以什么时候发生</li>
+</ul>
+<p><strong>最早发生时间和最晚发生时间相同的顶点序列构成关键路径</strong></p>
+<ul>
+<li>
+<p>最早发生时间：每个直接前驱的最早发生时间加上从该前驱到该顶点的活动时间的最大者</p>
+</li>
+<li>
+<p>最迟发生时间：每个直接后继的最迟发生时间减去顶点到该直接后继的活动时间的最小者就是该顶点的最迟发生时间。</p>
+</li>
+<li>
+<p><strong>找出拓扑序列</strong></p>
+</li>
+<li>
+<p><strong>从头到尾遍历拓扑序列找出结点最早发生时间，从尾到头遍历拓扑序列找到最迟发生时间</strong></p>
+</li>
+<li>
+<p>从头到尾遍历拓扑序列，找出最早发生时间和最迟发生时间的顶点，组成了关键路径。</p>
+</li>
+</ul>
+<h3 id="关键路径算法实现">关键路径算法实现</h3>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><code class="hljs prolog">template &lt;class <span class="hljs-symbol">TypeOfVer</span>,class <span class="hljs-symbol">TypeOfEdge</span>&gt;<br>void adjListGraph&lt;<span class="hljs-symbol">TypeOfVer</span>,<span class="hljs-symbol">TypeOfEdge</span>&gt;::criticalPath() const&#123;<br>    <span class="hljs-symbol">TypeOfEdge</span> *ee = new <span class="hljs-symbol">TypeOfEdge</span>[<span class="hljs-symbol">Vers</span>];<br>    <span class="hljs-symbol">TypeOfEdge</span> *le = new <span class="hljs-symbol">TypeOfEdge</span>[<span class="hljs-symbol">Vers</span>];<br>    int *top = new int[<span class="hljs-symbol">Vers</span>]; //存储拓扑排序后的序列<br>    int *inDegree = new int[<span class="hljs-symbol">Vers</span>];<br>    linkQueue&lt;int&gt; q;<br>    int i;<br>    edgeNode *p;<br>    for(int i = <span class="hljs-number">0</span>;i &lt; <span class="hljs-symbol">Vers</span>;i ++)&#123;<br>        inDegree[i] = <span class="hljs-number">0</span>;<br>    &#125;<br>    for(int i = <span class="hljs-number">0</span>;i &lt; <span class="hljs-symbol">Vers</span>;i ++)&#123;<br>        p = verList[i].head;<br>        while(p != nullptr)&#123;<br>            ++ inDegree[p-&gt;end];<br>            p = p-&gt;next;<br>        &#125;<br>    &#125;<br>    for(int i = <span class="hljs-number">0</span>;i &lt; <span class="hljs-symbol">Vers</span>;i ++)&#123;<br>        if(inDegree[i] == <span class="hljs-number">0</span>)&#123;<br>            q.enQueue(i);<br>        &#125;<br>    &#125;<br>    i = <span class="hljs-number">0</span>;<br>    while(!q.empty())&#123;<br>        top[i] = q.deQueue();<br>        p = verList[current].head;<br>        while(p != nullptr)&#123;<br>            if(-- inDegree[p-&gt;end] == <span class="hljs-number">0</span>)&#123;<br>                q.enQueue(p-&gt;end);<br>            &#125;<br>        &#125;<br>        i ++;<br>    &#125;<br><br>    for(int i = <span class="hljs-number">0</span>;i &lt; <span class="hljs-symbol">Vers</span>;i ++)&#123;<br>        ee[i] = <span class="hljs-number">0</span>;<br>    &#125;<br>    for(int i = <span class="hljs-number">0</span>;i &lt; <span class="hljs-symbol">Vers</span>;i ++)&#123;<br>        p = verList[top[i]].head;<br>        while(p != nullptr)&#123;<br>            if(ee[p-&gt;end] &lt; ee[top[i]] + p-&gt;weight)&#123;<br>                ee[p-&gt;end] = ee[top[i]] + p-&gt;weight;<br>            &#125;<br>            p = p-&gt;next;<br>        &#125;<br>    &#125;<br><br>    for(int i = <span class="hljs-number">0</span>;i &lt; <span class="hljs-symbol">Vers</span>;i ++)&#123;<br>        le[i] = ee[top[<span class="hljs-symbol">Vers</span> - <span class="hljs-number">1</span>]];<br>    &#125;<br>    for(int i = <span class="hljs-symbol">Vers</span> - <span class="hljs-number">1</span>;i &gt;= <span class="hljs-number">0</span>;i --)&#123;<br>        p = verList[top[i]].head;<br>        while(p != nullptr)&#123;<br>            if(le[top[i]] + p-&gt;weight &gt; le[p-&gt;end])&#123;<br>                le[top[i]] = le[p-&gt;end] - p-&gt;weight;<br>            &#125;<br>            p = p-&gt;next;<br>        &#125;<br>    &#125;<br><br>    for(int i = <span class="hljs-number">0</span>;i &lt; <span class="hljs-symbol">Vers</span>;i ++)&#123;<br>        if(le[top[i]] == ee[top[i]])&#123;<br>            cout &lt;&lt; verList[top[i]].ver &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -465,7 +502,7 @@ Clone函数创建一份邻接表的拷贝，以便在找完路径后能恢复这
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>May 4, 2025</div>
+          <div>May 5, 2025</div>
         </div>
       
       
