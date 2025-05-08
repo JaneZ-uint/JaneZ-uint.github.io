@@ -21,15 +21,16 @@
   
     <meta name="description" content="Before：这恐怕是数据结构系列的最后一期了，这周四是最后一节翁阿姨的课，也是结束了。写此篇的时候正在回上海的高铁上（候补上的标杆车G597），听歌ing。感觉高铁上特别适合写博客（因为其他啥都做不了🫠）明天一天要速通数理逻辑，哎。。。会赢吗？会的会的。 数据结构 12 最小生成树 Review 生成树是连通图的极小连通子图。包含图的所有 n 个结点，但只含图的 n-1 条边。在生成树中添加一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构12">
+<meta property="og:title" content="数据结构 12 MST Dijkstra (updating...)">
 <meta property="og:url" content="http://example.com/2025/05/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%8412/index.html">
 <meta property="og:site_name" content="JaneZ&#39;s Learning Space">
 <meta property="og:description" content="Before：这恐怕是数据结构系列的最后一期了，这周四是最后一节翁阿姨的课，也是结束了。写此篇的时候正在回上海的高铁上（候补上的标杆车G597），听歌ing。感觉高铁上特别适合写博客（因为其他啥都做不了🫠）明天一天要速通数理逻辑，哎。。。会赢吗？会的会的。 数据结构 12 最小生成树 Review 生成树是连通图的极小连通子图。包含图的所有 n 个结点，但只含图的 n-1 条边。在生成树中添加一">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-05-05T09:40:59.000Z">
-<meta property="article:modified_time" content="2025-05-05T14:42:04.258Z">
+<meta property="article:modified_time" content="2025-05-08T14:18:43.899Z">
 <meta property="article:author" content="Yihan Zhu">
 <meta property="article:tag" content="Data Structure">
+<meta property="article:tag" content="JaneZ&#39;s Wonderland">
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="Algorithm">
 <meta property="article:tag" content="MST">
@@ -41,7 +42,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>数据结构12 - JaneZ&#39;s Learning Space</title>
+  <title>数据结构 12 MST Dijkstra (updating...) - JaneZ&#39;s Learning Space</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -222,7 +223,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="数据结构12"></span>
+            <span id="subtitle" data-typed-text="数据结构 12 MST Dijkstra (updating...)"></span>
           
         </div>
 
@@ -245,7 +246,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          888 words
+          1.5k words
         
       </span>
     
@@ -256,7 +257,7 @@
         
         
         
-          10 mins
+          17 mins
         
       </span>
     
@@ -302,7 +303,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">数据结构12</h1>
+            <h1 id="seo-header">数据结构 12 MST Dijkstra (updating...)</h1>
             
             
               <div class="markdown-body">
@@ -356,6 +357,34 @@ ds:最坏时间复杂度为O(ElogV)</p>
 lowCost[i]表示结点 i 到 U 中的结点的所有边的最小权值<br>
 startNode[i]表示结点 i 到 U 中的最小边的终点</p>
 <h3 id="具体实现">具体实现</h3>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> TypeOfVer,<span class="hljs-keyword">class</span> TypeOfEdge&gt;<br><span class="hljs-type">void</span> adjListGraph&lt;TypeOfVer,TypeOfEdge&gt;::prim(TypeOfEdge noEdge)const&#123;<br>    <span class="hljs-type">bool</span> *flag = <span class="hljs-built_in">new</span> <span class="hljs-type">bool</span>[Vers];<br>    TypeOfEdge *lowCost = <span class="hljs-built_in">new</span> TypeOfEdge[Vers];<br>    <span class="hljs-type">int</span> *startNode = <span class="hljs-built_in">new</span> <span class="hljs-type">int</span>[Vers];<br>    edgeNode *p;<br>    TypeOfEdge min;<br>    <span class="hljs-type">int</span> <span class="hljs-keyword">start</span>,i,j;<br><br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; Vers;i ++)&#123;<br>        flag[i] = <span class="hljs-keyword">false</span>;<br>        lowCost[i] = noEdge;<br>    &#125;<br><br>    start = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">1</span>;i &lt; Vers;i ++)&#123;<br>        p = verList[<span class="hljs-keyword">start</span>].head;<br>        <span class="hljs-keyword">while</span>(p != nullptr)&#123;<br>            <span class="hljs-keyword">if</span>(!flag[p-&gt;<span class="hljs-keyword">end</span>] &amp;&amp; lowcost[p-&gt;<span class="hljs-keyword">end</span>] &gt; p-&gt;weight)&#123;<br>                lowcost[p-&gt;<span class="hljs-keyword">end</span>] = p-&gt;weight;<br>                startNode[p-&gt;<span class="hljs-keyword">end</span>] = <span class="hljs-keyword">start</span>;<br>            &#125;<br>            p = p-&gt;next;<br>        &#125;<br>        flag[<span class="hljs-keyword">start</span>] = <span class="hljs-keyword">true</span>;<br>        min = noEdge;<br>        <span class="hljs-keyword">for</span>(j = <span class="hljs-number">0</span>;j &lt; Vers;j ++)&#123;<br>            <span class="hljs-keyword">if</span>(lowCost[j] &lt; min &amp;&amp; !flag[j])&#123;<br>                min = lowCost[j];<br>                start = j;<br>            &#125;<br>        &#125;<br>        cout &lt;&lt; <span class="hljs-string">&#x27;(&#x27;</span> &lt;&lt; verList[startNode[<span class="hljs-keyword">start</span>]].ver &lt;&lt; <span class="hljs-string">&#x27;,&#x27;</span> &lt;&lt; verList[<span class="hljs-keyword">start</span>].ver &lt;&lt; &quot;)\t&quot;;<br>        lowCost[<span class="hljs-keyword">start</span>] = noEdge;<br>    &#125;<br><br>    <span class="hljs-keyword">delete</span> []flag;<br>    <span class="hljs-keyword">delete</span> []startNode;<br>    <span class="hljs-keyword">delete</span> []lowCost;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>时间复杂度O(V^2)</p>
+<h2 id="单源最短路径问题">单源最短路径问题</h2>
+<p>问题是什么？<br>
+<strong>给出一个加权图和图上的一个节点s，找出s到图中每一节点的最短路径</strong></p>
+<h2 id="非加权图的最短路径问题-Naive">非加权图的最短路径问题 Naive</h2>
+<p>采用广度优先搜索，它按层处理一层的所有结点：离起始结点最近的结点最先处理，距离最远的最晚处理。<br>
+复杂度O(V + E)</p>
+<h2 id="加权图最短路径问题-Dijkstra算法">加权图最短路径问题 Dijkstra算法</h2>
+<h3 id="存储设计">存储设计</h3>
+<ul>
+<li>数组distance<br>
+记录从源点到达每个结点的最短距离</li>
+<li>数组prev<br>
+记录要到达此结点，必须到达的前一结点。</li>
+<li>顶点集known<br>
+已经找到了最短路径的顶点</li>
+</ul>
+<h3 id="过程">过程</h3>
+<ul>
+<li>开始时，顶点集合known只包含源点一个顶点。</li>
+<li>反复执行以下循环，直至所有的顶点都在known中：<br>
+考察新加入顶点集known的结点的所有边，如果另一端点在V – known中，则检查这条路径是否比原来已知的路径要短。如果是，则更新源点到此结点的距离和路径。</li>
+<li>从V – known中寻找一个路径最短的结点，从源点到这个结点已经不可能有更好的路径了，把它加入顶点集known。</li>
+</ul>
+<h2 id="I-just-write-these-words-I-said-goodbye-long-time-ago-but…-did-I-really-goodbye-I-think-so-Now">I just write these words.I said goodbye long time ago,but…,did I really goodbye?I think so.Now.</h2>
+<p>Je me sens toujours trop parfait·e dans certains domaines, et tellement maladroit·e dans d’autres. Je n’ai plus envie de dire grand-chose, je trouve juste que j’étais bien naïf·ve autrefois.Ah… quelle journée intensément compliquée. J’ai fait quelque chose que je n’avais jamais eu le courage de faire, et le retour que j’en ai eu m’a plongé·e dans un profond désespoir.Pour toi, je ne suis même pas un choix temporaire, juste un·e passant·e dans ta jeunesse.Pourquoi tous ces souvenirs, goutte à goutte, finissent-ils par être oubliés ?Je n’aime pas ce chanteur, pas du tout — il me fait trop penser à toi.Aujourd’hui, il pleut à torrents à Shanghai, mais qui n’a pas aussi la tempête dans le cœur ?Parmi la foule, tu es toujours celui qui brille le plus, mais tu ne m’appartiendras jamais, tu ne pourras jamais m’appartenir.Tu es exactement comme je t’avais imaginé. Tu es vraiment une bonne personne.Mais moi… je ne t’aimerai plus jamais.<br>
+JaneZ 2025.5.8</p>
 
                 
               </div>
@@ -391,6 +420,8 @@ startNode[i]表示结点 i 到 U 中的最小边的终点</p>
       
         <a href="/tags/Data-Structure/" class="print-no-link">#Data Structure</a>
       
+        <a href="/tags/JaneZ-s-Wonderland/" class="print-no-link">#JaneZ's Wonderland</a>
+      
         <a href="/tags/C/" class="print-no-link">#C++</a>
       
         <a href="/tags/Algorithm/" class="print-no-link">#Algorithm</a>
@@ -411,7 +442,7 @@ startNode[i]表示结点 i 到 U 中的最小边的终点</p>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>数据结构12</div>
+      <div>数据结构 12 MST Dijkstra (updating...)</div>
       <div>http://example.com/2025/05/05/数据结构12/</div>
     </div>
     <div class="license-meta">
@@ -430,7 +461,7 @@ startNode[i]表示结点 i 到 U 中的最小边的终点</p>
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>May 5, 2025</div>
+          <div>May 8, 2025</div>
         </div>
       
       
