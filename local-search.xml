@@ -4,13 +4,31 @@
   
   
   <entry>
-    <title>Introduction-to-Algorithms4</title>
+    <title>MIT 6.006 Shortest Path Algorithm</title>
     <link href="/2025/05/09/Introduction-to-Algorithms4/"/>
     <url>/2025/05/09/Introduction-to-Algorithms4/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<h1>MIT 6.006 4 Shortest Path Algorithm</h1><h2 id="Overview">Overview</h2><ul><li>Weighted Graph</li><li>General Approaches</li><li>Negative Edges</li><li>Optimal Substructure</li></ul><p>Mainly <strong>2 Algorithms</strong>：<br><strong>Dijkstra</strong> with O(V + E) for <strong>non-negative edge weights</strong><br><strong>Bellman Ford</strong> with O(EV) for <strong>general case</strong></p><h2 id="Weighted-Graph">Weighted Graph</h2><h3 id="Single-Source-Shortest-Paths">Single Source Shortest Paths</h3><p>Data Structure:<br>d[v] = value inside circles<br>= 0 (if v = s) or ∞ (otherwise)<br>= δ(s,v) (at the end)<br>with δ(s,v) &lt;= d[v] (all the times)</p><p>π[v] = predecessor on the best path to v</p><p><img src="/img/WGSP.png" alt="Example"></p><h2 id="Negative-Weight-Edges">Negative-Weight Edges</h2><p>You may get an endless loop like below:<br><img src="/img/NWG.png" alt="Example"></p><p>That’s a bad negative circle.</p><h2 id="General-Structure-Of-SP-Algorithm">General Structure Of SP Algorithm</h2><p><img src="/img/GCSP.png" alt="General Idea"></p><h2 id="Triangle-Inequality">Triangle Inequality</h2><p>Thm:<br>For all u,v,x <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>∈</mo></mrow><annotation encoding="application/x-tex">\in</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.5391em;"></span><span class="strut bottom" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">∈</span></span></span></span> X, we have</p><p>δ(u,v) &lt;= δ(u,x) + δ(x,v)</p><p>You may use this idea in Floyd Algorithm.</p><h2 id="Dijkstra-Algorithm">Dijkstra Algorithm</h2><p>Wait to be upd…</p>]]></content>
     
     
+    <categories>
+      
+      <category>Algorithms</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Algorithm</tag>
+      
+      <tag>Dijkstra</tag>
+      
+      <tag>Shortest Path</tag>
+      
+      <tag>Bellman Ford</tag>
+      
+    </tags>
     
   </entry>
   
