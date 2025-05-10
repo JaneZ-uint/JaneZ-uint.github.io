@@ -22,14 +22,14 @@
     <meta name="description" content="Before：去年12月从班主任口中得知了我们的主角——MIT 6.006 Introduction to Algorithms这门非常经典的课（被誉为“MIT-EECS系的瑰宝”）。室友 @three-hats-user 同学在我的推荐下（自己没学别人学了🤡）在寒假卷了这门课（虽然还没学完），对它评价也很高。于是今天入手了这门课，一句话：不愧是MIT EECS🧎‍♀️🧎‍♀️🧎‍♀️另外">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Introduction to Algorithms1">
-<meta property="og:url" content="http://example.com/2025/03/01/Introduction-to-Algorithms1/index.html">
+<meta property="og:url" content="https://janezair.site/2025/03/01/Introduction-to-Algorithms1/index.html">
 <meta property="og:site_name" content="JaneZ&#39;s Learning Space">
 <meta property="og:description" content="Before：去年12月从班主任口中得知了我们的主角——MIT 6.006 Introduction to Algorithms这门非常经典的课（被誉为“MIT-EECS系的瑰宝”）。室友 @three-hats-user 同学在我的推荐下（自己没学别人学了🤡）在寒假卷了这门课（虽然还没学完），对它评价也很高。于是今天入手了这门课，一句话：不愧是MIT EECS🧎‍♀️🧎‍♀️🧎‍♀️另外">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/img/%E5%A4%A7%E6%A0%B9%E5%A0%86%E4%BE%8B%E5%AD%90.png">
-<meta property="og:image" content="http://example.com/img/Heapify1.png">
-<meta property="og:image" content="http://example.com/img/Heapify2.png">
-<meta property="og:image" content="http://example.com/img/Heapify3.png">
+<meta property="og:image" content="https://janezair.site/img/%E5%A4%A7%E6%A0%B9%E5%A0%86%E4%BE%8B%E5%AD%90.png">
+<meta property="og:image" content="https://janezair.site/img/Heapify1.png">
+<meta property="og:image" content="https://janezair.site/img/Heapify2.png">
+<meta property="og:image" content="https://janezair.site/img/Heapify3.png">
 <meta property="article:published_time" content="2025-03-01T10:29:47.000Z">
 <meta property="article:modified_time" content="2025-03-14T08:25:56.003Z">
 <meta property="article:author" content="Yihan Zhu">
@@ -37,7 +37,7 @@
 <meta property="article:tag" content="Algorithm">
 <meta property="article:tag" content="Heap">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/%E5%A4%A7%E6%A0%B9%E5%A0%86%E4%BE%8B%E5%AD%90.png">
+<meta name="twitter:image" content="https://janezair.site/img/%E5%A4%A7%E6%A0%B9%E5%A0%86%E4%BE%8B%E5%AD%90.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -81,7 +81,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"janezair.site","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -400,7 +400,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Introduction to Algorithms1</div>
-      <div>http://example.com/2025/03/01/Introduction-to-Algorithms1/</div>
+      <div>https://janezair.site/2025/03/01/Introduction-to-Algorithms1/</div>
     </div>
     <div class="license-meta">
       

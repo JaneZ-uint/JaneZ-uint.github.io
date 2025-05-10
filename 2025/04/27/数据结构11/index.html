@@ -22,13 +22,13 @@
     <meta name="description" content="Before：好笑的是，这篇（还有上一篇）似乎上个星期就部署了，现在才开始写，事情也真的是太多了，一度以为上周要死去了😣Obviously，人还活着。期中没有溢出有一点遗憾，但也算满意了。and…放假了！！！第一天陪爸妈在上海玩儿，下午回南京，2号去演唱会，3号一个人去杭州（感觉年龄越大，越喜欢一个人旅行。以前总觉得和朋友家人一起才有意思，上大学后更喜欢一个人待着），4号5号就写写作业吧（主播不">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构 11 Graph Traversal">
-<meta property="og:url" content="http://example.com/2025/04/27/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%8411/index.html">
+<meta property="og:url" content="https://janezair.site/2025/04/27/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%8411/index.html">
 <meta property="og:site_name" content="JaneZ&#39;s Learning Space">
 <meta property="og:description" content="Before：好笑的是，这篇（还有上一篇）似乎上个星期就部署了，现在才开始写，事情也真的是太多了，一度以为上周要死去了😣Obviously，人还活着。期中没有溢出有一点遗憾，但也算满意了。and…放假了！！！第一天陪爸妈在上海玩儿，下午回南京，2号去演唱会，3号一个人去杭州（感觉年龄越大，越喜欢一个人旅行。以前总觉得和朋友家人一起才有意思，上大学后更喜欢一个人待着），4号5号就写写作业吧（主播不">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/img/%E4%B8%83%E6%A1%A5.png">
-<meta property="og:image" content="http://example.com/img/%E4%B8%83%E6%A1%A5%E6%8A%BD%E8%B1%A1.png">
-<meta property="og:image" content="http://example.com/img/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F.png">
+<meta property="og:image" content="https://janezair.site/img/%E4%B8%83%E6%A1%A5.png">
+<meta property="og:image" content="https://janezair.site/img/%E4%B8%83%E6%A1%A5%E6%8A%BD%E8%B1%A1.png">
+<meta property="og:image" content="https://janezair.site/img/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F.png">
 <meta property="article:published_time" content="2025-04-27T06:14:05.000Z">
 <meta property="article:modified_time" content="2025-05-05T03:41:05.061Z">
 <meta property="article:author" content="Yihan Zhu">
@@ -39,7 +39,7 @@
 <meta property="article:tag" content="DFS">
 <meta property="article:tag" content="BFS">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/%E4%B8%83%E6%A1%A5.png">
+<meta name="twitter:image" content="https://janezair.site/img/%E4%B8%83%E6%A1%A5.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -83,7 +83,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"janezair.site","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -508,7 +508,7 @@ Clone函数创建一份邻接表的拷贝，以便在找完路径后能恢复这
   <div class="license-box my-3">
     <div class="license-title">
       <div>数据结构 11 Graph Traversal</div>
-      <div>http://example.com/2025/04/27/数据结构11/</div>
+      <div>https://janezair.site/2025/04/27/数据结构11/</div>
     </div>
     <div class="license-meta">
       

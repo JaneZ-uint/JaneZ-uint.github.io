@@ -22,15 +22,15 @@
     <meta name="description" content="Before：感觉红黑树的实现好困难啊，即便是学完了一遍有些删除操作的细节都没有特别搞懂，感觉是一个实现和理解上都相当有难度的数据结构。今天要讲的是红黑树的一种特殊情况——AA树，希望会简单一点？（毕竟是B班写的呜呜呜）Data Structure 17 AA树AA树的定义开幕雷击：《一种简单但却很有竞争力的平衡查找树》好好好！ AA树是一类特殊的红黑树，它对红黑树增加了一个限制条件：左儿子不能为">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Data-Structure17">
-<meta property="og:url" content="http://example.com/2025/03/20/Data-Structure17/index.html">
+<meta property="og:url" content="https://janezair.site/2025/03/20/Data-Structure17/index.html">
 <meta property="og:site_name" content="JaneZ&#39;s Learning Space">
 <meta property="og:description" content="Before：感觉红黑树的实现好困难啊，即便是学完了一遍有些删除操作的细节都没有特别搞懂，感觉是一个实现和理解上都相当有难度的数据结构。今天要讲的是红黑树的一种特殊情况——AA树，希望会简单一点？（毕竟是B班写的呜呜呜）Data Structure 17 AA树AA树的定义开幕雷击：《一种简单但却很有竞争力的平衡查找树》好好好！ AA树是一类特殊的红黑树，它对红黑树增加了一个限制条件：左儿子不能为">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/img/AA.png">
-<meta property="og:image" content="http://example.com/img/AA1.png">
-<meta property="og:image" content="http://example.com/img/%E6%B0%B4%E5%B9%B3%E5%B7%A6%E9%93%BE.png">
-<meta property="og:image" content="http://example.com/img/%E6%B0%B4%E5%B9%B3%E5%8F%B3%E9%93%BE.png">
-<meta property="og:image" content="http://example.com/img/AA%E8%B0%83%E6%95%B4.png">
+<meta property="og:image" content="https://janezair.site/img/AA.png">
+<meta property="og:image" content="https://janezair.site/img/AA1.png">
+<meta property="og:image" content="https://janezair.site/img/%E6%B0%B4%E5%B9%B3%E5%B7%A6%E9%93%BE.png">
+<meta property="og:image" content="https://janezair.site/img/%E6%B0%B4%E5%B9%B3%E5%8F%B3%E9%93%BE.png">
+<meta property="og:image" content="https://janezair.site/img/AA%E8%B0%83%E6%95%B4.png">
 <meta property="article:published_time" content="2025-03-20T14:28:14.000Z">
 <meta property="article:modified_time" content="2025-03-20T14:29:45.232Z">
 <meta property="article:author" content="Yihan Zhu">
@@ -42,7 +42,7 @@
 <meta property="article:tag" content="Red Black Tree">
 <meta property="article:tag" content="AA Tree">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/AA.png">
+<meta name="twitter:image" content="https://janezair.site/img/AA.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -86,7 +86,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"janezair.site","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -412,7 +412,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Data-Structure17</div>
-      <div>http://example.com/2025/03/20/Data-Structure17/</div>
+      <div>https://janezair.site/2025/03/20/Data-Structure17/</div>
     </div>
     <div class="license-meta">
       

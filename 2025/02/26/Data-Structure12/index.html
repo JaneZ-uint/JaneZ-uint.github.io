@@ -22,17 +22,17 @@
     <meta name="description" content="Before：喜欢物理，喜欢数分，喜欢数据结构😋😋😋（疑似学了一天发疯）喜欢日升日落，喜欢璀璨星河，喜欢得不到的你Data Structure 12 哈夫曼树 树和森林哈夫曼树和哈夫曼编码背景：大多数计算机采用ASCII 编码，ASCII编码是一种等长的编码，每个字符的编码长度相同。但我们有一些常用的ASCII字符，也有一些较不常用的字符。如果所有字符均等长，将会造成保存文本空间较为庞大。所">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Data-Structure12">
-<meta property="og:url" content="http://example.com/2025/02/26/Data-Structure12/index.html">
+<meta property="og:url" content="https://janezair.site/2025/02/26/Data-Structure12/index.html">
 <meta property="og:site_name" content="JaneZ&#39;s Learning Space">
 <meta property="og:description" content="Before：喜欢物理，喜欢数分，喜欢数据结构😋😋😋（疑似学了一天发疯）喜欢日升日落，喜欢璀璨星河，喜欢得不到的你Data Structure 12 哈夫曼树 树和森林哈夫曼树和哈夫曼编码背景：大多数计算机采用ASCII 编码，ASCII编码是一种等长的编码，每个字符的编码长度相同。但我们有一些常用的ASCII字符，也有一些较不常用的字符。如果所有字符均等长，将会造成保存文本空间较为庞大。所">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/img/%E6%AD%A3%E5%B8%B8%E7%BC%96%E7%A0%81.png">
-<meta property="og:image" content="http://example.com/img/%E7%AD%89%E9%95%BF%E7%BC%96%E7%A0%81%E4%BA%8C%E5%8F%89%E6%A0%91.png">
-<meta property="og:image" content="http://example.com/img/%E5%AD%A9%E5%AD%90%E9%93%BE.png">
-<meta property="og:image" content="http://example.com/img/%E5%AD%A9%E5%AD%90%E5%85%84%E5%BC%9F%E9%93%BE.png">
-<meta property="og:image" content="http://example.com/img/%E5%8F%8C%E4%BA%B2.png">
-<meta property="og:image" content="http://example.com/img/%E4%BA%8C%E5%8F%89%E6%A0%91%E8%BD%AC%E6%8D%A2.png">
-<meta property="og:image" content="http://example.com/img/%E6%A3%AE%E6%9E%97%E8%BD%AC%E6%8D%A2.png">
+<meta property="og:image" content="https://janezair.site/img/%E6%AD%A3%E5%B8%B8%E7%BC%96%E7%A0%81.png">
+<meta property="og:image" content="https://janezair.site/img/%E7%AD%89%E9%95%BF%E7%BC%96%E7%A0%81%E4%BA%8C%E5%8F%89%E6%A0%91.png">
+<meta property="og:image" content="https://janezair.site/img/%E5%AD%A9%E5%AD%90%E9%93%BE.png">
+<meta property="og:image" content="https://janezair.site/img/%E5%AD%A9%E5%AD%90%E5%85%84%E5%BC%9F%E9%93%BE.png">
+<meta property="og:image" content="https://janezair.site/img/%E5%8F%8C%E4%BA%B2.png">
+<meta property="og:image" content="https://janezair.site/img/%E4%BA%8C%E5%8F%89%E6%A0%91%E8%BD%AC%E6%8D%A2.png">
+<meta property="og:image" content="https://janezair.site/img/%E6%A3%AE%E6%9E%97%E8%BD%AC%E6%8D%A2.png">
 <meta property="article:published_time" content="2025-02-26T13:19:14.000Z">
 <meta property="article:modified_time" content="2025-02-26T13:20:19.773Z">
 <meta property="article:author" content="Yihan Zhu">
@@ -42,7 +42,7 @@
 <meta property="article:tag" content="Binary Tree">
 <meta property="article:tag" content="Huffman Tree">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/%E6%AD%A3%E5%B8%B8%E7%BC%96%E7%A0%81.png">
+<meta name="twitter:image" content="https://janezair.site/img/%E6%AD%A3%E5%B8%B8%E7%BC%96%E7%A0%81.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -86,7 +86,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"janezair.site","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -420,7 +420,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Data-Structure12</div>
-      <div>http://example.com/2025/02/26/Data-Structure12/</div>
+      <div>https://janezair.site/2025/02/26/Data-Structure12/</div>
     </div>
     <div class="license-meta">
       

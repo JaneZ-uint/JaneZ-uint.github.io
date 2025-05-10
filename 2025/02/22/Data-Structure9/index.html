@@ -22,16 +22,16 @@
     <meta name="description" content="Before：这一章，我们要进入一种新的数据结构类型——树🌲🌳🌴🎄。lz早就听闻各种神奇的树（二叉树、平衡树、红黑树、线段树、B树、B+树…）😇😭😥，今天中午和学长吃饭得知他红黑树调了1个月找不出bug只好重构的事迹，已经开始害怕了😰咱们还是快开始吧！Data Structure 9 树为了满足一下某人的好奇心，决定先贴一张树的归纳总结的图，作为开端（自己宠自己） 树的定义首先，回">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Data-Structure9">
-<meta property="og:url" content="http://example.com/2025/02/22/Data-Structure9/index.html">
+<meta property="og:url" content="https://janezair.site/2025/02/22/Data-Structure9/index.html">
 <meta property="og:site_name" content="JaneZ&#39;s Learning Space">
 <meta property="og:description" content="Before：这一章，我们要进入一种新的数据结构类型——树🌲🌳🌴🎄。lz早就听闻各种神奇的树（二叉树、平衡树、红黑树、线段树、B树、B+树…）😇😭😥，今天中午和学长吃饭得知他红黑树调了1个月找不出bug只好重构的事迹，已经开始害怕了😰咱们还是快开始吧！Data Structure 9 树为了满足一下某人的好奇心，决定先贴一张树的归纳总结的图，作为开端（自己宠自己） 树的定义首先，回">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/img/%E6%A0%91%E5%A4%A7%E5%85%A8.png">
-<meta property="og:image" content="http://example.com/img/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%BD%A2%E6%80%81.png">
-<meta property="og:image" content="http://example.com/img/%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86.png">
-<meta property="og:image" content="http://example.com/img/%E8%99%9A%E7%BB%93%E7%82%B9%E4%BA%8C%E5%8F%89%E6%A0%91.png">
-<meta property="og:image" content="http://example.com/img/%E4%BA%8C%E5%8F%89%E9%93%BE%E8%A1%A8%E5%AD%98%E5%82%A8.png">
-<meta property="og:image" content="http://example.com/img/%E4%B8%89%E5%8F%89%E9%93%BE%E8%A1%A8%E5%AD%98%E5%82%A8.png">
+<meta property="og:image" content="https://janezair.site/img/%E6%A0%91%E5%A4%A7%E5%85%A8.png">
+<meta property="og:image" content="https://janezair.site/img/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%BD%A2%E6%80%81.png">
+<meta property="og:image" content="https://janezair.site/img/%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86.png">
+<meta property="og:image" content="https://janezair.site/img/%E8%99%9A%E7%BB%93%E7%82%B9%E4%BA%8C%E5%8F%89%E6%A0%91.png">
+<meta property="og:image" content="https://janezair.site/img/%E4%BA%8C%E5%8F%89%E9%93%BE%E8%A1%A8%E5%AD%98%E5%82%A8.png">
+<meta property="og:image" content="https://janezair.site/img/%E4%B8%89%E5%8F%89%E9%93%BE%E8%A1%A8%E5%AD%98%E5%82%A8.png">
 <meta property="article:published_time" content="2025-02-22T13:38:39.000Z">
 <meta property="article:modified_time" content="2025-02-24T10:34:36.362Z">
 <meta property="article:author" content="Yihan Zhu">
@@ -40,7 +40,7 @@
 <meta property="article:tag" content="Tree">
 <meta property="article:tag" content="Binary Tree">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/%E6%A0%91%E5%A4%A7%E5%85%A8.png">
+<meta name="twitter:image" content="https://janezair.site/img/%E6%A0%91%E5%A4%A7%E5%85%A8.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -84,7 +84,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"janezair.site","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -417,7 +417,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Data-Structure9</div>
-      <div>http://example.com/2025/02/22/Data-Structure9/</div>
+      <div>https://janezair.site/2025/02/22/Data-Structure9/</div>
     </div>
     <div class="license-meta">
       
