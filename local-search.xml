@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>LCA</title>
+    <link href="/2025/05/11/AlgorithmOfDS4/"/>
+    <url>/2025/05/11/AlgorithmOfDS4/</url>
+    
+    <content type="html"><![CDATA[<h1>LCA ———— Least Common Ancestors</h1><hr><h2 id="如何计算？">如何计算？</h2><ul><li>深度相同一起跳</li><li>深度不同，深度大的跳</li></ul><p>显然，一层一层跳复杂度将会来到O(N)</p><h2 id="空间换时间-一次多跨几步">空间换时间 一次多跨几步</h2><p>联系：<a href="https://janezair.site/2025/04/05/AlgorithmOfDS2/#sparse-table-st%E8%A1%A8">ST表</a><br>考虑保存<strong>2 的幂次级 祖先</strong></p><p>于是我们有了一种很棒的<strong>倍增</strong>做法：</p><ol><li>假设 y 比 x 深，则 y 需要向上跳 a = h(y) - h(x)</li><li>对 a 进行二进制拆分</li><li>令 f[x][i]为结点 x 的 2^i级祖先，则状态转移方程为：f[x][i] = f[f[x][i-1]][i-1]</li></ol><p>也就是说，我们可以进行一个ST表的预处理：</p><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs abnf">for(int j <span class="hljs-operator">=</span> <span class="hljs-number">1</span><span class="hljs-comment">;j &lt;= 20;j ++)&#123;</span><br>    for(int i <span class="hljs-operator">=</span> <span class="hljs-number">1</span><span class="hljs-comment">;i &lt;= n;i ++)&#123;</span><br>        f[i][j] <span class="hljs-operator">=</span> f[f[i][j-<span class="hljs-number">1</span>]][j-<span class="hljs-number">1</span>]<span class="hljs-comment">;</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><p>复杂度是O(NlogN)的</p><h2 id="深度相同一起跳">深度相同一起跳</h2><p>问题在于：深度差未知<br>不能跳过头，但也不想太保守（一点一点往上挪），争取跳出<strong>能跳的 最大的步子</strong></p><p>So:以 2 的幂次从大往小尝试</p><ul><li>每次跳都确保跳到的点不相同</li><li>步长递减到2^0 为止，返回最后点的父亲节点</li></ul><h2 id="LCA-代码实现">LCA 代码实现</h2><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs inform7">int lca(int x,int y)&#123;<br>    if(dp<span class="hljs-comment">[x]</span> &lt; dp<span class="hljs-comment">[y]</span>)&#123;<br>        swap(x,y);<br>    &#125;<br>    for(int j = 19;j &gt;= 0;j --)&#123;<br>        if(dp<span class="hljs-comment">[f<span class="hljs-comment">[x]</span><span class="hljs-comment">[i]</span>]</span> &gt;= dp<span class="hljs-comment">[y]</span>)&#123;<br>            x = f<span class="hljs-comment">[x]</span><span class="hljs-comment">[i]</span>;<br>        &#125;<br>    &#125;<br>    if(x == y)&#123;<br>        return x;<br>    &#125;<br>    for(int j = 19;j &gt;= 0;j --)&#123;<br>        if(dp<span class="hljs-comment">[f<span class="hljs-comment">[x]</span><span class="hljs-comment">[j]</span>]</span> != dp<span class="hljs-comment">[f<span class="hljs-comment">[y]</span><span class="hljs-comment">[j]</span>]</span>)&#123;<br>            x = f<span class="hljs-comment">[x]</span><span class="hljs-comment">[j]</span>;<br>            y = f<span class="hljs-comment">[y]</span><span class="hljs-comment">[j]</span>;<br>        &#125;<br>    &#125;<br>    return f<span class="hljs-comment">[x]</span><span class="hljs-comment">[0]</span>;<br>&#125;<br></code></pre></td></tr></table></figure><h2 id="应用：树上差分">应用：树上差分</h2><p>给定一棵树 n 个节点，有 m 次操作，每次操作给出 u，v 两个节点，将 u-v 路径上的所有点权值 +1。之后查询每个点的点权。</p><p>想法：联系<a href="https://janezair.site/2025/04/05/AlgorithmOfDS2/#%E5%8C%BA%E9%97%B4%E4%BF%AE%E6%94%B9%E5%92%8C%E5%8D%95%E7%82%B9%E6%9F%A5%E8%AF%A2">树状数组区间修改</a></p><p><strong>差分树上节点加 1 ，代表从根节点到该节点的路径上的节点都加 1</strong></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Algorithms</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Data Structure</tag>
+      
+      <tag>Algorithm</tag>
+      
+      <tag>LCA</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Mathematical Logic 10 Halting Problem</title>
     <link href="/2025/05/11/Mathematical-Logic10/"/>
     <url>/2025/05/11/Mathematical-Logic10/</url>
