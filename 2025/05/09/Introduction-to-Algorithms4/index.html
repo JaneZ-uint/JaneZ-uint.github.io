@@ -29,8 +29,11 @@
 <meta property="og:image" content="https://janezair.site/img/WGSP.png">
 <meta property="og:image" content="https://janezair.site/img/NWG.png">
 <meta property="og:image" content="https://janezair.site/img/GCSP.png">
+<meta property="og:image" content="https://janezair.site/img/DAG.png">
+<meta property="og:image" content="https://janezair.site/img/Dijkstra.png">
+<meta property="og:image" content="https://janezair.site/img/DijkstraCode.png">
 <meta property="article:published_time" content="2025-05-09T07:22:59.000Z">
-<meta property="article:modified_time" content="2025-05-09T08:03:37.976Z">
+<meta property="article:modified_time" content="2025-05-11T09:04:26.036Z">
 <meta property="article:author" content="Yihan Zhu">
 <meta property="article:tag" content="Algorithm">
 <meta property="article:tag" content="Dijkstra">
@@ -259,7 +262,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          52 words
+          106 words
         
       </span>
     
@@ -270,7 +273,7 @@
         
         
         
-          1 mins
+          2 mins
         
       </span>
     
@@ -352,8 +355,35 @@ with δ(s,v) &lt;= d[v] (all the times)</p>
 For all u,v,x <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>∈</mo></mrow><annotation encoding="application/x-tex">\in</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.5391em;"></span><span class="strut bottom" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">∈</span></span></span></span> X, we have</p>
 <p>δ(u,v) &lt;= δ(u,x) + δ(x,v)</p>
 <p>You may use this idea in Floyd Algorithm.</p>
+<h2 id="DAG-（Directed-Acyclic-Graph-有向无环图）">DAG （Directed Acyclic Graph 有向无环图）</h2>
+<p>No cycles！</p>
+<p>1.Topologically sort the DAG.<br>
+2.One pass over vertices in topologically sorted order relaxing each edge that<br>
+leaves each vertex.</p>
+<p><img src="/img/DAG.png" srcset="/img/loading.gif" lazyload alt="DAG Example"></p>
+<p>using <strong>Dynamic Programming</strong> O(V + E)</p>
 <h2 id="Dijkstra-Algorithm">Dijkstra Algorithm</h2>
-<p>Wait to be upd…</p>
+<p><img src="/img/Dijkstra.png" srcset="/img/loading.gif" lazyload alt="Dijkstra"></p>
+<p>Core Idea:<br>
+<strong>For each edge (u, v) <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>∈</mo></mrow><annotation encoding="application/x-tex">\in</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.5391em;"></span><span class="strut bottom" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">∈</span></span></span></span> E, assume w(u, v) ≥ 0, maintain a set S of vertices whose final shortest path weights have been determined. Repeatedly select u <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>∈</mo></mrow><annotation encoding="application/x-tex">\in</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.5391em;"></span><span class="strut bottom" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">∈</span></span></span></span> V − S with minimum shortest path estimate, add u to S, relax all edges out of u.</strong></p>
+<h3 id="Pseudo-code">Pseudo-code</h3>
+<p><img src="/img/DijkstraCode.png" srcset="/img/loading.gif" lazyload alt="Dijkstra Code"></p>
+<h2 id="Dijkstra-Complexity-Analysis">Dijkstra Complexity Analysis</h2>
+<p>V times : insert into pq<br>
+V times : extract min<br>
+E times : decrease key</p>
+<h3 id="Array">Array</h3>
+<p>V times : extract min<br>
+1 time  : decrease key</p>
+<p>Total: O(V^2 + E)</p>
+<h3 id="Binary-Min-Heap">Binary Min Heap</h3>
+<p>lgV times: extract min<br>
+lgV times: decrease key</p>
+<p>Total: O(VlgV + ElgV)</p>
+<h3 id="Fibonacci-heap">Fibonacci heap</h3>
+<p>lgV times: extract min<br>
+1 time  : decrease key</p>
+<p>Total: O(VlogV + E)</p>
 
                 
               </div>
@@ -424,7 +454,7 @@ For all u,v,x <span class="katex"><span class="katex-mathml"><math><semantics><m
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>May 9, 2025</div>
+          <div>May 11, 2025</div>
         </div>
       
       
