@@ -19,18 +19,25 @@
   <meta name="author" content="Yihan Zhu">
   <meta name="keywords" content="SJTU Student CS Maths Life">
   
-    <meta name="description" content="Computer Science &amp; Mathematics &amp; Anything I want to share">
+    <meta name="description" content="Mathematical Logic 11 Proof of the undecidability of FO Undecidability of FO  Basic Thoughts of the Proof We’ve already proved that Π halt is not R-decidable by using Π’halt ⩽m Π halt. So we only need">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Proof of the Undecidabilty of FO">
 <meta property="og:url" content="https://janezair.site/2025/05/17/Mathematical-Logic11/index.html">
 <meta property="og:site_name" content="JaneZ&#39;s Learning Space">
-<meta property="og:description" content="Computer Science &amp; Mathematics &amp; Anything I want to share">
+<meta property="og:description" content="Mathematical Logic 11 Proof of the undecidability of FO Undecidability of FO  Basic Thoughts of the Proof We’ve already proved that Π halt is not R-decidable by using Π’halt ⩽m Π halt. So we only need">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://janezair.site/img/FO.png">
+<meta property="og:image" content="https://janezair.site/img/BuildSStructure.png">
+<meta property="og:image" content="https://janezair.site/img/TwoPro.png">
+<meta property="og:image" content="https://janezair.site/img/varphi.png">
+<meta property="og:image" content="https://janezair.site/img/Construct1.png">
+<meta property="og:image" content="https://janezair.site/img/Construct2.png">
 <meta property="article:published_time" content="2025-05-17T14:29:19.000Z">
-<meta property="article:modified_time" content="2025-05-17T14:30:30.920Z">
+<meta property="article:modified_time" content="2025-05-18T04:16:40.707Z">
 <meta property="article:author" content="Yihan Zhu">
 <meta property="article:tag" content="Mathematical Logic">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://janezair.site/img/FO.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -252,7 +259,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 words
+          178 words
         
       </span>
     
@@ -263,7 +270,7 @@
         
         
         
-          1 mins
+          2 mins
         
       </span>
     
@@ -314,7 +321,43 @@
             
               <div class="markdown-body">
                 
-                
+                <h1>Mathematical Logic 11 Proof of the undecidability of FO</h1>
+<h2 id="Undecidability-of-FO">Undecidability of FO</h2>
+<p><img src="/img/FO.png" srcset="/img/loading.gif" lazyload alt="Undecidability of FO"></p>
+<h2 id="Basic-Thoughts-of-the-Proof">Basic Thoughts of the Proof</h2>
+<p>We’ve already proved that Π halt is not R-decidable by using Π’halt ⩽m Π halt.</p>
+<p><strong>So we only need to show that Π halt ⩽m FO</strong>.</p>
+<p>i.e <strong>We have to construct a reduction.</strong></p>
+<p>P: □ -&gt; halt  ⇔ |= φP</p>
+<h2 id="Main-Target-Build-φP">Main Target: Build φP</h2>
+<h2 id="Configuration-of-the-Register-Machine">Configuration of the Register Machine</h2>
+<p>引入<strong>Configuration 格局</strong>的概念</p>
+<p>我们定义一个(n + 2) 元组：<br>
+(L,m0,m1,…,mn)</p>
+<p>L表示当前这一条指令，mi表示第i个寄存器中存储的字符串中 | 的个数（若A = {|}）</p>
+<p>显然这样的(n + 2) 元组可以<strong>刻画程序的行为</strong></p>
+<p>初始状态(0,0,…,0)</p>
+<p>停机时状态(k,m0,m1,…,mn)</p>
+<h2 id="Reduction-Overview-1-S-Structure">Reduction Overview 1 : S-Structure</h2>
+<p>定义一种关系：<br>
+R^P := {(L,m0,m1,…,mn) | (0,0,…,0) -&gt; (L,m0,m1,…,mn)}</p>
+<p><strong>程序可达格局</strong></p>
+<p>So We need that:<br>
+1.定义一个公式 ψP decribes R^P<br>
+2.P: □ -&gt; halt  ⇔  (k,m0,m1,…,mn) <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>∈</mo></mrow><annotation encoding="application/x-tex">\in</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.5391em;"></span><span class="strut bottom" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">∈</span></span></span></span> R^P</p>
+<p>所以可以建立如下的S-strcutre</p>
+<p><img src="/img/BuildSStructure.png" srcset="/img/loading.gif" lazyload alt="S-Structure"></p>
+<h2 id="Reduction-Overview-2">Reduction Overview 2</h2>
+<p>The desired ψP should satisfy the following two properties:、<br>
+<img src="/img/TwoPro.png" srcset="/img/loading.gif" lazyload alt="P1 &amp; P2"></p>
+<p>Finally , we set:<br>
+<img src="/img/varphi.png" srcset="/img/loading.gif" lazyload alt="Construct φP"></p>
+<h2 id="We-can-easily-proved-that-P-□-halt-⇔-φP">We can easily proved that P: □ -&gt; halt  ⇔ |= φP</h2>
+<h2 id="The-Constructuction-of-ψP">The Constructuction of ψP</h2>
+<p><img src="/img/Construct1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/Construct2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>是一个对指令类型的分类讨论</p>
+
                 
               </div>
             
@@ -378,7 +421,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>May 17, 2025</div>
+          <div>May 18, 2025</div>
         </div>
       
       
