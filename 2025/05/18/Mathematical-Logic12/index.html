@@ -19,31 +19,30 @@
   <meta name="author" content="Yihan Zhu">
   <meta name="keywords" content="SJTU Student CS Maths Life">
   
-    <meta name="description" content="Mathematical Logic 11 Proof of the undecidability of FO Undecidability of FO  Basic Thoughts of the Proof We’ve already proved that Π halt is not R-decidable by using Π’halt ⩽m Π halt. So we only need">
+    <meta name="description" content="Theories and Decidability Recall The 4 Questions we’re gonna answer. Q1: What is a mathematical proof? Q2: What makes a proof correct? Q3: Is there a boundary of provability? Q4: Can computers find pr">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Proof of the Undecidabilty of FO">
-<meta property="og:url" content="https://janezair.site/2025/05/17/Mathematical-Logic11/index.html">
+<meta property="og:title" content="Theories and Decidability">
+<meta property="og:url" content="https://janezair.site/2025/05/18/Mathematical-Logic12/index.html">
 <meta property="og:site_name" content="JaneZ&#39;s Learning Space">
-<meta property="og:description" content="Mathematical Logic 11 Proof of the undecidability of FO Undecidability of FO  Basic Thoughts of the Proof We’ve already proved that Π halt is not R-decidable by using Π’halt ⩽m Π halt. So we only need">
+<meta property="og:description" content="Theories and Decidability Recall The 4 Questions we’re gonna answer. Q1: What is a mathematical proof? Q2: What makes a proof correct? Q3: Is there a boundary of provability? Q4: Can computers find pr">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://janezair.site/img/FO.png">
-<meta property="og:image" content="https://janezair.site/img/BuildSStructure.png">
-<meta property="og:image" content="https://janezair.site/img/TwoPro.png">
-<meta property="og:image" content="https://janezair.site/img/varphi.png">
-<meta property="og:image" content="https://janezair.site/img/Construct1.png">
-<meta property="og:image" content="https://janezair.site/img/Construct2.png">
-<meta property="article:published_time" content="2025-05-17T14:29:19.000Z">
-<meta property="article:modified_time" content="2025-05-18T04:16:40.707Z">
+<meta property="og:image" content="https://janezair.site/img/Theory.png">
+<meta property="og:image" content="https://janezair.site/img/%E9%80%BB%E8%BE%91%E9%97%AD%E5%8C%85.png">
+<meta property="og:image" content="https://janezair.site/img/%E7%AD%89%E4%BB%B7%E5%91%BD%E9%A2%98.png">
+<meta property="og:image" content="https://janezair.site/img/PA.png">
+<meta property="og:image" content="https://janezair.site/img/%E5%88%9D%E7%AD%89%E7%AE%97%E6%9C%AF.png">
+<meta property="article:published_time" content="2025-05-18T04:17:57.000Z">
+<meta property="article:modified_time" content="2025-05-18T09:33:03.933Z">
 <meta property="article:author" content="Yihan Zhu">
 <meta property="article:tag" content="Mathematical Logic">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://janezair.site/img/FO.png">
+<meta name="twitter:image" content="https://janezair.site/img/Theory.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Proof of the Undecidabilty of FO - JaneZ&#39;s Learning Space</title>
+  <title>Theories and Decidability - JaneZ&#39;s Learning Space</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -236,7 +235,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Proof of the Undecidabilty of FO"></span>
+            <span id="subtitle" data-typed-text="Theories and Decidability"></span>
           
         </div>
 
@@ -247,8 +246,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-05-17 22:29" pubdate>
-          May 17, 2025 pm
+        <time datetime="2025-05-18 12:17" pubdate>
+          May 18, 2025 pm
         </time>
       </span>
     
@@ -259,7 +258,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          178 words
+          186 words
         
       </span>
     
@@ -270,7 +269,7 @@
         
         
         
-          2 mins
+          3 mins
         
       </span>
     
@@ -316,47 +315,41 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Proof of the Undecidabilty of FO</h1>
+            <h1 id="seo-header">Theories and Decidability</h1>
             
             
               <div class="markdown-body">
                 
-                <h1>Mathematical Logic 11 Proof of the undecidability of FO</h1>
-<h2 id="Undecidability-of-FO">Undecidability of FO</h2>
-<p><img src="/img/FO.png" srcset="/img/loading.gif" lazyload alt="Undecidability of FO"></p>
-<h2 id="Basic-Thoughts-of-the-Proof">Basic Thoughts of the Proof</h2>
-<p>We’ve already proved that Π halt is not R-decidable by using Π’halt ⩽m Π halt.</p>
-<p><strong>So we only need to show that Π halt ⩽m FO</strong>.</p>
-<p>i.e <strong>We have to construct a reduction.</strong></p>
-<p>P: □ -&gt; halt  ⇔ |= φP</p>
-<h2 id="Main-Target-Build-φP">Main Target: Build φP</h2>
-<h2 id="Configuration-of-the-Register-Machine">Configuration of the Register Machine</h2>
-<p>引入<strong>Configuration 格局</strong>的概念</p>
-<p>我们定义一个(n + 2) 元组：<br>
-(L,m0,m1,…,mn)</p>
-<p>L表示当前这一条指令，mi表示第i个寄存器中存储的字符串中 | 的个数（若A = {|}）</p>
-<p>显然这样的(n + 2) 元组可以<strong>刻画程序的行为</strong></p>
-<p>初始状态(0,0,…,0)</p>
-<p>停机时状态(k,m0,m1,…,mn)</p>
-<h2 id="Reduction-Overview-1-S-Structure">Reduction Overview 1 : S-Structure</h2>
-<p>定义一种关系：<br>
-R^P := {(L,m0,m1,…,mn) | (0,0,…,0) -&gt; (L,m0,m1,…,mn)}</p>
-<p><strong>程序可达格局</strong></p>
-<p>So We need that:<br>
-1.定义一个公式 ψP decribes R^P<br>
-2.P: □ -&gt; halt  ⇔  (k,m0,m1,…,mn) <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>∈</mo></mrow><annotation encoding="application/x-tex">\in</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.5391em;"></span><span class="strut bottom" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">∈</span></span></span></span> R^P</p>
-<p>所以可以建立如下的S-strcutre</p>
-<p><img src="/img/BuildSStructure.png" srcset="/img/loading.gif" lazyload alt="S-Structure"></p>
-<h2 id="Reduction-Overview-2">Reduction Overview 2</h2>
-<p>The desired ψP should satisfy the following two properties:、<br>
-<img src="/img/TwoPro.png" srcset="/img/loading.gif" lazyload alt="P1 &amp; P2"></p>
-<p>Finally , we set:<br>
-<img src="/img/varphi.png" srcset="/img/loading.gif" lazyload alt="Construct φP"></p>
-<h2 id="We-can-easily-proved-that-P-□-halt-⇔-φP">We can easily proved that P: □ -&gt; halt  ⇔ |= φP</h2>
-<h2 id="The-Constructuction-of-ψP">The Constructuction of ψP</h2>
-<p><img src="/img/Construct1.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="/img/Construct2.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>是一个对指令类型的分类讨论</p>
+                <h1>Theories and Decidability</h1>
+<h2 id="Recall-The-4-Questions-we’re-gonna-answer">Recall The 4 Questions we’re gonna answer.</h2>
+<p>Q1: What is a mathematical proof?<br>
+Q2: What makes a proof correct?<br>
+Q3: <strong>Is there a boundary of provability?</strong><br>
+Q4: Can computers find proofs?</p>
+<p>We’ve already answer Q1 Q2 &amp; Q4.</p>
+<p>Now we’re going to answer Q3.</p>
+<h2 id="Theories">Theories</h2>
+<p>First, give the definition.</p>
+<p><img src="/img/Theory.png" srcset="/img/loading.gif" lazyload alt="Theory"></p>
+<p>我们还可以定义T 的逻辑闭包：<br>
+<img src="/img/%E9%80%BB%E8%BE%91%E9%97%AD%E5%8C%85.png" srcset="/img/loading.gif" lazyload alt="逻辑闭包"></p>
+<p>同样我们还可以知道以下3个命题是等价的<br>
+<img src="/img/%E7%AD%89%E4%BB%B7%E5%91%BD%E9%A2%98.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>几个证明的关键点在：</p>
+<ul>
+<li>T <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⊂</mo></mrow><annotation encoding="application/x-tex">\subset</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.5391em;"></span><span class="strut bottom" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">⊂</span></span></span></span>  T⊨ (取任意φ <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>∈</mo></mrow><annotation encoding="application/x-tex">\in</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.5391em;"></span><span class="strut bottom" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">∈</span></span></span></span> T；假设模型M 使得 M ⊨ T，则M ⊨ φ，故T ⊨ φ；所以有φ <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>∈</mo></mrow><annotation encoding="application/x-tex">\in</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.5391em;"></span><span class="strut bottom" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">∈</span></span></span></span> T⊨)</li>
+<li>取模型M，如果M ⊨ T，可以取一个M无法满足的句子ψ，则ψ 不是T 的逻辑推论，则ψ 不属于T⊨</li>
+<li>T⊨是封闭的，因为对所有的ψ，如果(T⊨) ⊨ ψ，则T ⊨ ψ，则 ψ <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>∈</mo></mrow><annotation encoding="application/x-tex">\in</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.5391em;"></span><span class="strut bottom" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">∈</span></span></span></span> T⊨</li>
+<li>空真：如果 T 不可满足，且T ⊨ φ，则φ可取任意L^S中公式</li>
+<li>假设 T⊨ 不可满足，则 (T⊨)⊨ = L^S</li>
+</ul>
+<h2 id="Peano-Arithmetic">Peano Arithmetic</h2>
+<p><strong>φPA</strong><br>
+<img src="/img/PA.png" srcset="/img/loading.gif" lazyload alt="Definition Of PA"></p>
+<h2 id="Elementary-arithmetic">Elementary arithmetic</h2>
+<p><img src="/img/%E5%88%9D%E7%AD%89%E7%AE%97%E6%9C%AF.png" srcset="/img/loading.gif" lazyload alt="Definition of EA"></p>
+<p><strong>RMK:</strong><br>
+It’s easy to see that φPA <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⊂</mo></mrow><annotation encoding="application/x-tex">\subset</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.5391em;"></span><span class="strut bottom" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">⊂</span></span></span></span> Th(N),we will show that φPA ⊊ Th(N)</p>
 
                 
               </div>
@@ -402,8 +395,8 @@ R^P := {(L,m0,m1,…,mn) | (0,0,…,0) -&gt; (L,m0,m1,…,mn)}</p>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Proof of the Undecidabilty of FO</div>
-      <div>https://janezair.site/2025/05/17/Mathematical-Logic11/</div>
+      <div>Theories and Decidability</div>
+      <div>https://janezair.site/2025/05/18/Mathematical-Logic12/</div>
     </div>
     <div class="license-meta">
       
@@ -415,7 +408,7 @@ R^P := {(L,m0,m1,…,mn) | (0,0,…,0) -&gt; (L,m0,m1,…,mn)}</p>
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>May 17, 2025</div>
+          <div>May 18, 2025</div>
         </div>
       
       
@@ -452,18 +445,12 @@ R^P := {(L,m0,m1,…,mn) | (0,0,…,0) -&gt; (L,m0,m1,…,mn)}</p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/05/18/Mathematical-Logic12/" title="Theories and Decidability">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Theories and Decidability</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/05/11/AlgorithmOfDS4/" title="LCA DS MST">
-                        <span class="hidden-mobile">LCA DS MST</span>
+                      <a href="/2025/05/17/Mathematical-Logic11/" title="Proof of the Undecidabilty of FO">
+                        <span class="hidden-mobile">Proof of the Undecidabilty of FO</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

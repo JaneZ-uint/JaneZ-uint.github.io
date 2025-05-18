@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Theories and Decidability</title>
+    <link href="/2025/05/18/Mathematical-Logic12/"/>
+    <url>/2025/05/18/Mathematical-Logic12/</url>
+    
+    <content type="html"><![CDATA[<h1>Theories and Decidability</h1><h2 id="Recall-The-4-Questions-we’re-gonna-answer">Recall The 4 Questions we’re gonna answer.</h2><p>Q1: What is a mathematical proof?<br>Q2: What makes a proof correct?<br>Q3: <strong>Is there a boundary of provability?</strong><br>Q4: Can computers find proofs?</p><p>We’ve already answer Q1 Q2 &amp; Q4.</p><p>Now we’re going to answer Q3.</p><h2 id="Theories">Theories</h2><p>First, give the definition.</p><p><img src="/img/Theory.png" alt="Theory"></p><p>我们还可以定义T 的逻辑闭包：<br><img src="/img/%E9%80%BB%E8%BE%91%E9%97%AD%E5%8C%85.png" alt="逻辑闭包"></p><p>同样我们还可以知道以下3个命题是等价的<br><img src="/img/%E7%AD%89%E4%BB%B7%E5%91%BD%E9%A2%98.png" alt=""></p><p>几个证明的关键点在：</p><ul><li>T <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⊂</mo></mrow><annotation encoding="application/x-tex">\subset</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.5391em;"></span><span class="strut bottom" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">⊂</span></span></span></span>  T⊨ (取任意φ <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>∈</mo></mrow><annotation encoding="application/x-tex">\in</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.5391em;"></span><span class="strut bottom" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">∈</span></span></span></span> T；假设模型M 使得 M ⊨ T，则M ⊨ φ，故T ⊨ φ；所以有φ <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>∈</mo></mrow><annotation encoding="application/x-tex">\in</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.5391em;"></span><span class="strut bottom" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">∈</span></span></span></span> T⊨)</li><li>取模型M，如果M ⊨ T，可以取一个M无法满足的句子ψ，则ψ 不是T 的逻辑推论，则ψ 不属于T⊨</li><li>T⊨是封闭的，因为对所有的ψ，如果(T⊨) ⊨ ψ，则T ⊨ ψ，则 ψ <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>∈</mo></mrow><annotation encoding="application/x-tex">\in</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.5391em;"></span><span class="strut bottom" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">∈</span></span></span></span> T⊨</li><li>空真：如果 T 不可满足，且T ⊨ φ，则φ可取任意L^S中公式</li><li>假设 T⊨ 不可满足，则 (T⊨)⊨ = L^S</li></ul><h2 id="Peano-Arithmetic">Peano Arithmetic</h2><p><strong>φPA</strong><br><img src="/img/PA.png" alt="Definition Of PA"></p><h2 id="Elementary-arithmetic">Elementary arithmetic</h2><p><img src="/img/%E5%88%9D%E7%AD%89%E7%AE%97%E6%9C%AF.png" alt="Definition of EA"></p><p><strong>RMK:</strong><br>It’s easy to see that φPA <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⊂</mo></mrow><annotation encoding="application/x-tex">\subset</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.5391em;"></span><span class="strut bottom" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">⊂</span></span></span></span> Th(N),we will show that φPA ⊊ Th(N)</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Mathematical Logic</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Mathematical Logic</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Proof of the Undecidabilty of FO</title>
     <link href="/2025/05/17/Mathematical-Logic11/"/>
     <url>/2025/05/17/Mathematical-Logic11/</url>
