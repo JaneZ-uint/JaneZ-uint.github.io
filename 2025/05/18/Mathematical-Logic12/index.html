@@ -19,20 +19,22 @@
   <meta name="author" content="Yihan Zhu">
   <meta name="keywords" content="SJTU Student CS Maths Life">
   
-    <meta name="description" content="Theories and Decidability Recall The 4 Questions we’re gonna answer. Q1: What is a mathematical proof? Q2: What makes a proof correct? Q3: Is there a boundary of provability? Q4: Can computers find pr">
+    <meta name="description" content="Theories and Decidability  Recall The 4 Questions we’re gonna answer. Q1: What is a mathematical proof? Q2: What makes a proof correct? Q3: Is there a boundary of provability? Q4: Can computers find">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Theories and Decidability">
 <meta property="og:url" content="https://janezair.site/2025/05/18/Mathematical-Logic12/index.html">
 <meta property="og:site_name" content="JaneZ&#39;s Learning Space">
-<meta property="og:description" content="Theories and Decidability Recall The 4 Questions we’re gonna answer. Q1: What is a mathematical proof? Q2: What makes a proof correct? Q3: Is there a boundary of provability? Q4: Can computers find pr">
+<meta property="og:description" content="Theories and Decidability  Recall The 4 Questions we’re gonna answer. Q1: What is a mathematical proof? Q2: What makes a proof correct? Q3: Is there a boundary of provability? Q4: Can computers find">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://janezair.site/img/Theory.png">
 <meta property="og:image" content="https://janezair.site/img/%E9%80%BB%E8%BE%91%E9%97%AD%E5%8C%85.png">
 <meta property="og:image" content="https://janezair.site/img/%E7%AD%89%E4%BB%B7%E5%91%BD%E9%A2%98.png">
 <meta property="og:image" content="https://janezair.site/img/PA.png">
 <meta property="og:image" content="https://janezair.site/img/%E5%88%9D%E7%AD%89%E7%AE%97%E6%9C%AF.png">
+<meta property="og:image" content="https://janezair.site/img/%E5%85%AC%E7%90%86%E5%8C%96.png">
+<meta property="og:image" content="https://janezair.site/img/CT.png">
 <meta property="article:published_time" content="2025-05-18T04:17:57.000Z">
-<meta property="article:modified_time" content="2025-05-18T09:33:03.933Z">
+<meta property="article:modified_time" content="2025-05-18T13:02:44.309Z">
 <meta property="article:author" content="Yihan Zhu">
 <meta property="article:tag" content="Mathematical Logic">
 <meta name="twitter:card" content="summary_large_image">
@@ -258,7 +260,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          186 words
+          203 words
         
       </span>
     
@@ -320,36 +322,45 @@
             
               <div class="markdown-body">
                 
-                <h1>Theories and Decidability</h1>
-<h2 id="Recall-The-4-Questions-we’re-gonna-answer">Recall The 4 Questions we’re gonna answer.</h2>
-<p>Q1: What is a mathematical proof?<br>
-Q2: What makes a proof correct?<br>
-Q3: <strong>Is there a boundary of provability?</strong><br>
+                <h1 id="theories-and-decidability"><a class="markdownIt-Anchor" href="#theories-and-decidability"></a> Theories and Decidability</h1>
+<h2 id="recall-the-4-questions-were-gonna-answer"><a class="markdownIt-Anchor" href="#recall-the-4-questions-were-gonna-answer"></a> Recall The 4 Questions we’re gonna answer.</h2>
+<p>Q1: What is a mathematical proof?<br />
+Q2: What makes a proof correct?<br />
+Q3: <strong>Is there a boundary of provability?</strong><br />
 Q4: Can computers find proofs?</p>
 <p>We’ve already answer Q1 Q2 &amp; Q4.</p>
 <p>Now we’re going to answer Q3.</p>
-<h2 id="Theories">Theories</h2>
+<h2 id="theories"><a class="markdownIt-Anchor" href="#theories"></a> Theories</h2>
 <p>First, give the definition.</p>
-<p><img src="/img/Theory.png" srcset="/img/loading.gif" lazyload alt="Theory"></p>
-<p>我们还可以定义T 的逻辑闭包：<br>
-<img src="/img/%E9%80%BB%E8%BE%91%E9%97%AD%E5%8C%85.png" srcset="/img/loading.gif" lazyload alt="逻辑闭包"></p>
-<p>同样我们还可以知道以下3个命题是等价的<br>
-<img src="/img/%E7%AD%89%E4%BB%B7%E5%91%BD%E9%A2%98.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="/img/Theory.png" srcset="/img/loading.gif" lazyload alt="Theory" /></p>
+<p>我们还可以定义T 的逻辑闭包：<br />
+<img src="/img/%E9%80%BB%E8%BE%91%E9%97%AD%E5%8C%85.png" srcset="/img/loading.gif" lazyload alt="逻辑闭包" /></p>
+<p>同样我们还可以知道以下3个命题是等价的<br />
+<img src="/img/%E7%AD%89%E4%BB%B7%E5%91%BD%E9%A2%98.png" srcset="/img/loading.gif" lazyload alt="" /></p>
 <p>几个证明的关键点在：</p>
 <ul>
-<li>T <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⊂</mo></mrow><annotation encoding="application/x-tex">\subset</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.5391em;"></span><span class="strut bottom" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">⊂</span></span></span></span>  T⊨ (取任意φ <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>∈</mo></mrow><annotation encoding="application/x-tex">\in</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.5391em;"></span><span class="strut bottom" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">∈</span></span></span></span> T；假设模型M 使得 M ⊨ T，则M ⊨ φ，故T ⊨ φ；所以有φ <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>∈</mo></mrow><annotation encoding="application/x-tex">\in</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.5391em;"></span><span class="strut bottom" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">∈</span></span></span></span> T⊨)</li>
+<li>T <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⊂</mo></mrow><annotation encoding="application/x-tex">\subset</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">⊂</span></span></span></span>  T⊨ (取任意φ <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>∈</mo></mrow><annotation encoding="application/x-tex">\in</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">∈</span></span></span></span> T；假设模型M 使得 M ⊨ T，则M ⊨ φ，故T ⊨ φ；所以有φ <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>∈</mo></mrow><annotation encoding="application/x-tex">\in</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">∈</span></span></span></span> T⊨)</li>
 <li>取模型M，如果M ⊨ T，可以取一个M无法满足的句子ψ，则ψ 不是T 的逻辑推论，则ψ 不属于T⊨</li>
-<li>T⊨是封闭的，因为对所有的ψ，如果(T⊨) ⊨ ψ，则T ⊨ ψ，则 ψ <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>∈</mo></mrow><annotation encoding="application/x-tex">\in</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.5391em;"></span><span class="strut bottom" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">∈</span></span></span></span> T⊨</li>
+<li>T⊨是封闭的，因为对所有的ψ，如果(T⊨) ⊨ ψ，则T ⊨ ψ，则 ψ <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>∈</mo></mrow><annotation encoding="application/x-tex">\in</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">∈</span></span></span></span> T⊨</li>
 <li>空真：如果 T 不可满足，且T ⊨ φ，则φ可取任意L^S中公式</li>
 <li>假设 T⊨ 不可满足，则 (T⊨)⊨ = L^S</li>
 </ul>
-<h2 id="Peano-Arithmetic">Peano Arithmetic</h2>
-<p><strong>φPA</strong><br>
-<img src="/img/PA.png" srcset="/img/loading.gif" lazyload alt="Definition Of PA"></p>
-<h2 id="Elementary-arithmetic">Elementary arithmetic</h2>
-<p><img src="/img/%E5%88%9D%E7%AD%89%E7%AE%97%E6%9C%AF.png" srcset="/img/loading.gif" lazyload alt="Definition of EA"></p>
-<p><strong>RMK:</strong><br>
-It’s easy to see that φPA <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⊂</mo></mrow><annotation encoding="application/x-tex">\subset</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.5391em;"></span><span class="strut bottom" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="base textstyle uncramped"><span class="mrel">⊂</span></span></span></span> Th(N),we will show that φPA ⊊ Th(N)</p>
+<h2 id="peano-arithmetic"><a class="markdownIt-Anchor" href="#peano-arithmetic"></a> Peano Arithmetic</h2>
+<p><strong>φPA</strong><br />
+<img src="/img/PA.png" srcset="/img/loading.gif" lazyload alt="Definition Of PA" /></p>
+<h2 id="elementary-arithmetic"><a class="markdownIt-Anchor" href="#elementary-arithmetic"></a> Elementary arithmetic</h2>
+<p><img src="/img/%E5%88%9D%E7%AD%89%E7%AE%97%E6%9C%AF.png" srcset="/img/loading.gif" lazyload alt="Definition of EA" /></p>
+<p><strong>RMK:</strong><br />
+It’s easy to see that φPA <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⊂</mo></mrow><annotation encoding="application/x-tex">\subset</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">⊂</span></span></span></span> Th(N),we will show that φPA ⊊ Th(N)</p>
+<h2 id="r-axiomatizable-可公理化"><a class="markdownIt-Anchor" href="#r-axiomatizable-可公理化"></a> R-axiomatizable 可公理化</h2>
+<p><img src="/img/%E5%85%AC%E7%90%86%E5%8C%96.png" srcset="/img/loading.gif" lazyload alt="Definition" /></p>
+<h2 id="theorem-5"><a class="markdownIt-Anchor" href="#theorem-5"></a> Theorem 5</h2>
+<p><strong>Every R-axiomatizable theory is R-enumerable.</strong></p>
+<h2 id="complete-theory"><a class="markdownIt-Anchor" href="#complete-theory"></a> Complete Theory</h2>
+<p><img src="/img/CT.png" srcset="/img/loading.gif" lazyload alt="Complete Theory" /></p>
+<h2 id="theorem-6"><a class="markdownIt-Anchor" href="#theorem-6"></a> Theorem 6</h2>
+<p>(i) Every R-axiomatizable complete theory is R-decidable.<br />
+(ii) Every R-enumerable complete theory is R-decidable.</p>
 
                 
               </div>
