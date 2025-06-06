@@ -345,11 +345,11 @@
   
   
   <entry>
-    <title>Mathematical Logic 8 Completeness Proof (upding...)</title>
+    <title>Mathematical Logic Cheating Paper</title>
     <link href="/2025/04/19/Mathematical-Logic8/"/>
     <url>/2025/04/19/Mathematical-Logic8/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<h1>ML CT Paper</h1><h2 id="前言">前言</h2><p>这是留给25级往后ACM班学弟学妹的一份遗产了，很详细地总结了CS2950 Mathematical Logic这门课程涉及的主要知识点（有所删减）。特别值得注意的是，我在25.6.5晚在前三位作者整理的基础上，增添了6个example，是拟合了近3年ML Final的结果。今晚考完，更觉得整理地挺到位（精准吧 这是能说的嘛🤣）。分数还没出，也不知道实际到底考的怎样😢 但从这门抽象的课中，我学到了很多。这门课的意义就在于，它真正改变了我们看待数学的观点，让我们去定义我们写了这么多年的证明，用了这么多年的公理。我觉得这是一门很很有意思的课（但这门课的难度还是很大的，做好心理准备吧🤣🤣🤣）</p><h2 id="LaTeX-源码">LaTeX 源码</h2><p><a href="https://latex.sjtu.edu.cn/5789875599fpdzxjcfzrgw#7dce86">https://latex.sjtu.edu.cn/5789875599fpdzxjcfzrgw#7dce86</a></p><p>可以根据个人需要删改</p><h2 id="PDF版本">PDF版本</h2><p><img src="/img/CTP1.png" alt="Page_1"></p><p><img src="/img/CTP2.png" alt="Page_2"></p><h2 id="Acknowledgement-排名不分先后">Acknowledgement (排名不分先后)</h2><ul><li><a href="https://github.com/Ancker-0">Coffish</a></li><li><a href="https://github.com/Monkey-Lee0">Monkey_Lee</a></li><li><a href="https://github.com/Sakura-Dusk">Sakura_Dusk</a></li></ul>]]></content>
     
     
     <categories>
