@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>State Spaces &amp; Uninformed Search</title>
+    <link href="/2025/06/11/CS188-1/"/>
+    <url>/2025/06/11/CS188-1/</url>
+    
+    <content type="html"><![CDATA[<h1>CS-188 Lecture 2</h1><h1>State Spaces and Search Problems</h1><p>Given our agent’s <strong>current state</strong>,how can we arrive at a <strong>new state</strong> that satisfies its goals in the best possible way?</p><p><strong>Elements of a search problem:</strong></p><ul><li>A state space (all possible states)</li><li>Available actions in each state</li><li>A <strong>transition model</strong>(Output the next state when an action is taken st current state)</li><li>An action cost</li><li>A start state</li><li>A goal test(A function that takes a state as input, and determines whether it is a goal state)</li></ul><h2 id="Difference-between-World-State-Search-State">Difference between World State &amp; Search State</h2><ul><li>World State: All information</li><li>Search State: Information necessary for planning</li></ul><h3 id="Pacman-Example">Pacman Example</h3><p><img src="/img/Pacman.png" alt="Pacman Game"></p><ul><li>Target: Pathing</li><li>Target: Eat all dots</li></ul><h2 id="State-Space-Size">State Space Size</h2><p><strong>Fundamental Counting Principle</strong><br>n variable objects which can take on x1,…,xn different values respectively</p><p>Then the total number of states is x1·x2·…·xn</p><h3 id="Configuration-of-Pacman">Configuration of Pacman</h3><p>Pacman has 120 postions、4 directions、2 ghosts in 12positions、30 food pellets（can be eaten or not），total space size is 120⋅4⋅12<sup>2⋅2</sup>30</p><h2 id="State-Space-Graphs-and-Search-Trees">State Space Graphs and Search Trees</h2><h3 id="State-Space-Graphs">State Space Graphs</h3><ul><li>Nodes: states</li><li>Edges: actions</li><li>Edge Weight: action cost</li></ul><p>Too large to store in memory due to the large State Space Size.</p><p><strong>each state is represented exactly once</strong></p><h3 id="Search-Tree-typically-used">Search Tree(typically used)</h3><p><strong>have no such restriction on the number of times a state can appear</strong></p><p>Also too large.</p><h3 id="Sol">Sol</h3><p>We only store states we’re immediately working with.</p><h2 id="Uninformed-Search">Uninformed Search</h2><p>The pseudocode:</p><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">function TREE-SEARCH(problem, frontier) returns a solution <span class="hljs-keyword">or</span> failure <br>    frontier ← INSERT(MAKE-<span class="hljs-keyword">NODE</span><span class="hljs-title">(INITIAL-STATE</span>[problem]), frontier) <br>    while not IS-EMPTY(frontier) do <br>        <span class="hljs-keyword">node</span> <span class="hljs-title">← POP</span>(frontier) <br>        if problem.IS-GOAL(node.STATE) then <br>            return <span class="hljs-keyword">node</span> <br>        <span class="hljs-title">for</span> each child-<span class="hljs-keyword">node</span> <span class="hljs-title">in</span> EXPAND(problem, <span class="hljs-keyword">node</span><span class="hljs-title">) do</span> <br>            add child-<span class="hljs-keyword">node</span> <span class="hljs-title">to</span> frontier <br>    return failure <br><br>function EXPAND(problem, <span class="hljs-keyword">node</span><span class="hljs-title">) yields</span> nodes <br>    s ← node.STATE <br>    for each action <span class="hljs-keyword">in</span> problem.ACTIONS(s) do <br>        s&#x27; ← problem.RESULT(s, action) <br>        yield <span class="hljs-keyword">NODE</span><span class="hljs-title">(STATE</span>=s&#x27;, <span class="hljs-attr">PARENT=</span><span class="hljs-keyword">node</span><span class="hljs-title">, ACTION</span>=action) <br></code></pre></td></tr></table></figure><p>Judgements:</p><ul><li>Completeness</li><li>Optimality</li><li>Branching factor</li><li>The maximun depth m</li><li>The depth of the shallowest solution s</li></ul><h3 id="DFS">DFS</h3><p>“Leftmost” Solution</p><h3 id="BFS">BFS</h3><p>Shallowest Solution</p><h3 id="UCS-–-Uniform-Cost-Search">UCS – Uniform Cost Search</h3><p>Select the lowest cost frontier node from the start node</p><p>The same thought of <a href="https://janezair.site/2025/05/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%8412/#%E5%8A%A0%E6%9D%83%E5%9B%BE%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98-Dijkstra%E7%AE%97%E6%B3%95">Dijkstra</a></p><p>If all the costs are not negative,then UCS can always find the lowest-cost solution.(If not then Bellman-Ford)</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>CS188_Introduction to AI</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Artificial Intelligence</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Graph Algorithm</title>
     <link href="/2025/05/23/AlgorithmOfDS5/"/>
     <url>/2025/05/23/AlgorithmOfDS5/</url>
