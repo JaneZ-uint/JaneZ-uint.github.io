@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>JaneZ&#39;s PPCA</title>
+    <link href="/2025/06/23/JaneZ-s-PPCA/"/>
+    <url>/2025/06/23/JaneZ-s-PPCA/</url>
+    
+    <content type="html"><![CDATA[<h1>JaneZ’s PPCA</h1><h3 id="开一个楼-，用于记录PPCA每天的多线程，消解没有暑假的哀愁😢">开一个楼 ，用于记录PPCA每天的多线程，消解没有暑假的哀愁😢</h3><h3 id="6-23-Day-0">6-23 Day 0</h3><ul><li>选了DHT(Distributed Hash Table)，也是很早之前就计划好的，虽然早上差一点被Raft动摇了，但还是决定写一个比较top-level的东西</li><li>PPCA的好处就是可以戴耳机写代码，0人管你，爽听6小时歌😆 又爱上我霉了🥰 吉他调音成功！</li><li>主要的进展是学习了Go基本语法，goroutine并发编程，RPC 远程过程调用，指路：<a href="https://go.dev/tour/list">A Tour of Go</a>，<a href="https://chai2010.cn/advanced-go-programming-book/ch1-basic/ch1-06-goroutine.html">Goroutine</a>，<a href="https://chai2010.cn/advanced-go-programming-book/ch4-rpc/ch4-01-rpc-intro.html">RPC</a>，并发真是一个很妙的东西</li></ul><p>看到隔壁Rico在推歌，也推一首今天听的最多的歌吧：<a href="https://y.qq.com/n/ryqq/songDetail/0013TCdl37SVzP">Cruel Summer -Taylor Swift</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>PPCA</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JaneZ&#39;s Wonderland</tag>
+      
+      <tag>PPCA</tag>
+      
+      <tag>DHT</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>State Spaces &amp; Uninformed Search</title>
     <link href="/2025/06/11/CS188-1/"/>
     <url>/2025/06/11/CS188-1/</url>
@@ -1881,7 +1910,7 @@
     <link href="/2025/01/21/Before-Everything/"/>
     <url>/2025/01/21/Before-Everything/</url>
     
-    <content type="html"><![CDATA[<h1>Before Everything 前言</h1><p>By JaneZ,2025.1.21,M Stand Coffee,Nanjing<br>Well, hello world ! This is the owner of this crazy blog ! My name is JaneZ , a student from <a href="https://www.sjtu.edu.cn/">Shanghai Jiaotong University</a>.I major in <strong>Computer Science</strong> of the <a href="https://acm.sjtu.edu.cn/home">ACM Class</a>.I’m an ENTJer, and I really want to know more people with the same interests.<br><strong>Why I start this blog ?</strong><br>Well, partly motivated by my high school classmate <a href="https://github.com/xiyuanyang-code">Xiyuan Yang</a>, who majors in <a href="https://soai.sjtu.edu.cn/">Artificial Intelligence</a> also in SJTU( thanks for the help). I think it’s mainly because that after a whole semester learning in the ACM class , I didn’t actually adapt to university life that well .<br>So I hope to be more proactive in my learning through this blog.</p><p>My blog (personal homepage) uses the <a href="https://hexo.io/zh-cn/">Hexo</a> Fluid theme, where I mainly share notes from my daily studies, learning insights, and some beautiful quotes.Welcome to my blog if you’re interested in <strong>Maths,Physics,Artificial Intelligence,Computer Graphics and so on</strong>! If you have any questions about configuring or deploying a Hexo blog, feel free to ask me. I’ve encountered some pitfalls myself, and I hope no one else has to fall into them.<br>Any way,let’s get started.<br>Attach a picture of this wonderful coffee shop!<br><img src="/img/MStandCoffee.png" alt="M Stand Coffee"></p><p>Can’t live without coffee … ？<br>Upd: Something bad happens.Bye Coffee😢</p>]]></content>
+    <content type="html"><![CDATA[<h1>Before Everything 前言</h1><p>By JaneZ,2025.1.21,M Stand Coffee,Nanjing<br>Well, hello world ! This is the owner of this blog! My name is JaneZ , a student from <a href="https://www.sjtu.edu.cn/">Shanghai Jiaotong University</a>.I major in <strong>Computer Science</strong> in <a href="https://acm.sjtu.edu.cn/home">ACM Class</a>.I’m an ENTJer.</p><p>First, I want to thank my high school classmate <a href="https://github.com/xiyuanyang-code">Xiyuan Yang</a> for giving me the idea of setting up a blog, who majors in <a href="https://soai.sjtu.edu.cn/">Artificial Intelligence</a> also in SJTU and has been a model of mine ever since in Year 11.</p><p>My blog (personal homepage) uses the <a href="https://hexo.io/zh-cn/">Hexo</a> Fluid theme, where I mainly share notes from my daily studies and learning insights.Welcome to my blog if you’re interested in <strong>CS or Music</strong>!!! If you have any questions about configuring or deploying a Hexo blog, feel free to ask me. I’ve encountered some pitfalls myself, and I hope no one else has to fall into them.</p><p>Any way,let’s get started.</p><p>Attach a picture of this wonderful coffee shop!<br><img src="/img/MStandCoffee.png" alt="M Stand Coffee"></p><p>Can’t live without coffee … ？</p><p>upd: Something bad happens.Bye Coffee😢</p><p>upd：No coffee and alcohol for an entire semester. Now I’m a brand-new person.</p>]]></content>
     
     
     
