@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>Arch &amp; Compiler</title>
+    <link href="/2025/08/05/Arch-Compiler/"/>
+    <url>/2025/08/05/Arch-Compiler/</url>
+    
+    <content type="html"><![CDATA[<h1>Arch &amp; Compiler</h1><p>此楼用于记录JaneZ 在暑假学期7-10周Arch课程和Compiler项目的学习，Arch课程的学习资料已开源，可参考。战Arch，战编译，启动！</p><h3 id="8-4-Day0">8-4 Day0</h3><ul><li>学习了SJTU 编译原理Lecture2-3，Compiler Pipeline 逐渐清晰，大概知道了Semantic需要做哪些事</li><li>重开了Arch w1d2</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>Computer Architecture</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Computer Architecture</tag>
+      
+      <tag>Compiler</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>PerlinNoise</title>
     <link href="/2025/07/19/PerlinNoise/"/>
     <url>/2025/07/19/PerlinNoise/</url>
