@@ -4,11 +4,11 @@
   
   
   <entry>
-    <title>Arch &amp; Compiler</title>
+    <title>JaneZ&#39;s Arch and Compiler</title>
     <link href="/2025/08/05/Arch-Compiler/"/>
     <url>/2025/08/05/Arch-Compiler/</url>
     
-    <content type="html"><![CDATA[<h1>Arch &amp; Compiler</h1><p>此楼用于记录JaneZ 在暑假学期7-10周Arch课程和Compiler项目的学习，Arch课程的学习资料已开源，可参考。战Arch，战编译，启动！</p><h3 id="8-4-Day0">8-4 Day0</h3><ul><li>学习了SJTU 编译原理Lecture2-3，Compiler Pipeline 逐渐清晰，大概知道了Semantic需要做哪些事</li><li>重开了Arch w1d2</li></ul><h3 id="8-5-Day1">8-5 Day1</h3><ul><li>学了超前进位加法器，写了但没写完，对这个东西比较焦虑😇</li><li>对compiler处于一种无从下手的状态，一切都是如此莫名其妙，对这个东西也比较焦虑😇</li><li>对Arch课进度感到焦虑😇</li></ul><p>一天唯一的解压方式或许是晚上听xjq 痛骂几个上一届造她黄谣的助教😅</p><h3 id="8-6-Day2">8-6 Day2</h3><ul><li>开始了compiler，Go for it!</li><li>写完C-Python FFI</li></ul><h3 id="8-7-Day3">8-7 Day3</h3><ul><li>今天大概只能做完tokenize了，下午讨论了一下，也了解了一下kotlin，最后还是决定用cpp写了，感觉还是挺好写的，cpp唯一的缺点应该在手动内存管理上，又是头疼的leak环节</li><li>对系统课产生了极大的怀疑，不理解这门课的教学方式和培养计划，很多东西还是靠自己学比较好</li><li>渐渐进入了学习状态</li></ul>]]></content>
+    <content type="html"><![CDATA[<h1>Arch &amp; Compiler</h1><p>此楼用于记录JaneZ 在暑假学期7-10周Arch课程和Compiler项目的学习，Arch课程的学习资料已开源，可参考。战Arch，战编译，启动！</p><h3 id="8-4-Day-0">8-4 Day 0</h3><ul><li>学习了SJTU 编译原理Lecture2-3，Compiler Pipeline 逐渐清晰，大概知道了Semantic需要做哪些事</li><li>重开了Arch w1d2</li></ul><h3 id="8-5-Day-1">8-5 Day 1</h3><ul><li>学了超前进位加法器，写了但没写完，对这个东西比较焦虑😇</li><li>对compiler处于一种无从下手的状态，一切都是如此莫名其妙，对这个东西也比较焦虑😇</li><li>对Arch课进度感到焦虑😇</li></ul><p>一天唯一的解压方式或许是晚上听xjq 痛骂几个上一届造她黄谣的助教😅</p><h3 id="8-6-Day-2">8-6 Day 2</h3><ul><li>开始了compiler，Go for it!</li><li>写完C-Python FFI</li></ul><h3 id="8-7-Day-3">8-7 Day 3</h3><ul><li>今天大概只能做完tokenize了，下午讨论了一下，也了解了一下kotlin，最后还是决定用cpp写了，感觉还是挺好写的，cpp唯一的缺点应该在手动内存管理上，又是头疼的leak环节</li><li>对系统课产生了极大的怀疑，不理解这门课的教学方式和培养计划，很多东西还是靠自己学比较好</li><li>渐渐进入了学习状态</li></ul><h3 id="8-8-Day-4">8-8 Day 4</h3><ul><li>效率还可以的一天，lexer 写了一部分，争取这周末开始parser，享受写编译器的过程</li><li>Parsifal 回家前的最后一天，明天将开启为期两周的异地😢 希望他玩得开心，好好放松一下🥰</li><li>玉川是唯一的神，捞到满绩了✋😭✋ 我们拥护这个大主教</li></ul><h3 id="8-9-Day-5">8-9 Day 5</h3><ul><li>lexer很有进展，明天应该能搞定，希望能快速调完进入parser，唉又是个心腹大患</li><li>送Parsifal 回长沙，感觉现在每两周就要去一次虹桥🤣 他在高铁上喝果酒看电影，我在寝室喝无糖苏打水敲代码😅</li><li>去深夜食堂吃了晚饭，鹅肝和没沾酱油的三文鱼都有点腻，茶泡饭第一次尝试，有点儿酸（？）不过代价是明天中午吃沙拉晚上吃空气</li></ul>]]></content>
     
     
     <categories>
