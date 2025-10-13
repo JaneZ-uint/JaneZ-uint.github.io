@@ -2,6 +2,7 @@
 Love Memories ❤️
 Enhanced version with floating heart particles
 -->
+
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -18,131 +19,133 @@ Enhanced version with floating heart particles
       overflow: hidden;
       transition: background-color 0.5s ease;
     }
-<pre><code class="hljs">.container &#123;
-  padding: 40px;
-  position: relative;
-  z-index: 2;
-&#125;
 
-h1 &#123;
-  font-size: 2.5em;
-  color: #2563eb;
-  margin-bottom: 10px;
-&#125;
+    .container {
+      padding: 40px;
+      position: relative;
+      z-index: 2;
+    }
 
-.heart &#123;
-  color: #f43f5e;
-  animation: pulse 1.5s infinite;
-&#125;
+    h1 {
+      font-size: 2.5em;
+      color: #2563eb;
+      margin-bottom: 10px;
+    }
 
-@keyframes pulse &#123;
-  0% &#123; transform: scale(1); &#125;
-  50% &#123; transform: scale(1.2); &#125;
-  100% &#123; transform: scale(1); &#125;
-&#125;
+    .heart {
+      color: #f43f5e;
+      animation: pulse 1.5s infinite;
+    }
 
-.message &#123;
-  font-size: 1.1em;
-  color: #374151;
-  margin: 20px 0;
-  line-height: 1.6;
-&#125;
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
 
-.timer &#123;
-  font-size: 1.3em;
-  color: #1d4ed8;
-  margin: 20px 0;
-&#125;
+    .message {
+      font-size: 1.1em;
+      color: #374151;
+      margin: 20px 0;
+      line-height: 1.6;
+    }
 
-.settings-panel &#123;
-  border-top: 1px solid #e5e7eb;
-  margin-top: 30px;
-  padding-top: 15px;
-  background-color: rgba(255, 255, 255, 0.6);
-  border-radius: 12px;
-  display: inline-block;
-  padding: 20px 40px;
-&#125;
+    .timer {
+      font-size: 1.3em;
+      color: #1d4ed8;
+      margin: 20px 0;
+    }
 
-select &#123;
-  font-size: 1em;
-  padding: 5px 10px;
-  margin-left: 10px;
-  border-radius: 5px;
-&#125;
+    .settings-panel {
+      border-top: 1px solid #e5e7eb;
+      margin-top: 30px;
+      padding-top: 15px;
+      background-color: rgba(255, 255, 255, 0.6);
+      border-radius: 12px;
+      display: inline-block;
+      padding: 20px 40px;
+    }
 
-/* 主题样式 */
-.theme-pink &#123;
-  background: linear-gradient(to bottom, #ffe4ec, #fff5f7);
-&#125;
+    select {
+      font-size: 1em;
+      padding: 5px 10px;
+      margin-left: 10px;
+      border-radius: 5px;
+    }
 
-.theme-blue &#123;
-  background: linear-gradient(to bottom, #dbeafe, #e0f2fe);
-&#125;
+    /* 主题样式 */
+    .theme-pink {
+      background: linear-gradient(to bottom, #ffe4ec, #fff5f7);
+    }
 
-/* ❤️ 心形粒子动画 */
-.floating-heart &#123;
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  font-size: 16px;
-  color: #f43f5e;
-  opacity: 0.8;
-  pointer-events: none;
-  animation: floatUp linear forwards;
-  z-index: 1;
-&#125;
+    .theme-blue {
+      background: linear-gradient(to bottom, #dbeafe, #e0f2fe);
+    }
 
-@keyframes floatUp &#123;
-  0% &#123;
-    transform: translateX(0) translateY(0) scale(1);
-    opacity: 1;
-  &#125;
-  100% &#123;
-    transform: translateX(calc(-50vw + 100vw * var(--x-dir))) translateY(-100vh) scale(1.5);
-    opacity: 0;
-  &#125;
-&#125;
-</code></pre>
+    /* ❤️ 心形粒子动画 */
+    .floating-heart {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      font-size: 16px;
+      color: #f43f5e;
+      opacity: 0.8;
+      pointer-events: none;
+      animation: floatUp linear forwards;
+      z-index: 1;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateX(0) translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(calc(-50vw + 100vw * var(--x-dir))) translateY(-100vh) scale(1.5);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
+
 <body>
   <div class="container">
     <h1>Love Records<span class="heart">💞</span></h1>
-<pre><code class="hljs">&lt;div class=&quot;message&quot;&gt;
-  在时间的长河中，&lt;br&gt;
-  爱是唯一的永恒。&lt;br&gt;
-  &lt;span style=&quot;font-size: 0.9em; color: gray;&quot;&gt;
-    In the flow of time, &lt;br&gt;
-    love is the only eternity.
-  &lt;/span&gt;
-&lt;/div&gt;
 
-&lt;div class=&quot;timer&quot; id=&quot;timer1&quot;&gt;
-  Counting the days since our journey began...
-&lt;/div&gt;
+    <div class="message">
+      在时间的长河中，<br>
+      爱是唯一的永恒。<br>
+      <span style="font-size: 0.9em; color: gray;">
+        In the flow of time, <br>
+        love is the only eternity.
+      </span>
+    </div>
 
-&lt;div class=&quot;timer&quot; id=&quot;anniversary&quot;&gt;&lt;/div&gt;
+    <div class="timer" id="timer1">
+      Counting the days since our journey began...
+    </div>
 
-&lt;div class=&quot;timer&quot;&gt;
-  Parsifal &amp; JaneZ’s Adventures ❤️
-&lt;/div&gt;
+    <div class="timer" id="anniversary"></div>
 
-&lt;div class=&quot;message&quot;&gt;
-  如果記憶也是一個罐頭的話，我希望這罐罐頭不會過期；如果一定要加一個日子的話，我希望它是一萬年。
-&lt;/div&gt;
+    <div class="timer">
+      Parsifal & JaneZ’s Adventures ❤️
+    </div>
 
-&lt;div class=&quot;settings-panel&quot;&gt;
-  &lt;h2&gt;设置&lt;/h2&gt;
-  &lt;label for=&quot;theme-select&quot;&gt;主题：&lt;/label&gt;
-  &lt;select id=&quot;theme-select&quot;&gt;
-    &lt;option value=&quot;default&quot;&gt;默认&lt;/option&gt;
-    &lt;option value=&quot;pink&quot;&gt;粉色&lt;/option&gt;
-    &lt;option value=&quot;blue&quot;&gt;蓝色&lt;/option&gt;
-  &lt;/select&gt;
-&lt;/div&gt;
-</code></pre>
+    <div class="message">
+      如果記憶也是一個罐頭的話，我希望這罐罐頭不會過期；如果一定要加一個日子的話，我希望它是一萬年。
+    </div>
+
+    <div class="settings-panel">
+      <h2>设置</h2>
+      <label for="theme-select">主题：</label>
+      <select id="theme-select">
+        <option value="default">默认</option>
+        <option value="pink">粉色</option>
+        <option value="blue">蓝色</option>
+      </select>
+    </div>
   </div>
+
   <script>
     // ======= 动态主题切换 =======
     document.getElementById('theme-select').addEventListener('change', function (e) {
