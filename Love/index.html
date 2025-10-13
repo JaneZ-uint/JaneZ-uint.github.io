@@ -1,0 +1,195 @@
+<!-- 
+Love Memories ❤️
+Enhanced version with floating heart particles
+-->
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love Records</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(to bottom, #fdf2f8, #e0f2fe);
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      overflow: hidden;
+      transition: background-color 0.5s ease;
+    }
+<pre><code class="hljs">.container &#123;
+  padding: 40px;
+  position: relative;
+  z-index: 2;
+&#125;
+
+h1 &#123;
+  font-size: 2.5em;
+  color: #2563eb;
+  margin-bottom: 10px;
+&#125;
+
+.heart &#123;
+  color: #f43f5e;
+  animation: pulse 1.5s infinite;
+&#125;
+
+@keyframes pulse &#123;
+  0% &#123; transform: scale(1); &#125;
+  50% &#123; transform: scale(1.2); &#125;
+  100% &#123; transform: scale(1); &#125;
+&#125;
+
+.message &#123;
+  font-size: 1.1em;
+  color: #374151;
+  margin: 20px 0;
+  line-height: 1.6;
+&#125;
+
+.timer &#123;
+  font-size: 1.3em;
+  color: #1d4ed8;
+  margin: 20px 0;
+&#125;
+
+.settings-panel &#123;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 30px;
+  padding-top: 15px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  display: inline-block;
+  padding: 20px 40px;
+&#125;
+
+select &#123;
+  font-size: 1em;
+  padding: 5px 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+&#125;
+
+/* 主题样式 */
+.theme-pink &#123;
+  background: linear-gradient(to bottom, #ffe4ec, #fff5f7);
+&#125;
+
+.theme-blue &#123;
+  background: linear-gradient(to bottom, #dbeafe, #e0f2fe);
+&#125;
+
+/* ❤️ 心形粒子动画 */
+.floating-heart &#123;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  font-size: 16px;
+  color: #f43f5e;
+  opacity: 0.8;
+  pointer-events: none;
+  animation: floatUp linear forwards;
+  z-index: 1;
+&#125;
+
+@keyframes floatUp &#123;
+  0% &#123;
+    transform: translateX(0) translateY(0) scale(1);
+    opacity: 1;
+  &#125;
+  100% &#123;
+    transform: translateX(calc(-50vw + 100vw * var(--x-dir))) translateY(-100vh) scale(1.5);
+    opacity: 0;
+  &#125;
+&#125;
+</code></pre>
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Love Records<span class="heart">💞</span></h1>
+<pre><code class="hljs">&lt;div class=&quot;message&quot;&gt;
+  在时间的长河中，&lt;br&gt;
+  爱是唯一的永恒。&lt;br&gt;
+  &lt;span style=&quot;font-size: 0.9em; color: gray;&quot;&gt;
+    In the flow of time, &lt;br&gt;
+    love is the only eternity.
+  &lt;/span&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;timer&quot; id=&quot;timer1&quot;&gt;
+  Counting the days since our journey began...
+&lt;/div&gt;
+
+&lt;div class=&quot;timer&quot; id=&quot;anniversary&quot;&gt;&lt;/div&gt;
+
+&lt;div class=&quot;timer&quot;&gt;
+  Parsifal &amp; JaneZ’s Adventures ❤️
+&lt;/div&gt;
+
+&lt;div class=&quot;message&quot;&gt;
+  如果記憶也是一個罐頭的話，我希望這罐罐頭不會過期；如果一定要加一個日子的話，我希望它是一萬年。
+&lt;/div&gt;
+
+&lt;div class=&quot;settings-panel&quot;&gt;
+  &lt;h2&gt;设置&lt;/h2&gt;
+  &lt;label for=&quot;theme-select&quot;&gt;主题：&lt;/label&gt;
+  &lt;select id=&quot;theme-select&quot;&gt;
+    &lt;option value=&quot;default&quot;&gt;默认&lt;/option&gt;
+    &lt;option value=&quot;pink&quot;&gt;粉色&lt;/option&gt;
+    &lt;option value=&quot;blue&quot;&gt;蓝色&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/div&gt;
+</code></pre>
+  </div>
+  <script>
+    // ======= 动态主题切换 =======
+    document.getElementById('theme-select').addEventListener('change', function (e) {
+      document.body.className = '';
+      switch (e.target.value) {
+        case 'pink': document.body.classList.add('theme-pink'); break;
+        case 'blue': document.body.classList.add('theme-blue'); break;
+        default: break;
+      }
+    });
+
+    // ======= 计时逻辑 =======
+    const startDate = new Date('2025-07-31T00:00:00');
+    const timer1 = document.getElementById('timer1');
+    const anniversary = document.getElementById('anniversary');
+
+    function updateTimer() {
+      const now = new Date();
+      const diff = now - startDate;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      timer1.textContent = `我们已经相爱了 ${days} 天 ${hours} 时 ${minutes} 分 ${seconds} 秒 ❤️`;
+
+      const years = Math.floor(days / 365);
+      anniversary.textContent = years > 0 ? `🎉 我们已经在一起 ${years} 年啦！` : "";
+    }
+
+    setInterval(updateTimer, 1000);
+
+    // ======= ❤️ 心形粒子漂浮 =======
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'floating-heart';
+      heart.textContent = '💗';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = (24 + Math.random() * 32) + 'px';
+      heart.style.setProperty('--x-dir', Math.random().toFixed(2));
+      heart.style.animationDuration = (4 + Math.random() * 4) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    }
+
+    setInterval(createHeart, 600); // 调整生成速度（越小越密集）
+  </script>
+</body>
+</html>
