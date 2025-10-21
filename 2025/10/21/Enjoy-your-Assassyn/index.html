@@ -1,0 +1,857 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/puppy.jpg">
+  <link rel="icon" href="/img/puppy.jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="JaneZ">
+  <meta name="keywords" content="Life">
+  
+    <meta name="description" content="笔者配置Assassyn环境的过程中遇到了一些问题，特此记录以备后续参考。 首先贴上配置的具体流程：（值得注意的是，笔者在物理机上配置了Assassyn，不过Anyway还是贴上docker的配置流程好了） Docker It is also recommended to use Docker to automatically manage the dependences. We decide t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Enjoy Your Assassyn">
+<meta property="og:url" content="https://janezair.site/2025/10/21/Enjoy-your-Assassyn/index.html">
+<meta property="og:site_name" content="JaneZ&#39;s Space">
+<meta property="og:description" content="笔者配置Assassyn环境的过程中遇到了一些问题，特此记录以备后续参考。 首先贴上配置的具体流程：（值得注意的是，笔者在物理机上配置了Assassyn，不过Anyway还是贴上docker的配置流程好了） Docker It is also recommended to use Docker to automatically manage the dependences. We decide t">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://janezair.site/2025/10/21/Enjoy-your-Assassyn/imag/resource-bar.png">
+<meta property="og:image" content="https://janezair.site/2025/10/21/Enjoy-your-Assassyn/imag/resource-bar.png">
+<meta property="article:published_time" content="2025-10-21T02:43:51.000Z">
+<meta property="article:modified_time" content="2025-10-21T03:48:51.465Z">
+<meta property="article:author" content="JaneZ">
+<meta property="article:tag" content="Arch">
+<meta property="article:tag" content="Assassyn">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://janezair.site/2025/10/21/Enjoy-your-Assassyn/imag/resource-bar.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Enjoy Your Assassyn - JaneZ&#39;s Space</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"janezair.site","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/path/to/katex.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>JaneZ&#39;s Space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/GBH.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Enjoy Your Assassyn"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-10-21 10:43" pubdate>
+          October 21, 2025 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          18 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Enjoy Your Assassyn</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h5 id="笔者配置Assassyn环境的过程中遇到了一些问题，特此记录以备后续参考。">笔者配置Assassyn环境的过程中遇到了一些问题，特此记录以备后续参考。</h5>
+<p>首先贴上配置的具体流程：（值得注意的是，笔者在物理机上配置了Assassyn，不过Anyway还是贴上docker的配置流程好了）</p>
+<h1>Docker</h1>
+<p>It is also recommended to use <a target="_blank" rel="noopener" href="https://www.docker.com/">Docker</a> to<br>
+automatically manage the dependences. We decide to adopt a hybrid style<br>
+of coding, tooling, and development, where this repo is located<br>
+in your <em>physical</em> machine, while the execution is in the docker <em>virtual</em><br>
+machine (VM).</p>
+<p>Still, before doing anything, make sure you have this repo fully initialized:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git submodule update --init --recursive<br></code></pre></td></tr></table></figure>
+<h2 id="Build-the-Docker-Image">Build the Docker Image</h2>
+<p>Assuming you are at the root of this source tree:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker build -t assassyn:latest .<br></code></pre></td></tr></table></figure>
+<h2 id="Run-the-Docker-Container">Run the Docker Container</h2>
+<p>At least read point 3 below before typing your command!!!</p>
+<ol>
+<li><code>-v &lt;src&gt;:&lt;dst&gt;</code> mounts a physical source directory into the VM destination.</li>
+<li><code>--name</code> specifies the name of this VM container, which avoids a random <code>&lt;adj&gt;_&lt;noun&gt;</code> name.</li>
+<li><code>-m</code> specifies the memory limit of a container. However, this flag only works on Linux.
+<ul>
+<li>If you are using Docker client on Windows or Mac OS with UI, memory should be tuned in the client.</li>
+<li>Click the bottom bar of the client <img src="./imag/resource-bar.png" srcset="/img/loading.gif" lazyload width=75%>.</li>
+<li>A resource slide bar will pop up as shown <img src="./imag/resource-bar.png" srcset="/img/loading.gif" lazyload width=75%>.</li>
+<li>Tune the memory usage <strong>before</strong> starting your VM container.</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker run --<span class="hljs-built_in">rm</span> -tid -v `<span class="hljs-built_in">pwd</span>`:/app --user $(<span class="hljs-built_in">id</span> -u):$(<span class="hljs-built_in">id</span> -g) \<br>  -m 32g \<br>  --name assassyn assassyn:latest<br></code></pre></td></tr></table></figure>
+<h2 id="Build-Initialization">Build Initialization</h2>
+<p>If it is the first time, the repo should be initialized using the command below.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">docker <span class="hljs-built_in">exec</span> -it ./init.sh<br></code></pre></td></tr></table></figure>
+<p>LLVM linkage is super memory consuming, while <code>ninja</code> build can only use fixed #thread<br>
+parallelization, which may overwhelm the memory. Feel free to tune your own parameters to have<br>
+a balance between performance and machine limit. If you see something like <code>g++ is killed Signal 9</code><br>
+or <code>truncated file</code>, with high probability it is caused by out of memory (OOM).<br>
+Feel free to give a different parameter and run again.</p>
+<h1>Physical Machine</h1>
+<p>It can also be built on your physical machine. The instructions below are Ubuntu based:</p>
+<ol>
+<li>Make sure you have all the repos propoerly cloned:</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git submodule update --init --recursive<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>Install dependences:</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">sudo</span> apt-get update<br><span class="hljs-built_in">sudo</span> apt-get install -y $(<br>  awk <span class="hljs-string">&#x27;/apt-get install/,/apt-get clean/&#x27;</span> Dockerfile \<br>  | sed <span class="hljs-string">&#x27;1d;$d; s/[\\[:space:]]*$//; s/^[[:space:]]*//&#x27;</span> \<br>  | grep -v <span class="hljs-string">&#x27;^$&#x27;</span> \<br>  | <span class="hljs-built_in">tr</span> <span class="hljs-string">&#x27;\n&#x27;</span> <span class="hljs-string">&#x27; &#x27;</span><br>)<br></code></pre></td></tr></table></figure>
+<ol start="4">
+<li>Have this repo built from source:</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">source</span> setup.sh  <span class="hljs-comment"># Set up environment variables</span><br>make build-all   <span class="hljs-comment"># Build all components</span><br></code></pre></td></tr></table></figure>
+<p>If you do not have enough memory, a lower job number is recommended.</p>
+<ol start="5">
+<li>Verify your installation.</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh">python -c <span class="hljs-string">&#x27;import assassyn&#x27;</span> <span class="hljs-comment"># import this module</span><br><span class="hljs-built_in">echo</span> $? <span class="hljs-comment"># 0 is expected</span><br>make test-all <span class="hljs-comment"># Optional, runs all the tests.</span><br><span class="hljs-built_in">echo</span> $?<br></code></pre></td></tr></table></figure>
+<h1>食用指南</h1>
+<h2 id="Step-1：submodule-更新">Step 1：submodule 更新</h2>
+<p>首先是clone，老规矩还是SSH方式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> git@github.com:Synthesys-Lab/assassyn.git<br></code></pre></td></tr></table></figure>
+<p>接着打开你的assassyn 目录，执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git submodule update --init --recursive<br></code></pre></td></tr></table></figure>
+<p>该过程耗时较长，大约在30分钟左右，且受网络影响较大，请耐心等待，一遍Failed就多来几遍，笔者试了至少3次才成功。</p>
+<h2 id="Step-2：环境依赖安装">Step 2：环境依赖安装</h2>
+<p>Assassyn的依赖安装可以参考上面的Dockerfile，笔者在物理机上安装的命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt-get update<br><span class="hljs-built_in">sudo</span> apt-get install -y build-essential cmake git python3 python3-pip \<br>    libboost-all-dev libeigen3-dev libtbb-dev libgoogle-glog-dev libgflags-dev \<br>    libomp-dev clang llvm libclang-dev ninja-build<br></code></pre></td></tr></table></figure>
+<p>很平稳的一步，无事发生</p>
+<h2 id="Step-4：-编译">Step 4： 编译</h2>
+<p>最关键的一步，也是笔者卡壳的地方。Assassyn的编译分为两步，第一步是环境变量的配置，第二步是make all。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> setup.sh<br>make build-all<br></code></pre></td></tr></table></figure>
+<p>Assassyn的编译文件很大很大，所以至少要留有32GB的内存空间，否则会出现编译失败的情况，故开Swap是必须的。</p>
+<p>笔者的轻薄本属实拉跨，16GB内存完全不够，而且笔者是唐诗，大一上分盘的时候C盘只分了176GB，本来C盘所剩空间不到25GB，wsl还装在了C盘里，试图开个32GB的swap，显然不行，但抱着侥幸心理的笔者还是试了，结果可想而知，编译直接失败，而且成功把wsl搞炸了，是的，三个月内第四次灾难性故障，此时的笔者已经几乎崩溃。</p>
+<p>笔者硬着头皮开始了迁盘，把wsl迁到了D盘，腾出了足够的空间后，重新开了32GB的swap，这次终于顺利编译成功。</p>
+<p>下面讲一讲迁盘，适用于笔者这种唐诗：</p>
+<p>打开windows powershell（管理员权限），输入以下命令：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">wsl <span class="hljs-literal">--list</span> <span class="hljs-literal">--verbose</span><br></code></pre></td></tr></table></figure>
+<p>得到类似如下的输出：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"> <span class="hljs-type">NAME</span>      STATE           <span class="hljs-keyword">VERSION</span><br>* Ubuntu    Running         <span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+<p>Ubuntu即为发行版名，接下来进行下一步。</p>
+<p>导出 WSL 发行版为 .tar 文件</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">wsl <span class="hljs-literal">--export</span> &lt;DistroName&gt; &lt;FileName&gt;.tar<br></code></pre></td></tr></table></figure>
+<p>这个操作会把整个 Linux 文件系统打包成一个 .tar 文件。</p>
+<p>注销原来的 WSL 发行版</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">wsl <span class="hljs-literal">--unregister</span> &lt;发行版名&gt;<br></code></pre></td></tr></table></figure>
+<p>这一步会删除原来的 WSL 实例，所以确保你已经导出了 .tar 文件。</p>
+<p>在新位置导入 WSL，在 D 盘创建一个存放 WSL 的文件夹，然后导入：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">wsl <span class="hljs-literal">--import</span> &lt;DistroName&gt; &lt;InstallLocation&gt; &lt;FileName&gt;.tar <span class="hljs-literal">--version</span> <span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+<p>这里的 <code>&lt;InstallLocation&gt;</code> 是你在 D 盘创建的文件夹路径。</p>
+<p>验证迁移</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">wsl <span class="hljs-literal">--list</span> <span class="hljs-literal">--verbose</span><br></code></pre></td></tr></table></figure>
+<p>完成迁移！</p>
+<p>接下来就可以正常的开swap，编译Assassyn了。</p>
+<p>新建一个大 swap 文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> fallocate -l 32G /swapfile<br></code></pre></td></tr></table></figure>
+<p>设置正确的权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">chmod</span> 600 /swapfile2<br><span class="hljs-built_in">sudo</span> mkswap /swapfile2<br><span class="hljs-built_in">sudo</span> swapon /swapfile2<br></code></pre></td></tr></table></figure>
+<p>验证 swap 是否启用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">swapon --show<br></code></pre></td></tr></table></figure>
+<p>你现在应该能看到新的 swap 文件已经启用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">NAME        TYPE      SIZE  USED  PRIO<br>/dev/sdc    partition   4G   0B   -2<br>/swapfile2  file       32G   0B   -3<br></code></pre></td></tr></table></figure>
+<p>验证总内存</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">free -h<br></code></pre></td></tr></table></figure>
+<p>接下来就可以开始编译了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> setup.sh<br>make build-all<br></code></pre></td></tr></table></figure>
+<p>我向你保证，这次一定能成功！</p>
+<h2 id="Step-5：验证安装，跑一些测试">Step 5：验证安装，跑一些测试</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">python -c <span class="hljs-string">&#x27;import assassyn&#x27;</span> <span class="hljs-comment"># import this module</span><br><span class="hljs-built_in">echo</span> $? <span class="hljs-comment"># 0 is expected</span><br>make test-all <span class="hljs-comment"># Optional, runs all the tests.</span><br><span class="hljs-built_in">echo</span> $?<br></code></pre></td></tr></table></figure>
+<p>你又会遇到一些问题，首先是:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">error: externally-managed-environment × This environment is externally managed ╰─&gt; To install Python packages system-wide, try apt install python3-xyz, <span class="hljs-built_in">where</span> xyz is the package you are trying to install. If you wish to install a non-Debian-packaged Python package, create a virtual environment using python3 -m venv path/to/venv. Then use path/to/venv/bin/python and path/to/venv/bin/pip. Make sure you have python3-full installed. If you wish to install a non-Debian packaged Python application, it may be easiest to use pipx install xyz, <span class="hljs-built_in">which</span> will manage a virtual environment <span class="hljs-keyword">for</span> you. Make sure you have pipx installed. See /usr/share/doc/python3.12/README.venv <span class="hljs-keyword">for</span> more information. note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages. hint: See PEP 668 <span class="hljs-keyword">for</span> the detailed specification. Failed to install CIRCT via pip. Fall back to building from <span class="hljs-built_in">source</span> using PyCDE setup. /usr/bin/python: No module named build make: *** [scripts/init/circt.inc:23: install-circt] Error 1<br></code></pre></td></tr></table></figure>
+<p>这是在新版 Ubuntu/Debian（或 WSL Ubuntu）中 Python 系统环境被 “保护” 了，不允许直接用 pip 安装包到系统 Python。所以我们建议使用虚拟环境 (推荐)。<br>
+笔者不常写py，故借此机会装了anaconda/miniconda(二者皆可)，顺便学习了一下虚拟环境的使用。</p>
+<p>安装conda：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 下载 Miniconda 安装脚本</span><br>wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh<br><br><span class="hljs-comment"># 安装</span><br>bash Miniconda3-latest-Linux-x86_64.sh<br><br><span class="hljs-comment"># 按提示操作，安装路径建议放在 home 目录下</span><br></code></pre></td></tr></table></figure>
+<p>创建 Conda 环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 创建名为 assassyn 的 Python 3.12 环境（根据需求可选）</span><br>conda create -n assassyn python=3.12<br><br><span class="hljs-comment"># 激活环境</span><br>conda activate assassyn<br></code></pre></td></tr></table></figure>
+<p>很不幸，当你再跑一遍的时候</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs bash">error: externally-managed-environment<br><br>× This environment is externally managed<br>╰─&gt; To install Python packages system-wide, try apt install<br>    python3-xyz, <span class="hljs-built_in">where</span> xyz is the package you are trying to<br>    install.<br><br>    If you wish to install a non-Debian-packaged Python package,<br>    create a virtual environment using python3 -m venv path/to/venv.<br>    Then use path/to/venv/bin/python and path/to/venv/bin/pip. Make<br>    sure you have python3-full installed.<br><br>    If you wish to install a non-Debian packaged Python application,<br>    it may be easiest to use pipx install xyz, <span class="hljs-built_in">which</span> will manage a<br>    virtual environment <span class="hljs-keyword">for</span> you. Make sure you have pipx installed.<br><br>    See /usr/share/doc/python3.12/README.venv <span class="hljs-keyword">for</span> more information.<br><br>note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.<br>hint: See PEP 668 <span class="hljs-keyword">for</span> the detailed specification.<br>Failed to install CIRCT via pip. Fall back to building from <span class="hljs-built_in">source</span> using PyCDE setup.<br>/usr/bin/python: No module named build<br>make: *** [scripts/init/circt.inc:23: install-circt] Error 1<br></code></pre></td></tr></table></figure>
+<p>你的整个项目同样需要在一个虚拟环境下运行，故在激活的conda环境下再创建一个虚拟环境：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bashpython">python -m venv assassyn-env<br>source assassyn-env/bin/activate<br></code></pre></td></tr></table></figure>
+<p>别忘了重新编译</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">make build-all<br></code></pre></td></tr></table></figure>
+<p>哈哈还没结束，你大概还会遇到：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">Running all tests...<br>ERROR: usage: pytest [options] [file_or_dir] [file_or_dir] [...]<br>pytest: error: unrecognized arguments: -n<br>  inifile: None<br>  rootdir: /home/zhuyihan/code/assassyn<br><br>make: *** [Makefile:30: test-all] Error 4<br></code></pre></td></tr></table></figure>
+<p>pytest -n 是用来并行运行测试的参数。它并不是 pytest 本体的内置功能，而是来自 插件 pytest-xdist。</p>
+<p>也就是说：你的 pytest 已经安装，但缺少插件 pytest-xdist。</p>
+<p>解决方案：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">conda install pytest-xdist<br></code></pre></td></tr></table></figure>
+<p>笑死我了，接下来你会意识到，你的test程序根本找不到assassyn这个包，🤡🤡🤡</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">ImportError <span class="hljs-keyword">while</span> importing <span class="hljs-built_in">test</span> module <span class="hljs-string">&#x27;/home/zhuyihan/code/assassyn/python/unit-tests/test_ramulator2_combined.py&#x27;</span>.<br>Hint: make sure your <span class="hljs-built_in">test</span> modules/packages have valid Python names.<br>Traceback:<br>../../anaconda3/envs/assassyn/lib/python3.11/importlib/__init__.py:126: <span class="hljs-keyword">in</span> import_module<br>    <span class="hljs-built_in">return</span> _bootstrap._gcd_import(name[level:], package, level)<br>           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^<br>python/unit-tests/test_ramulator2_combined.py:14: <span class="hljs-keyword">in</span> &lt;module&gt;<br>    from assassyn.utils import repo_path<br>E   ModuleNotFoundError: No module named <span class="hljs-string">&#x27;assassyn&#x27;</span><br></code></pre></td></tr></table></figure>
+<p>说明你的 Python 解释器 在运行测试时找不到 assassyn 这个包。make build-all 已经执行过了，说明包本身可能编译好了，只是没让 Python 知道它的位置。</p>
+<p>你自然可以临时地通过修改 PYTHONPATH 环境变量来解决这个问题：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> PYTHONPATH=/home/zhuyihan/code/assassyn/python:<span class="hljs-variable">$PYTHONPATH</span><br></code></pre></td></tr></table></figure>
+<p>如果希望执行脚本的时候一个环境变量能够一直存在于bash中怎么办？</p>
+<p>在 你的 WSL 用户主目录 下的 .bashrc 文件 末尾 添加上面那行命令即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;export PYTHONPATH=/home/zhuyihan/code/assassyn/python:$PYTHONPATH&#x27;</span> &gt;&gt; ~/.bashrc<br><span class="hljs-built_in">source</span> ~/.bashrc<br></code></pre></td></tr></table></figure>
+<p>或者说，你每次跑程序的时候都要重新设置环境变量：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> setup.sh  <span class="hljs-comment"># Set up environment variables</span><br></code></pre></td></tr></table></figure>
+<h2 id="祝你成功！">祝你成功！</h2>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Arch/" class="print-no-link">#Arch</a>
+      
+        <a href="/tags/Assassyn/" class="print-no-link">#Assassyn</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Enjoy Your Assassyn</div>
+      <div>https://janezair.site/2025/10/21/Enjoy-your-Assassyn/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>JaneZ</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>October 21, 2025</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Updated on</div>
+          <div>October 21, 2025</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/10/11/GPU-Acceleration/" title="GPU-Acceleration">
+                        <span class="hidden-mobile">GPU-Acceleration</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://github.com/JaneZ-uint" target="_blank" rel="nofollow noopener">JaneZ</a> <a href="http://janezair.site/Love/" target="_blank" rel="nofollow noopener"> <i class="iconfont icon-love"></i> </a> <a href="https://github.com/Parsifal1986" target="_blank" rel="nofollow noopener">Parsifal</a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
