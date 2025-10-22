@@ -19,17 +19,17 @@
   <meta name="author" content="JaneZ">
   <meta name="keywords" content="Life">
   
-    <meta name="description" content="笔者配置Assassyn环境的过程中遇到了一些问题，特此记录以备后续参考。 首先贴上配置的具体流程：（值得注意的是，笔者在物理机上配置了Assassyn，不过Anyway还是贴上docker的配置流程好了） Docker It is also recommended to use Docker to automatically manage the dependences. We decide t">
+    <meta name="description" content="笔者配置Assassyn环境的过程中遇到了一些问题，特此记录以备后续参考。 特别感谢Coffish 添加了另一种解决assassyn编译产生大量文件占用过多内存空间问题的方案——限制make并行数 首先贴上配置的具体流程：（值得注意的是，笔者在物理机上配置了Assassyn，不过Anyway还是贴上docker的配置流程好了） Docker It is also recommended to us">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Enjoy Your Assassyn">
 <meta property="og:url" content="https://janezair.site/2025/10/21/Enjoy-your-Assassyn/index.html">
 <meta property="og:site_name" content="JaneZ&#39;s Space">
-<meta property="og:description" content="笔者配置Assassyn环境的过程中遇到了一些问题，特此记录以备后续参考。 首先贴上配置的具体流程：（值得注意的是，笔者在物理机上配置了Assassyn，不过Anyway还是贴上docker的配置流程好了） Docker It is also recommended to use Docker to automatically manage the dependences. We decide t">
+<meta property="og:description" content="笔者配置Assassyn环境的过程中遇到了一些问题，特此记录以备后续参考。 特别感谢Coffish 添加了另一种解决assassyn编译产生大量文件占用过多内存空间问题的方案——限制make并行数 首先贴上配置的具体流程：（值得注意的是，笔者在物理机上配置了Assassyn，不过Anyway还是贴上docker的配置流程好了） Docker It is also recommended to us">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://janezair.site/2025/10/21/Enjoy-your-Assassyn/imag/resource-bar.png">
 <meta property="og:image" content="https://janezair.site/2025/10/21/Enjoy-your-Assassyn/imag/resource-bar.png">
 <meta property="article:published_time" content="2025-10-21T02:43:51.000Z">
-<meta property="article:modified_time" content="2025-10-21T03:48:51.465Z">
+<meta property="article:modified_time" content="2025-10-22T16:36:12.198Z">
 <meta property="article:author" content="JaneZ">
 <meta property="article:tag" content="Arch">
 <meta property="article:tag" content="Assassyn">
@@ -256,7 +256,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k words
+          1.8k words
         
       </span>
     
@@ -267,7 +267,7 @@
         
         
         
-          18 mins
+          20 mins
         
       </span>
     
@@ -319,6 +319,7 @@
               <div class="markdown-body">
                 
                 <h5 id="笔者配置Assassyn环境的过程中遇到了一些问题，特此记录以备后续参考。">笔者配置Assassyn环境的过程中遇到了一些问题，特此记录以备后续参考。</h5>
+<h5 id="特别感谢Coffish-添加了另一种解决assassyn编译产生大量文件占用过多内存空间问题的方案——限制make并行数">特别感谢Coffish 添加了另一种解决assassyn编译产生大量文件占用过多内存空间问题的方案——限制make并行数</h5>
 <p>首先贴上配置的具体流程：（值得注意的是，笔者在物理机上配置了Assassyn，不过Anyway还是贴上docker的配置流程好了）</p>
 <h1>Docker</h1>
 <p>It is also recommended to use <a target="_blank" rel="noopener" href="https://www.docker.com/">Docker</a> to<br>
@@ -422,6 +423,15 @@ Feel free to give a different parameter and run again.</p>
 <p>接下来就可以开始编译了</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> setup.sh<br>make build-all<br></code></pre></td></tr></table></figure>
 <p>我向你保证，这次一定能成功！</p>
+<h2 id="Another-Approach：限制make并行数">Another Approach：限制make并行数</h2>
+<p>你可以在make命令后面加上-jN，其中<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.10903em;">N</span></span></span></span>是你希望限制的并行作业数。<br>
+例如，如果你想限制为4个并行作业，可以这样做：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">make build-all -j4<br></code></pre></td></tr></table></figure>
+<p>如果你的内存非常有限，你可能需要尝试更低的数字，比如<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.64444em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">2</span></span></span></span>或<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.64444em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">1</span></span></span></span>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">make build-all -j2<br></code></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">make build-all -j1<br></code></pre></td></tr></table></figure>
+<p>通过限制并行作业数，你可以减少同时运行的编译任务数量，从而降低内存使用峰值，帮助避免内存不足的问题。</p>
 <h2 id="Step-5：验证安装，跑一些测试">Step 5：验证安装，跑一些测试</h2>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">python -c <span class="hljs-string">&#x27;import assassyn&#x27;</span> <span class="hljs-comment"># import this module</span><br><span class="hljs-built_in">echo</span> $? <span class="hljs-comment"># 0 is expected</span><br>make test-all <span class="hljs-comment"># Optional, runs all the tests.</span><br><span class="hljs-built_in">echo</span> $?<br></code></pre></td></tr></table></figure>
 <p>你又会遇到一些问题，首先是:</p>
@@ -500,7 +510,7 @@ Feel free to give a different parameter and run again.</p>
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>October 21, 2025</div>
+          <div>October 23, 2025</div>
         </div>
       
       
