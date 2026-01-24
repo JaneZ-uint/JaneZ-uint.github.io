@@ -1,0 +1,750 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Brain of JaneZ in a Jar">
+    <title>Enjoy Your Assassyn - Brain of JaneZ in a Jar</title>
+    <meta name="author" content="JaneZ">
+    
+    
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"JaneZ","sameAs":["https://github.com/JaneZ-uint","https://x.com/JaneZ0826"],"image":"https://www.gravatar.com/avatar/41c9cfd7e215b2ada7b022b845a390c3"},"articleBody":"笔者配置Assassyn环境的过程中遇到了一些问题，特此记录以备后续参考。\n特别感谢Coffish 添加了另一种解决assassyn编译产生大量文件占用过多内存空间问题的方案——限制make并行数\n首先贴上配置的具体流程：（值得注意的是，笔者在物理机上配置了Assassyn，不过Anyway还是贴上docker的配置流程好了）\nDockerIt is also recommended to use Docker to automatically manage the dependences. We decide to adopt a hybrid style of coding, tooling, and development, where this repo is located in your physical machine, while the execution is in the docker virtual machine (VM).\nStill, before doing anything, make sure you have this repo fully initialized:\n1git submodule update --init --recursive\n\nBuild the Docker ImageAssuming you are at the root of this source tree:\n1docker build -t assassyn:latest .\n\nRun the Docker ContainerAt least read point 3 below before typing your command!!!\n\n-v &lt;src&gt;:&lt;dst&gt; mounts a physical source directory into the VM destination.\n--name specifies the name of this VM container, which avoids a random &lt;adj&gt;_&lt;noun&gt; name.\n-m specifies the memory limit of a container. However, this flag only works on Linux.\n\n\nIf you are using Docker client on Windows or Mac OS with UI, memory should be tuned in the client.\nClick the bottom bar of the client.\nA resource slide bar will pop up as shown .\nTune the memory usage before starting your VM container.\n\n123docker run --rm -tid -v `pwd`:/app --user $(id -u):$(id -g)-m 32g--name assassyn assassyn:latest\n\nBuild InitializationIf it is the first time, the repo should be initialized using the command below.\n1docker exec -it ./init.sh\n\nLLVM linkage is super memory consuming, while ninja build can only use fixed threadparallelization, which may overwhelm the memory. Feel free to tune your own parameters to have a balance between performance and machine limit. If you see something like g++ is killed Signal 9 or truncated file, with high probability it is caused by out of memory (OOM).Feel free to give a different parameter and run again.\nPhysical MachineIt can also be built on your physical machine. The instructions below are Ubuntu based:\n\nMake sure you have all the repos propoerly cloned:\n\n1git submodule update --init --recursive\n\nInstall dependences:\n\n1234567sudo apt-get updatesudo apt-get install -y $(  awk &#x27;/apt-get install/,/apt-get clean/&#x27; Dockerfile \\  | sed &#x27;1d;$d; s/[\\\\[:space:]]*$//; s/^[[:space:]]*//&#x27; \\  | grep -v &#x27;^$&#x27; \\  | tr &#x27;\\n&#x27; &#x27; &#x27;)\n\nHave this repo built from source:\n\n12source setup.sh  # Set up environment variablesmake build-all   # Build all components\nIf you do not have enough memory, a lower job number is recommended.\n\nVerify your installation.\n\n1234python -c &#x27;import assassyn&#x27; # import this moduleecho $? # 0 is expectedmake test-all # Optional, runs all the tests.echo $?\n\n食用指南Step 1：submodule 更新首先是clone，老规矩还是SSH方式：\n1git clone git@github.com:Synthesys-Lab/assassyn.git\n\n接着打开你的assassyn 目录，执行：\n1git submodule update --init --recursive\n\n该过程耗时较长，大约在30分钟左右，且受网络影响较大，请耐心等待，一遍Failed就多来几遍，笔者试了至少3次才成功。\nStep 2：环境依赖安装Assassyn的依赖安装可以参考上面的Dockerfile，笔者在物理机上安装的命令如下：\n1234sudo apt-get updatesudo apt-get install -y build-essential cmake git python3 python3-pip \\    libboost-all-dev libeigen3-dev libtbb-dev libgoogle-glog-dev libgflags-dev \\    libomp-dev clang llvm libclang-dev ninja-build\n很平稳的一步，无事发生\nStep 4： 编译最关键的一步，也是笔者卡壳的地方。Assassyn的编译分为两步，第一步是环境变量的配置，第二步是make all。\n12source setup.shmake build-all\nAssassyn的编译文件很大很大，所以至少要留有32GB的内存空间，否则会出现编译失败的情况，故开Swap是必须的。\n笔者的轻薄本属实拉跨，16GB内存完全不够，而且笔者是唐诗，大一上分盘的时候C盘只分了176GB，本来C盘所剩空间不到25GB，wsl还装在了C盘里，试图开个32GB的swap，显然不行，但抱着侥幸心理的笔者还是试了，结果可想而知，编译直接失败，而且成功把wsl搞炸了，是的，三个月内第四次灾难性故障，此时的笔者已经几乎崩溃。\n笔者硬着头皮开始了迁盘，把wsl迁到了D盘，腾出了足够的空间后，重新开了32GB的swap，这次终于顺利编译成功。\n下面讲一讲迁盘，适用于笔者这种唐诗：\n打开windows powershell（管理员权限），输入以下命令：\n1wsl --list --verbose\n得到类似如下的输出：\n12 NAME      STATE           VERSION* Ubuntu    Running         2\nUbuntu即为发行版名，接下来进行下一步。\n导出 WSL 发行版为 .tar 文件\n1wsl --export &lt;DistroName&gt; &lt;FileName&gt;.tar\n\n这个操作会把整个 Linux 文件系统打包成一个 .tar 文件。\n注销原来的 WSL 发行版\n1wsl --unregister &lt;发行版名&gt;\n\n这一步会删除原来的 WSL 实例，所以确保你已经导出了 .tar 文件。\n在新位置导入 WSL，在 D 盘创建一个存放 WSL 的文件夹，然后导入：\n1wsl --import &lt;DistroName&gt; &lt;InstallLocation&gt; &lt;FileName&gt;.tar --version 2\n\n这里的 &lt;InstallLocation&gt; 是你在 D 盘创建的文件夹路径。\n验证迁移\n1wsl --list --verbose\n\n完成迁移！\n接下来就可以正常的开swap，编译Assassyn了。\n新建一个大 swap 文件\n1sudo fallocate -l 32G /swapfile\n设置正确的权限\n123sudo chmod 600 /swapfile2sudo mkswap /swapfile2sudo swapon /swapfile2\n验证 swap 是否启用\n1swapon --show\n\n你现在应该能看到新的 swap 文件已经启用\n123NAME        TYPE      SIZE  USED  PRIO/dev/sdc    partition   4G   0B   -2/swapfile2  file       32G   0B   -3\n验证总内存\n1free -h\n接下来就可以开始编译了\n12source setup.shmake build-all\n\n我向你保证，这次一定能成功！\nAnother Approach：限制make并行数你可以在make命令后面加上-jN，其中 N 是你希望限制的并行作业数。\n例如，如果你想限制为4个并行作业，可以这样做：\n1make build-all -j4\n如果你的内存非常有限，你可能需要尝试更低的数字，比如 2 或 1 ：\n1make build-all -j2\n\n或者\n1make build-all -j1\n通过限制并行作业数，你可以减少同时运行的编译任务数量，从而降低内存使用峰值，帮助避免内存不足的问题。\n但很抱歉，这种解决方案在这里依然不行。\n这是因为wj 在 Makefile 里调用了一些子项目的 make，并且调用的时候传的参数是 -j，这意味着不会限制任何并行数。\n因此，临时的解决方案是用这个脚本把所有的 make -j 都改成比如说 make -j 8 ：\n1find scripts -name &quot;*.inc&quot; -type f -exec sed -i &#x27;s/make -j\\b/make -j 8/g&#x27; &#123;&#125; +\nStep 5：验证安装，跑一些测试1234python -c &#x27;import assassyn&#x27; # import this moduleecho $? # 0 is expectedmake test-all # Optional, runs all the tests.echo $?\n\n你又会遇到一些问题，首先是:\n1error: externally-managed-environment × This environment is externally managed ╰─&gt; To install Python packages system-wide, try apt install python3-xyz, where xyz is the package you are trying to install. If you wish to install a non-Debian-packaged Python package, create a virtual environment using python3 -m venv path/to/venv. Then use path/to/venv/bin/python and path/to/venv/bin/pip. Make sure you have python3-full installed. If you wish to install a non-Debian packaged Python application, it may be easiest to use pipx install xyz, which will manage a virtual environment for you. Make sure you have pipx installed. See /usr/share/doc/python3.12/README.venv for more information. note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages. hint: See PEP 668 for the detailed specification. Failed to install CIRCT via pip. Fall back to building from source using PyCDE setup. /usr/bin/python: No module named build make: *** [scripts/init/circt.inc:23: install-circt] Error 1\n这是在新版 Ubuntu&#x2F;Debian（或 WSL Ubuntu）中 Python 系统环境被 “保护” 了，不允许直接用 pip 安装包到系统 Python。所以我们建议使用虚拟环境 (推荐)。\n笔者不常写py，故借此机会装了anaconda&#x2F;miniconda(二者皆可)，顺便学习了一下虚拟环境的使用。\n安装conda：\n1234567# 下载 Miniconda 安装脚本wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh# 安装bash Miniconda3-latest-Linux-x86_64.sh# 按提示操作，安装路径建议放在 home 目录下\n创建 Conda 环境\n12345# 创建名为 assassyn 的 Python 3.12 环境（根据需求可选）conda create -n assassyn python=3.12# 激活环境conda activate assassyn\n\n很不幸，当你再跑一遍的时候\n1234567891011121314151617181920212223error: externally-managed-environment× This environment is externally managed╰─&gt; To install Python packages system-wide, try apt install    python3-xyz, where xyz is the package you are trying to    install.    If you wish to install a non-Debian-packaged Python package,    create a virtual environment using python3 -m venv path/to/venv.    Then use path/to/venv/bin/python and path/to/venv/bin/pip. Make    sure you have python3-full installed.    If you wish to install a non-Debian packaged Python application,    it may be easiest to use pipx install xyz, which will manage a    virtual environment for you. Make sure you have pipx installed.    See /usr/share/doc/python3.12/README.venv for more information.note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.hint: See PEP 668 for the detailed specification.Failed to install CIRCT via pip. Fall back to building from source using PyCDE setup./usr/bin/python: No module named buildmake: *** [scripts/init/circt.inc:23: install-circt] Error 1\n你的整个项目同样需要在一个虚拟环境下运行，故在激活的conda环境下再创建一个虚拟环境：\n12python -m venv assassyn-envsource assassyn-env/bin/activate\n别忘了重新编译\n1make build-all\n哈哈还没结束，你大概还会遇到：\n1234567Running all tests...ERROR: usage: pytest [options] [file_or_dir] [file_or_dir] [...]pytest: error: unrecognized arguments: -n  inifile: None  rootdir: /home/zhuyihan/code/assassynmake: *** [Makefile:30: test-all] Error 4\npytest -n 是用来并行运行测试的参数。它并不是 pytest 本体的内置功能，而是来自 插件 pytest-xdist。\n也就是说：你的 pytest 已经安装，但缺少插件 pytest-xdist。\n解决方案：\n1conda install pytest-xdist\n笑死我了，接下来你会意识到，你的test程序根本找不到assassyn这个包，🤡🤡🤡\n123456789ImportError while importing test module &#x27;/home/zhuyihan/code/assassyn/python/unit-tests/test_ramulator2_combined.py&#x27;.Hint: make sure your test modules/packages have valid Python names.Traceback:../../anaconda3/envs/assassyn/lib/python3.11/importlib/__init__.py:126: in import_module    return _bootstrap._gcd_import(name[level:], package, level)           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^python/unit-tests/test_ramulator2_combined.py:14: in &lt;module&gt;    from assassyn.utils import repo_pathE   ModuleNotFoundError: No module named &#x27;assassyn&#x27;\n\n说明你的 Python 解释器 在运行测试时找不到 assassyn 这个包。make build-all 已经执行过了，说明包本身可能编译好了，只是没让 Python 知道它的位置。\n你自然可以临时地通过修改 PYTHONPATH 环境变量来解决这个问题：\n1export PYTHONPATH=/home/zhuyihan/code/assassyn/python:$PYTHONPATH\n\n如果希望执行脚本的时候一个环境变量能够一直存在于bash中怎么办？\n在 你的 WSL 用户主目录 下的 .bashrc 文件 末尾 添加上面那行命令即可。\n12echo &#x27;export PYTHONPATH=/home/zhuyihan/code/assassyn/python:$PYTHONPATH&#x27; &gt;&gt; ~/.bashrcsource ~/.bashrc\n\n或者说，你每次跑程序的时候都要重新设置环境变量：\n1source setup.sh  # Set up environment variables\n祝你成功！","dateCreated":"2026-01-23T17:34:48+08:00","dateModified":"2026-01-23T18:18:33+08:00","datePublished":"2026-01-23T17:34:48+08:00","description":"","headline":"Enjoy Your Assassyn","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://janez-uint.github.io/2026/01/23/Enjoy-Your-Assassyn/"},"publisher":{"@type":"Organization","name":"JaneZ","sameAs":["https://github.com/JaneZ-uint","https://x.com/JaneZ0826"],"image":"https://www.gravatar.com/avatar/41c9cfd7e215b2ada7b022b845a390c3","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/41c9cfd7e215b2ada7b022b845a390c3"}},"url":"https://janez-uint.github.io/2026/01/23/Enjoy-Your-Assassyn/"}</script>
+    <meta name="description" content="笔者配置Assassyn环境的过程中遇到了一些问题，特此记录以备后续参考。 特别感谢Coffish 添加了另一种解决assassyn编译产生大量文件占用过多内存空间问题的方案——限制make并行数 首先贴上配置的具体流程：（值得注意的是，笔者在物理机上配置了Assassyn，不过Anyway还是贴上docker的配置流程好了） DockerIt is also recommended to use">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Enjoy Your Assassyn">
+<meta property="og:url" content="https://janez-uint.github.io/2026/01/23/Enjoy-Your-Assassyn/index.html">
+<meta property="og:site_name" content="Brain of JaneZ in a Jar">
+<meta property="og:description" content="笔者配置Assassyn环境的过程中遇到了一些问题，特此记录以备后续参考。 特别感谢Coffish 添加了另一种解决assassyn编译产生大量文件占用过多内存空间问题的方案——限制make并行数 首先贴上配置的具体流程：（值得注意的是，笔者在物理机上配置了Assassyn，不过Anyway还是贴上docker的配置流程好了） DockerIt is also recommended to use">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-01-23T09:34:48.000Z">
+<meta property="article:modified_time" content="2026-01-23T10:18:33.329Z">
+<meta property="article:author" content="JaneZ">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@JaneZ0826">
+    
+    
+        
+    
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/all.css">
+
+    
+<link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+
+    
+<link rel="stylesheet" href="/assets/css/thumbs.css">
+
+    
+<link rel="stylesheet" href="/assets/css/tranquilpeak.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            Brain of JaneZ in a Jar
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="Open the link: /#about"
+            >
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="Categories"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="Tags"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="Archives"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link open-algolia-search"
+                            href="#search"
+                            
+                            rel="noopener"
+                            title="Search"
+                        >
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Search</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="About"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/JaneZ-uint"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://x.com/JaneZ0826"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="Twitter"
+                        >
+                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Twitter</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/atom.xml"
+                            
+                            rel="noopener"
+                            title="RSS"
+                        >
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            Enjoy Your Assassyn
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2026-01-23T17:34:48+08:00">
+	
+		    Jan 23, 2026
+    	
+    </time>
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <p><strong>笔者配置Assassyn环境的过程中遇到了一些问题，特此记录以备后续参考。</strong></p>
+<p><strong>特别感谢Coffish 添加了另一种解决assassyn编译产生大量文件占用过多内存空间问题的方案——限制make并行数</strong></p>
+<p>首先贴上配置的具体流程：（值得注意的是，笔者在物理机上配置了Assassyn，不过Anyway还是贴上docker的配置流程好了）</p>
+<h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><p>It is also recommended to use Docker to automatically manage the dependences. We decide to adopt a hybrid style of coding, tooling, and development, where this repo is located in your physical machine, while the execution is in the docker virtual machine (VM).</p>
+<p>Still, before doing anything, make sure you have this repo fully initialized:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git submodule update --init --recursive</span><br></pre></td></tr></table></figure>
+
+<h2 id="Build-the-Docker-Image"><a href="#Build-the-Docker-Image" class="headerlink" title="Build the Docker Image"></a>Build the Docker Image</h2><p>Assuming you are at the root of this source tree:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t assassyn:latest .</span><br></pre></td></tr></table></figure>
+
+<h2 id="Run-the-Docker-Container"><a href="#Run-the-Docker-Container" class="headerlink" title="Run the Docker Container"></a>Run the Docker Container</h2><p>At least read point 3 below before typing your command!!!</p>
+<ol>
+<li><code>-v &lt;src&gt;:&lt;dst&gt;</code> mounts a physical source directory into the VM destination.</li>
+<li><code>--name</code> specifies the name of this VM container, which avoids a random <code>&lt;adj&gt;_&lt;noun&gt;</code> name.</li>
+<li><code>-m</code> specifies the memory limit of a container. However, this flag only works on Linux.</li>
+</ol>
+<ul>
+<li>If you are using Docker client on Windows or Mac OS with UI, memory should be tuned in the client.</li>
+<li>Click the bottom bar of the client.</li>
+<li>A resource slide bar will pop up as shown .</li>
+<li>Tune the memory usage before starting your VM container.</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run --rm -tid -v `pwd`:/app --user $(id -u):$(id -g)</span><br><span class="line">-m 32g</span><br><span class="line">--name assassyn assassyn:latest</span><br></pre></td></tr></table></figure>
+
+<h2 id="Build-Initialization"><a href="#Build-Initialization" class="headerlink" title="Build Initialization"></a>Build Initialization</h2><p>If it is the first time, the repo should be initialized using the command below.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it ./init.sh</span><br></pre></td></tr></table></figure>
+
+<p>LLVM linkage is super memory consuming, while <code>ninja</code> build can only use fixed thread<br>parallelization, which may overwhelm the memory. Feel free to tune your own parameters to have a balance between performance and machine limit. If you see something like <code>g++ is killed Signal 9</code> or <code>truncated file</code>, with high probability it is caused by out of memory (OOM).Feel free to give a different parameter and run again.</p>
+<h1 id="Physical-Machine"><a href="#Physical-Machine" class="headerlink" title="Physical Machine"></a>Physical Machine</h1><p>It can also be built on your physical machine. The instructions below are Ubuntu based:</p>
+<ol>
+<li>Make sure you have all the repos propoerly cloned:</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git submodule update --init --recursive</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>Install dependences:</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install -y $(</span><br><span class="line">  awk &#x27;/apt-get install/,/apt-get clean/&#x27; Dockerfile \</span><br><span class="line">  | sed &#x27;1d;$d; s/[\\[:space:]]*$//; s/^[[:space:]]*//&#x27; \</span><br><span class="line">  | grep -v &#x27;^$&#x27; \</span><br><span class="line">  | tr &#x27;\n&#x27; &#x27; &#x27;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>Have this repo built from source:</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">source setup.sh  # Set up environment variables</span><br><span class="line">make build-all   # Build all components</span><br></pre></td></tr></table></figure>
+<p>If you do not have enough memory, a lower job number is recommended.</p>
+<ol start="5">
+<li>Verify your installation.</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">python -c &#x27;import assassyn&#x27; # import this module</span><br><span class="line">echo $? # 0 is expected</span><br><span class="line">make test-all # Optional, runs all the tests.</span><br><span class="line">echo $?</span><br></pre></td></tr></table></figure>
+
+<h1 id="食用指南"><a href="#食用指南" class="headerlink" title="食用指南"></a>食用指南</h1><h2 id="Step-1：submodule-更新"><a href="#Step-1：submodule-更新" class="headerlink" title="Step 1：submodule 更新"></a>Step 1：submodule 更新</h2><p>首先是clone，老规矩还是SSH方式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git@github.com:Synthesys-Lab/assassyn.git</span><br></pre></td></tr></table></figure>
+
+<p>接着打开你的assassyn 目录，执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git submodule update --init --recursive</span><br></pre></td></tr></table></figure>
+
+<p>该过程耗时较长，大约在30分钟左右，且受网络影响较大，请耐心等待，一遍Failed就多来几遍，笔者试了至少3次才成功。</p>
+<h2 id="Step-2：环境依赖安装"><a href="#Step-2：环境依赖安装" class="headerlink" title="Step 2：环境依赖安装"></a>Step 2：环境依赖安装</h2><p>Assassyn的依赖安装可以参考上面的Dockerfile，笔者在物理机上安装的命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install -y build-essential cmake git python3 python3-pip \</span><br><span class="line">    libboost-all-dev libeigen3-dev libtbb-dev libgoogle-glog-dev libgflags-dev \</span><br><span class="line">    libomp-dev clang llvm libclang-dev ninja-build</span><br></pre></td></tr></table></figure>
+<p>很平稳的一步，无事发生</p>
+<h2 id="Step-4：-编译"><a href="#Step-4：-编译" class="headerlink" title="Step 4： 编译"></a>Step 4： 编译</h2><p>最关键的一步，也是笔者卡壳的地方。Assassyn的编译分为两步，第一步是环境变量的配置，第二步是make all。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">source setup.sh</span><br><span class="line">make build-all</span><br></pre></td></tr></table></figure>
+<p>Assassyn的编译文件很大很大，所以至少要留有32GB的内存空间，否则会出现编译失败的情况，故开Swap是必须的。</p>
+<p>笔者的轻薄本属实拉跨，16GB内存完全不够，而且笔者是唐诗，大一上分盘的时候C盘只分了176GB，本来C盘所剩空间不到25GB，wsl还装在了C盘里，试图开个32GB的swap，显然不行，但抱着侥幸心理的笔者还是试了，结果可想而知，编译直接失败，而且成功把wsl搞炸了，是的，三个月内第四次灾难性故障，此时的笔者已经几乎崩溃。</p>
+<p>笔者硬着头皮开始了迁盘，把wsl迁到了D盘，腾出了足够的空间后，重新开了32GB的swap，这次终于顺利编译成功。</p>
+<p>下面讲一讲迁盘，适用于笔者这种唐诗：</p>
+<p>打开windows powershell（管理员权限），输入以下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --list --verbose</span><br></pre></td></tr></table></figure>
+<p>得到类似如下的输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> NAME      STATE           VERSION</span><br><span class="line">* Ubuntu    Running         2</span><br></pre></td></tr></table></figure>
+<p>Ubuntu即为发行版名，接下来进行下一步。</p>
+<p>导出 WSL 发行版为 .tar 文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --export &lt;DistroName&gt; &lt;FileName&gt;.tar</span><br></pre></td></tr></table></figure>
+
+<p>这个操作会把整个 Linux 文件系统打包成一个 .tar 文件。</p>
+<p>注销原来的 WSL 发行版</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --unregister &lt;发行版名&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这一步会删除原来的 WSL 实例，所以确保你已经导出了 .tar 文件。</p>
+<p>在新位置导入 WSL，在 D 盘创建一个存放 WSL 的文件夹，然后导入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --import &lt;DistroName&gt; &lt;InstallLocation&gt; &lt;FileName&gt;.tar --version 2</span><br></pre></td></tr></table></figure>
+
+<p>这里的 <code>&lt;InstallLocation&gt;</code> 是你在 D 盘创建的文件夹路径。</p>
+<p>验证迁移</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --list --verbose</span><br></pre></td></tr></table></figure>
+
+<p>完成迁移！</p>
+<p>接下来就可以正常的开swap，编译Assassyn了。</p>
+<p>新建一个大 swap 文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo fallocate -l 32G /swapfile</span><br></pre></td></tr></table></figure>
+<p>设置正确的权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 600 /swapfile2</span><br><span class="line">sudo mkswap /swapfile2</span><br><span class="line">sudo swapon /swapfile2</span><br></pre></td></tr></table></figure>
+<p>验证 swap 是否启用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swapon --show</span><br></pre></td></tr></table></figure>
+
+<p>你现在应该能看到新的 swap 文件已经启用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NAME        TYPE      SIZE  USED  PRIO</span><br><span class="line">/dev/sdc    partition   4G   0B   -2</span><br><span class="line">/swapfile2  file       32G   0B   -3</span><br></pre></td></tr></table></figure>
+<p>验证总内存</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">free -h</span><br></pre></td></tr></table></figure>
+<p>接下来就可以开始编译了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">source setup.sh</span><br><span class="line">make build-all</span><br></pre></td></tr></table></figure>
+
+<p>我向你保证，这次一定能成功！</p>
+<h2 id="Another-Approach：限制make并行数"><a href="#Another-Approach：限制make并行数" class="headerlink" title="Another Approach：限制make并行数"></a>Another Approach：限制make并行数</h2><p>你可以在make命令后面加上-jN，其中 N 是你希望限制的并行作业数。</p>
+<p>例如，如果你想限制为4个并行作业，可以这样做：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make build-all -j4</span><br></pre></td></tr></table></figure>
+<p>如果你的内存非常有限，你可能需要尝试更低的数字，比如 2 或 1 ：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make build-all -j2</span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make build-all -j1</span><br></pre></td></tr></table></figure>
+<p>通过限制并行作业数，你可以减少同时运行的编译任务数量，从而降低内存使用峰值，帮助避免内存不足的问题。</p>
+<p>但很抱歉，这种解决方案在这里依然不行。</p>
+<p>这是因为wj 在 Makefile 里调用了一些子项目的 make，并且调用的时候传的参数是 -j，这意味着不会限制任何并行数。</p>
+<p>因此，临时的解决方案是用这个脚本把所有的 make -j 都改成比如说 make -j 8 ：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find scripts -name &quot;*.inc&quot; -type f -exec sed -i &#x27;s/make -j\b/make -j 8/g&#x27; &#123;&#125; +</span><br></pre></td></tr></table></figure>
+<h2 id="Step-5：验证安装，跑一些测试"><a href="#Step-5：验证安装，跑一些测试" class="headerlink" title="Step 5：验证安装，跑一些测试"></a>Step 5：验证安装，跑一些测试</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">python -c &#x27;import assassyn&#x27; # import this module</span><br><span class="line">echo $? # 0 is expected</span><br><span class="line">make test-all # Optional, runs all the tests.</span><br><span class="line">echo $?</span><br></pre></td></tr></table></figure>
+
+<p>你又会遇到一些问题，首先是:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error: externally-managed-environment × This environment is externally managed ╰─&gt; To install Python packages system-wide, try apt install python3-xyz, where xyz is the package you are trying to install. If you wish to install a non-Debian-packaged Python package, create a virtual environment using python3 -m venv path/to/venv. Then use path/to/venv/bin/python and path/to/venv/bin/pip. Make sure you have python3-full installed. If you wish to install a non-Debian packaged Python application, it may be easiest to use pipx install xyz, which will manage a virtual environment for you. Make sure you have pipx installed. See /usr/share/doc/python3.12/README.venv for more information. note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages. hint: See PEP 668 for the detailed specification. Failed to install CIRCT via pip. Fall back to building from source using PyCDE setup. /usr/bin/python: No module named build make: *** [scripts/init/circt.inc:23: install-circt] Error 1</span><br></pre></td></tr></table></figure>
+<p>这是在新版 Ubuntu&#x2F;Debian（或 WSL Ubuntu）中 Python 系统环境被 “保护” 了，不允许直接用 pip 安装包到系统 Python。所以我们建议使用虚拟环境 (推荐)。</p>
+<p>笔者不常写py，故借此机会装了anaconda&#x2F;miniconda(二者皆可)，顺便学习了一下虚拟环境的使用。</p>
+<p>安装conda：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 下载 Miniconda 安装脚本</span><br><span class="line">wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh</span><br><span class="line"></span><br><span class="line"># 安装</span><br><span class="line">bash Miniconda3-latest-Linux-x86_64.sh</span><br><span class="line"></span><br><span class="line"># 按提示操作，安装路径建议放在 home 目录下</span><br></pre></td></tr></table></figure>
+<p>创建 Conda 环境</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 创建名为 assassyn 的 Python 3.12 环境（根据需求可选）</span><br><span class="line">conda create -n assassyn python=3.12</span><br><span class="line"></span><br><span class="line"># 激活环境</span><br><span class="line">conda activate assassyn</span><br></pre></td></tr></table></figure>
+
+<p>很不幸，当你再跑一遍的时候</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">error: externally-managed-environment</span><br><span class="line"></span><br><span class="line">× This environment is externally managed</span><br><span class="line">╰─&gt; To install Python packages system-wide, try apt install</span><br><span class="line">    python3-xyz, where xyz is the package you are trying to</span><br><span class="line">    install.</span><br><span class="line"></span><br><span class="line">    If you wish to install a non-Debian-packaged Python package,</span><br><span class="line">    create a virtual environment using python3 -m venv path/to/venv.</span><br><span class="line">    Then use path/to/venv/bin/python and path/to/venv/bin/pip. Make</span><br><span class="line">    sure you have python3-full installed.</span><br><span class="line"></span><br><span class="line">    If you wish to install a non-Debian packaged Python application,</span><br><span class="line">    it may be easiest to use pipx install xyz, which will manage a</span><br><span class="line">    virtual environment for you. Make sure you have pipx installed.</span><br><span class="line"></span><br><span class="line">    See /usr/share/doc/python3.12/README.venv for more information.</span><br><span class="line"></span><br><span class="line">note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.</span><br><span class="line">hint: See PEP 668 for the detailed specification.</span><br><span class="line">Failed to install CIRCT via pip. Fall back to building from source using PyCDE setup.</span><br><span class="line">/usr/bin/python: No module named build</span><br><span class="line">make: *** [scripts/init/circt.inc:23: install-circt] Error 1</span><br></pre></td></tr></table></figure>
+<p>你的整个项目同样需要在一个虚拟环境下运行，故在激活的conda环境下再创建一个虚拟环境：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python -m venv assassyn-env</span><br><span class="line">source assassyn-env/bin/activate</span><br></pre></td></tr></table></figure>
+<p>别忘了重新编译</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make build-all</span><br></pre></td></tr></table></figure>
+<p>哈哈还没结束，你大概还会遇到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Running all tests...</span><br><span class="line">ERROR: usage: pytest [options] [file_or_dir] [file_or_dir] [...]</span><br><span class="line">pytest: error: unrecognized arguments: -n</span><br><span class="line">  inifile: None</span><br><span class="line">  rootdir: /home/zhuyihan/code/assassyn</span><br><span class="line"></span><br><span class="line">make: *** [Makefile:30: test-all] Error 4</span><br></pre></td></tr></table></figure>
+<p>pytest -n 是用来并行运行测试的参数。它并不是 pytest 本体的内置功能，而是来自 插件 pytest-xdist。</p>
+<p>也就是说：你的 pytest 已经安装，但缺少插件 pytest-xdist。</p>
+<p>解决方案：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install pytest-xdist</span><br></pre></td></tr></table></figure>
+<p>笑死我了，接下来你会意识到，你的test程序根本找不到assassyn这个包，🤡🤡🤡</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ImportError while importing test module &#x27;/home/zhuyihan/code/assassyn/python/unit-tests/test_ramulator2_combined.py&#x27;.</span><br><span class="line">Hint: make sure your test modules/packages have valid Python names.</span><br><span class="line">Traceback:</span><br><span class="line">../../anaconda3/envs/assassyn/lib/python3.11/importlib/__init__.py:126: in import_module</span><br><span class="line">    return _bootstrap._gcd_import(name[level:], package, level)</span><br><span class="line">           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span><br><span class="line">python/unit-tests/test_ramulator2_combined.py:14: in &lt;module&gt;</span><br><span class="line">    from assassyn.utils import repo_path</span><br><span class="line">E   ModuleNotFoundError: No module named &#x27;assassyn&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>说明你的 Python 解释器 在运行测试时找不到 assassyn 这个包。make build-all 已经执行过了，说明包本身可能编译好了，只是没让 Python 知道它的位置。</p>
+<p>你自然可以临时地通过修改 PYTHONPATH 环境变量来解决这个问题：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PYTHONPATH=/home/zhuyihan/code/assassyn/python:$PYTHONPATH</span><br></pre></td></tr></table></figure>
+
+<p>如果希望执行脚本的时候一个环境变量能够一直存在于bash中怎么办？</p>
+<p>在 你的 WSL 用户主目录 下的 .bashrc 文件 末尾 添加上面那行命令即可。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &#x27;export PYTHONPATH=/home/zhuyihan/code/assassyn/python:$PYTHONPATH&#x27; &gt;&gt; ~/.bashrc</span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<p>或者说，你每次跑程序的时候都要重新设置环境变量：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source setup.sh  # Set up environment variables</span><br></pre></td></tr></table></figure>
+<h1 id="祝你成功！"><a href="#祝你成功！" class="headerlink" title="祝你成功！"></a>祝你成功！</h1>
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2026/01/24/GPU-Acceleration/"
+                    data-tooltip="GPU Acceleration"
+                    aria-label="PREVIOUS: GPU Acceleration"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2026/01/23/Mathematical-Logic-CT-Paper/"
+                    data-tooltip="Mathematical Logic CT Paper"
+                    aria-label="NEXT: Mathematical Logic CT Paper"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://janez-uint.github.io/2026/01/23/Enjoy-Your-Assassyn/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://janez-uint.github.io/2026/01/23/Enjoy-Your-Assassyn/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=https://janez-uint.github.io/2026/01/23/Enjoy-Your-Assassyn/"
+                    title="Share on Google+"
+                    aria-label="Share on Google+"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2026 JaneZ. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2026/01/24/GPU-Acceleration/"
+                    data-tooltip="GPU Acceleration"
+                    aria-label="PREVIOUS: GPU Acceleration"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2026/01/23/Mathematical-Logic-CT-Paper/"
+                    data-tooltip="Mathematical Logic CT Paper"
+                    aria-label="NEXT: Mathematical Logic CT Paper"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://janez-uint.github.io/2026/01/23/Enjoy-Your-Assassyn/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://janez-uint.github.io/2026/01/23/Enjoy-Your-Assassyn/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=https://janez-uint.github.io/2026/01/23/Enjoy-Your-Assassyn/"
+                    title="Share on Google+"
+                    aria-label="Share on Google+"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=https://janez-uint.github.io/2026/01/23/Enjoy-Your-Assassyn/"
+                        aria-label="Share on Facebook"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=https://janez-uint.github.io/2026/01/23/Enjoy-Your-Assassyn/"
+                        aria-label="Share on Twitter"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=https://janez-uint.github.io/2026/01/23/Enjoy-Your-Assassyn/"
+                        aria-label="Share on Google+"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">JaneZ</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                Shanghai, China
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/jquery.js"></script>
+
+
+<script src="/assets/js/jquery.fancybox.js"></script>
+
+
+<script src="/assets/js/thumbs.js"></script>
+
+
+<script src="/assets/js/tranquilpeak.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>

@@ -1,0 +1,659 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Brain of JaneZ in a Jar">
+    <title>Modern Cpp - Brain of JaneZ in a Jar</title>
+    <meta name="author" content="JaneZ">
+    
+    
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"JaneZ","sameAs":["https://github.com/JaneZ-uint","https://x.com/JaneZ0826"],"image":"https://www.gravatar.com/avatar/41c9cfd7e215b2ada7b022b845a390c3"},"articleBody":"是从1.0版本移植过来的，但经过了gemini老师的润色和补充。\nModern C++ Overview: 从底层逻辑到语法糖\n前言：上机课偶遇 Modern C++，拼劲全力无法战胜？在习惯了 Java 的自动内存管理和 Python 的灵活后，C++ 的语法规则确实显得复杂（甚至有些诡异）。\n关于 C++ 的刻板印象 (Stereotypes):\n\nOld, out-dated, less-frequently used\nUnsafe (最大的痛点，内存泄露和越界)\nHard to use &amp; Various Compilation Issues\n\n尽管如此，我们仍然需要学习 Modern C++，因为它在系统编程和高性能领域依然是无可替代的。\n\n\n1. Value Types &amp; Move Semantics (值类型与移动语义)左值 (lvalue) vs 右值 (rvalue)\n左值 (lvalue)：表示占据内存中某个可识别位置（也就是一个地址）的对象。可以使用 &amp; 取地址。\n右值 (rvalue)：与之相反，通常是临时对象，不可以使用 &amp; 取地址。\n\n拷贝赋值 vs 移动赋值对于赋值操作 a = xxx：\n\n拷贝赋值 (Copy Assignment)：当 xxx 为左值时调用。\n移动赋值 (Move Assignment)：当 xxx 为右值时调用。\n\nstd::move一个常识是：移动 (Move) 比拷贝 (Copy) 快。如果我们想移动一个左值呢？我们可以使用 std::move。它让编译器认为某个左值是一个右值，从而实现所有权的转移。\n\n注意：使用了 std::move 后的对象不可再使用；此外，const 变量不可使用移动语义。\n\n❌ 不可使用 std::move 的常见错误场景：1234567891011121314void Print(const std::string &amp;s);std::string Concat(const std::string &amp;p, std::string q) &#123;    // 1. Move from a const var (错误：const 无法被移动，仍会触发拷贝)    std::string tmp = std::move(p);    // 2. Move from an rvalue (冗余：p+q 本身就是右值)    std::string tmp2 = std::move(p + q);    // 3. Move to a const reference (无意义：Print 接收的是引用，move 会产生临时变量)    Print(std::move(p + q));    // 4. Move the return value (错误：这会阻碍编译器进行返回值优化 RVO)    return std::move(ret); &#125;\n\n\n2. Type Inference &amp; std::forward (类型推导与完美转发)Universal Reference (万能引用)在模板中，T&amp;&amp; 并不总是代表右值引用，它可能是万能引用。它既可以接收左值，也可以接收右值。\n12345678template&lt;typename T&gt;void func(T &amp;&amp;param) &#123;    if constexpr (std::is_lvalue_reference_v&lt;T&gt;) &#123;        std::cout &lt;&lt; &quot;传递的是左值&quot; &lt;&lt; std::endl;    &#125; else &#123;        std::cout &lt;&lt; &quot;传递的是右值&quot; &lt;&lt; std::endl;    &#125;&#125;\n\n3. Smart Pointers (智能指针)Modern C++ 通过智能指针管理内存，遵循 RAII 原则，彻底告别裸指针。\nstd::unique_ptr核心属性：独占所有权，不可拷贝（Copy Forbidden），只能移动（Move Only）。\n用法：使用 std::make_unique(…) 创建。\nstd::shared_ptr核心属性：多个所有者共享同一个资源。\n引用计数：通过 control block 记录当前有多少个指针指向该对象，计数归零时自动释放。\nstd::weak_ptr (解决循环引用)如果 A 指向 B，B 也指向 A（都是 shared_ptr），就会形成死锁。weak_ptr 不增加引用计数，可以观测对象但不会延长其生命周期。\n1234struct Node &#123;    std::shared_ptr&lt;Node&gt; next; // 若两个 Node 互相 next 指向，则内存泄漏    // 解决方法：将其中一个改为 std::weak_ptr&lt;Node&gt; next;&#125;;\n\n4. Syntax Sugar (语法糖)auto 推断auto 会自动推导变量类型，让代码更简洁，特别是处理迭代器或复杂模板时。\n1234std::vector&lt;int&gt; vec = &#123;1, 2, 3&#125;;for (auto&amp; elem : vec) &#123; // auto&amp; 推断为引用，可修改原容器    elem *= 2;&#125;\n结构化绑定 (Structured Bindings - C++17)一次性从 std::pair 或 std::tuple 中提取多个变量。\n1234std::map&lt;std::string, int&gt; scores = &#123;&#123;&quot;Alice&quot;, 90&#125;&#125;;for (const auto&amp; [name, score] : scores) &#123;    std::cout &lt;&lt; name &lt;&lt; &quot;: &quot; &lt;&lt; score &lt;&lt; std::endl;&#125;\n\n5. Safety (C++17 安全容器)为了避免使用不安全的 union 或容易导致错误的空指针。\nstd::any可以存储任何类型的值，但在访问时必须通过 any_cast 进行类型安全检查。\nstd::optional表示一个可能为空的值。不再需要通过返回 -1 或 nullptr 来表达“无效”。\n1234std::optional&lt;int&gt; getValue(bool success) &#123;    if (success) return 42;    return std::nullopt;&#125;\n\nstd::variant类型安全的 union。它知道自己当前存的是哪种类型，并能通过 std::visit 优雅地处理。\n123using MyType = std::variant&lt;int, std::string&gt;;MyType v = &quot;Modern C++&quot;;std::visit([](auto&amp;&amp; arg) &#123; std::cout &lt;&lt; arg; &#125;, v);","dateCreated":"2026-01-25T00:47:59+08:00","dateModified":"2026-01-25T01:56:57+08:00","datePublished":"2026-01-25T00:47:59+08:00","description":"","headline":"Modern Cpp","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://janez-uint.github.io/2026/01/25/Modern-Cpp/"},"publisher":{"@type":"Organization","name":"JaneZ","sameAs":["https://github.com/JaneZ-uint","https://x.com/JaneZ0826"],"image":"https://www.gravatar.com/avatar/41c9cfd7e215b2ada7b022b845a390c3","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/41c9cfd7e215b2ada7b022b845a390c3"}},"url":"https://janez-uint.github.io/2026/01/25/Modern-Cpp/","keywords":"Cpp"}</script>
+    <meta name="description" content="是从1.0版本移植过来的，但经过了gemini老师的润色和补充。 Modern C++ Overview: 从底层逻辑到语法糖 前言：上机课偶遇 Modern C++，拼劲全力无法战胜？在习惯了 Java 的自动内存管理和 Python 的灵活后，C++ 的语法规则确实显得复杂（甚至有些诡异）。 关于 C++ 的刻板印象 (Stereotypes):  Old, out-dated, less-f">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Modern Cpp">
+<meta property="og:url" content="https://janez-uint.github.io/2026/01/25/Modern-Cpp/index.html">
+<meta property="og:site_name" content="Brain of JaneZ in a Jar">
+<meta property="og:description" content="是从1.0版本移植过来的，但经过了gemini老师的润色和补充。 Modern C++ Overview: 从底层逻辑到语法糖 前言：上机课偶遇 Modern C++，拼劲全力无法战胜？在习惯了 Java 的自动内存管理和 Python 的灵活后，C++ 的语法规则确实显得复杂（甚至有些诡异）。 关于 C++ 的刻板印象 (Stereotypes):  Old, out-dated, less-f">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-01-24T16:47:59.000Z">
+<meta property="article:modified_time" content="2026-01-24T17:56:57.427Z">
+<meta property="article:author" content="JaneZ">
+<meta property="article:tag" content="Cpp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@JaneZ0826">
+    
+    
+        
+    
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/all.css">
+
+    
+<link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+
+    
+<link rel="stylesheet" href="/assets/css/thumbs.css">
+
+    
+<link rel="stylesheet" href="/assets/css/tranquilpeak.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            Brain of JaneZ in a Jar
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="Open the link: /#about"
+            >
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="Categories"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="Tags"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="Archives"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link open-algolia-search"
+                            href="#search"
+                            
+                            rel="noopener"
+                            title="Search"
+                        >
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Search</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="About"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/JaneZ-uint"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://x.com/JaneZ0826"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="Twitter"
+                        >
+                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Twitter</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/atom.xml"
+                            
+                            rel="noopener"
+                            title="RSS"
+                        >
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            Modern Cpp
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2026-01-25T00:47:59+08:00">
+	
+		    Jan 25, 2026
+    	
+    </time>
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <p>是从1.0版本移植过来的，但经过了gemini老师的润色和补充。</p>
+<h1 id="Modern-C-Overview-从底层逻辑到语法糖"><a href="#Modern-C-Overview-从底层逻辑到语法糖" class="headerlink" title="Modern C++ Overview: 从底层逻辑到语法糖"></a>Modern C++ Overview: 从底层逻辑到语法糖</h1><blockquote>
+<p><strong>前言</strong>：上机课偶遇 Modern C++，拼劲全力无法战胜？在习惯了 Java 的自动内存管理和 Python 的灵活后，C++ 的语法规则确实显得复杂（甚至有些诡异）。</p>
+<p><strong>关于 C++ 的刻板印象 (Stereotypes):</strong></p>
+<ul>
+<li>Old, out-dated, less-frequently used</li>
+<li><strong>Unsafe</strong> (最大的痛点，内存泄露和越界)</li>
+<li>Hard to use &amp; Various Compilation Issues</li>
+</ul>
+<p>尽管如此，我们仍然需要学习 Modern C++，因为它在系统编程和高性能领域依然是无可替代的。</p>
+</blockquote>
+<hr>
+<h2 id="1-Value-Types-Move-Semantics-值类型与移动语义"><a href="#1-Value-Types-Move-Semantics-值类型与移动语义" class="headerlink" title="1. Value Types &amp; Move Semantics (值类型与移动语义)"></a>1. Value Types &amp; Move Semantics (值类型与移动语义)</h2><h3 id="左值-lvalue-vs-右值-rvalue"><a href="#左值-lvalue-vs-右值-rvalue" class="headerlink" title="左值 (lvalue) vs 右值 (rvalue)"></a>左值 (lvalue) vs 右值 (rvalue)</h3><ul>
+<li><strong>左值 (lvalue)</strong>：表示占据内存中某个可识别位置（也就是一个地址）的对象。可以使用 <code>&amp;</code> 取地址。</li>
+<li><strong>右值 (rvalue)</strong>：与之相反，通常是临时对象，不可以使用 <code>&amp;</code> 取地址。</li>
+</ul>
+<h3 id="拷贝赋值-vs-移动赋值"><a href="#拷贝赋值-vs-移动赋值" class="headerlink" title="拷贝赋值 vs 移动赋值"></a>拷贝赋值 vs 移动赋值</h3><p>对于赋值操作 <code>a = xxx</code>：</p>
+<ol>
+<li><strong>拷贝赋值 (Copy Assignment)</strong>：当 <code>xxx</code> 为左值时调用。</li>
+<li><strong>移动赋值 (Move Assignment)</strong>：当 <code>xxx</code> 为右值时调用。</li>
+</ol>
+<h3 id="std-move"><a href="#std-move" class="headerlink" title="std::move"></a>std::move</h3><p>一个常识是：<strong>移动 (Move) 比拷贝 (Copy) 快</strong>。如果我们想移动一个左值呢？<br>我们可以使用 <code>std::move</code>。它让编译器认为某个左值是一个右值，从而实现<strong>所有权的转移</strong>。</p>
+<blockquote>
+<p><strong>注意</strong>：使用了 <code>std::move</code> 后的对象不可再使用；此外，<code>const</code> 变量不可使用移动语义。</p>
+</blockquote>
+<h4 id="❌-不可使用-std-move-的常见错误场景："><a href="#❌-不可使用-std-move-的常见错误场景：" class="headerlink" title="❌ 不可使用 std::move 的常见错误场景："></a>❌ 不可使用 <code>std::move</code> 的常见错误场景：</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Print</span><span class="params">(<span class="type">const</span> std::string &amp;s)</span></span>;</span><br><span class="line"><span class="function">std::string <span class="title">Concat</span><span class="params">(<span class="type">const</span> std::string &amp;p, std::string q)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 1. Move from a const var (错误：const 无法被移动，仍会触发拷贝)</span></span><br><span class="line">    std::string tmp = std::<span class="built_in">move</span>(p);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. Move from an rvalue (冗余：p+q 本身就是右值)</span></span><br><span class="line">    std::string tmp2 = std::<span class="built_in">move</span>(p + q);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. Move to a const reference (无意义：Print 接收的是引用，move 会产生临时变量)</span></span><br><span class="line">    <span class="built_in">Print</span>(std::<span class="built_in">move</span>(p + q));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4. Move the return value (错误：这会阻碍编译器进行返回值优化 RVO)</span></span><br><span class="line">    <span class="keyword">return</span> std::<span class="built_in">move</span>(ret); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2-Type-Inference-std-forward-类型推导与完美转发"><a href="#2-Type-Inference-std-forward-类型推导与完美转发" class="headerlink" title="2. Type Inference &amp; std::forward (类型推导与完美转发)"></a>2. Type Inference &amp; std::forward (类型推导与完美转发)</h2><h3 id="Universal-Reference-万能引用"><a href="#Universal-Reference-万能引用" class="headerlink" title="Universal Reference (万能引用)"></a>Universal Reference (万能引用)</h3><p>在模板中，<code>T&amp;&amp;</code> 并不总是代表右值引用，它可能是<strong>万能引用</strong>。它既可以接收左值，也可以接收右值。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">func</span><span class="params">(T &amp;&amp;param)</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">if</span> <span class="title">constexpr</span> <span class="params">(std::is_lvalue_reference_v&lt;T&gt;)</span> </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;传递的是左值&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;传递的是右值&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-Smart-Pointers-智能指针"><a href="#3-Smart-Pointers-智能指针" class="headerlink" title="3. Smart Pointers (智能指针)"></a>3. Smart Pointers (智能指针)</h2><p>Modern C++ 通过智能指针管理内存，遵循 RAII 原则，彻底告别裸指针。</p>
+<h3 id="std-unique-ptr"><a href="#std-unique-ptr" class="headerlink" title="std::unique_ptr"></a>std::unique_ptr</h3><p>核心属性：独占所有权，不可拷贝（Copy Forbidden），只能移动（Move Only）。</p>
+<p>用法：使用 std::make_unique<T>(…) 创建。</p>
+<h3 id="std-shared-ptr"><a href="#std-shared-ptr" class="headerlink" title="std::shared_ptr"></a>std::shared_ptr</h3><p>核心属性：多个所有者共享同一个资源。</p>
+<p>引用计数：通过 control block 记录当前有多少个指针指向该对象，计数归零时自动释放。</p>
+<h3 id="std-weak-ptr-解决循环引用"><a href="#std-weak-ptr-解决循环引用" class="headerlink" title="std::weak_ptr (解决循环引用)"></a>std::weak_ptr (解决循环引用)</h3><p>如果 A 指向 B，B 也指向 A（都是 shared_ptr），就会形成死锁。weak_ptr 不增加引用计数，可以观测对象但不会延长其生命周期。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">    std::shared_ptr&lt;Node&gt; next; <span class="comment">// 若两个 Node 互相 next 指向，则内存泄漏</span></span><br><span class="line">    <span class="comment">// 解决方法：将其中一个改为 std::weak_ptr&lt;Node&gt; next;</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-Syntax-Sugar-语法糖"><a href="#4-Syntax-Sugar-语法糖" class="headerlink" title="4. Syntax Sugar (语法糖)"></a>4. Syntax Sugar (语法糖)</h2><h3 id="auto-推断"><a href="#auto-推断" class="headerlink" title="auto 推断"></a>auto 推断</h3><p>auto 会自动推导变量类型，让代码更简洁，特别是处理迭代器或复杂模板时。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">std::vector&lt;<span class="type">int</span>&gt; vec = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span>&amp; elem : vec) &#123; <span class="comment">// auto&amp; 推断为引用，可修改原容器</span></span><br><span class="line">    elem *= <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="结构化绑定-Structured-Bindings-C-17"><a href="#结构化绑定-Structured-Bindings-C-17" class="headerlink" title="结构化绑定 (Structured Bindings - C++17)"></a>结构化绑定 (Structured Bindings - C++17)</h3><p>一次性从 std::pair 或 std::tuple 中提取多个变量。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">std::map&lt;std::string, <span class="type">int</span>&gt; scores = &#123;&#123;<span class="string">&quot;Alice&quot;</span>, <span class="number">90</span>&#125;&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; [name, score] : scores) &#123;</span><br><span class="line">    std::cout &lt;&lt; name &lt;&lt; <span class="string">&quot;: &quot;</span> &lt;&lt; score &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-Safety-C-17-安全容器"><a href="#5-Safety-C-17-安全容器" class="headerlink" title="5. Safety (C++17 安全容器)"></a>5. Safety (C++17 安全容器)</h2><p>为了避免使用不安全的 union 或容易导致错误的空指针。</p>
+<h3 id="std-any"><a href="#std-any" class="headerlink" title="std::any"></a>std::any</h3><p>可以存储任何类型的值，但在访问时必须通过 any_cast 进行类型安全检查。</p>
+<h3 id="std-optional"><a href="#std-optional" class="headerlink" title="std::optional"></a>std::optional</h3><p>表示一个可能为空的值。不再需要通过返回 -1 或 nullptr 来表达“无效”。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">std::optional&lt;<span class="type">int</span>&gt; <span class="title">getValue</span><span class="params">(<span class="type">bool</span> success)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (success) <span class="keyword">return</span> <span class="number">42</span>;</span><br><span class="line">    <span class="keyword">return</span> std::<span class="literal">nullopt</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="std-variant"><a href="#std-variant" class="headerlink" title="std::variant"></a>std::variant</h3><p>类型安全的 union。它知道自己当前存的是哪种类型，并能通过 std::visit 优雅地处理。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> MyType = std::variant&lt;<span class="type">int</span>, std::string&gt;;</span><br><span class="line">MyType v = <span class="string">&quot;Modern C++&quot;</span>;</span><br><span class="line">std::<span class="built_in">visit</span>([](<span class="keyword">auto</span>&amp;&amp; arg) &#123; std::cout &lt;&lt; arg; &#125;, v);</span><br></pre></td></tr></table></figure>
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-none-link" href="/tags/Cpp/" rel="tag">Cpp</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2026/01/25/Explore-RCompiler/"
+                    data-tooltip="Explore RCompiler"
+                    aria-label="PREVIOUS: Explore RCompiler"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2026/01/24/25-Fall/"
+                    data-tooltip="25 Fall"
+                    aria-label="NEXT: 25 Fall"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://janez-uint.github.io/2026/01/25/Modern-Cpp/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://janez-uint.github.io/2026/01/25/Modern-Cpp/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=https://janez-uint.github.io/2026/01/25/Modern-Cpp/"
+                    title="Share on Google+"
+                    aria-label="Share on Google+"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2026 JaneZ. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2026/01/25/Explore-RCompiler/"
+                    data-tooltip="Explore RCompiler"
+                    aria-label="PREVIOUS: Explore RCompiler"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2026/01/24/25-Fall/"
+                    data-tooltip="25 Fall"
+                    aria-label="NEXT: 25 Fall"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://janez-uint.github.io/2026/01/25/Modern-Cpp/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://janez-uint.github.io/2026/01/25/Modern-Cpp/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=https://janez-uint.github.io/2026/01/25/Modern-Cpp/"
+                    title="Share on Google+"
+                    aria-label="Share on Google+"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=https://janez-uint.github.io/2026/01/25/Modern-Cpp/"
+                        aria-label="Share on Facebook"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=https://janez-uint.github.io/2026/01/25/Modern-Cpp/"
+                        aria-label="Share on Twitter"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=https://janez-uint.github.io/2026/01/25/Modern-Cpp/"
+                        aria-label="Share on Google+"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">JaneZ</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                Shanghai, China
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/jquery.js"></script>
+
+
+<script src="/assets/js/jquery.fancybox.js"></script>
+
+
+<script src="/assets/js/thumbs.js"></script>
+
+
+<script src="/assets/js/tranquilpeak.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>
