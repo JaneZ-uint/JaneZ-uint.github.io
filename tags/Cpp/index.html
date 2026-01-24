@@ -1,419 +1,161 @@
-
-<!DOCTYPE html>
-<html lang="en">
-    
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Brain of JaneZ in a Jar">
-    <title>Tag: Cpp - Brain of JaneZ in a Jar</title>
-    <meta name="author" content="JaneZ">
-    
-    
-    
-    <script type="application/ld+json">{}</script>
-    <meta property="og:type" content="blog">
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Tag: Cpp | Brain of JaneZ in a Jar</title><meta name="author" content="JaneZ"><meta name="copyright" content="JaneZ"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
 <meta property="og:title" content="Brain of JaneZ in a Jar">
 <meta property="og:url" content="https://janez-uint.github.io/tags/Cpp/index.html">
 <meta property="og:site_name" content="Brain of JaneZ in a Jar">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://janez-uint.github.io/img/butterfly-icon.png">
 <meta property="article:author" content="JaneZ">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:creator" content="@JaneZ0826">
+<meta name="twitter:image" content="https://janez-uint.github.io/img/butterfly-icon.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://janez-uint.github.io/tags/Cpp/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
     
-    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
         
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
     
-    
-    
-    
-    
-    <!--STYLES-->
-    
-<link rel="stylesheet" href="/assets/css/all.css">
-
-    
-<link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
-
-    
-<link rel="stylesheet" href="/assets/css/thumbs.css">
-
-    
-<link rel="stylesheet" href="/assets/css/tranquilpeak.css">
-
-    <!--STYLES END-->
-    
-
-    
-
-    
-</head>
-
-    <body>
-        <div id="blog">
-            <!-- Define author's picture -->
-
-
-    
-
-<header id="header" data-behavior="1">
-    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
-    <div class="header-title">
-        <a
-            class="header-title-link"
-            href="/"
-            aria-label=""
-        >
-            Brain of JaneZ in a Jar
-        </a>
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Tag: Cpp',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'tag'
+}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="page" id="body-wrap"><header class="not-home-page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Brain of JaneZ in a Jar</span></a></span><div id="menus"></div></nav><div id="page-site-info"><h1 id="site-title">Cpp</h1></div></header><main class="layout" id="content-inner"><div id="tag"><div class="article-sort-title">Tag - Cpp</div><div class="article-sort"><div class="article-sort-item year">2026</div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2026-01-24T16:47:59.000Z" title="Created 2026-01-25 00:47:59">2026-01-25</time></div><a class="article-sort-item-title" href="/2026/01/25/Modern-Cpp/" title="Modern Cpp">Modern Cpp</a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">JaneZ</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/25/Explore-RCompiler/" title="Explore RCompiler">Explore RCompiler</a><time datetime="2026-01-24T17:58:19.000Z" title="Created 2026-01-25 01:58:19">2026-01-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/25/Modern-Cpp/" title="Modern Cpp">Modern Cpp</a><time datetime="2026-01-24T16:47:59.000Z" title="Created 2026-01-25 00:47:59">2026-01-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/24/25-Fall/" title="25 Fall">25 Fall</a><time datetime="2026-01-23T17:10:59.000Z" title="Created 2026-01-24 01:10:59">2026-01-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/24/GPU-Acceleration/" title="GPU Acceleration">GPU Acceleration</a><time datetime="2026-01-23T16:46:50.000Z" title="Created 2026-01-24 00:46:50">2026-01-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/23/Enjoy-Your-Assassyn/" title="Enjoy Your Assassyn">Enjoy Your Assassyn</a><time datetime="2026-01-23T09:34:48.000Z" title="Created 2026-01-23 17:34:48">2026-01-23</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/Mathematical-Logic/" style="font-size: 1.1em; color: #999">Mathematical Logic</a> <a href="/tags/Compiler/" style="font-size: 1.1em; color: #999">Compiler</a> <a href="/tags/Cpp/" style="font-size: 1.1em; color: #999">Cpp</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>Archives</span>
+      
     </div>
-    
-        
-            <a
-                class="header-right-picture "
-                href="#about"
-                aria-label="Open the link: /#about"
-            >
-        
-        
-        </a>
-    
-</header>
-
-            <!-- Define author's picture -->
-
-
-<nav id="sidebar" data-behavior="1">
-    <div class="sidebar-container">
-        
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="/"
-                            
-                            rel="noopener"
-                            title="Home"
-                        >
-                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Home</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="/all-categories"
-                            
-                            rel="noopener"
-                            title="Categories"
-                        >
-                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Categories</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="/all-tags"
-                            
-                            rel="noopener"
-                            title="Tags"
-                        >
-                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Tags</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="/all-archives"
-                            
-                            rel="noopener"
-                            title="Archives"
-                        >
-                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Archives</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link open-algolia-search"
-                            href="#search"
-                            
-                            rel="noopener"
-                            title="Search"
-                        >
-                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Search</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="#about"
-                            
-                            rel="noopener"
-                            title="About"
-                        >
-                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">About</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="https://github.com/JaneZ-uint"
-                            
-                                target="_blank"
-                            
-                            rel="noopener"
-                            title="GitHub"
-                        >
-                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">GitHub</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="https://x.com/JaneZ0826"
-                            
-                                target="_blank"
-                            
-                            rel="noopener"
-                            title="Twitter"
-                        >
-                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Twitter</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="/atom.xml"
-                            
-                            rel="noopener"
-                            title="RSS"
-                        >
-                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">RSS</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-    </div>
-</nav>
-
-            
-            <div id="main" data-behavior="1"
-                 class="
-                        hasCoverMetaIn
-                        ">
-                
-    <section class="postShorten-group main-content-wrap">
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2026/01/25/Modern-Cpp/"
-                            aria-label=": Modern Cpp"
-                        >
-                            Modern Cpp
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2026-01-25T00:47:59+08:00">
-	
-		    Jan 25, 2026
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content">
-                    <p>是从1.0版本移植过来的，但经过了gemini老师的润色和补充。</p>
-<h1 id="Modern-C-Overview-从底层逻辑到语法糖"><a href="#Modern-C-Overview-从底层逻辑到语法糖" class="headerlink" title="Modern C++ Overview: 从底层逻辑到语法糖"></a>Modern C++ Overview: 从底层逻辑到语法糖</h1><blockquote>
-<p><strong>前言</strong>：上机课偶遇 Modern C++，拼劲全力无法战胜？在习惯了 Java 的自动内存管理和 Python 的灵活后，C++ 的语法规则确实显得复杂（甚至有些诡异）。</p>
-<p><strong>关于 C++ 的刻板印象 (Stereotypes):</strong></p>
-<ul>
-<li>Old, out-dated, less-frequently used</li>
-<li><strong>Unsafe</strong> (最大的痛点，内存泄露和越界)</li>
-<li>Hard to use &amp; Various Compilation Issues</li>
-</ul>
-<p>尽管如此，我们仍然需要学习 Modern C++，因为它在系统编程和高性能领域依然是无可替代的。</p>
-</blockquote>
-<hr>
-<h2 id="1-Value-Types-Move-Semantics-值类型与移动语义"><a href="#1-Value-Types-Move-Semantics-值类型与移动语义" class="headerlink" title="1. Value Types &amp; Move Semantics (值类型与移动语义)"></a>1. Value Types &amp; Move Semantics (值类型与移动语义)</h2><h3 id="左值-lvalue-vs-右值-rvalue"><a href="#左值-lvalue-vs-右值-rvalue" class="headerlink" title="左值 (lvalue) vs 右值 (rvalue)"></a>左值 (lvalue) vs 右值 (rvalue)</h3><ul>
-<li><strong>左值 (lvalue)</strong>：表示占据内存中某个可识别位置（也就是一个地址）的对象。可以使用 <code>&amp;</code> 取地址。</li>
-<li><strong>右值 (rvalue)</strong>：与之相反，通常是临时对象，不可以使用 <code>&amp;</code> 取地址。</li>
-</ul>
-<h3 id="拷贝赋值-vs-移动赋值"><a href="#拷贝赋值-vs-移动赋值" class="headerlink" title="拷贝赋值 vs 移动赋值"></a>拷贝赋值 vs 移动赋值</h3><p>对于赋值操作 <code>a = xxx</code>：</p>
-<ol>
-<li><strong>拷贝赋值 (Copy Assignment)</strong>：当 <code>xxx</code> 为左值时调用。</li>
-<li><strong>移动赋值 (Move Assignment)</strong>：当 <code>xxx</code> 为右值时调用。</li>
-</ol>
-<h3 id="std-move"><a href="#std-move" class="headerlink" title="std::move"></a>std::move</h3><p>一个常识是：<strong>移动 (Move) 比拷贝 (Copy) 快</strong>。如果我们想移动一个左值呢？<br>我们可以使用 <code>std::move</code>。它让编译器认为某个左值是一个右值，从而实现<strong>所有权的转移</strong>。</p>
-<blockquote>
-<p><strong>注意</strong>：使用了 <code>std::move</code> 后的对象不可再使用；此外，<code>const</code> 变量不可使用移动语义。</p>
-</blockquote>
-<h4 id="❌-不可使用-std-move-的常见错误场景："><a href="#❌-不可使用-std-move-的常见错误场景：" class="headerlink" title="❌ 不可使用 std::move 的常见错误场景："></a>❌ 不可使用 <code>std::move</code> 的常见错误场景：</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Print</span><span class="params">(<span class="type">const</span> std::string &amp;s)</span></span>;</span><br><span class="line"><span class="function">std::string <span class="title">Concat</span><span class="params">(<span class="type">const</span> std::string &amp;p, std::string q)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 1. Move from a const var (错误：const 无法被移动，仍会触发拷贝)</span></span><br><span class="line">    std::string tmp = std::<span class="built_in">move</span>(p);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. Move from an rvalue (冗余：p+q 本身就是右值)</span></span><br><span class="line">    std::string tmp2 = std::<span class="built_in">move</span>(p + q);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. Move to a const reference (无意义：Print 接收的是引用，move 会产生临时变量)</span></span><br><span class="line">    <span class="built_in">Print</span>(std::<span class="built_in">move</span>(p + q));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4. Move the return value (错误：这会阻碍编译器进行返回值优化 RVO)</span></span><br><span class="line">    <span class="keyword">return</span> std::<span class="built_in">move</span>(ret); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="2-Type-Inference-std-forward-类型推导与完美转发"><a href="#2-Type-Inference-std-forward-类型推导与完美转发" class="headerlink" title="2. Type Inference &amp; std::forward (类型推导与完美转发)"></a>2. Type Inference &amp; std::forward (类型推导与完美转发)</h2><h3 id="Universal-Reference-万能引用"><a href="#Universal-Reference-万能引用" class="headerlink" title="Universal Reference (万能引用)"></a>Universal Reference (万能引用)</h3><p>在模板中，<code>T&amp;&amp;</code> 并不总是代表右值引用，它可能是<strong>万能引用</strong>。它既可以接收左值，也可以接收右值。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">func</span><span class="params">(T &amp;&amp;param)</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">if</span> <span class="title">constexpr</span> <span class="params">(std::is_lvalue_reference_v&lt;T&gt;)</span> </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;传递的是左值&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;传递的是右值&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-Smart-Pointers-智能指针"><a href="#3-Smart-Pointers-智能指针" class="headerlink" title="3. Smart Pointers (智能指针)"></a>3. Smart Pointers (智能指针)</h2><p>Modern C++ 通过智能指针管理内存，遵循 RAII 原则，彻底告别裸指针。</p>
-<h3 id="std-unique-ptr"><a href="#std-unique-ptr" class="headerlink" title="std::unique_ptr"></a>std::unique_ptr</h3><p>核心属性：独占所有权，不可拷贝（Copy Forbidden），只能移动（Move Only）。</p>
-<p>用法：使用 std::make_unique<T>(…) 创建。</p>
-<h3 id="std-shared-ptr"><a href="#std-shared-ptr" class="headerlink" title="std::shared_ptr"></a>std::shared_ptr</h3><p>核心属性：多个所有者共享同一个资源。</p>
-<p>引用计数：通过 control block 记录当前有多少个指针指向该对象，计数归零时自动释放。</p>
-<h3 id="std-weak-ptr-解决循环引用"><a href="#std-weak-ptr-解决循环引用" class="headerlink" title="std::weak_ptr (解决循环引用)"></a>std::weak_ptr (解决循环引用)</h3><p>如果 A 指向 B，B 也指向 A（都是 shared_ptr），就会形成死锁。weak_ptr 不增加引用计数，可以观测对象但不会延长其生命周期。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">    std::shared_ptr&lt;Node&gt; next; <span class="comment">// 若两个 Node 互相 next 指向，则内存泄漏</span></span><br><span class="line">    <span class="comment">// 解决方法：将其中一个改为 std::weak_ptr&lt;Node&gt; next;</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-Syntax-Sugar-语法糖"><a href="#4-Syntax-Sugar-语法糖" class="headerlink" title="4. Syntax Sugar (语法糖)"></a>4. Syntax Sugar (语法糖)</h2><h3 id="auto-推断"><a href="#auto-推断" class="headerlink" title="auto 推断"></a>auto 推断</h3><p>auto 会自动推导变量类型，让代码更简洁，特别是处理迭代器或复杂模板时。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">std::vector&lt;<span class="type">int</span>&gt; vec = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span>&amp; elem : vec) &#123; <span class="comment">// auto&amp; 推断为引用，可修改原容器</span></span><br><span class="line">    elem *= <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="结构化绑定-Structured-Bindings-C-17"><a href="#结构化绑定-Structured-Bindings-C-17" class="headerlink" title="结构化绑定 (Structured Bindings - C++17)"></a>结构化绑定 (Structured Bindings - C++17)</h3><p>一次性从 std::pair 或 std::tuple 中提取多个变量。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">std::map&lt;std::string, <span class="type">int</span>&gt; scores = &#123;&#123;<span class="string">&quot;Alice&quot;</span>, <span class="number">90</span>&#125;&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; [name, score] : scores) &#123;</span><br><span class="line">    std::cout &lt;&lt; name &lt;&lt; <span class="string">&quot;: &quot;</span> &lt;&lt; score &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="5-Safety-C-17-安全容器"><a href="#5-Safety-C-17-安全容器" class="headerlink" title="5. Safety (C++17 安全容器)"></a>5. Safety (C++17 安全容器)</h2><p>为了避免使用不安全的 union 或容易导致错误的空指针。</p>
-<h3 id="std-any"><a href="#std-any" class="headerlink" title="std::any"></a>std::any</h3><p>可以存储任何类型的值，但在访问时必须通过 any_cast 进行类型安全检查。</p>
-<h3 id="std-optional"><a href="#std-optional" class="headerlink" title="std::optional"></a>std::optional</h3><p>表示一个可能为空的值。不再需要通过返回 -1 或 nullptr 来表达“无效”。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">std::optional&lt;<span class="type">int</span>&gt; <span class="title">getValue</span><span class="params">(<span class="type">bool</span> success)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (success) <span class="keyword">return</span> <span class="number">42</span>;</span><br><span class="line">    <span class="keyword">return</span> std::<span class="literal">nullopt</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="std-variant"><a href="#std-variant" class="headerlink" title="std::variant"></a>std::variant</h3><p>类型安全的 union。它知道自己当前存的是哪种类型，并能通过 std::visit 优雅地处理。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> MyType = std::variant&lt;<span class="type">int</span>, std::string&gt;;</span><br><span class="line">MyType v = <span class="string">&quot;Modern C++&quot;</span>;</span><br><span class="line">std::<span class="built_in">visit</span>([](<span class="keyword">auto</span>&amp;&amp; arg) &#123; std::cout &lt;&lt; arg; &#125;, v);</span><br></pre></td></tr></table></figure>
-                    
-                        
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/2026/01/25/Modern-Cpp/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                Comment and share
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
-    <div class="pagination-bar">
-    <ul class="pagination">
-        
-        
-        <li class="pagination-number">page 1 of 1</li>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/01/">
+            <span class="card-archive-list-date">
+              January 2026
+            </span>
+            <span class="card-archive-list-count">6</span>
+          </a>
+        </li>
+      
     </ul>
-</div>
-
-</section>
-
-
-                <footer id="footer" class="main-content-wrap">
-    <span class="copyrights">
-        Copyrights &copy; 2026 JaneZ. All Rights Reserved.
-    </span>
-</footer>
-
-            </div>
-            
-        </div>
-        
-
-
-<div id="about">
-    <div id="about-card">
-        <div id="about-btn-close">
-            <i class="fa fa-times"></i>
-        </div>
-        
-            <h4 id="about-card-name">JaneZ</h4>
-        
-            <div id="about-card-bio"><p>author.bio</p>
-</div>
-        
-        
-            <div id="about-card-job">
-                <i class="fa fa-briefcase"></i>
-                <br/>
-                <p>author.job</p>
-
-            </div>
-        
-        
-            <div id="about-card-location">
-                <i class="fa fa-map-marker-alt"></i>
-                <br/>
-                Shanghai, China
-            </div>
-        
-    </div>
-</div>
-
-        
-        
-<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
-        <!--SCRIPTS-->
-
-<script src="/assets/js/jquery.js"></script>
-
-
-<script src="/assets/js/jquery.fancybox.js"></script>
-
-
-<script src="/assets/js/thumbs.js"></script>
-
-
-<script src="/assets/js/tranquilpeak.js"></script>
-
-<!--SCRIPTS END-->
-
-
-
-
-
-    </body>
-</html>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Website Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article Count :</div><div class="item-count">6</div></div><div class="webinfo-item"><div class="item-name">Unique Visitors :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Page Views :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Update :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-01-24T18:54:42.626Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By JaneZ</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4-b1"></script><script src="/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

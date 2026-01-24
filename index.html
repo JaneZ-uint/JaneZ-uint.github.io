@@ -1,1055 +1,169 @@
-
-<!DOCTYPE html>
-<html lang="en">
-    
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Brain of JaneZ in a Jar">
-    <title>Brain of JaneZ in a Jar</title>
-    <meta name="author" content="JaneZ">
-    
-    
-    
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"Website","@id":"https://janez-uint.github.io","author":{"@type":"Person","name":"JaneZ","sameAs":["https://github.com/JaneZ-uint","https://x.com/JaneZ0826"],"image":"https://www.gravatar.com/avatar/41c9cfd7e215b2ada7b022b845a390c3"},"name":"Brain of JaneZ in a Jar","description":"","url":"https://janez-uint.github.io"}</script>
-    <meta property="og:type" content="blog">
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Brain of JaneZ in a Jar</title><meta name="author" content="JaneZ"><meta name="copyright" content="JaneZ"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
 <meta property="og:title" content="Brain of JaneZ in a Jar">
 <meta property="og:url" content="https://janez-uint.github.io/index.html">
 <meta property="og:site_name" content="Brain of JaneZ in a Jar">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://janez-uint.github.io/img/butterfly-icon.png">
 <meta property="article:author" content="JaneZ">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:creator" content="@JaneZ0826">
+<meta name="twitter:image" content="https://janez-uint.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Brain of JaneZ in a Jar",
+  "alternateName": [
+    "janez-uint.github.io"
+  ],
+  "url": "https://janez-uint.github.io/"
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://janez-uint.github.io/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
     
-    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
         
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
     
-    
-    
-    
-    
-    <!--STYLES-->
-    
-<link rel="stylesheet" href="/assets/css/all.css">
-
-    
-<link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
-
-    
-<link rel="stylesheet" href="/assets/css/thumbs.css">
-
-    
-<link rel="stylesheet" href="/assets/css/tranquilpeak.css">
-
-    <!--STYLES END-->
-    
-
-    
-
-    
-</head>
-
-    <body>
-        <div id="blog">
-            <!-- Define author's picture -->
-
-
-    
-
-<header id="header" data-behavior="1">
-    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
-    <div class="header-title">
-        <a
-            class="header-title-link"
-            href="/"
-            aria-label=""
-        >
-            Brain of JaneZ in a Jar
-        </a>
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Brain of JaneZ in a Jar',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Brain of JaneZ in a Jar</span></a></span><div id="menus"></div></nav><div id="site-info"><h1 id="site-title">Brain of JaneZ in a Jar</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/25/Explore-RCompiler/" title="Explore RCompiler">Explore RCompiler</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2026-01-24T17:58:19.000Z" title="Created 2026-01-25 01:58:19">2026-01-25</time></span></div><div class="content">埋一个坑，有空整理一下自己在完成RCompiler和学习编译原理过程中学到的东西。况且下学期也选了高编，也可以往里面加后端和优化的内容。 </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/25/Modern-Cpp/" title="Modern Cpp">Modern Cpp</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2026-01-24T16:47:59.000Z" title="Created 2026-01-25 00:47:59">2026-01-25</time></span></div><div class="content">是从1.0版本移植过来的，但经过了gemini老师的润色和补充。 Modern C++ Overview: 从底层逻辑到语法糖 前言：上机课偶遇 Modern C++，拼劲全力无法战胜？在习惯了 Java 的自动内存管理和 Python 的灵活后，C++ 的语法规则确实显得复杂（甚至有些诡异）。 关于 C++ 的刻板印象 (Stereotypes):  Old, out-dated, less-frequently used Unsafe (最大的痛点，内存泄露和越界) Hard to use &amp; Various Compilation Issues  尽管如此，我们仍然需要学习 Modern C++，因为它在系统编程和高性能领域依然是无可替代的。   1. Value Types &amp; Move Semantics (值类型与移动语义)左值 (lvalue) vs 右值 (rvalue) 左值 (lvalue)：表示占据内存中某个可识别位置（也就是一个地址）的对象。可以使用 &amp; 取地址。 右值 (rvalue)：与之相反，通常是临时对象，不可以使用 &am...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/24/25-Fall/" title="25 Fall">25 Fall</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2026-01-23T17:10:59.000Z" title="Created 2026-01-24 01:10:59">2026-01-24</time></span></div><div class="content">25 Fall Learning Record 25 Fall 开始，依托的RCompiler，混乱的Arch课程，两门😇的数学课，三节早八的物理课，TA 工作， 原来已经大二了😥 学期有些规划。 快让我润出去吧，每天都在幻想能不能直接跳过本科3年直接润美😇  大多数人都生活在平静的绝望中：欲言又止。 最优化有意思。 天热总是令人头痛，再喝可乐，就会变成可乐了。  Compiler 进展挺好，但是欠了一大堆物理课🤗  前天在水源上回了一个帖子：想听一下源友们对于生命结束的看法 JaneZ: 可以想一想自己还有什么想做的事情，还有怎样的风景没有看过，and all the crazy things! 如果全都没有了，那我想是时候开始 afterlife 了  对物理早八的怨气来到了一个新的高峰。 小失误会酿成大祸，差点就把主板烧了  看了coderaka的帖子，想想自己这一年又何尝不是这样呢，一点锐气都没有了。  国庆说走就走的港深之行，想去HK很久了，毕竟上一次去是15年前。10.3出发的，10.2订的机酒。往返都是MU，回来为了省钱前一天晚上到深圳，第二天中午从宝安飞浦...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/24/GPU-Acceleration/" title="GPU Acceleration">GPU Acceleration</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2026-01-23T16:46:50.000Z" title="Created 2026-01-24 00:46:50">2026-01-24</time></span></div><div class="content">给25级xpy 伟大思想的pre，一天时间搓出来的，放到blog上留作纪念。 也是第一次用vscode-marp 做ppt，终于摆脱office的阴间排版了。  marp: true theme: gaia footer: ‘JaneZ 2025-10-14’ paginate: true html: true style: | section a { font-size: 30px; }GPU AccelerationYihan Zhu @JaneZ ACM Class 2024 2025.10.14 Overview Basic Architecture of CPU, GPU, RAM, Cache GPU Architecture GPU Programming Case study: Matrix Multiplication on GPU  What is a GPU? CPU (中央处理器) 拥有少量强大的核心 (Core)。 具有复杂的控制单元 (Control) 和多级缓存 (L1, L2, L3 Cache)。 擅长串行任务和复杂的控制逻辑。    What ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/23/Enjoy-Your-Assassyn/" title="Enjoy Your Assassyn">Enjoy Your Assassyn</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2026-01-23T09:34:48.000Z" title="Created 2026-01-23 17:34:48">2026-01-23</time></span></div><div class="content">笔者配置Assassyn环境的过程中遇到了一些问题，特此记录以备后续参考。 特别感谢Coffish 添加了另一种解决assassyn编译产生大量文件占用过多内存空间问题的方案——限制make并行数 首先贴上配置的具体流程：（值得注意的是，笔者在物理机上配置了Assassyn，不过Anyway还是贴上docker的配置流程好了） DockerIt is also recommended to use Docker to automatically manage the dependences. We decide to adopt a hybrid style of coding, tooling, and development, where this repo is located in your physical machine, while the execution is in the docker virtual machine (VM). Still, before doing anything, make sure you have this repo fully ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2026/01/23/Mathematical-Logic-CT-Paper/" title="Mathematical Logic CT Paper">Mathematical Logic CT Paper</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2026-01-23T09:31:24.000Z" title="Created 2026-01-23 17:31:24">2026-01-23</time></span></div><div class="content">ML CT Paper前言这是留给25级往后ACM班学弟学妹的一份遗产了，很详细地总结了CS2950 Mathematical Logic这门课程涉及的主要知识点（有所删减）。特别值得注意的是，我在25.6.5晚在前三位作者整理的基础上，增添了6个example，是拟合了近3年ML Final的结果。我觉得这是一门很很有意思的课（but这门课的难度还是很大的🤣🤣🤣） LaTeX 源码https://latex.sjtu.edu.cn/5789875599fpdzxjcfzrgw#7dce86 可以根据个人需要删改 Acknowledgement (排名不分先后) Coffish Monkey_Lee Sakura_Dusk  </div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">JaneZ</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/25/Explore-RCompiler/" title="Explore RCompiler">Explore RCompiler</a><time datetime="2026-01-24T17:58:19.000Z" title="Created 2026-01-25 01:58:19">2026-01-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/25/Modern-Cpp/" title="Modern Cpp">Modern Cpp</a><time datetime="2026-01-24T16:47:59.000Z" title="Created 2026-01-25 00:47:59">2026-01-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/24/25-Fall/" title="25 Fall">25 Fall</a><time datetime="2026-01-23T17:10:59.000Z" title="Created 2026-01-24 01:10:59">2026-01-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/24/GPU-Acceleration/" title="GPU Acceleration">GPU Acceleration</a><time datetime="2026-01-23T16:46:50.000Z" title="Created 2026-01-24 00:46:50">2026-01-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/23/Enjoy-Your-Assassyn/" title="Enjoy Your Assassyn">Enjoy Your Assassyn</a><time datetime="2026-01-23T09:34:48.000Z" title="Created 2026-01-23 17:34:48">2026-01-23</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/Mathematical-Logic/" style="font-size: 1.1em; color: #999">Mathematical Logic</a> <a href="/tags/Compiler/" style="font-size: 1.1em; color: #999">Compiler</a> <a href="/tags/Cpp/" style="font-size: 1.1em; color: #999">Cpp</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>Archives</span>
+      
     </div>
-    
-        
-            <a
-                class="header-right-picture "
-                href="#about"
-                aria-label="Open the link: /#about"
-            >
-        
-        
-        </a>
-    
-</header>
-
-            <!-- Define author's picture -->
-
-
-<nav id="sidebar" data-behavior="1">
-    <div class="sidebar-container">
-        
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="/"
-                            
-                            rel="noopener"
-                            title="Home"
-                        >
-                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Home</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="/all-categories"
-                            
-                            rel="noopener"
-                            title="Categories"
-                        >
-                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Categories</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="/all-tags"
-                            
-                            rel="noopener"
-                            title="Tags"
-                        >
-                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Tags</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="/all-archives"
-                            
-                            rel="noopener"
-                            title="Archives"
-                        >
-                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Archives</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link open-algolia-search"
-                            href="#search"
-                            
-                            rel="noopener"
-                            title="Search"
-                        >
-                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Search</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="#about"
-                            
-                            rel="noopener"
-                            title="About"
-                        >
-                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">About</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="https://github.com/JaneZ-uint"
-                            
-                                target="_blank"
-                            
-                            rel="noopener"
-                            title="GitHub"
-                        >
-                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">GitHub</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="https://x.com/JaneZ0826"
-                            
-                                target="_blank"
-                            
-                            rel="noopener"
-                            title="Twitter"
-                        >
-                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Twitter</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="/atom.xml"
-                            
-                            rel="noopener"
-                            title="RSS"
-                        >
-                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">RSS</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-    </div>
-</nav>
-
-            
-            <div id="main" data-behavior="1"
-                 class="
-                        hasCoverMetaIn
-                        ">
-                <section class="postShorten-group main-content-wrap">
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2026/01/25/Explore-RCompiler/"
-                            aria-label=": Explore RCompiler"
-                        >
-                            Explore RCompiler
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2026-01-25T01:58:19+08:00">
-	
-		    Jan 25, 2026
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content">
-                    <p>埋一个坑，有空整理一下自己在完成RCompiler和学习编译原理过程中学到的东西。况且下学期也选了高编，也可以往里面加后端和优化的内容。</p>
-
-                    
-                        
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/2026/01/25/Explore-RCompiler/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                Comment and share
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2026/01/25/Modern-Cpp/"
-                            aria-label=": Modern Cpp"
-                        >
-                            Modern Cpp
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2026-01-25T00:47:59+08:00">
-	
-		    Jan 25, 2026
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content">
-                    <p>是从1.0版本移植过来的，但经过了gemini老师的润色和补充。</p>
-<h1 id="Modern-C-Overview-从底层逻辑到语法糖"><a href="#Modern-C-Overview-从底层逻辑到语法糖" class="headerlink" title="Modern C++ Overview: 从底层逻辑到语法糖"></a>Modern C++ Overview: 从底层逻辑到语法糖</h1><blockquote>
-<p><strong>前言</strong>：上机课偶遇 Modern C++，拼劲全力无法战胜？在习惯了 Java 的自动内存管理和 Python 的灵活后，C++ 的语法规则确实显得复杂（甚至有些诡异）。</p>
-<p><strong>关于 C++ 的刻板印象 (Stereotypes):</strong></p>
-<ul>
-<li>Old, out-dated, less-frequently used</li>
-<li><strong>Unsafe</strong> (最大的痛点，内存泄露和越界)</li>
-<li>Hard to use &amp; Various Compilation Issues</li>
-</ul>
-<p>尽管如此，我们仍然需要学习 Modern C++，因为它在系统编程和高性能领域依然是无可替代的。</p>
-</blockquote>
-<hr>
-<h2 id="1-Value-Types-Move-Semantics-值类型与移动语义"><a href="#1-Value-Types-Move-Semantics-值类型与移动语义" class="headerlink" title="1. Value Types &amp; Move Semantics (值类型与移动语义)"></a>1. Value Types &amp; Move Semantics (值类型与移动语义)</h2><h3 id="左值-lvalue-vs-右值-rvalue"><a href="#左值-lvalue-vs-右值-rvalue" class="headerlink" title="左值 (lvalue) vs 右值 (rvalue)"></a>左值 (lvalue) vs 右值 (rvalue)</h3><ul>
-<li><strong>左值 (lvalue)</strong>：表示占据内存中某个可识别位置（也就是一个地址）的对象。可以使用 <code>&amp;</code> 取地址。</li>
-<li><strong>右值 (rvalue)</strong>：与之相反，通常是临时对象，不可以使用 <code>&amp;</code> 取地址。</li>
-</ul>
-<h3 id="拷贝赋值-vs-移动赋值"><a href="#拷贝赋值-vs-移动赋值" class="headerlink" title="拷贝赋值 vs 移动赋值"></a>拷贝赋值 vs 移动赋值</h3><p>对于赋值操作 <code>a = xxx</code>：</p>
-<ol>
-<li><strong>拷贝赋值 (Copy Assignment)</strong>：当 <code>xxx</code> 为左值时调用。</li>
-<li><strong>移动赋值 (Move Assignment)</strong>：当 <code>xxx</code> 为右值时调用。</li>
-</ol>
-<h3 id="std-move"><a href="#std-move" class="headerlink" title="std::move"></a>std::move</h3><p>一个常识是：<strong>移动 (Move) 比拷贝 (Copy) 快</strong>。如果我们想移动一个左值呢？<br>我们可以使用 <code>std::move</code>。它让编译器认为某个左值是一个右值，从而实现<strong>所有权的转移</strong>。</p>
-<blockquote>
-<p><strong>注意</strong>：使用了 <code>std::move</code> 后的对象不可再使用；此外，<code>const</code> 变量不可使用移动语义。</p>
-</blockquote>
-<h4 id="❌-不可使用-std-move-的常见错误场景："><a href="#❌-不可使用-std-move-的常见错误场景：" class="headerlink" title="❌ 不可使用 std::move 的常见错误场景："></a>❌ 不可使用 <code>std::move</code> 的常见错误场景：</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Print</span><span class="params">(<span class="type">const</span> std::string &amp;s)</span></span>;</span><br><span class="line"><span class="function">std::string <span class="title">Concat</span><span class="params">(<span class="type">const</span> std::string &amp;p, std::string q)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 1. Move from a const var (错误：const 无法被移动，仍会触发拷贝)</span></span><br><span class="line">    std::string tmp = std::<span class="built_in">move</span>(p);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. Move from an rvalue (冗余：p+q 本身就是右值)</span></span><br><span class="line">    std::string tmp2 = std::<span class="built_in">move</span>(p + q);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. Move to a const reference (无意义：Print 接收的是引用，move 会产生临时变量)</span></span><br><span class="line">    <span class="built_in">Print</span>(std::<span class="built_in">move</span>(p + q));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4. Move the return value (错误：这会阻碍编译器进行返回值优化 RVO)</span></span><br><span class="line">    <span class="keyword">return</span> std::<span class="built_in">move</span>(ret); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="2-Type-Inference-std-forward-类型推导与完美转发"><a href="#2-Type-Inference-std-forward-类型推导与完美转发" class="headerlink" title="2. Type Inference &amp; std::forward (类型推导与完美转发)"></a>2. Type Inference &amp; std::forward (类型推导与完美转发)</h2><h3 id="Universal-Reference-万能引用"><a href="#Universal-Reference-万能引用" class="headerlink" title="Universal Reference (万能引用)"></a>Universal Reference (万能引用)</h3><p>在模板中，<code>T&amp;&amp;</code> 并不总是代表右值引用，它可能是<strong>万能引用</strong>。它既可以接收左值，也可以接收右值。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">func</span><span class="params">(T &amp;&amp;param)</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">if</span> <span class="title">constexpr</span> <span class="params">(std::is_lvalue_reference_v&lt;T&gt;)</span> </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;传递的是左值&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;传递的是右值&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-Smart-Pointers-智能指针"><a href="#3-Smart-Pointers-智能指针" class="headerlink" title="3. Smart Pointers (智能指针)"></a>3. Smart Pointers (智能指针)</h2><p>Modern C++ 通过智能指针管理内存，遵循 RAII 原则，彻底告别裸指针。</p>
-<h3 id="std-unique-ptr"><a href="#std-unique-ptr" class="headerlink" title="std::unique_ptr"></a>std::unique_ptr</h3><p>核心属性：独占所有权，不可拷贝（Copy Forbidden），只能移动（Move Only）。</p>
-<p>用法：使用 std::make_unique<T>(…) 创建。</p>
-<h3 id="std-shared-ptr"><a href="#std-shared-ptr" class="headerlink" title="std::shared_ptr"></a>std::shared_ptr</h3><p>核心属性：多个所有者共享同一个资源。</p>
-<p>引用计数：通过 control block 记录当前有多少个指针指向该对象，计数归零时自动释放。</p>
-<h3 id="std-weak-ptr-解决循环引用"><a href="#std-weak-ptr-解决循环引用" class="headerlink" title="std::weak_ptr (解决循环引用)"></a>std::weak_ptr (解决循环引用)</h3><p>如果 A 指向 B，B 也指向 A（都是 shared_ptr），就会形成死锁。weak_ptr 不增加引用计数，可以观测对象但不会延长其生命周期。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">    std::shared_ptr&lt;Node&gt; next; <span class="comment">// 若两个 Node 互相 next 指向，则内存泄漏</span></span><br><span class="line">    <span class="comment">// 解决方法：将其中一个改为 std::weak_ptr&lt;Node&gt; next;</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-Syntax-Sugar-语法糖"><a href="#4-Syntax-Sugar-语法糖" class="headerlink" title="4. Syntax Sugar (语法糖)"></a>4. Syntax Sugar (语法糖)</h2><h3 id="auto-推断"><a href="#auto-推断" class="headerlink" title="auto 推断"></a>auto 推断</h3><p>auto 会自动推导变量类型，让代码更简洁，特别是处理迭代器或复杂模板时。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">std::vector&lt;<span class="type">int</span>&gt; vec = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span>&amp; elem : vec) &#123; <span class="comment">// auto&amp; 推断为引用，可修改原容器</span></span><br><span class="line">    elem *= <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="结构化绑定-Structured-Bindings-C-17"><a href="#结构化绑定-Structured-Bindings-C-17" class="headerlink" title="结构化绑定 (Structured Bindings - C++17)"></a>结构化绑定 (Structured Bindings - C++17)</h3><p>一次性从 std::pair 或 std::tuple 中提取多个变量。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">std::map&lt;std::string, <span class="type">int</span>&gt; scores = &#123;&#123;<span class="string">&quot;Alice&quot;</span>, <span class="number">90</span>&#125;&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; [name, score] : scores) &#123;</span><br><span class="line">    std::cout &lt;&lt; name &lt;&lt; <span class="string">&quot;: &quot;</span> &lt;&lt; score &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="5-Safety-C-17-安全容器"><a href="#5-Safety-C-17-安全容器" class="headerlink" title="5. Safety (C++17 安全容器)"></a>5. Safety (C++17 安全容器)</h2><p>为了避免使用不安全的 union 或容易导致错误的空指针。</p>
-<h3 id="std-any"><a href="#std-any" class="headerlink" title="std::any"></a>std::any</h3><p>可以存储任何类型的值，但在访问时必须通过 any_cast 进行类型安全检查。</p>
-<h3 id="std-optional"><a href="#std-optional" class="headerlink" title="std::optional"></a>std::optional</h3><p>表示一个可能为空的值。不再需要通过返回 -1 或 nullptr 来表达“无效”。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">std::optional&lt;<span class="type">int</span>&gt; <span class="title">getValue</span><span class="params">(<span class="type">bool</span> success)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (success) <span class="keyword">return</span> <span class="number">42</span>;</span><br><span class="line">    <span class="keyword">return</span> std::<span class="literal">nullopt</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="std-variant"><a href="#std-variant" class="headerlink" title="std::variant"></a>std::variant</h3><p>类型安全的 union。它知道自己当前存的是哪种类型，并能通过 std::visit 优雅地处理。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> MyType = std::variant&lt;<span class="type">int</span>, std::string&gt;;</span><br><span class="line">MyType v = <span class="string">&quot;Modern C++&quot;</span>;</span><br><span class="line">std::<span class="built_in">visit</span>([](<span class="keyword">auto</span>&amp;&amp; arg) &#123; std::cout &lt;&lt; arg; &#125;, v);</span><br></pre></td></tr></table></figure>
-                    
-                        
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/2026/01/25/Modern-Cpp/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                Comment and share
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2026/01/24/25-Fall/"
-                            aria-label=": 25 Fall"
-                        >
-                            25 Fall
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2026-01-24T01:10:59+08:00">
-	
-		    Jan 24, 2026
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content">
-                    <h1 id="25-Fall-Learning-Record"><a href="#25-Fall-Learning-Record" class="headerlink" title="25 Fall Learning Record"></a>25 Fall Learning Record</h1><hr>
-<p>25 Fall 开始，依托的RCompiler，混乱的Arch课程，两门😇的数学课，三节早八的物理课，TA 工作，</p>
-<p>原来已经大二了😥</p>
-<p>学期有些规划。</p>
-<p>快让我润出去吧，每天都在幻想能不能直接跳过本科3年直接润美😇</p>
-<hr>
-<p>大多数人都生活在平静的绝望中：欲言又止。</p>
-<p>最优化有意思。</p>
-<p>天热总是令人头痛，再喝可乐，就会变成可乐了。</p>
-<hr>
-<p>Compiler 进展挺好，但是欠了一大堆物理课🤗</p>
-<hr>
-<p>前天在水源上回了一个帖子：想听一下源友们对于生命结束的看法</p>
-<p>JaneZ: 可以想一想自己还有什么想做的事情，还有怎样的风景没有看过，and all the crazy things! 如果全都没有了，那我想是时候开始 afterlife 了</p>
-<hr>
-<p>对物理早八的怨气来到了一个新的高峰。</p>
-<p>小失误会酿成大祸，差点就把主板烧了</p>
-<hr>
-<p>看了coderaka的帖子，想想自己这一年又何尝不是这样呢，一点锐气都没有了。</p>
-<hr>
-<p>国庆说走就走的港深之行，想去HK很久了，毕竟上一次去是15年前。10.3出发的，10.2订的机酒。往返都是MU，回来为了省钱前一天晚上到深圳，第二天中午从宝安飞浦东的。</p>
-<p>去的起因是一天中午在b站上刷到了重庆森林的解说，于是又看了一遍。然后就决定去看看了😆</p>
-<p>消费大概在5000左右，其中机酒占了4000。但看了很多地方，尖沙咀，中环，太平山，旺角log-on，铜锣湾Donki，拍到了很多神图。</p>
-<p>毫无顾虑地旅行真的很好，在一个疲惫的城市找到了自己想要的自由。</p>
-<p>Z30 稳定发挥，详见说说和puq。</p>
-<p>我想在未来，我还会去很多很多次香港。</p>
-<hr>
-<p>从HK回来狂赶了概率论DDL和compiler DDL，10.9 晚上终于都搞定了😇 头疼的要炸了</p>
-<hr>
-<p>忙了一晚，进行了一个彩蛋添加，搓了人生第一个HTML界面，欢迎找到它！</p>
-<hr>
-<p>想写一篇blog详细地说说在配置assassyn环境中遇到的种种问题，尽量今天做这件事。</p>
-<hr>
-<p>周五把semantic-2测过了，至此semantic大概是完全结束了，8月初开始到现在10月下旬了，两个半月，用cloc统计了一下代码行数，大概是10000+左右，难度总体来说不大，没有遇到让人百思不得其解的bug，就是工程量确实恐怖。也是第一次写这么大的东西。下面还有IR，把课补完作业写完继续吧。</p>
-<p>看了小李子新片，现在看革命者或者说看特别典的美国片都像看傻子一样。</p>
-<p>前几天在b站上刷电影解说，看了一些港片（或许也不完全算港片 但觉得是经典），《大话西游》《胭脂扣》《霸王别姬》，之后有空都会去看全片。</p>
-<hr>
-<p>下周一物理期中🥲</p>
-<p>期中之后ir和cpu都会开始，ir估量一下难度不大，更何况能用llvm的接口😋，cpu的问题在于目前对assassyn的语法特性并不熟悉，但实现一个五级流水+OoO本身来说问题倒不大</p>
-<p>每天早八起来打篮球，投篮这个东西还是太困难了😇😇</p>
-<p>还要体测，最破防的一集🥲</p>
-<p>想学很多东西，但总被一些事情阻拦，比如物理</p>
-<hr>
-<p>不出意外物理寄了🥲，指望wsy捞，结果原始分伺候。不过毕竟开学两个月学物理的天数不超过4天，随意了。</p>
-<p>不想骂，骂物理也骂了7.8年了。再痛痛不过24年江苏高考物理选择题痛失4分和 pku 拜拜。</p>
-<p>好像可以全情投入到某件事中去而不被外界打搅。</p>
-<hr>
-<p>很久没更了，看起来25 Fall已经结束辣！（现在是北京时间2026年1月24日1:00）</p>
-<p>12月底和1月初不幸换上了严重的感冒+支气管炎，伴随时不时的头痛低烧，困扰已久的心律不齐问题再次发作，无奈把物理缓考了，压力给到下学期了。编译器和CPU还算是圆满完成了，虽说在IR上浪费了许多时间，还经历了一次代码重构，但还好是赶在ddl前完成了。CPU 是一次vibe coding 的初体验了，还是蛮成功的吧，不过能得到wj的夸奖还是比较意外的。两门数学课考的还行吧，当然比不过满绩✌们。</p>
-<p>上满压力的大二上也算是安稳度过了。</p>
-<p>寒假先会和npy去吉林滑雪，接着和闺蜜姐去新加坡city walk，年前还会去一趟长沙。学业上不仅要复习物理，还要着手联系实验室学长学姐了，虽说大致有数，但还是更进一步了解一下为好。以及选了《高编》，所以感觉可以开始一些（估计大概率会因为懒惰而放弃）。。。</p>
-<hr>
-
-                    
-                        
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/2026/01/24/25-Fall/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                Comment and share
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2026/01/24/GPU-Acceleration/"
-                            aria-label=": GPU Acceleration"
-                        >
-                            GPU Acceleration
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2026-01-24T00:46:50+08:00">
-	
-		    Jan 24, 2026
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content">
-                    <p>给25级xpy 伟大思想的pre，一天时间搓出来的，放到blog上留作纪念。 也是第一次用vscode-marp 做ppt，终于摆脱office的阴间排版了。</p>
-<hr>
-<p>marp: true</p>
-<p>theme: gaia</p>
-<p>footer: ‘JaneZ 2025-10-14’</p>
-<p>paginate: true</p>
-<p>html: true</p>
-<p>style: |</p>
-<p>section a {</p>
-<p>font-size: 30px;</p>
-<h2 id=""><a href="#" class="headerlink" title="}"></a>}</h2><h1 id="GPU-Acceleration"><a href="#GPU-Acceleration" class="headerlink" title="GPU Acceleration"></a>GPU Acceleration</h1><p>Yihan Zhu @JaneZ ACM Class 2024</p>
-<p>2025.10.14</p>
-<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><ul>
-<li>Basic Architecture of CPU, GPU, RAM, Cache</li>
-<li>GPU Architecture</li>
-<li>GPU Programming</li>
-<li>Case study: Matrix Multiplication on GPU</li>
-</ul>
-<h2 id="What-is-a-GPU"><a href="#What-is-a-GPU" class="headerlink" title="What is a GPU?"></a>What is a GPU?</h2><ul>
-<li>CPU (中央处理器)<ul>
-<li>拥有少量强大的核心 (Core)。</li>
-<li>具有复杂的控制单元 (Control) 和多级缓存 (L1, L2, L3 Cache)。</li>
-<li>擅长串行任务和复杂的控制逻辑。</li>
-</ul>
-</li>
-</ul>
-<h2 id="What-is-a-GPU-1"><a href="#What-is-a-GPU-1" class="headerlink" title="What is a GPU?"></a>What is a GPU?</h2><ul>
-<li>GPU (图形处理器)<ul>
-<li>拥有大量简单的核心 (Core)。</li>
-<li>适合处理并行任务和大规模数据。</li>
-<li>常用于图形渲染和机器学习等领域。</li>
-</ul>
-</li>
-</ul>
-<h2 id="What-is-RAM"><a href="#What-is-RAM" class="headerlink" title="What is RAM?"></a>What is RAM?</h2><ul>
-<li>随机存取存储器 (RAM) 是计算机的主要内存，用于存储正在使用的数据和程序。<ul>
-<li>动态随机存取存储器 (DRAM)：容量大，速度较慢，常用于主内存。</li>
-<li>静态随机存取存储器 (SRAM)：速度快，容量小，常用于缓存(Cache)。</li>
-</ul>
-</li>
-<li>CPU 可以直接、快速地访问内存中任何位置的数据，无需按顺序查找。内存只能在电脑通电时存储数据。一旦你关机、重启或断电，内存中的所有数据都会立刻消失。</li>
-</ul>
-<h2 id="What-is-Cache"><a href="#What-is-Cache" class="headerlink" title="What is Cache?"></a>What is Cache?</h2><ul>
-<li>缓存 (Cache) 是一种高速存储器，位于 CPU&#x2F;GPU 和主内存(DRAM)之间。</li>
-<li>CPU 的运行速度极快，但访问主内存（DRAM，即“内存条”）的速度相对慢得多。这就形成了一个巨大的“速度鸿沟”。缓存就是为了弥补这个速度差而生的。它只存储 CPU&#x2F;GPU 最可能立即需要的数据和指令。</li>
-<li>多级缓存结构是现代 CPU 高性能的基础。</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>缓存级别</th>
-<th>所属设备</th>
-<th>速度 &#x2F; 容量</th>
-<th>数据共享范围</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>L1 缓存（SRAM）</td>
-<td>CPU &#x2F; GPU 核心内部</td>
-<td>最快 &#x2F; 容量最小</td>
-<td>核心独享（每个核心都有自己的 L1）</td>
-</tr>
-<tr>
-<td>L2 缓存</td>
-<td>CPU &#x2F; GPU 核心附近</td>
-<td>较快 &#x2F; 适中</td>
-<td>通常核心独享或小组共享</td>
-</tr>
-<tr>
-<td>L3 缓存</td>
-<td>CPU</td>
-<td>较慢 &#x2F; 容量最大</td>
-<td>所有核心共享</td>
-</tr>
-<tr>
-<td>共享内存</td>
-<td>GPU</td>
-<td>极快（用户可控）</td>
-<td>线程块内部协作共享</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>特性</th>
-<th>CPU 缓存（L1 &#x2F; L2 &#x2F; L3）</th>
-<th>GPU 缓存（L1 &#x2F; L2 &#x2F; 共享内存）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>设计核心目标</td>
-<td>低延迟（Low Latency）：尽快完成单个复杂任务</td>
-<td>高吞吐量（High Throughput）：同时处理大量简单任务</td>
-</tr>
-<tr>
-<td>层级数</td>
-<td>L1、L2、L3 三级</td>
-<td>通常只有 L1、L2 两级</td>
-</tr>
-<tr>
-<td>L3 缓存</td>
-<td>有。容量大，供所有核心共享</td>
-<td>基本无。架构上更依赖 L2 和共享内存</td>
-</tr>
-<tr>
-<td>最特殊结构</td>
-<td>L3 缓存（复杂数据共享）</td>
-<td>共享内存（Shared Memory，程序员可控的高速存储）</td>
-</tr>
-<tr>
-<td>数据共享方式</td>
-<td>核心间通过 L3 缓存或总线进行数据同步</td>
-<td>线程块内部通过共享内存直接快速协作</td>
-</tr>
-</tbody></table>
-<h2 id="GPU-Architecture"><a href="#GPU-Architecture" class="headerlink" title="GPU Architecture"></a>GPU Architecture</h2><p>现代 GPU（以 NVIDIA 的 CUDA 架构为例，如 Volta, Turing, Ampere, Hopper）从上到下可以分成三个主要层级：</p>
-<ol>
-<li>芯片级别：GPC (Graphics Processing Clusters) 整个 GPU 芯片由多个被称为 GPC (图形处理集群) 的大型单元组成。</li>
-<li>集群级别：SM (Streaming Multiprocessors) 每个 GPC 内部包含多个 SM (流式多处理器)。</li>
-</ol>
-<p><strong>SM 是 GPU 的真正核心！ 它是执行并行计算的基本控制单元。</strong></p>
-<h2 id="GPU-Architecture-1"><a href="#GPU-Architecture-1" class="headerlink" title="GPU Architecture"></a>GPU Architecture</h2><ol start="3">
-<li>SM 内部：核心、Warp 和内存</li>
-</ol>
-<ul>
-<li>CUDAs 核心 (CUDA Cores)：大量（每个 SM 包含数十到数百个）。负责实际的数学运算（如加法、乘法）。</li>
-<li>Warp Scheduler： SM 的真正指挥官，负责将接收到的任务（线程块）拆解成 Warp（线程束，32 个线程一组），并向所有 32 个线程同时广播指令（SIMT 模型）</li>
-<li>共享内存&#x2F;L1 缓存：供 SM 内的线程块协作共享数据。</li>
-<li>寄存器堆：每个线程独享的高速存储单元。</li>
-</ul>
-<h2 id="GPU-Programming-mode：SIMT"><a href="#GPU-Programming-mode：SIMT" class="headerlink" title="GPU Programming mode：SIMT"></a>GPU Programming mode：SIMT</h2><p>Single instruction multiple threads (SIMT) 单指令多线程</p>
-<ul>
-<li>所有线程执行相同的代码，但它们可以根据程序中的分支或条件语句采取不同的执行路径（例如 if&#x2F;else 结构）。</li>
-<li>Thread (线程)：执行计算的基本单位。</li>
-<li>Thread Block (线程块)：线程被分组到块中。同一块内的线程具有共享内存。</li>
-<li>Grid (网格)：线程块又被分组到网格中。</li>
-</ul>
-<h2 id="SIMT-on-GPU-Hardware"><a href="#SIMT-on-GPU-Hardware" class="headerlink" title="SIMT on GPU Hardware"></a>SIMT on GPU Hardware</h2><ul>
-<li>一个 Grid 中的 Thread Blocks（线程块）会被分配到 GPU 的各个 SM 上执行。</li>
-<li>当一个线程块被分配到 SM 上时，SM 内的调度器会首先将这个线程块中的所有线程（通常是 128、 256 或 1024 个）分成多个 Warp（每个 Warp 32 个线程）。</li>
-<li>调度器的工作就是从就绪的 Warp 中选择一个，然后向该 Warp 中的所有 32 个线程同时发出相同的指令。</li>
-<li>GPU 不会调度单个线程，也不会调度整个线程块，它只以 Warp 为单位进行操作。</li>
-</ul>
-<h2 id="CUDA-cores"><a href="#CUDA-cores" class="headerlink" title="CUDA cores"></a>CUDA cores</h2><p>当一个 Warp 被调度时，它会同时被送往 SM 内部的 CUDA 核心。在理想情况下（没有分支冲突），Warp 中的 32 个线程会同时在 32 个不同的 CUDA 核心上执行同一条指令。</p>
-<h2 id="We-keep-talking-about-CUDA-then-you-guys-may-ask-What-is-CUDA"><a href="#We-keep-talking-about-CUDA-then-you-guys-may-ask-What-is-CUDA" class="headerlink" title="We keep talking about CUDA,then you guys may ask: What is CUDA?"></a>We keep talking about CUDA,then you guys may ask: What is CUDA?</h2><ul>
-<li>CUDA (Compute Unified Device Architecture) 是 NVIDIA 提供的并行计算平台和编程模型。</li>
-<li>它允许开发者使用 C&#x2F;C++ 等高级语言编写程序，以充分利用 GPU 的强大计算能力。</li>
-<li>CUDA 提供了一套丰富的 API 和库，使得在 GPU 上进行高性能计算变得更加简单和高效。</li>
-</ul>
-<h2 id="CUDA-Programming-Example-Vector-Addition"><a href="#CUDA-Programming-Example-Vector-Addition" class="headerlink" title="CUDA Programming Example: Vector Addition"></a>CUDA Programming Example: Vector Addition</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">void VecAddCPU(float* A, float *B, float* C, int n) &#123;</span><br><span class="line"> for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">   C[i] = A[i] + B[i];</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="CUDA-Programming-Example-Vector-Addition-1"><a href="#CUDA-Programming-Example-Vector-Addition-1" class="headerlink" title="CUDA Programming Example: Vector Addition"></a>CUDA Programming Example: Vector Addition</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">__global__ void VecAddGPU(float* A, float *B, float* C, int n) &#123;</span><br><span class="line"> int i = blockIdx.x * blockDim.x + threadIdx.x;</span><br><span class="line"> if (i &lt; n) &#123;</span><br><span class="line">   C[i] = A[i] + B[i];</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Vector-Addition-Host-Code"><a href="#Vector-Addition-Host-Code" class="headerlink" title="Vector Addition (Host Code)"></a>Vector Addition (Host Code)</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">void VecAddCUDA(float* Acpu, float *Bcpu, float* Ccpu, int n) &#123;</span><br><span class="line"> float *dA, *dB, *dC;</span><br><span class="line"> cudaMalloc(&amp;dA, n * sizeof(float));</span><br><span class="line"> cudaMalloc(&amp;dB, n * sizeof(float));</span><br><span class="line"> cudaMalloc(&amp;dC, n * sizeof(float));</span><br><span class="line"> cudaMemcpy(dA, Acpu, n * sizeof(float), cudaMemcpyHostToDevice);</span><br><span class="line"> cudaMemcpy(dB, Bcpu, n * sizeof(float), cudaMemcpyHostToDevice);</span><br><span class="line"> int threads_per_block = 512;</span><br><span class="line"> int nblocks = (n + threads_per_block - 1) / threads_per_block;</span><br><span class="line"> VecAddKernel&lt;&lt;&lt;nblocks, thread_per_block&gt;&gt;&gt;(dA, dB, dC, n);</span><br><span class="line"> cudaMemcpy(Ccpu, dC, n * sizeof(float), cudaMemcpyDeviceToHost);</span><br><span class="line"> cudaFree(dA); cudaFree(dB); cudaFree(dC);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Case-Study-Matrix-Multiplication-on-GPU"><a href="#Case-Study-Matrix-Multiplication-on-GPU" class="headerlink" title="Case Study: Matrix Multiplication on GPU"></a>Case Study: Matrix Multiplication on GPU</h2><ul>
-<li>Matrix Multiplication (GEMM) 是线性代数中最基本的操作之一，广泛应用于科学计算、图形处理和机器学习等领域。</li>
-<li>Compute C &#x3D; dot(A.T, B)</li>
-</ul>
-<h2 id="Thread-level-register-tiling"><a href="#Thread-level-register-tiling" class="headerlink" title="Thread-level: register tiling"></a>Thread-level: register tiling</h2><p>大规模线程并行执行（多个线程），每个线程又极高效率地利用了寄存器（平铺）。</p>
-<p>类似于缓存+分块的思想</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">__global__ void mm(float A[N][N], float B[N][N], float C[N][N]) &#123;</span><br><span class="line"> int ybase = blockIdx.y * blockDim.y + threadIdx.y;</span><br><span class="line"> int xbase = blockIdx.x * blockDim.x + threadIdx.x;</span><br><span class="line"> float c[V][V] = &#123;0&#125;;</span><br><span class="line"> float a[V], b[V];</span><br><span class="line"> for (int k = 0; k &lt; N; ++k) &#123;</span><br><span class="line"> a[:] = A[k, ybase*V : ybase*V + V];</span><br><span class="line"> b[:] = B[k, xbase*V : xbase*V + V];</span><br><span class="line"> for (int y = 0; y &lt; V; ++y) &#123;</span><br><span class="line"> for (int x = 0; x &lt; V; ++x) &#123;</span><br><span class="line"> c[y][x] += a[y] * b[x];</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> C[ybase * V : ybase*V + V, xbase*V : xbase*V + V] = c[:];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Block-level-shared-memory-tiling"><a href="#Block-level-shared-memory-tiling" class="headerlink" title="Block-level: shared memory tiling"></a>Block-level: shared memory tiling</h2><p>整个 Thread Block (线程块) 作为一个协作团队工作</p>
-<h2 id="Block-level-shared-memory-tiling-1"><a href="#Block-level-shared-memory-tiling-1" class="headerlink" title="Block-level: shared memory tiling"></a>Block-level: shared memory tiling</h2><ul>
-<li>平铺 (Tiling): 矩阵 A^T 和 B 被分解成大小为 L×S 或 S×L 的大块。</li>
-<li>协作 (Cooperation): 线程块中的所有线程首先协同工作，将 A^T 和 B 的当前大块从慢速的全局内存（Global Memory）一次性搬运到快速的共享内存（Shared Memory）中。</li>
-<li>重用 (Reuse): 一旦数据进入共享内存，块内的所有线程都可以多次、快速地访问这些数据，极大地提高了计算效率。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">__global__ void mm(float A[N][N], float B[N][N], float C[N][N]) &#123;</span><br><span class="line"> __shared__ float sA[S][L], sB[S][L];</span><br><span class="line"> float c[V][V] = &#123;0&#125;;</span><br><span class="line"> float a[V], b[V];</span><br><span class="line"> int yblock = blockIdx.y;</span><br><span class="line"> int xblock = blockIdx.x;</span><br><span class="line"> for (int ko = 0; ko &lt; N; ko += S) &#123;</span><br><span class="line"> __syncthreads();</span><br><span class="line"> // needs to be implemented by thread cooperative fetching</span><br><span class="line"> sA[:, :] = A[k : k + S, yblock * L : yblock * L + L];</span><br><span class="line"> sB[:, :] = B[k : k + S, xblock * L : xblock * L + L];</span><br><span class="line"> __syncthreads();</span><br><span class="line"> for (int ki = 0; ki &lt; S; ++ ki) &#123;</span><br><span class="line"> a[:] = sA[ki, threadIdx.y * V : threadIdx.y * V + V];</span><br><span class="line"> b[:] = sB[ki, threadIdx.x * V : threadIdx.x * V + V];</span><br><span class="line"> for (int y = 0; y &lt; V; ++y) &#123;</span><br><span class="line"> for (int x = 0; x &lt; V; ++x) &#123;</span><br><span class="line"> c[y][x] += a[y] * b[x];</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> int ybase = blockIdx.y * blockDim.y + threadIdx.y;</span><br><span class="line"> int xbase = blockIdx.x * blockDim.x + threadIdx.x;</span><br><span class="line"> C[ybase * V : ybase*V + V, xbase*V : xbase*V + V] = c[:];</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="Thanks-for-listening"><a href="#Thanks-for-listening" class="headerlink" title="Thanks for listening!"></a>Thanks for listening!</h2><h2 id="Acknowledgements"><a href="#Acknowledgements" class="headerlink" title="Acknowledgements"></a>Acknowledgements</h2><p>CMU 10-414&#x2F;714: Deep Learning Systems by Prof. Tianqi Chen and Zico Kolter.</p>
-
-                    
-                        
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/2026/01/24/GPU-Acceleration/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                Comment and share
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2026/01/23/Enjoy-Your-Assassyn/"
-                            aria-label=": Enjoy Your Assassyn"
-                        >
-                            Enjoy Your Assassyn
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2026-01-23T17:34:48+08:00">
-	
-		    Jan 23, 2026
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content">
-                    <p><strong>笔者配置Assassyn环境的过程中遇到了一些问题，特此记录以备后续参考。</strong></p>
-<p><strong>特别感谢Coffish 添加了另一种解决assassyn编译产生大量文件占用过多内存空间问题的方案——限制make并行数</strong></p>
-<p>首先贴上配置的具体流程：（值得注意的是，笔者在物理机上配置了Assassyn，不过Anyway还是贴上docker的配置流程好了）</p>
-<h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><p>It is also recommended to use Docker to automatically manage the dependences. We decide to adopt a hybrid style of coding, tooling, and development, where this repo is located in your physical machine, while the execution is in the docker virtual machine (VM).</p>
-<p>Still, before doing anything, make sure you have this repo fully initialized:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git submodule update --init --recursive</span><br></pre></td></tr></table></figure>
-
-<h2 id="Build-the-Docker-Image"><a href="#Build-the-Docker-Image" class="headerlink" title="Build the Docker Image"></a>Build the Docker Image</h2><p>Assuming you are at the root of this source tree:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t assassyn:latest .</span><br></pre></td></tr></table></figure>
-
-<h2 id="Run-the-Docker-Container"><a href="#Run-the-Docker-Container" class="headerlink" title="Run the Docker Container"></a>Run the Docker Container</h2><p>At least read point 3 below before typing your command!!!</p>
-<ol>
-<li><code>-v &lt;src&gt;:&lt;dst&gt;</code> mounts a physical source directory into the VM destination.</li>
-<li><code>--name</code> specifies the name of this VM container, which avoids a random <code>&lt;adj&gt;_&lt;noun&gt;</code> name.</li>
-<li><code>-m</code> specifies the memory limit of a container. However, this flag only works on Linux.</li>
-</ol>
-<ul>
-<li>If you are using Docker client on Windows or Mac OS with UI, memory should be tuned in the client.</li>
-<li>Click the bottom bar of the client.</li>
-<li>A resource slide bar will pop up as shown .</li>
-<li>Tune the memory usage before starting your VM container.</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run --rm -tid -v `pwd`:/app --user $(id -u):$(id -g)</span><br><span class="line">-m 32g</span><br><span class="line">--name assassyn assassyn:latest</span><br></pre></td></tr></table></figure>
-
-<h2 id="Build-Initialization"><a href="#Build-Initialization" class="headerlink" title="Build Initialization"></a>Build Initialization</h2><p>If it is the first time, the repo should be initialized using the command below.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it ./init.sh</span><br></pre></td></tr></table></figure>
-
-<p>LLVM linkage is super memory consuming, while <code>ninja</code> build can only use fixed thread<br>parallelization, which may overwhelm the memory. Feel free to tune your own parameters to have a balance between performance and machine limit. If you see something like <code>g++ is killed Signal 9</code> or <code>truncated file</code>, with high probability it is caused by out of memory (OOM).Feel free to give a different parameter and run again.</p>
-<h1 id="Physical-Machine"><a href="#Physical-Machine" class="headerlink" title="Physical Machine"></a>Physical Machine</h1><p>It can also be built on your physical machine. The instructions below are Ubuntu based:</p>
-<ol>
-<li>Make sure you have all the repos propoerly cloned:</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git submodule update --init --recursive</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>Install dependences:</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install -y $(</span><br><span class="line">  awk &#x27;/apt-get install/,/apt-get clean/&#x27; Dockerfile \</span><br><span class="line">  | sed &#x27;1d;$d; s/[\\[:space:]]*$//; s/^[[:space:]]*//&#x27; \</span><br><span class="line">  | grep -v &#x27;^$&#x27; \</span><br><span class="line">  | tr &#x27;\n&#x27; &#x27; &#x27;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>Have this repo built from source:</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">source setup.sh  # Set up environment variables</span><br><span class="line">make build-all   # Build all components</span><br></pre></td></tr></table></figure>
-<p>If you do not have enough memory, a lower job number is recommended.</p>
-<ol start="5">
-<li>Verify your installation.</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">python -c &#x27;import assassyn&#x27; # import this module</span><br><span class="line">echo $? # 0 is expected</span><br><span class="line">make test-all # Optional, runs all the tests.</span><br><span class="line">echo $?</span><br></pre></td></tr></table></figure>
-
-<h1 id="食用指南"><a href="#食用指南" class="headerlink" title="食用指南"></a>食用指南</h1><h2 id="Step-1：submodule-更新"><a href="#Step-1：submodule-更新" class="headerlink" title="Step 1：submodule 更新"></a>Step 1：submodule 更新</h2><p>首先是clone，老规矩还是SSH方式：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git@github.com:Synthesys-Lab/assassyn.git</span><br></pre></td></tr></table></figure>
-
-<p>接着打开你的assassyn 目录，执行：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git submodule update --init --recursive</span><br></pre></td></tr></table></figure>
-
-<p>该过程耗时较长，大约在30分钟左右，且受网络影响较大，请耐心等待，一遍Failed就多来几遍，笔者试了至少3次才成功。</p>
-<h2 id="Step-2：环境依赖安装"><a href="#Step-2：环境依赖安装" class="headerlink" title="Step 2：环境依赖安装"></a>Step 2：环境依赖安装</h2><p>Assassyn的依赖安装可以参考上面的Dockerfile，笔者在物理机上安装的命令如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install -y build-essential cmake git python3 python3-pip \</span><br><span class="line">    libboost-all-dev libeigen3-dev libtbb-dev libgoogle-glog-dev libgflags-dev \</span><br><span class="line">    libomp-dev clang llvm libclang-dev ninja-build</span><br></pre></td></tr></table></figure>
-<p>很平稳的一步，无事发生</p>
-<h2 id="Step-4：-编译"><a href="#Step-4：-编译" class="headerlink" title="Step 4： 编译"></a>Step 4： 编译</h2><p>最关键的一步，也是笔者卡壳的地方。Assassyn的编译分为两步，第一步是环境变量的配置，第二步是make all。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">source setup.sh</span><br><span class="line">make build-all</span><br></pre></td></tr></table></figure>
-<p>Assassyn的编译文件很大很大，所以至少要留有32GB的内存空间，否则会出现编译失败的情况，故开Swap是必须的。</p>
-<p>笔者的轻薄本属实拉跨，16GB内存完全不够，而且笔者是唐诗，大一上分盘的时候C盘只分了176GB，本来C盘所剩空间不到25GB，wsl还装在了C盘里，试图开个32GB的swap，显然不行，但抱着侥幸心理的笔者还是试了，结果可想而知，编译直接失败，而且成功把wsl搞炸了，是的，三个月内第四次灾难性故障，此时的笔者已经几乎崩溃。</p>
-<p>笔者硬着头皮开始了迁盘，把wsl迁到了D盘，腾出了足够的空间后，重新开了32GB的swap，这次终于顺利编译成功。</p>
-<p>下面讲一讲迁盘，适用于笔者这种唐诗：</p>
-<p>打开windows powershell（管理员权限），输入以下命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --list --verbose</span><br></pre></td></tr></table></figure>
-<p>得到类似如下的输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> NAME      STATE           VERSION</span><br><span class="line">* Ubuntu    Running         2</span><br></pre></td></tr></table></figure>
-<p>Ubuntu即为发行版名，接下来进行下一步。</p>
-<p>导出 WSL 发行版为 .tar 文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --export &lt;DistroName&gt; &lt;FileName&gt;.tar</span><br></pre></td></tr></table></figure>
-
-<p>这个操作会把整个 Linux 文件系统打包成一个 .tar 文件。</p>
-<p>注销原来的 WSL 发行版</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --unregister &lt;发行版名&gt;</span><br></pre></td></tr></table></figure>
-
-<p>这一步会删除原来的 WSL 实例，所以确保你已经导出了 .tar 文件。</p>
-<p>在新位置导入 WSL，在 D 盘创建一个存放 WSL 的文件夹，然后导入：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --import &lt;DistroName&gt; &lt;InstallLocation&gt; &lt;FileName&gt;.tar --version 2</span><br></pre></td></tr></table></figure>
-
-<p>这里的 <code>&lt;InstallLocation&gt;</code> 是你在 D 盘创建的文件夹路径。</p>
-<p>验证迁移</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --list --verbose</span><br></pre></td></tr></table></figure>
-
-<p>完成迁移！</p>
-<p>接下来就可以正常的开swap，编译Assassyn了。</p>
-<p>新建一个大 swap 文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo fallocate -l 32G /swapfile</span><br></pre></td></tr></table></figure>
-<p>设置正确的权限</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 600 /swapfile2</span><br><span class="line">sudo mkswap /swapfile2</span><br><span class="line">sudo swapon /swapfile2</span><br></pre></td></tr></table></figure>
-<p>验证 swap 是否启用</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swapon --show</span><br></pre></td></tr></table></figure>
-
-<p>你现在应该能看到新的 swap 文件已经启用</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NAME        TYPE      SIZE  USED  PRIO</span><br><span class="line">/dev/sdc    partition   4G   0B   -2</span><br><span class="line">/swapfile2  file       32G   0B   -3</span><br></pre></td></tr></table></figure>
-<p>验证总内存</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">free -h</span><br></pre></td></tr></table></figure>
-<p>接下来就可以开始编译了</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">source setup.sh</span><br><span class="line">make build-all</span><br></pre></td></tr></table></figure>
-
-<p>我向你保证，这次一定能成功！</p>
-<h2 id="Another-Approach：限制make并行数"><a href="#Another-Approach：限制make并行数" class="headerlink" title="Another Approach：限制make并行数"></a>Another Approach：限制make并行数</h2><p>你可以在make命令后面加上-jN，其中 N 是你希望限制的并行作业数。</p>
-<p>例如，如果你想限制为4个并行作业，可以这样做：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make build-all -j4</span><br></pre></td></tr></table></figure>
-<p>如果你的内存非常有限，你可能需要尝试更低的数字，比如 2 或 1 ：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make build-all -j2</span><br></pre></td></tr></table></figure>
-
-<p>或者</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make build-all -j1</span><br></pre></td></tr></table></figure>
-<p>通过限制并行作业数，你可以减少同时运行的编译任务数量，从而降低内存使用峰值，帮助避免内存不足的问题。</p>
-<p>但很抱歉，这种解决方案在这里依然不行。</p>
-<p>这是因为wj 在 Makefile 里调用了一些子项目的 make，并且调用的时候传的参数是 -j，这意味着不会限制任何并行数。</p>
-<p>因此，临时的解决方案是用这个脚本把所有的 make -j 都改成比如说 make -j 8 ：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find scripts -name &quot;*.inc&quot; -type f -exec sed -i &#x27;s/make -j\b/make -j 8/g&#x27; &#123;&#125; +</span><br></pre></td></tr></table></figure>
-<h2 id="Step-5：验证安装，跑一些测试"><a href="#Step-5：验证安装，跑一些测试" class="headerlink" title="Step 5：验证安装，跑一些测试"></a>Step 5：验证安装，跑一些测试</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">python -c &#x27;import assassyn&#x27; # import this module</span><br><span class="line">echo $? # 0 is expected</span><br><span class="line">make test-all # Optional, runs all the tests.</span><br><span class="line">echo $?</span><br></pre></td></tr></table></figure>
-
-<p>你又会遇到一些问题，首先是:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error: externally-managed-environment × This environment is externally managed ╰─&gt; To install Python packages system-wide, try apt install python3-xyz, where xyz is the package you are trying to install. If you wish to install a non-Debian-packaged Python package, create a virtual environment using python3 -m venv path/to/venv. Then use path/to/venv/bin/python and path/to/venv/bin/pip. Make sure you have python3-full installed. If you wish to install a non-Debian packaged Python application, it may be easiest to use pipx install xyz, which will manage a virtual environment for you. Make sure you have pipx installed. See /usr/share/doc/python3.12/README.venv for more information. note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages. hint: See PEP 668 for the detailed specification. Failed to install CIRCT via pip. Fall back to building from source using PyCDE setup. /usr/bin/python: No module named build make: *** [scripts/init/circt.inc:23: install-circt] Error 1</span><br></pre></td></tr></table></figure>
-<p>这是在新版 Ubuntu&#x2F;Debian（或 WSL Ubuntu）中 Python 系统环境被 “保护” 了，不允许直接用 pip 安装包到系统 Python。所以我们建议使用虚拟环境 (推荐)。</p>
-<p>笔者不常写py，故借此机会装了anaconda&#x2F;miniconda(二者皆可)，顺便学习了一下虚拟环境的使用。</p>
-<p>安装conda：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 下载 Miniconda 安装脚本</span><br><span class="line">wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh</span><br><span class="line"></span><br><span class="line"># 安装</span><br><span class="line">bash Miniconda3-latest-Linux-x86_64.sh</span><br><span class="line"></span><br><span class="line"># 按提示操作，安装路径建议放在 home 目录下</span><br></pre></td></tr></table></figure>
-<p>创建 Conda 环境</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 创建名为 assassyn 的 Python 3.12 环境（根据需求可选）</span><br><span class="line">conda create -n assassyn python=3.12</span><br><span class="line"></span><br><span class="line"># 激活环境</span><br><span class="line">conda activate assassyn</span><br></pre></td></tr></table></figure>
-
-<p>很不幸，当你再跑一遍的时候</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">error: externally-managed-environment</span><br><span class="line"></span><br><span class="line">× This environment is externally managed</span><br><span class="line">╰─&gt; To install Python packages system-wide, try apt install</span><br><span class="line">    python3-xyz, where xyz is the package you are trying to</span><br><span class="line">    install.</span><br><span class="line"></span><br><span class="line">    If you wish to install a non-Debian-packaged Python package,</span><br><span class="line">    create a virtual environment using python3 -m venv path/to/venv.</span><br><span class="line">    Then use path/to/venv/bin/python and path/to/venv/bin/pip. Make</span><br><span class="line">    sure you have python3-full installed.</span><br><span class="line"></span><br><span class="line">    If you wish to install a non-Debian packaged Python application,</span><br><span class="line">    it may be easiest to use pipx install xyz, which will manage a</span><br><span class="line">    virtual environment for you. Make sure you have pipx installed.</span><br><span class="line"></span><br><span class="line">    See /usr/share/doc/python3.12/README.venv for more information.</span><br><span class="line"></span><br><span class="line">note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.</span><br><span class="line">hint: See PEP 668 for the detailed specification.</span><br><span class="line">Failed to install CIRCT via pip. Fall back to building from source using PyCDE setup.</span><br><span class="line">/usr/bin/python: No module named build</span><br><span class="line">make: *** [scripts/init/circt.inc:23: install-circt] Error 1</span><br></pre></td></tr></table></figure>
-<p>你的整个项目同样需要在一个虚拟环境下运行，故在激活的conda环境下再创建一个虚拟环境：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python -m venv assassyn-env</span><br><span class="line">source assassyn-env/bin/activate</span><br></pre></td></tr></table></figure>
-<p>别忘了重新编译</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make build-all</span><br></pre></td></tr></table></figure>
-<p>哈哈还没结束，你大概还会遇到：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Running all tests...</span><br><span class="line">ERROR: usage: pytest [options] [file_or_dir] [file_or_dir] [...]</span><br><span class="line">pytest: error: unrecognized arguments: -n</span><br><span class="line">  inifile: None</span><br><span class="line">  rootdir: /home/zhuyihan/code/assassyn</span><br><span class="line"></span><br><span class="line">make: *** [Makefile:30: test-all] Error 4</span><br></pre></td></tr></table></figure>
-<p>pytest -n 是用来并行运行测试的参数。它并不是 pytest 本体的内置功能，而是来自 插件 pytest-xdist。</p>
-<p>也就是说：你的 pytest 已经安装，但缺少插件 pytest-xdist。</p>
-<p>解决方案：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install pytest-xdist</span><br></pre></td></tr></table></figure>
-<p>笑死我了，接下来你会意识到，你的test程序根本找不到assassyn这个包，🤡🤡🤡</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ImportError while importing test module &#x27;/home/zhuyihan/code/assassyn/python/unit-tests/test_ramulator2_combined.py&#x27;.</span><br><span class="line">Hint: make sure your test modules/packages have valid Python names.</span><br><span class="line">Traceback:</span><br><span class="line">../../anaconda3/envs/assassyn/lib/python3.11/importlib/__init__.py:126: in import_module</span><br><span class="line">    return _bootstrap._gcd_import(name[level:], package, level)</span><br><span class="line">           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span><br><span class="line">python/unit-tests/test_ramulator2_combined.py:14: in &lt;module&gt;</span><br><span class="line">    from assassyn.utils import repo_path</span><br><span class="line">E   ModuleNotFoundError: No module named &#x27;assassyn&#x27;</span><br></pre></td></tr></table></figure>
-
-<p>说明你的 Python 解释器 在运行测试时找不到 assassyn 这个包。make build-all 已经执行过了，说明包本身可能编译好了，只是没让 Python 知道它的位置。</p>
-<p>你自然可以临时地通过修改 PYTHONPATH 环境变量来解决这个问题：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PYTHONPATH=/home/zhuyihan/code/assassyn/python:$PYTHONPATH</span><br></pre></td></tr></table></figure>
-
-<p>如果希望执行脚本的时候一个环境变量能够一直存在于bash中怎么办？</p>
-<p>在 你的 WSL 用户主目录 下的 .bashrc 文件 末尾 添加上面那行命令即可。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &#x27;export PYTHONPATH=/home/zhuyihan/code/assassyn/python:$PYTHONPATH&#x27; &gt;&gt; ~/.bashrc</span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
-
-<p>或者说，你每次跑程序的时候都要重新设置环境变量：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source setup.sh  # Set up environment variables</span><br></pre></td></tr></table></figure>
-<h1 id="祝你成功！"><a href="#祝你成功！" class="headerlink" title="祝你成功！"></a>祝你成功！</h1>
-                    
-                        
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/2026/01/23/Enjoy-Your-Assassyn/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                Comment and share
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2026/01/23/Mathematical-Logic-CT-Paper/"
-                            aria-label=": Mathematical Logic CT Paper"
-                        >
-                            Mathematical Logic CT Paper
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2026-01-23T17:31:24+08:00">
-	
-		    Jan 23, 2026
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content">
-                    <h1 id="ML-CT-Paper"><a href="#ML-CT-Paper" class="headerlink" title="ML CT Paper"></a>ML CT Paper</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这是留给25级往后ACM班学弟学妹的一份遗产了，很详细地总结了CS2950 Mathematical Logic这门课程涉及的主要知识点（有所删减）。特别值得注意的是，我在25.6.5晚在前三位作者整理的基础上，增添了6个example，是拟合了近3年ML Final的结果。我觉得这是一门很很有意思的课（but这门课的难度还是很大的🤣🤣🤣）</p>
-<h2 id="LaTeX-源码"><a href="#LaTeX-源码" class="headerlink" title="LaTeX 源码"></a>LaTeX 源码</h2><p><a target="_blank" rel="noopener" href="https://latex.sjtu.edu.cn/5789875599fpdzxjcfzrgw#7dce86">https://latex.sjtu.edu.cn/5789875599fpdzxjcfzrgw#7dce86</a></p>
-<p>可以根据个人需要删改</p>
-<h2 id="Acknowledgement-排名不分先后"><a href="#Acknowledgement-排名不分先后" class="headerlink" title="Acknowledgement (排名不分先后)"></a>Acknowledgement (排名不分先后)</h2><ul>
-<li>Coffish</li>
-<li>Monkey_Lee</li>
-<li>Sakura_Dusk</li>
-</ul>
-
-                    
-                        
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/2026/01/23/Mathematical-Logic-CT-Paper/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                Comment and share
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
-    <div class="pagination-bar">
-    <ul class="pagination">
-        
-        
-        <li class="pagination-number">page 1 of 1</li>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/01/">
+            <span class="card-archive-list-date">
+              January 2026
+            </span>
+            <span class="card-archive-list-count">6</span>
+          </a>
+        </li>
+      
     </ul>
-</div>
-
-</section>
-
-
-                <footer id="footer" class="main-content-wrap">
-    <span class="copyrights">
-        Copyrights &copy; 2026 JaneZ. All Rights Reserved.
-    </span>
-</footer>
-
-            </div>
-            
-        </div>
-        
-
-
-<div id="about">
-    <div id="about-card">
-        <div id="about-btn-close">
-            <i class="fa fa-times"></i>
-        </div>
-        
-            <h4 id="about-card-name">JaneZ</h4>
-        
-            <div id="about-card-bio"><p>author.bio</p>
-</div>
-        
-        
-            <div id="about-card-job">
-                <i class="fa fa-briefcase"></i>
-                <br/>
-                <p>author.job</p>
-
-            </div>
-        
-        
-            <div id="about-card-location">
-                <i class="fa fa-map-marker-alt"></i>
-                <br/>
-                Shanghai, China
-            </div>
-        
-    </div>
-</div>
-
-        
-        
-<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
-        <!--SCRIPTS-->
-
-<script src="/assets/js/jquery.js"></script>
-
-
-<script src="/assets/js/jquery.fancybox.js"></script>
-
-
-<script src="/assets/js/thumbs.js"></script>
-
-
-<script src="/assets/js/tranquilpeak.js"></script>
-
-<!--SCRIPTS END-->
-
-
-
-
-
-    </body>
-</html>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Website Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article Count :</div><div class="item-count">6</div></div><div class="webinfo-item"><div class="item-name">Unique Visitors :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Page Views :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Update :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-01-24T18:54:42.626Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By JaneZ</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4-b1"></script><script src="/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
