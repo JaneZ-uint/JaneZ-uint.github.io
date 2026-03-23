@@ -1,0 +1,211 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>JaneZ-Claw | Brain of JaneZ in a Jar</title><meta name="author" content="JaneZ"><meta name="copyright" content="JaneZ"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="错峰入了虾教，将不定期更新关于龙虾配置以及神秘skill的使用心得，欢迎各位虾教徒交流讨论。 JaneZ-Claw其实吧，应该是JaneA-Claw，毕竟JaneA的主人是JaneZ。 配置如大多数人一样，采用了阿里云服务器配置，首先你需要购买一台阿里云轻量应用服务器，应用镜像设置为openclaw，选择一年的使用期限，由于我错过了入教的黄金时间，价格已由68rmb&#x2F;Y上调到79rmb&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JaneZ-Claw">
+<meta property="og:url" content="https://janezair.site/2026/03/23/JaneZ-Claw/index.html">
+<meta property="og:site_name" content="Brain of JaneZ in a Jar">
+<meta property="og:description" content="错峰入了虾教，将不定期更新关于龙虾配置以及神秘skill的使用心得，欢迎各位虾教徒交流讨论。 JaneZ-Claw其实吧，应该是JaneA-Claw，毕竟JaneA的主人是JaneZ。 配置如大多数人一样，采用了阿里云服务器配置，首先你需要购买一台阿里云轻量应用服务器，应用镜像设置为openclaw，选择一年的使用期限，由于我错过了入教的黄金时间，价格已由68rmb&#x2F;Y上调到79rmb&amp;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://janezair.site/img/%E8%AF%81%E4%BB%B6%E7%85%A7.jpg">
+<meta property="article:published_time" content="2026-03-23T12:13:54.000Z">
+<meta property="article:modified_time" content="2026-03-23T13:11:12.294Z">
+<meta property="article:author" content="JaneZ">
+<meta property="article:tag" content="Openclaw">
+<meta property="article:tag" content="My AI Usage">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://janezair.site/img/%E8%AF%81%E4%BB%B6%E7%85%A7.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "JaneZ-Claw",
+  "url": "https://janezair.site/2026/03/23/JaneZ-Claw/",
+  "image": "https://janezair.site/img/%E8%AF%81%E4%BB%B6%E7%85%A7.jpg",
+  "datePublished": "2026-03-23T12:13:54.000Z",
+  "dateModified": "2026-03-23T13:11:12.294Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "JaneZ",
+      "url": "https://janezair.site"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://janezair.site/2026/03/23/JaneZ-Claw/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'JaneZ-Claw',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/%E8%AF%81%E4%BB%B6%E7%85%A7.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-image"></i><span> Gallery</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/F1_6.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Brain of JaneZ in a Jar</span></a><a class="nav-page-title" href="/"><span class="site-name">JaneZ-Claw</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-image"></i><span> Gallery</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">JaneZ-Claw</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-03-23T12:13:54.000Z" title="Created 2026-03-23 20:13:54">2026-03-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-03-23T13:11:12.294Z" title="Updated 2026-03-23 21:11:12">2026-03-23</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>错峰入了虾教，将不定期更新关于龙虾配置以及神秘skill的使用心得，欢迎各位虾教徒交流讨论。</p>
+<h1 id="JaneZ-Claw"><a href="#JaneZ-Claw" class="headerlink" title="JaneZ-Claw"></a>JaneZ-Claw</h1><p>其实吧，应该是JaneA-Claw，毕竟JaneA的主人是JaneZ。</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>如大多数人一样，采用了阿里云服务器配置，首先你需要购买一台<strong>阿里云轻量应用服务器</strong>，应用镜像设置为<code>openclaw</code>，选择一年的使用期限，由于我错过了入教的黄金时间，价格已由<strong>68rmb&#x2F;Y</strong>上调到<strong>79rmb&#x2F;Y</strong>，白花11rmb，感觉如果想配还是尽早配，毕竟价格大概还会继续上涨。</p>
+<p>接下来的操作都非常傻瓜，你需要等待1-5分钟，直到服务器部署完成，然后一键连通，选择你的API，填入API key，然后就可以获取你的网页端地址了，打开它，你就可以看到<code>xxx-Claw</code>的界面了。</p>
+<h2 id="API-购买"><a href="#API-购买" class="headerlink" title="API 购买"></a>API 购买</h2><p>本人最近购买了多种不同类型模型的API，包括文本生成模型、图像生成模型和多模态模型，价格从几十到几百不等。由于本人目前对图像生成和多模态模型孰优孰劣还心存疑虑（真神是nano banana pro，但买不起，以及这里穿插一则趣事，lz在使用nano banana pro创作时，众所周知得到的图片会有水印，于是lz找到了一种邪修方法，在你的chrome上下载 <code>Nano Banana Watermark Remover</code> 插件，安装后就可以去除水印了，虽然有点邪修，但效果不错，当然感觉这种严重损害google利益的插件chrome过不了几天就会封掉它🥲），所以先主要分享几款<strong>国内</strong>文本生成API 使用效果（要想办法搞张境外visa卡了）。</p>
+<h3 id="文本生成模型"><a href="#文本生成模型" class="headerlink" title="文本生成模型"></a>文本生成模型</h3><h4 id="Deepseek-V3-2"><a href="#Deepseek-V3-2" class="headerlink" title="Deepseek V3.2"></a>Deepseek V3.2</h4><ul>
+<li>base_url: <a target="_blank" rel="noopener" href="https://api.deepseek.com/">https://api.deepseek.com</a></li>
+<li>购买方式：（这是我最喜欢的一点）没有套餐，直接充钱。</li>
+<li>价格：反正我没干啥就烧了0.13rmb。</li>
+<li>使用效果：一坨，如果你像我一样喜欢干净清楚的支付条例，那你放心用deepseek，史也吃的心甘情愿。</li>
+</ul>
+<h4 id="Qwen-3-5-plus"><a href="#Qwen-3-5-plus" class="headerlink" title="Qwen 3.5-plus"></a>Qwen 3.5-plus</h4><ul>
+<li>base_url: <a target="_blank" rel="noopener" href="https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions">https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions</a></li>
+<li>购买方式：（阿里云的ui简直是一坨，我都不想说了，找了半天没找到在哪儿买，更没看到token使用情况，倒是会时不时的给你发短信提示你还剩多少token记得充钱）套餐制，原文是<strong>用于抵扣模型推理超出免费额度后产生的推理费用</strong>，20rmb&#x2F;第一个月，100rmd&#x2F;前3个月，当然似乎也是有直接充token的选项的，计费规则复杂。</li>
+<li>价格：免费送了20万token吧，bot发了两三条消息就烧了1.3万左右。</li>
+<li>使用效果：我感觉我还是挺看的起Qwen的，小模型的表现还行。</li>
+</ul>
+<h4 id="GLM-5"><a href="#GLM-5" class="headerlink" title="GLM-5"></a>GLM-5</h4><ul>
+<li>base_url: <a target="_blank" rel="noopener" href="https://open.bigmodel.cn/api/paas/v4/chat/completions">https://open.bigmodel.cn/api/paas/v4/chat/completions</a></li>
+<li>购买方式：和deepseek一样直接充值，没有套餐（也可能是我没看到）。</li>
+<li>价格：实名认证送百万token，感觉还不错。</li>
+<li>使用效果：感觉还行，挺快的，但我没怎么用过。</li>
+</ul>
+<h4 id="笑话一则"><a href="#笑话一则" class="headerlink" title="笑话一则"></a>笑话一则</h4><div align="center">
+  <img src="/img/joke.jpg" width="60%">
+</div>
+
+<h3 id="图像生成模型-多模态模型"><a href="#图像生成模型-多模态模型" class="headerlink" title="图像生成模型 &amp; 多模态模型"></a>图像生成模型 &amp; 多模态模型</h3><p>TBD</p>
+<h2 id="bot设定"><a href="#bot设定" class="headerlink" title="bot设定"></a>bot设定</h2><p>telegram 一直没成功log in，怀疑是梯子问题，等我搞定了再更新，当然也可能用不更新，毕竟没用过telegram，感觉也不太想用。</p>
+<h3 id="QQ-Bot-——-JaneA"><a href="#QQ-Bot-——-JaneA" class="headerlink" title="QQ Bot —— JaneA"></a>QQ Bot —— JaneA</h3><p>我反正感觉这玩意儿没啥大用处，也挺蠢的，不过还是附上配置教程吧，毕竟也不难。</p>
+<div align="center">
+  <img src="/img/qqbot.jpg" width="60%">
+  <br>
+  <em>在你的服务器应用详情-通道配置一栏分别输入你的QQbot的APP ID和APP secret，点击应用即可</em>
+</div>
+
+
+<p>效果就那样，附上一些使用记录。</p>
+<div align="center">
+  <img src="/img/qqbot0.jpg" width="60%">
+</div>
+
+<div align="center">
+  <img src="/img/qqbot1.jpg" width="60%">
+</div>
+
+<h2 id="Workflow-Session"><a href="#Workflow-Session" class="headerlink" title="Workflow Session"></a>Workflow Session</h2><p>TBD，正在和 <a target="_blank" rel="noopener" href="https://github.com/Parsifal1986">@Parsifal1986</a> 设计一套不错的工作流，等设计好了再更新。</p>
+<h2 id="Skill"><a href="#Skill" class="headerlink" title="Skill"></a>Skill</h2><p>TBD，lz正在尝试一些技能，会给一些推荐skill。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://janezair.site">JaneZ</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://janezair.site/2026/03/23/JaneZ-Claw/">https://janezair.site/2026/03/23/JaneZ-Claw/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Openclaw/">Openclaw</a><a class="post-meta__tags" href="/tags/My-AI-Usage/">My AI Usage</a></div><div class="post-share"><div class="social-share" data-image="/img/%E8%AF%81%E4%BB%B6%E7%85%A7.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/03/07/26-Spring/" title="26-Spring"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">26-Spring</div></div><div class="info-2"><div class="info-item-1">1How are you gonna be a revolutionary if you’re such a traditionalist? 我最喜欢的电影LaLaLand中的一句台词，希望这学期能够更勇敢地尝试，跳出常规。 26 Spring Record0 觉得这个record还是有存在的必要，就写一写吧。 1 可以预料这个学期的os又将是一坨，想选track1，完全手搓一个结合了page attention和radix attention的os kernel 有意思，但这真是一件有意义的事情吗？如果手搓kernel更好为什么还有vllm和sglang，不懂啊不是很了解。track2确实简单一些，通过rcore也可以学到一些os的基础知识，感觉也挺好，搞不懂了。upd: 最后还是选了track2，少给自己添糟心事吧😆 这学期开始了跑步健身，感觉颇有成效。周末和学妹吃滨。下周末去看F1！清明估计会回南京，手机摄像头外壳碎了，上海苹果直营店真远。感觉还要抽个周末回南京办个签证。  2 去看上赛应该算是入坑F1一周年了。我真蠢，以为清明前大概不会用到相机了于是把Z30丢家里了，感...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/%E8%AF%81%E4%BB%B6%E7%85%A7.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">JaneZ</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/JaneZ-uint"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Welcome to explore the Brain of JaneZ in a Jar!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JaneZ-Claw"><span class="toc-number">1.</span> <span class="toc-text">JaneZ-Claw</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#API-%E8%B4%AD%E4%B9%B0"><span class="toc-number">1.2.</span> <span class="toc-text">API 购买</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.2.1.</span> <span class="toc-text">文本生成模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Deepseek-V3-2"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">Deepseek V3.2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Qwen-3-5-plus"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">Qwen 3.5-plus</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GLM-5"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">GLM-5</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%91%E8%AF%9D%E4%B8%80%E5%88%99"><span class="toc-number">1.2.1.4.</span> <span class="toc-text">笑话一则</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B-%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.2.2.</span> <span class="toc-text">图像生成模型 &amp; 多模态模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bot%E8%AE%BE%E5%AE%9A"><span class="toc-number">1.3.</span> <span class="toc-text">bot设定</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#QQ-Bot-%E2%80%94%E2%80%94-JaneA"><span class="toc-number">1.3.1.</span> <span class="toc-text">QQ Bot —— JaneA</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Workflow-Session"><span class="toc-number">1.4.</span> <span class="toc-text">Workflow Session</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Skill"><span class="toc-number">1.5.</span> <span class="toc-text">Skill</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/23/JaneZ-Claw/" title="JaneZ-Claw">JaneZ-Claw</a><time datetime="2026-03-23T12:13:54.000Z" title="Created 2026-03-23 20:13:54">2026-03-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/07/26-Spring/" title="26-Spring">26-Spring</a><time datetime="2026-03-07T11:12:23.000Z" title="Created 2026-03-07 19:12:23">2026-03-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/25/Paper-Reading/" title="Paper Reading 1">Paper Reading 1</a><time datetime="2026-02-25T08:09:56.000Z" title="Created 2026-02-25 16:09:56">2026-02-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/30/xv6-Learning/" title="xv6 Learning">xv6 Learning</a><time datetime="2026-01-30T13:50:51.000Z" title="Created 2026-01-30 21:50:51">2026-01-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/29/26-Winter/" title="26 Winter">26 Winter</a><time datetime="2026-01-29T13:02:53.000Z" title="Created 2026-01-29 21:02:53">2026-01-29</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By JaneZ</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4-b1"></script><script src="/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
