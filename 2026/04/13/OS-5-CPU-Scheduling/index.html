@@ -1,0 +1,243 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>OS-5:CPU Scheduling | Brain of JaneZ in a Jar</title><meta name="author" content="JaneZ"><meta name="copyright" content="JaneZ"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="操作系统深度学习笔记：CPU 调度 (Chapter 5)1. 核心概念与分派机制CPU-I&#x2F;O 爆发周期 (Burst Cycle)进程的执行并非一直占用 CPU，而是由 CPU 爆发 (CPU burst) 和 I&#x2F;O 爆发 (I&#x2F;O burst) 交替组成。通过对大量进程的统计发现：系统中存在海量的短 CPU 爆发进程，和极少量的长 CPU 爆发进程。这一分布规">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OS-5:CPU Scheduling">
+<meta property="og:url" content="https://janezair.site/2026/04/13/OS-5-CPU-Scheduling/index.html">
+<meta property="og:site_name" content="Brain of JaneZ in a Jar">
+<meta property="og:description" content="操作系统深度学习笔记：CPU 调度 (Chapter 5)1. 核心概念与分派机制CPU-I&#x2F;O 爆发周期 (Burst Cycle)进程的执行并非一直占用 CPU，而是由 CPU 爆发 (CPU burst) 和 I&#x2F;O 爆发 (I&#x2F;O burst) 交替组成。通过对大量进程的统计发现：系统中存在海量的短 CPU 爆发进程，和极少量的长 CPU 爆发进程。这一分布规">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://janezair.site/img/%E8%AF%81%E4%BB%B6%E7%85%A7.jpg">
+<meta property="article:published_time" content="2026-04-13T03:27:39.000Z">
+<meta property="article:modified_time" content="2026-04-13T03:29:14.354Z">
+<meta property="article:author" content="JaneZ">
+<meta property="article:tag" content="os">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://janezair.site/img/%E8%AF%81%E4%BB%B6%E7%85%A7.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "OS-5:CPU Scheduling",
+  "url": "https://janezair.site/2026/04/13/OS-5-CPU-Scheduling/",
+  "image": "https://janezair.site/img/%E8%AF%81%E4%BB%B6%E7%85%A7.jpg",
+  "datePublished": "2026-04-13T03:27:39.000Z",
+  "dateModified": "2026-04-13T03:29:14.354Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "JaneZ",
+      "url": "https://janezair.site"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://janezair.site/2026/04/13/OS-5-CPU-Scheduling/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'OS-5:CPU Scheduling',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/%E8%AF%81%E4%BB%B6%E7%85%A7.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-image"></i><span> Gallery</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/F1_6.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Brain of JaneZ in a Jar</span></a><a class="nav-page-title" href="/"><span class="site-name">OS-5:CPU Scheduling</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-image"></i><span> Gallery</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">OS-5:CPU Scheduling</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-04-13T03:27:39.000Z" title="Created 2026-04-13 11:27:39">2026-04-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-04-13T03:29:14.354Z" title="Updated 2026-04-13 11:29:14">2026-04-13</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="操作系统深度学习笔记：CPU-调度-Chapter-5"><a href="#操作系统深度学习笔记：CPU-调度-Chapter-5" class="headerlink" title="操作系统深度学习笔记：CPU 调度 (Chapter 5)"></a>操作系统深度学习笔记：CPU 调度 (Chapter 5)</h1><h2 id="1-核心概念与分派机制"><a href="#1-核心概念与分派机制" class="headerlink" title="1. 核心概念与分派机制"></a>1. 核心概念与分派机制</h2><h3 id="CPU-I-O-爆发周期-Burst-Cycle"><a href="#CPU-I-O-爆发周期-Burst-Cycle" class="headerlink" title="CPU-I&#x2F;O 爆发周期 (Burst Cycle)"></a>CPU-I&#x2F;O 爆发周期 (Burst Cycle)</h3><p>进程的执行并非一直占用 CPU，而是由 <strong>CPU 爆发 (CPU burst)</strong> 和 <strong>I&#x2F;O 爆发 (I&#x2F;O burst)</strong> 交替组成。<br>通过对大量进程的统计发现：系统中存在海量的短 CPU 爆发进程，和极少量的长 CPU 爆发进程。这一分布规律是设计调度算法的重要依据。</p>
+<h3 id="分派器与分派延迟-Dispatcher-Dispatch-Latency"><a href="#分派器与分派延迟-Dispatcher-Dispatch-Latency" class="headerlink" title="分派器与分派延迟 (Dispatcher &amp; Dispatch Latency)"></a>分派器与分派延迟 (Dispatcher &amp; Dispatch Latency)</h3><p>分派器是实际执行“切换”动作的模块。<strong>分派延迟</strong>是指停止一个进程并启动另一个进程所需的时间。<br>在要求严格的系统中，分派延迟中的<strong>冲突阶段 (Conflict phase)</strong> 是主要瓶颈，它包括两步：</p>
+<ol>
+<li>抢占在内核模式下运行的任何进程。</li>
+<li>低优先级进程释放高优先级进程所需的系统资源。</li>
+</ol>
+<hr>
+<h2 id="2-核心调度算法深度解析"><a href="#2-核心调度算法深度解析" class="headerlink" title="2. 核心调度算法深度解析"></a>2. 核心调度算法深度解析</h2><h3 id="FCFS-先来先服务"><a href="#FCFS-先来先服务" class="headerlink" title="FCFS (先来先服务)"></a>FCFS (先来先服务)</h3><ul>
+<li><strong>痛点：护送效应 (Convoy effect)</strong>。如果一个 CPU 密集型的长进程排在前面，后面一群 I&#x2F;O 密集型的短进程只能被迫长时间等待，导致整体 CPU 和 I&#x2F;O 设备利用率双双下降。</li>
+</ul>
+<h3 id="SJF-短作业优先-与爆发时间预测"><a href="#SJF-短作业优先-与爆发时间预测" class="headerlink" title="SJF (短作业优先) 与爆发时间预测"></a>SJF (短作业优先) 与爆发时间预测</h3><p>SJF 在理论上能给出最小的平均等待时间。难点在于<strong>如何知道进程的下一个 CPU 爆发会有多长</strong>。<br>操作系统通常利用历史数据，通过<strong>指数平均法 (Exponential Averaging)</strong> 来预测下一个爆发长度：<br>$\tau_{n+1} &#x3D; \alpha t_n + (1-\alpha)\tau_n$</p>
+<ul>
+<li>$t_n$：第 $n$ 次实际的 CPU 爆发长度。</li>
+<li>$\tau_n$：对第 $n$ 次的预测值。</li>
+<li>$\alpha$：权重系数（通常设为 1&#x2F;2），决定了近期历史数据对预测值的影响程度。</li>
+</ul>
+<h3 id="RR-时间片轮转"><a href="#RR-时间片轮转" class="headerlink" title="RR (时间片轮转)"></a>RR (时间片轮转)</h3><p>专门为分时系统设计，给予每个进程一个时间片 $q$（通常 10-100 毫秒）。</p>
+<ul>
+<li><strong>核心约束</strong>：时间片 $q$ 必须远大于上下文切换的时间（通常 &lt; 10 微秒）。如果 $q$ 太小，CPU 的大部分时间都会浪费在上下文切换的开销上。</li>
+</ul>
+<h3 id="多级反馈队列-Multilevel-Feedback-Queue"><a href="#多级反馈队列-Multilevel-Feedback-Queue" class="headerlink" title="多级反馈队列 (Multilevel Feedback Queue)"></a>多级反馈队列 (Multilevel Feedback Queue)</h3><p>这是最复杂但也最通用的算法。它允许进程根据其运行行为在多个队列之间移动。定义一个多级反馈队列调度器需要设定以下详细参数：</p>
+<ul>
+<li>队列的数量。</li>
+<li>每个队列内部的调度算法（例如顶层用 RR，底层用 FCFS）。</li>
+<li>决定何时将进程<strong>升级</strong>到高优先级队列的方法（例如老化机制）。</li>
+<li>决定何时将进程<strong>降级</strong>到低优先级队列的方法（例如用光了时间片）。</li>
+<li>决定进程初始进入时被放入哪个队列的方法。</li>
+</ul>
+<hr>
+<h2 id="3-线程调度-Thread-Scheduling"><a href="#3-线程调度-Thread-Scheduling" class="headerlink" title="3. 线程调度 (Thread Scheduling)"></a>3. 线程调度 (Thread Scheduling)</h2><p>在支持线程的系统中，实际调度的单位是线程。存在两种竞争范围：</p>
+<ul>
+<li><strong>PCS (进程竞争范围)</strong>：由线程库在用户态进行调度，同一进程内的线程相互竞争。</li>
+<li><strong>SCS (系统竞争范围)</strong>：由操作系统内核直接将内核级线程调度到逻辑 CPU 上，全系统的线程相互竞争。</li>
+</ul>
+<p>在 POSIX API (<code>pthread</code>) 中，程序员可以通过 <code>PTHREAD_SCOPE_PROCESS</code> 或 <code>PTHREAD_SCOPE_SYSTEM</code> 来指定竞争范围，但最终取决于操作系统的支持（如 Linux 和 macOS 仅支持 SCS）。</p>
+<hr>
+<h2 id="4-多处理器与多核调度进阶"><a href="#4-多处理器与多核调度进阶" class="headerlink" title="4. 多处理器与多核调度进阶"></a>4. 多处理器与多核调度进阶</h2><h3 id="现代硬件架构"><a href="#现代硬件架构" class="headerlink" title="现代硬件架构"></a>现代硬件架构</h3><ul>
+<li><strong>物理核心 (Physical Core)</strong>：芯片上真实的独立处理单元。</li>
+<li><strong>逻辑 CPU (Logical CPU)</strong>：支持硬件多线程（如超线程）时，OS 看到的执行单元。</li>
+<li><strong>两级调度模型</strong>：<ul>
+<li><strong>第一级 (OS层)</strong>：决定哪个软件线程在哪个逻辑 CPU 上运行。</li>
+<li><strong>第二级 (硬件层)</strong>：物理核心根据<strong>内存停顿 (Memory Stall)</strong> 自动切换执行哪个硬件线程，以填补等待数据的空隙。</li>
+</ul>
+</li>
+</ul>
+<h3 id="多核架构与内存停顿-Memory-Stall"><a href="#多核架构与内存停顿-Memory-Stall" class="headerlink" title="多核架构与内存停顿 (Memory Stall)"></a>多核架构与内存停顿 (Memory Stall)</h3><p>现代 CPU 往往由于等待访问内存数据而发生停顿。为了利用这些停顿周期，处理器采用<strong>硬件多线程</strong>（如超线程）。当一个硬件线程发生内存停顿时，物理核心可以迅速切换去执行另一个硬件线程的指令。</p>
+<h3 id="NUMA-系统感知"><a href="#NUMA-系统感知" class="headerlink" title="NUMA 系统感知"></a>NUMA 系统感知</h3><p>在非一致性内存访问 (NUMA) 架构中，CPU 访问本地内存的速度远快于访问远程内存。<br><strong>NUMA 感知调度</strong>：操作系统在调度时，不仅要分配 CPU，还要将进程分配给拥有离该 CPU 最近的内存节点的处理器域 (Domain)，尽量避免线程在不同物理节点间迁移。</p>
+<hr>
+<h2 id="5-实时-CPU-调度的数学约束"><a href="#5-实时-CPU-调度的数学约束" class="headerlink" title="5. 实时 CPU 调度的数学约束"></a>5. 实时 CPU 调度的数学约束</h2><p>实时系统处理的是<strong>周期性任务</strong>。这些任务具有三个核心参数：</p>
+<ul>
+<li>$t$：处理时间 (Processing time)</li>
+<li>$d$：截止时间 (Deadline)</li>
+<li>$p$：周期 (Period)<br><strong>约束条件</strong>：$0 \le t \le d \le p$。任务的执行速率即为 $1&#x2F;p$。</li>
+</ul>
+<h3 id="两种实时算法的核心逻辑"><a href="#两种实时算法的核心逻辑" class="headerlink" title="两种实时算法的核心逻辑"></a>两种实时算法的核心逻辑</h3><ul>
+<li><strong>RMS (速率单调调度)</strong>：静态优先级。优先级由周期的倒数决定。周期越短优先级越高。缺点是当 CPU 利用率较高时，无法保证所有进程不漏掉 Deadline。</li>
+<li><strong>EDF (最早交期优先)</strong>：动态优先级。系统时刻检查哪个任务的截止时间最迫近，最迫近的任务立即获得最高优先级。</li>
+<li><strong>POSIX 实时标准</strong>：定义了 <code>SCHED_FIFO</code>（先进先出无时间片）和 <code>SCHED_RR</code>（带时间片轮转）两种硬性调度策略。</li>
+</ul>
+<hr>
+<h2 id="6-三大操作系统调度器底层实现"><a href="#6-三大操作系统调度器底层实现" class="headerlink" title="6. 三大操作系统调度器底层实现"></a>6. 三大操作系统调度器底层实现</h2><h3 id="Linux-CFS-完全公平调度器"><a href="#Linux-CFS-完全公平调度器" class="headerlink" title="Linux CFS (完全公平调度器)"></a>Linux CFS (完全公平调度器)</h3><ul>
+<li><strong>核心思想</strong>：不分配固定的时间片，而是分配 CPU 的使用比例。</li>
+<li><strong>vruntime (虚拟运行时间)</strong>：记录任务实际运行时间。基于任务的 <code>Nice</code> 值（-20 到 +19）设有衰减因子。低 <code>Nice</code> 值（高优先级）的任务，其 <code>vruntime</code> 增长得慢，从而能获得更多的 CPU 实际时间。</li>
+<li><strong>数据结构</strong>：采用<strong>红黑树 (Red-Black Tree)</strong> 存储可运行任务，键值为 <code>vruntime</code>。调度器总是取树最左侧的节点（即 <code>vruntime</code> 最小的节点）执行，时间复杂度为 $O(\log N)$。</li>
+</ul>
+<h3 id="Windows-抢占式优先级调度"><a href="#Windows-抢占式优先级调度" class="headerlink" title="Windows (抢占式优先级调度)"></a>Windows (抢占式优先级调度)</h3><ul>
+<li><strong>优先级体系</strong>：共 32 级。1-15 级为可变优先级（普通程序），16-31 级为实时优先级，0 级保留给内存管理。</li>
+<li><strong>动态提升机制</strong>：当线程等待的事件完成时（尤其是键盘 I&#x2F;O 等前台交互），Windows 会给予巨大的优先级提升奖励；同时，<strong>前台活动窗口</strong>会获得 3 倍的时间片调度量。</li>
+<li><strong>UMS (用户模式调度)</strong>：允许应用程序独立于内核管理大量并发线程，大幅提高 C++ 并发框架的效率。</li>
+</ul>
+<h3 id="Solaris-多级反馈队列的巅峰应用"><a href="#Solaris-多级反馈队列的巅峰应用" class="headerlink" title="Solaris (多级反馈队列的巅峰应用)"></a>Solaris (多级反馈队列的巅峰应用)</h3><p>Solaris 的默认分时 (TS) 调度采用了一个复杂的<strong>分派表 (Dispatch Table)</strong>，通过状态转换来实现完美平衡：</p>
+<ul>
+<li><strong>时间片耗尽惩罚 (Time quantum expired)</strong>：如果进程一口气用完了时间片（说明是计算密集型），会被丢到<strong>低优先级</strong>，但下次分配<strong>长时间片</strong>。</li>
+<li><strong>睡眠唤醒奖励 (Return from sleep)</strong>：如果进程提前放弃 CPU 去等待 I&#x2F;O（说明是交互型），唤醒时会被提升到<strong>高优先级</strong>，并分配<strong>短时间片</strong>。</li>
+</ul>
+<hr>
+<h2 id="7-算法评估模型"><a href="#7-算法评估模型" class="headerlink" title="7. 算法评估模型"></a>7. 算法评估模型</h2><p>评估哪种调度算法最适合当前操作系统，通常采用以下方法：</p>
+<ul>
+<li><strong>排队模型 (Queueing Models)</strong>：将计算机描述为服务器网络，利用概率论计算稳态性能。最著名的是 <strong>利特尔法则 (Little’s Law)</strong>：<br>$n &#x3D; \lambda \times W$<br>(平均队列长度 $n$ &#x3D; 平均到达率 $\lambda$ $\times$ 队列中的平均等待时间 $W$)</li>
+<li><strong>模拟 (Simulations)</strong>：通过编程建立计算机系统的模型，并使用真实的系统事件日志——<strong>跟踪磁带 (Trace tapes)</strong> 作为输入数据来驱动模拟，从而获得高度精确的性能统计。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://janezair.site">JaneZ</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://janezair.site/2026/04/13/OS-5-CPU-Scheduling/">https://janezair.site/2026/04/13/OS-5-CPU-Scheduling/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/os/">os</a></div><div class="post-share"><div class="social-share" data-image="/img/%E8%AF%81%E4%BB%B6%E7%85%A7.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/04/15/Long-Context-Process-in-LLM/" title="Long Context Processing in LLM"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">Long Context Processing in LLM</div></div><div class="info-2"><div class="info-item-1">深入解析大语言模型（LLM）长文本处理技术bg: lz 昨天让codex读了os大作业chaos中kernel.rs长达6400行的代码，观察到llm在推理过程中首先采用将这6400多行代码分成20多个300行的代码块进行处理，于是对大模型处理长文本、超长文本问题产生了好奇，遂学习了一下。其实只是读paper的时候突然走神了() claim: 现在对长文本处理的技术应该很多，这里放的是一些我对长文本处理优化的idea，然后碰巧发现都有一些实现。一、 核心痛点：为什么处理长文本那么难？大语言模型主要基于 Transformer 架构，其核心的“自注意力机制（Self-Attention）”存在两个致命的物理瓶颈：  计算复杂度爆炸： 注意力机制的计算量与文本长度 $N$ 呈平方级增长，即 $O(N^2)$。长度增加 10 倍，算力需求增加 100 倍。 内存墙（Memory Wall）： GPU 的计算核心算力极强，但全局显存（HBM）的读写速度很慢。标准计算过程需要频繁读写庞大的中间结果矩阵，导致时间全浪费在“搬运数据”上。 迷失在中间（Lost in the Middle）： ...</div></div></div></a><a class="pagination-related" href="/2026/03/30/LaTeX-Tutorial/" title="LaTeX-Tutorial"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">LaTeX-Tutorial</div></div><div class="info-2"><div class="info-item-1">lz时隔大半年重新拾起LaTeX写算法作业，发现符号忘的稀碎，于是特出此tutorial，记录一些常用的LaTeX数学符号和环境，方便以后查阅。 LaTeX Tutorial1. 基础语法1.1 文档结构1234567\documentclass&#123;article&#125;  % 文档类型\usepackage&#123;amsmath&#125;     % 数学包\usepackage&#123;amssymb&#125;     % 数学符号包\begin&#123;document&#125;% 文档内容\end&#123;document&#125;  1.2 文本格式1234\textbf&#123;粗体&#125;           % 粗体\textit&#123;斜体&#125;           % 斜体\underline&#123;下划线&#125;      % 下划线\texttt&#123;等宽字体&#125;       % 打字机字体  2. 数学模式2.1 行内公式与行间公式1234行内公式: $E = mc^2$行间公式: $$...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/%E8%AF%81%E4%BB%B6%E7%85%A7.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">JaneZ</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/JaneZ-uint"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Welcome to explore the Brain of JaneZ in a Jar!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9ACPU-%E8%B0%83%E5%BA%A6-Chapter-5"><span class="toc-number">1.</span> <span class="toc-text">操作系统深度学习笔记：CPU 调度 (Chapter 5)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%88%86%E6%B4%BE%E6%9C%BA%E5%88%B6"><span class="toc-number">1.1.</span> <span class="toc-text">1. 核心概念与分派机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CPU-I-O-%E7%88%86%E5%8F%91%E5%91%A8%E6%9C%9F-Burst-Cycle"><span class="toc-number">1.1.1.</span> <span class="toc-text">CPU-I&#x2F;O 爆发周期 (Burst Cycle)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%B4%BE%E5%99%A8%E4%B8%8E%E5%88%86%E6%B4%BE%E5%BB%B6%E8%BF%9F-Dispatcher-Dispatch-Latency"><span class="toc-number">1.1.2.</span> <span class="toc-text">分派器与分派延迟 (Dispatcher &amp; Dispatch Latency)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%A0%B8%E5%BF%83%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90"><span class="toc-number">1.2.</span> <span class="toc-text">2. 核心调度算法深度解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#FCFS-%E5%85%88%E6%9D%A5%E5%85%88%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.2.1.</span> <span class="toc-text">FCFS (先来先服务)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SJF-%E7%9F%AD%E4%BD%9C%E4%B8%9A%E4%BC%98%E5%85%88-%E4%B8%8E%E7%88%86%E5%8F%91%E6%97%B6%E9%97%B4%E9%A2%84%E6%B5%8B"><span class="toc-number">1.2.2.</span> <span class="toc-text">SJF (短作业优先) 与爆发时间预测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RR-%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC"><span class="toc-number">1.2.3.</span> <span class="toc-text">RR (时间片轮转)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E7%BA%A7%E5%8F%8D%E9%A6%88%E9%98%9F%E5%88%97-Multilevel-Feedback-Queue"><span class="toc-number">1.2.4.</span> <span class="toc-text">多级反馈队列 (Multilevel Feedback Queue)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-Thread-Scheduling"><span class="toc-number">1.3.</span> <span class="toc-text">3. 线程调度 (Thread Scheduling)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%A4%9A%E5%A4%84%E7%90%86%E5%99%A8%E4%B8%8E%E5%A4%9A%E6%A0%B8%E8%B0%83%E5%BA%A6%E8%BF%9B%E9%98%B6"><span class="toc-number">1.4.</span> <span class="toc-text">4. 多处理器与多核调度进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%B0%E4%BB%A3%E7%A1%AC%E4%BB%B6%E6%9E%B6%E6%9E%84"><span class="toc-number">1.4.1.</span> <span class="toc-text">现代硬件架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E6%A0%B8%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%86%85%E5%AD%98%E5%81%9C%E9%A1%BF-Memory-Stall"><span class="toc-number">1.4.2.</span> <span class="toc-text">多核架构与内存停顿 (Memory Stall)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NUMA-%E7%B3%BB%E7%BB%9F%E6%84%9F%E7%9F%A5"><span class="toc-number">1.4.3.</span> <span class="toc-text">NUMA 系统感知</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%AE%9E%E6%97%B6-CPU-%E8%B0%83%E5%BA%A6%E7%9A%84%E6%95%B0%E5%AD%A6%E7%BA%A6%E6%9D%9F"><span class="toc-number">1.5.</span> <span class="toc-text">5. 实时 CPU 调度的数学约束</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A4%E7%A7%8D%E5%AE%9E%E6%97%B6%E7%AE%97%E6%B3%95%E7%9A%84%E6%A0%B8%E5%BF%83%E9%80%BB%E8%BE%91"><span class="toc-number">1.5.1.</span> <span class="toc-text">两种实时算法的核心逻辑</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E4%B8%89%E5%A4%A7%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%B0%83%E5%BA%A6%E5%99%A8%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.6.</span> <span class="toc-text">6. 三大操作系统调度器底层实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-CFS-%E5%AE%8C%E5%85%A8%E5%85%AC%E5%B9%B3%E8%B0%83%E5%BA%A6%E5%99%A8"><span class="toc-number">1.6.1.</span> <span class="toc-text">Linux CFS (完全公平调度器)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Windows-%E6%8A%A2%E5%8D%A0%E5%BC%8F%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E5%BA%A6"><span class="toc-number">1.6.2.</span> <span class="toc-text">Windows (抢占式优先级调度)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Solaris-%E5%A4%9A%E7%BA%A7%E5%8F%8D%E9%A6%88%E9%98%9F%E5%88%97%E7%9A%84%E5%B7%85%E5%B3%B0%E5%BA%94%E7%94%A8"><span class="toc-number">1.6.3.</span> <span class="toc-text">Solaris (多级反馈队列的巅峰应用)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E7%AE%97%E6%B3%95%E8%AF%84%E4%BC%B0%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.7.</span> <span class="toc-text">7. 算法评估模型</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/15/Long-Context-Process-in-LLM/" title="Long Context Processing in LLM">Long Context Processing in LLM</a><time datetime="2026-04-15T07:34:20.000Z" title="Created 2026-04-15 15:34:20">2026-04-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/13/OS-5-CPU-Scheduling/" title="OS-5:CPU Scheduling">OS-5:CPU Scheduling</a><time datetime="2026-04-13T03:27:39.000Z" title="Created 2026-04-13 11:27:39">2026-04-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/30/LaTeX-Tutorial/" title="LaTeX-Tutorial">LaTeX-Tutorial</a><time datetime="2026-03-30T06:23:59.000Z" title="Created 2026-03-30 14:23:59">2026-03-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/23/JaneZ-Claw/" title="JaneZ-Claw">JaneZ-Claw</a><time datetime="2026-03-23T12:13:54.000Z" title="Created 2026-03-23 20:13:54">2026-03-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/07/26-Spring/" title="26-Spring">26-Spring</a><time datetime="2026-03-07T11:12:23.000Z" title="Created 2026-03-07 19:12:23">2026-03-07</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By JaneZ</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4-b1"></script><script src="/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
