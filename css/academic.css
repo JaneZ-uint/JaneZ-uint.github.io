@@ -104,7 +104,8 @@
   padding: 1rem 0;
 }
 
-.academic-entry + .academic-entry {
+.academic-entry + .academic-entry,
+.academic-project + .academic-project {
   border-top: 1px solid rgba(31, 41, 51, 0.08);
 }
 
@@ -121,6 +122,7 @@
 }
 
 .academic-entry-body h3,
+.academic-project h3,
 .academic-note h3 {
   display: inline;
   margin: 0;
@@ -140,6 +142,10 @@
   font-size: 0.95rem;
 }
 
+.academic-project {
+  padding: 1rem 0;
+}
+
 .academic-note {
   padding: 0.75rem 0;
 }
@@ -154,6 +160,7 @@
 
 [data-theme='dark'] .academic-section,
 [data-theme='dark'] .academic-entry + .academic-entry,
+[data-theme='dark'] .academic-project + .academic-project,
 [data-theme='dark'] .academic-note + .academic-note {
   border-color: rgba(255, 255, 255, 0.12);
 }
