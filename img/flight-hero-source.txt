@@ -1,0 +1,4 @@
+Photo: Johny Goerend
+Source: https://unsplash.com/photos/white-and-black-airplane-wing-over-white-clouds-during-daytime-KB9r_hTzyeQ
+License: https://unsplash.com/license
+Local asset: flight-hero.webp

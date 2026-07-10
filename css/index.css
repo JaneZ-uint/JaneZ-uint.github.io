@@ -2481,6 +2481,41 @@ figure.highlight pre .javascript .function {
 .layout.hide-aside > div {
   width: 100% !important;
 }
+.page-lang-switch {
+  margin: 0 0 18px;
+  text-align: right;
+}
+.page-lang-switch a {
+  display: -webkit-inline-box;
+  display: -moz-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-box;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid #49b1f5;
+  border-radius: 6px;
+  color: #49b1f5;
+  font-size: 0.9em;
+  line-height: 1;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.page-lang-switch a:hover {
+  background: #49b1f5;
+  color: var(--white);
+  text-decoration: none;
+}
 .apple #page-header.full_page {
   background-attachment: scroll !important;
 }
@@ -4997,6 +5032,41 @@ figure.highlight pre .javascript .function {
 }
 .container hr {
   margin: 20px 0;
+}
+#post .post-lang-switch {
+  margin: 0 0 18px;
+  text-align: right;
+}
+#post .post-lang-switch a {
+  display: -webkit-inline-box;
+  display: -moz-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-box;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid #49b1f5;
+  border-radius: 6px;
+  color: #49b1f5;
+  font-size: 0.9em;
+  line-height: 1;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+#post .post-lang-switch a:hover {
+  background: #49b1f5;
+  color: var(--white);
+  text-decoration: none;
 }
 #post .tag_share:after {
   display: block;
