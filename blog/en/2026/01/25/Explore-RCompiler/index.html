@@ -1,0 +1,305 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Explore RCompiler | Brain of JaneZ in a Jar</title><meta name="author" content="JaneZ"><meta name="copyright" content="JaneZ"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="A practical RCompiler review covering parser, IR, register allocation, and optimization stages.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Explore RCompiler">
+<meta property="og:url" content="https://janezair.site/blog/en/2026/01/25/Explore-RCompiler/index.html">
+<meta property="og:site_name" content="Brain of JaneZ in a Jar">
+<meta property="og:description" content="A practical RCompiler review covering parser, IR, register allocation, and optimization stages.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://janezair.site/blog/images/covers/Explore-RCompiler.jpg">
+<meta property="article:published_time" content="2026-01-24T17:58:19.000Z">
+<meta property="article:modified_time" content="2026-07-07T19:26:48.834Z">
+<meta property="article:author" content="JaneZ">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://janezair.site/blog/images/covers/Explore-RCompiler.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Explore RCompiler",
+  "url": "https://janezair.site/blog/en/2026/01/25/Explore-RCompiler/",
+  "image": "https://janezair.site/blog/images/covers/Explore-RCompiler.jpg",
+  "datePublished": "2026-01-24T17:58:19.000Z",
+  "dateModified": "2026-07-07T19:26:48.834Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "JaneZ",
+      "url": "https://janezair.site"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/blog/images/favicon.ico"><link rel="canonical" href="https://janezair.site/blog/en/2026/01/25/Explore-RCompiler/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blog/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/blog/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Explore RCompiler',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/blog/css/academic.css"><link rel="stylesheet" href="/blog/css/air.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/blog/images/%E8%AF%81%E4%BB%B6%E7%85%A71.png" onerror="this.onerror=null;this.src='/blog/images/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/blog/archives/"><div class="headline">Articles</div><div class="length-num">14</div></a><a href="/blog/tags/"><div class="headline">Tags</div><div class="length-num">10</div></a><a href="/blog/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/links/"><i class="fa-fw fas fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/blog/gallery/"><i class="fa-fw fas fa-image"></i><span> Gallery</span></a></div><div class="menus_item"><a class="site-page" href="/blog/air/"><i class="fa-fw fas fa-plane"></i><span> Air</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/blog/images/covers/Explore-RCompiler.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/blog/"><span class="site-name">Brain of JaneZ in a Jar</span></a><a class="nav-page-title" href="/blog/"><span class="site-name">Explore RCompiler</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/links/"><i class="fa-fw fas fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/blog/gallery/"><i class="fa-fw fas fa-image"></i><span> Gallery</span></a></div><div class="menus_item"><a class="site-page" href="/blog/air/"><i class="fa-fw fas fa-plane"></i><span> Air</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Explore RCompiler</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-01-24T17:58:19.000Z" title="Created 2026-01-25 01:58:19">2026-01-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-07-07T19:26:48.834Z" title="Updated 2026-07-08 03:26:48">2026-07-08</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><div class="post-lang-switch"><a href="/blog/2026/01/25/Explore-RCompiler/" title="Read in Chinese"><i class="fas fa-language"></i><span> 中文</span></a></div><article class="container post-content" id="article-container"><p>Leaving a placeholder here. When I have time, I will organize what I learned while completing RCompiler and studying compiler principles. Since I also selected Advanced Compiler next semester, I can add backend and optimization content later.</p>
+<h1 id="Parser-Semantic-Check"><a href="#Parser-Semantic-Check" class="headerlink" title="Parser &amp; Semantic Check"></a>Parser &amp; Semantic Check</h1><p>Since this seems to be the first year we <strong>hand-wrote the parser</strong>, I should write a bit more. The parser itself is not hard. What really causes rework is this: at first you think “as long as I can parse an AST, it is fine.” Later, when doing semantic check and IR generation, you discover that the AST does not carry enough information, so you go back and add types, lvalue&#x2F;rvalue information, spans, and various semantic markers to the nodes.</p>
+<h2 id="Expression"><a href="#Expression" class="headerlink" title="Expression"></a>Expression</h2><p>The main parser problem is building the AST for <code>expression</code>. I recommend reading <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/471075848">Pratt Parser</a>, whose pseudocode and principles are very clear. The biggest difficulty in expression parsing is precedence and associativity. If you write it layer by layer according to the grammar, the code becomes a long chain like <code>parseLogicalOr -&gt; parseLogicalAnd -&gt; parseEquality -&gt; ...</code>. It works, but it is verbose.</p>
+<p>The idea of Pratt Parser is to bind different precedence levels to different operators, then use a unified <code>parseExpr(minBp)</code> to handle everything. The rough flow is:</p>
+<ul>
+<li>First parse a prefix expression, such as a literal, variable, parenthesized expression, unary operation, array or struct literal, and so on.</li>
+<li>Then loop and check whether an infix or postfix operator follows.</li>
+<li>If the following operator has lower precedence than the current <code>minBp</code>, the current expression should end.</li>
+<li>Otherwise, consume the operator, recursively parse the right operand, and combine the left and right sides into a new AST node.</li>
+</ul>
+<p>I also recommend handling postfix expressions here in a unified way, such as function calls <code>f(x)</code>, array indexing <code>a[i]</code>, field access <code>x.y</code>, and method calls <code>x.f()</code>. They usually have the highest precedence and can appear continuously:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.b(c)[i].d</span><br></pre></td></tr></table></figure>
+
+<p>If this kind of expression is not handled uniformly, the AST hierarchy is easy to assemble incorrectly. I recommend treating “primary + postfix chain” as part of prefix parsing: first obtain the leftmost primary, then keep consuming postfix operators until the next token is no longer postfix.</p>
+<h2 id="Semantic-Check"><a href="#Semantic-Check" class="headerlink" title="Semantic Check"></a>Semantic Check</h2><p>Through mysterious operations, I successfully implemented semantic check in two passes. As a result, I finished semantic check much faster than others. This gave me a happy break, and I went straight to Hong Kong for four days, thinking my compiler was safe. This also planted the seeds for a series of later dangerous situations caused by starting IR too late.</p>
+<p>The dangerous situation:</p>
+<p>When writing IR, I discovered that I had completely forgotten to maintain lvalue&#x2F;rvalue information, so I had to rebuild part of the logic. Therefore, do not blindly pursue fewer passes. Honestly scanning four or five passes according to requirements is often more stable. First collect global symbols, then handle types and function signatures, then check statements and expressions, and finally add constant evaluation and extra constraints. Each pass becomes clearer.</p>
+<p>Another semantic-check lesson is that the scope stack must be clean. Entering a block pushes a scope, leaving a block pops a scope. Function parameters and local variables are inserted at different levels. <code>break/continue</code> need to know whether the current context is inside a loop. <code>return</code> needs to know the current function’s return type. Putting all this context into a <code>SemanticContext</code> is much more comfortable than passing scattered parameters everywhere.</p>
+<h1 id="IR-Generation"><a href="#IR-Generation" class="headerlink" title="IR Generation"></a>IR Generation</h1><p>IR generation is almost the same as building the AST in the parser: write it recursively. It is relatively easy, and there are many debugging tricks. I finished debugging it in 24 hours. But because my initial design had problems, I went through a major code refactor. On top of that, I got sick at the end of last year, which made writing code very painful and left quite a psychological shadow. Still, I have to say that my IR builder design is clean and beautiful, and I am quite proud of it.</p>
+<h1 id="Codegen"><a href="#Codegen" class="headerlink" title="Codegen"></a>Codegen</h1><p>Implementation: do no register allocation. Spill everything to the stack. Whenever an operation needs a variable, load it from the stack into a register, operate on it, then store it back. This creates a large number of load and store instructions, and performance is poor.</p>
+<p>Some possible pitfalls: the number of registers that can hold function arguments is limited, only eight registers <code>a0-a7</code>; when there are more than eight parameters, they need to be spilled to the stack. Pay attention to sign extension for m-extension instructions. Pay attention to load&#x2F;store operations when dereferencing pointers. The reimu simulator’s default stack memory is 32K, and many tests require manually increasing the stack size. I tested that 4096K is about enough. When the function return value is an array or struct, the final return value needs to be written into register <code>a0</code>. Phi instructions do not exist in ASM and must be manually lowered. A simple idea is: every time an IR <code>Br</code> instruction is processed, look ahead to see whether the target block contains phi instructions. If so, first spill the phi result to the stack, because ASM cannot record which block you jumped from.</p>
+<h1 id="Register-Allocation"><a href="#Register-Allocation" class="headerlink" title="Register Allocation"></a>Register Allocation</h1><p>I first wrote, with some borrowed mysterious power, a linear-scan register allocation algorithm. But the day after finishing and debugging it, I learned at the Advanced Compiler meeting that we needed to write graph coloring, so I was forced to write graph-coloring register allocation again.</p>
+<h2 id="Linear-Scan"><a href="#Linear-Scan" class="headerlink" title="Linear Scan"></a>Linear Scan</h2><p>Linear-scan register allocation is relatively easy to understand. First, I reused part of the codegen code. The modification was that in codegen, all temporaries were stored on the stack and accessed through load&#x2F;store, while in reg alloc, I first assigned all these temporaries virtual registers so that later register allocation could be performed. The core of linear-scan allocation is constructing the CFG and computing live intervals. Every ASM block obtained from codegen corresponds to a CFG block, which stores the first and last instruction numbers of the block, def&#x2F;use variable sets, liveIn&#x2F;liveOut sets, and related information. First we construct a CFG by finding successor blocks through intra-block jump instructions. After obtaining the CFG, we can compute liveIn&#x2F;liveOut for each block. This is a mapping from virtual registers to live intervals, and we have:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">liveIn[B] = use[B] U (liveOut[B] - def[B])</span><br><span class="line">liveOut[B] = U liveIn[S] for all S in succ[B]</span><br></pre></td></tr></table></figure>
+
+<p>Perform backward iteration until liveIn&#x2F;liveOut no longer changes.</p>
+<p>Next we compute the live interval for each virtual register. A live interval is a range indicating where a register is defined and where it is last used in the program. The method is to traverse every block in the CFG and every instruction in each block, updating the corresponding register’s live interval. Finally, we obtain the live interval for each virtual register and can use it for linear-scan allocation. The core idea is to sort virtual registers by the start position of their live intervals, then scan these intervals from left to right and try to assign them to physical registers. If the current live interval overlaps with an already assigned interval, then one of them needs to be spilled to memory.</p>
+<p>It is worth noting that we need to consider cross-call situations. In the RISC-V architecture, registers are divided into caller-saved and callee-saved. Caller-saved registers need to be saved and restored around function calls, while callee-saved registers are preserved by the callee. Therefore, during register allocation, we must ensure that live intervals crossing calls are not assigned to caller-saved registers, otherwise they need to be spilled to memory. Before entering each function, we need to save the values of callee-saved registers on the stack and restore them when the function returns.</p>
+<h2 id="Graph-Coloring"><a href="#Graph-Coloring" class="headerlink" title="Graph Coloring"></a>Graph Coloring</h2><p>TBD. Honestly, I think the graph-coloring explanation in the Mx Tutorial is already very clear, and I am not even sure I want to write it. Anyway, later.</p>
+<h1 id="IR-Generation-Optimization"><a href="#IR-Generation-Optimization" class="headerlink" title="IR Generation Optimization"></a>IR Generation Optimization</h1><h2 id="Mem2Reg"><a href="#Mem2Reg" class="headerlink" title="Mem2Reg"></a>Mem2Reg</h2><p>The essence of mem2reg is an <strong>alloca removal</strong> optimization. The idea is to move objects originally allocated on the stack into virtual registers. I first spent one evening quickly writing three most basic mem2reg optimizations:</p>
+<ul>
+<li>If an <code>alloca</code> is never used, do not allocate it. This had no effect.</li>
+<li>If it is defined only once, all values can be replaced by the defined value. This had a clear effect.</li>
+<li>If an <code>alloca</code> is only used in the current block, all uses can be replaced by the nearest preceding def. The effect was weak, probably because few variables appear only within one block.</li>
+</ul>
+<p>Next I mainly analyze the <strong>fourth</strong> mem2reg optimization: <strong>if an alloca is only loaded and stored, we can insert phi instructions at dominance frontiers and replace all uses with corresponding phi results</strong>. In fact, when thinking about the third mem2reg optimization, I had already vaguely thought about generalizing def&#x2F;use handling across blocks. Using phi is indeed one way.</p>
+<h3 id="Building-the-Dominator-Tree-and-Dominance-Frontier"><a href="#Building-the-Dominator-Tree-and-Dominance-Frontier" class="headerlink" title="Building the Dominator Tree and Dominance Frontier"></a>Building the Dominator Tree and Dominance Frontier</h3><p>A dominator set can be understood like this: to reach a certain block, there are blocks that must be passed through. These blocks form a chain, and then the dominator tree can be constructed. The construction method is to first build the CFG and obtain predecessor&#x2F;successor relations, then find the <code>LCA</code> for all predecessor blocks. Next we need to find dominance frontiers. First clarify the definition of <strong>dominance frontier</strong>: a node X is in the dominance frontier of node Y if and only if Y is in the dominator set of one predecessor of X, but Y is not in the dominator set of X. The calculation method is to traverse predecessor blocks. If a predecessor block naturally has the current block as its dominance frontier, usually when there are more than two predecessors, then go upward to the previous dominator block of the predecessor and recurse until it is also in the current block’s dominator set.</p>
+<h3 id="Phi-Insertion-and-Instruction-Deletion"><a href="#Phi-Insertion-and-Instruction-Deletion" class="headerlink" title="Phi Insertion and Instruction Deletion"></a>Phi Insertion and Instruction Deletion</h3><p>The phi insertion method is: for each <code>alloca</code>, find all def blocks, traverse the dominance frontiers of those def blocks, insert a phi instruction at the beginning of each dominance-frontier block, rename the value defined by the phi instruction at the entry top to the value defined by the alloca, and then recursively add phi instructions to the dominance frontier of the dominance frontier. Then maintain a stack for each allocated value. Whenever a store instruction or newly inserted phi instruction is encountered, push the corresponding value onto the stack. Whenever a load instruction is encountered, replace the load result with the stack top, similar to the first three optimizations through a <code>replaceMap</code>. At the same time, update the parameters of phi instructions using the current stack top. Finally, recursively process the child nodes of the current basic block in the dominator tree.</p>
+<h3 id="Eliminating-Phi-Instructions-in-Codegen"><a href="#Eliminating-Phi-Instructions-in-Codegen" class="headerlink" title="Eliminating Phi Instructions in Codegen"></a>Eliminating Phi Instructions in Codegen</h3><p>Phi instructions are not part of the RISC-V instruction set, so they need to be eliminated during codegen. In fact, before writing mem2reg, I had already implemented one version of phi elimination: insert a copy, a new <strong>virtual register</strong>, in each predecessor block, and add <code>mv dst tmp</code> at the end. This is a very simple idea. Since virtual registers are used for storage, there are no data-conflict problems, and it passed the tests smoothly. Looking back afterward, this implementation has performance drawbacks:</p>
+<ul>
+<li>It increases the number of virtual registers and puts pressure on regalloc.</li>
+<li>It creates more dead code.</li>
+</ul>
+<p>The more standard solution should be <strong>critical-edge splitting</strong>. The idea is to add a block on the critical edge and first copy the value that should be passed to the downstream block into that block. But here comes the twist: after implementing it, I tested and found no difference from my original implementation. Yes, not a single test case showed any performance difference. After thinking about it carefully, I found that the two implementations seem essentially equivalent. There is not much more to say. <strong>I recommend using my first implementation because it is much easier to implement and understand.</strong></p>
+<h2 id="Dead-Code-Elimination"><a href="#Dead-Code-Elimination" class="headerlink" title="Dead Code Elimination"></a>Dead Code Elimination</h2><p>Starting from dead code elimination, we enter parts not covered by the ancient <strong>Mx Tutorial</strong>.</p>
+<p>The purpose of DCE is to <strong>delete instructions that compute a value which will not affect the observable result of the program</strong>. For example:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">b = 114514</span><br><span class="line">c = b + 1</span><br></pre></td></tr></table></figure>
+
+<p>If the value of <code>c</code> is never used later in the program, then <code>c = b + 1</code> is dead code and can be removed.</p>
+<p>If you have already implemented linear-scan regalloc, congratulations: the remaining code for DCE is no more than 30 lines. In each block, maintain a <code>liveSet</code>, initialized as the liveOut set. Traverse instructions in reverse order. If an instruction’s def variable is not in <code>liveSet</code>, the instruction is dead code and can be deleted. If the instruction is not dead, add its used variables into <code>liveSet</code> and remove its defined variable from <code>liveSet</code>. Repeat multiple passes until no code is deleted.</p>
+<h2 id="Constant-Propagation"><a href="#Constant-Propagation" class="headerlink" title="Constant Propagation"></a>Constant Propagation</h2><p>Constant propagation is one of the easiest optimizations to think of and one of the easiest to write a first version for. The simplest version maintains a <code>valueMap</code>. If a variable is known to be a constant, then later uses of that variable are directly replaced by the constant. For example:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = 1</span><br><span class="line">b = a + 2</span><br></pre></td></tr></table></figure>
+
+<p>This can directly become <code>b = 3</code>. But this version is only suitable for local optimization inside one basic block. Once branches, loops, and phi nodes appear, things become complicated.</p>
+<p>A more complete method is <strong>SCCP</strong> (Sparse Conditional Constant Propagation), which performs both constant propagation and unreachable-branch removal. The core idea is to maintain a three-state lattice for every SSA value:</p>
+<ul>
+<li><code>Unknown</code>: we do not know what the value is yet.</li>
+<li><code>Constant</code>: the value is known to be a certain constant.</li>
+<li><code>Overdefined</code>: the value is not a constant, or cannot be safely determined.</li>
+</ul>
+<p>The biggest difference between SCCP and ordinary constant propagation is that it propagates only along <strong>executable edges</strong>. That is, if a branch condition can already be folded into a constant, the other edge that will never be taken should not continue participating in later phi computation. This detail is very important. Otherwise, values from unreachable blocks will pollute phi nodes and turn values that could have been folded into <code>Overdefined</code>.</p>
+<p>For example:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (x == 0) &#123;</span><br><span class="line">    y = 1</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    y = 2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>If we already know <code>x = 0</code>, then only the true edge is executable. The phi only needs to consider the <code>y = 1</code> side, and finally <code>y</code> can continue to propagate as a constant. This optimization usually needs to run together with <code>CFGClean</code> and <code>DCE</code>: SCCP folds branches, CFGClean removes unreachable blocks and cleans phi nodes, and DCE deletes the remaining useless computations.</p>
+<p>Besides SCCP, we can also implement a more local <code>ConstantFold</code>, specifically folding binary operations, casts, constant <code>getptr</code>, and constant branches. This kind of pass has low implementation cost but stable benefits. Especially after inline or memory forwarding, many new constant expressions often suddenly appear, so the pipeline usually runs several rounds repeatedly.</p>
+<h2 id="SROA"><a href="#SROA" class="headerlink" title="SROA"></a>SROA</h2><p>SROA (Scalar Replacement of Aggregates) can be understood as “splitting small aggregate objects into scalars.” For example, if a local struct has only a few fields and all accesses are constant field accesses, then instead of maintaining the entire struct in memory, we can split it into several independent allocas:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">struct Pair &#123; x, y &#125;</span><br><span class="line">p.x = a</span><br><span class="line">p.y = b</span><br></pre></td></tr></table></figure>
+
+<p>This can be approximately viewed as:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">p_x = a</span><br><span class="line">p_y = b</span><br></pre></td></tr></table></figure>
+
+<p>After splitting, each field can continue to be promoted into SSA values by mem2reg, and later SCCP, CSE, and DCE can also work more effectively. This optimization is useful for small structs, fixed-length small arrays, and temporary aggregate objects inside helper functions.</p>
+<p>However, SROA boundaries must be conservative. My understanding is that the first version should only handle local <code>alloca</code>, with a small number of fields or elements, field types limited to integers or pointers, no address escape, and all access paths being constant fields or constant indices. If there is dynamic indexing, passing the aggregate object’s address to a function, or complex <code>memcpy/memset</code>, it is better to skip it first. The biggest danger in optimization is something that “looks splittable” but accidentally breaks aliasing and causes WA.</p>
+<h2 id="Function-Inline"><a href="#Function-Inline" class="headerlink" title="Function Inline"></a>Function Inline</h2><p>The benefit of function inlining is intuitive: it saves call&#x2F;return and parameter movement, while exposing computations inside the callee to the caller so later optimizations can continue. For example, many modular-arithmetic wrappers, getters&#x2F;setters, and small arithmetic helpers look like a pile of function calls to the backend if not inlined. After inlining, SCCP, ConstantFold, and MemoryForward may further flatten the code inside.</p>
+<p>But more inlining is not always better. Excessive inlining increases function-body size, lengthens live ranges, raises backend register pressure, and may ultimately be offset by many spills. A safer strategy is:</p>
+<ul>
+<li>Do not inline <code>main</code>.</li>
+<li>Do not inline recursive functions.</li>
+<li>Prefer inlining single-call functions, small functions, and pure arithmetic helpers.</li>
+<li>Penalize functions with many parameters, complex aggregate returns, or many basic blocks.</li>
+<li>Control the caller’s code-growth budget.</li>
+</ul>
+<p>After inlining, it is best to run SCCP and CFG cleanup again. The reason is simple: inlining often brings constants from actual parameters into the function body and exposes branches and store-load chains that were previously invisible across functions.</p>
+<h2 id="Memory-Forwarding"><a href="#Memory-Forwarding" class="headerlink" title="Memory Forwarding"></a>Memory Forwarding</h2><p>The goal of Memory Forwarding is to reduce unnecessary loads and stores. The most typical case is:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">store v, p</span><br><span class="line">x = load p</span><br></pre></td></tr></table></figure>
+
+<p>If there is no operation in between that may modify the memory pointed to by <code>p</code>, then <code>x</code> can be directly replaced by <code>v</code>. Furthermore, if a load has already read the same exact address and there is no write in between, the previous load result can be reused.</p>
+<p>The key to this pass is “exact address” and “conservative aliasing.” A relatively safe method is to maintain a memory state along the dominator tree and forward only when the same address is confirmed. For struct fields, the address can be normalized into a key like <code>base + field path</code>: the same root object with different constant fields can usually be considered non-aliasing. But when encountering dynamic array indices, function calls, unknown stores, or <code>memcpy/memset</code>, related state should be cleared or discarded.</p>
+<p>Memory Forwarding also pairs well with ConstantFold. Many times, a load is replaced by a literal, and a constant branch can immediately be folded afterward. A store overwritten by a later store with no read in between can also be deleted. This optimization is useful for repeated reads and writes of struct fields, interpreter state variables, and repeated loads in arrays or object pools.</p>
+<h2 id="Local-CSE-Dominator-GVN"><a href="#Local-CSE-Dominator-GVN" class="headerlink" title="Local CSE &#x2F; Dominator GVN"></a>Local CSE &#x2F; Dominator GVN</h2><p>CSE (Common Subexpression Elimination) handles repeated expressions, for example:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">t1 = a + b</span><br><span class="line">t2 = a + b</span><br></pre></td></tr></table></figure>
+
+<p>The second <code>a + b</code> can directly reuse <code>t1</code>. If this is done only inside one basic block, it is Local CSE. If an expression table is maintained downward along the dominator tree, it becomes a simplified Dominator GVN.</p>
+<p>During implementation, pure expressions can be assigned a key such as <code>op + lhs + rhs + type + flags</code>. For commutative operations such as addition and multiplication, operands can be normalized to avoid treating <code>a + b</code> and <code>b + a</code> as two different expressions. Besides binary operations, pure casts such as <code>getptr</code>, <code>sext/zext/trunc</code> are also suitable for CSE.</p>
+<p>One easy pitfall is that the key must include semantic flags and type information, such as whether the operation is unsigned, whether it is <code>i8</code>, whether it preserves 64-bit semantics, and so on. Otherwise two expressions that look identical by operands may actually mean different things. Load CSE must also be very conservative, and it is usually better handled uniformly by MemoryForward.</p>
+<p>CSE is helpful for array address computation. Many IRs repeatedly generate the same <code>getptr</code> chain. After CSE, not only are repeated computations reduced, but MemoryForward can more easily recognize “this is the same address.”</p>
+<h2 id="LICM"><a href="#LICM" class="headerlink" title="LICM"></a>LICM</h2><p>LICM (Loop Invariant Code Motion) moves loop invariants out of loops. For example:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">while (...) &#123;</span><br><span class="line">    t = n * 8</span><br><span class="line">    a[i] = base[t + i]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>If <code>n</code> does not change inside the loop, then <code>t = n * 8</code> does not need to be recomputed every iteration.</p>
+<p>Implementation-wise, first identify natural loops through back edges, then find the loop preheader and move safe loop invariants into the preheader. To judge whether an instruction can be hoisted, roughly check two conditions:</p>
+<ul>
+<li>The instruction itself has no side effects.</li>
+<li>All its operands are defined outside the loop, or come from loop invariants that have already been hoisted.</li>
+</ul>
+<p>Good candidates include expensive scalar binary operations such as <code>mul/div/mod/shift</code>, pure <code>getptr</code>, casts, and <code>add/sub</code> used in address chains. But do not hoist loads lightly unless you have sufficiently strong alias analysis proving that the memory will not be modified inside the loop.</p>
+<p>LICM is also not something that should be as aggressive as possible. Moving cheap computations outside a loop may lengthen live ranges, increase register pressure, and cause more backend spills. This is especially true for interpreters and hash pipelines where many values are live. Excessive hoisting can become a negative optimization. A conservative strategy is: hoist expensive operations, hoist cheap <code>add/sub</code> related to address chains, and avoid moving other cheap binary operations casually.</p>
+<h2 id="Strength-Reduction"><a href="#Strength-Reduction" class="headerlink" title="Strength Reduction"></a>Strength Reduction</h2><p>Strength Reduction mainly replaces expensive operations with cheaper forms. The most common cases are:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x * 2^k  -&gt;  x &lt;&lt; k</span><br><span class="line">x / 2^k  -&gt;  x &gt;&gt; k</span><br><span class="line">x % 2^k  -&gt;  x &amp; (2^k - 1)</span><br></pre></td></tr></table></figure>
+
+<p>But pay attention to signed and unsigned semantics. Division and modulo especially cannot be casually replaced in signed cases. Unsigned power-of-two transformations are much safer. Also, in RV64GC, <code>mul</code> itself is one instruction, so expanding <code>x * (2^k +/- 1)</code> into <code>slli + add/sub</code> may not be faster and may even increase temporary registers and spills. Keeping only the most clearly safe power-of-two transformations is enough.</p>
+<h1 id="Backend-Optimization"><a href="#Backend-Optimization" class="headerlink" title="Backend Optimization"></a>Backend Optimization</h1><p>After IR-level optimization, a large part of the remaining performance gap is in the backend: register-allocation quality, spill&#x2F;reload count, function-call overhead, stack-frame maintenance, and some assembly-level peephole optimizations.</p>
+<h2 id="Peephole"><a href="#Peephole" class="headerlink" title="Peephole"></a>Peephole</h2><p>Peephole optimization is suitable for small local patterns whose correctness is clear. For example:</p>
+<ul>
+<li>Delete <code>mv x, x</code>.</li>
+<li>Delete <code>addi x, x, 0</code>.</li>
+<li>Delete fallthrough <code>j</code> instructions that jump to the next block.</li>
+<li>Fold <code>seqz/snez/slt/slti + bnez</code> into direct conditional branches.</li>
+<li>Fold a one-time address temporary into load&#x2F;store: <code>addi addr, base, off; ld x, 0(addr)</code> becomes <code>ld x, off(base)</code>.</li>
+</ul>
+<p>Each optimization looks tiny on its own, but they reduce short-lived temporaries and lower later register-allocation pressure. For modular-arithmetic hotspots, small helpers such as <code>add_mod/sub_mod/norm</code> can also be recognized and expanded directly at the call site, saving function-call and parameter-movement overhead.</p>
+<h2 id="Improving-Linear-Scan"><a href="#Improving-Linear-Scan" class="headerlink" title="Improving Linear Scan"></a>Improving Linear Scan</h2><p>The basic linear-scan method was described earlier. In the backend optimization stage, the main task is continuing to reduce spills. The biggest problem with naive linear scan is that it easily treats the lifetime of a virtual register as one large interval from first definition to last use, failing to exploit live holes in between. Although full live-range splitting is somewhat troublesome to implement, there are still several cost-effective improvements:</p>
+<ul>
+<li>Use CFG-based liveIn&#x2F;liveOut instead of only linear text order.</li>
+<li>Weight loop blocks so uses inside loops have higher spill cost.</li>
+<li>For intervals crossing calls, try callee-saved registers first.</li>
+<li>For calls, count only the actually used <code>a0-a7</code> argument registers as uses.</li>
+<li>Collect copy hints from <code>mv v1, v2</code> and try to assign non-conflicting copy endpoints to the same physical register.</li>
+<li>Rematerialize single-definition <code>li</code> constants when needed instead of occupying a spill slot.</li>
+</ul>
+<p>The core judgment is: many hidden performance points are not because the IR is still too large, but because too many <code>ld/sd</code> instructions are inserted into hot loops. Reducing spill traffic is usually more effective than continuing to stack IR passes.</p>
+<h2 id="Stack-Frame-and-ABI"><a href="#Stack-Frame-and-ABI" class="headerlink" title="Stack Frame and ABI"></a>Stack Frame and ABI</h2><p>Stack-frame optimization is also very practical. For example, leaf functions do not need to save&#x2F;restore <code>ra</code>. If a leaf function has no call, no alloca, no spill, and does not use callee-saved registers, frame setup can be omitted entirely. Callee-saved registers only need to save the ones actually used. Do not mechanically save a pile of registers in every function.</p>
+<p>Also, RISC-V load&#x2F;store immediate offsets are only 12-bit. With large frames, accessing stack slots becomes a longer sequence such as <code>li + add + ld/sd</code>, so in large-frame scenarios, repeated materialization of frame addresses needs special attention. If the same large-offset address appears repeatedly in a basic block, the already computed frame address can be reused.</p>
+<h2 id="Post-regalloc-Spill-Cleanup"><a href="#Post-regalloc-Spill-Cleanup" class="headerlink" title="Post-regalloc Spill Cleanup"></a>Post-regalloc Spill Cleanup</h2><p>After register allocation, another local cleanup pass can be run specifically to handle redundant stack accesses produced by spill&#x2F;reload. For example:</p>
+<ul>
+<li>After <code>ld slot</code>, another repeated <code>ld slot</code> appears with no write to that slot in between. Reuse the previous result directly.</li>
+<li>Delete <code>sd same-value slot</code>.</li>
+<li>If <code>store a, slot; store b, slot</code> appears with no load in between, delete the earlier store.</li>
+<li>Under large frames, repeated <code>li off; add addr, off, s0</code> can be replaced with <code>mv</code> from an existing address register.</li>
+</ul>
+<p>This pass already has benefits even if it only works within a basic block. Cross-block cleanup is of course stronger, but correctness pressure increases significantly. Overall, the backend optimization principle remains conservative: first remove obvious redundant spill&#x2F;reload, then consider more complex live-range splitting, copy coalescing, and block-layout adjustment.</p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>From 2025.8 to 2026.7, RxCompiler went through a full year. It is hard to say whether my attitude toward it is good or bad, because it truly placed a huge burden on an already high-pressure first semester of sophomore year. At the same time, it may also have been the last time in my life that I felt the pleasure of such a large engineering project. From hand-writing the frontend plus codegen and register allocation, to handing optimization to coding agents, this year also let me witness the whole process of coding agents transforming from Copilot-like useless tools into Codex&#x2F;CC-like agents with both powerful harnesses and powerful models. I do not like compilers or traditional systems themselves, but I am happy that through compilers, I indirectly found some other things I am interested in and am now working toward them.</p>
+<p>You still have a long way to go, but I hope you can enjoy the process and keep learning.</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://janezair.site">JaneZ</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://janezair.site/blog/en/2026/01/25/Explore-RCompiler/">https://janezair.site/blog/en/2026/01/25/Explore-RCompiler/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/Compiler/">Compiler</a></div><div class="post-share"><div class="social-share" data-image="/blog/images/covers/Explore-RCompiler.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/blog/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/blog/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/blog/en/2026/01/29/Mlsys-Learning/" title="Mlsys Learning"><img class="cover" src="/blog/images/covers/Mlsys-Learning.jpg" onerror="onerror=null;src='/blog/images/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">Mlsys Learning</div></div><div class="info-2"><div class="info-item-1">Introductory mlsys learning notes focused on RAG, LLM serving, and system scheduling.</div></div></div></a><a class="pagination-related" href="/blog/en/2026/01/25/Modern-Cpp/" title="Modern Cpp"><img class="cover" src="/blog/images/covers/Modern-Cpp.jpg" onerror="onerror=null;src='/blog/images/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">Modern Cpp</div></div><div class="info-2"><div class="info-item-1">An overview of Modern C++ covering value semantics, move semantics, type inference, and smart pointers.</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/blog/images/%E8%AF%81%E4%BB%B6%E7%85%A71.png" onerror="this.onerror=null;this.src='/blog/images/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">JaneZ</div><div class="author-info-description"></div><div class="site-data"><a href="/blog/archives/"><div class="headline">Articles</div><div class="length-num">14</div></a><a href="/blog/tags/"><div class="headline">Tags</div><div class="length-num">10</div></a><a href="/blog/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/JaneZ-2006"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Welcome to explore the Brain of JaneZ in a Jar!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Parser-Semantic-Check"><span class="toc-number">1.</span> <span class="toc-text">Parser &amp; Semantic Check</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Expression"><span class="toc-number">1.1.</span> <span class="toc-text">Expression</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Semantic-Check"><span class="toc-number">1.2.</span> <span class="toc-text">Semantic Check</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IR-Generation"><span class="toc-number">2.</span> <span class="toc-text">IR Generation</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Codegen"><span class="toc-number">3.</span> <span class="toc-text">Codegen</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Register-Allocation"><span class="toc-number">4.</span> <span class="toc-text">Register Allocation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linear-Scan"><span class="toc-number">4.1.</span> <span class="toc-text">Linear Scan</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Graph-Coloring"><span class="toc-number">4.2.</span> <span class="toc-text">Graph Coloring</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IR-Generation-Optimization"><span class="toc-number">5.</span> <span class="toc-text">IR Generation Optimization</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Mem2Reg"><span class="toc-number">5.1.</span> <span class="toc-text">Mem2Reg</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Building-the-Dominator-Tree-and-Dominance-Frontier"><span class="toc-number">5.1.1.</span> <span class="toc-text">Building the Dominator Tree and Dominance Frontier</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Phi-Insertion-and-Instruction-Deletion"><span class="toc-number">5.1.2.</span> <span class="toc-text">Phi Insertion and Instruction Deletion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Eliminating-Phi-Instructions-in-Codegen"><span class="toc-number">5.1.3.</span> <span class="toc-text">Eliminating Phi Instructions in Codegen</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dead-Code-Elimination"><span class="toc-number">5.2.</span> <span class="toc-text">Dead Code Elimination</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Constant-Propagation"><span class="toc-number">5.3.</span> <span class="toc-text">Constant Propagation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SROA"><span class="toc-number">5.4.</span> <span class="toc-text">SROA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Function-Inline"><span class="toc-number">5.5.</span> <span class="toc-text">Function Inline</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Memory-Forwarding"><span class="toc-number">5.6.</span> <span class="toc-text">Memory Forwarding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Local-CSE-Dominator-GVN"><span class="toc-number">5.7.</span> <span class="toc-text">Local CSE &#x2F; Dominator GVN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LICM"><span class="toc-number">5.8.</span> <span class="toc-text">LICM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Strength-Reduction"><span class="toc-number">5.9.</span> <span class="toc-text">Strength Reduction</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Backend-Optimization"><span class="toc-number">6.</span> <span class="toc-text">Backend Optimization</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Peephole"><span class="toc-number">6.1.</span> <span class="toc-text">Peephole</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Improving-Linear-Scan"><span class="toc-number">6.2.</span> <span class="toc-text">Improving Linear Scan</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Stack-Frame-and-ABI"><span class="toc-number">6.3.</span> <span class="toc-text">Stack Frame and ABI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Post-regalloc-Spill-Cleanup"><span class="toc-number">6.4.</span> <span class="toc-text">Post-regalloc Spill Cleanup</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Conclusion"><span class="toc-number">7.</span> <span class="toc-text">Conclusion</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/blog/en/2026/07/28/26-Summer/" title="The Glow of Summer Has Faded, Now..."><img src="/blog/images/covers/Pedri.png" onerror="this.onerror=null;this.src='/blog/images/404.jpg'" alt="The Glow of Summer Has Faded, Now..."/></a><div class="content"><a class="title" href="/blog/en/2026/07/28/26-Summer/" title="The Glow of Summer Has Faded, Now...">The Glow of Summer Has Faded, Now...</a><time datetime="2026-07-28T15:14:41.000Z" title="Created 2026-07-28 23:14:41">2026-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/en/2026/06/10/ArchLite/" title="ArchLite"><img src="/blog/images/ArchLite.png" onerror="this.onerror=null;this.src='/blog/images/404.jpg'" alt="ArchLite"/></a><div class="content"><a class="title" href="/blog/en/2026/06/10/ArchLite/" title="ArchLite">ArchLite</a><time datetime="2026-06-10T12:50:20.000Z" title="Created 2026-06-10 20:50:20">2026-06-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/en/2026/05/01/ACMAPI/" title="ACMAPI"><img src="/blog/images/covers/ACMAPI.jpg" onerror="this.onerror=null;this.src='/blog/images/404.jpg'" alt="ACMAPI"/></a><div class="content"><a class="title" href="/blog/en/2026/05/01/ACMAPI/" title="ACMAPI">ACMAPI</a><time datetime="2026-04-30T19:04:01.000Z" title="Created 2026-05-01 03:04:01">2026-05-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/en/2026/04/13/CPU-Scheduling/" title="CPU Scheduling"><img src="/blog/images/covers/CPU-Scheduling.jpg" onerror="this.onerror=null;this.src='/blog/images/404.jpg'" alt="CPU Scheduling"/></a><div class="content"><a class="title" href="/blog/en/2026/04/13/CPU-Scheduling/" title="CPU Scheduling">CPU Scheduling</a><time datetime="2026-04-13T03:27:39.000Z" title="Created 2026-04-13 11:27:39">2026-04-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/en/2026/03/30/LaTeX-Tutorial/" title="LaTeX-Tutorial"><img src="/blog/images/covers/LaTeX-Tutorial.jpg" onerror="this.onerror=null;this.src='/blog/images/404.jpg'" alt="LaTeX-Tutorial"/></a><div class="content"><a class="title" href="/blog/en/2026/03/30/LaTeX-Tutorial/" title="LaTeX-Tutorial">LaTeX-Tutorial</a><time datetime="2026-03-30T06:23:59.000Z" title="Created 2026-03-30 14:23:59">2026-03-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By JaneZ</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/blog/js/utils.js?v=5.5.4-b1"></script><script src="/blog/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,333 +1,68 @@
-<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>GPU Acceleration | Brain of JaneZ in a Jar</title><meta name="author" content="JaneZ"><meta name="copyright" content="JaneZ"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一份 GPU 加速入门分享稿，梳理 CPU&#x2F;GPU 架构、并行编程与矩阵乘案例。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="GPU Acceleration">
-<meta property="og:url" content="https://janezair.site/2026/01/24/GPU-Acceleration/index.html">
-<meta property="og:site_name" content="Brain of JaneZ in a Jar">
-<meta property="og:description" content="一份 GPU 加速入门分享稿，梳理 CPU&#x2F;GPU 架构、并行编程与矩阵乘案例。">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://janezair.site/img/covers/GPU-Acceleration.jpg">
-<meta property="article:published_time" content="2026-01-23T16:46:50.000Z">
-<meta property="article:modified_time" content="2026-07-07T19:04:55.064Z">
-<meta property="article:author" content="JaneZ">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://janezair.site/img/covers/GPU-Acceleration.jpg"><script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "GPU Acceleration",
-  "url": "https://janezair.site/2026/01/24/GPU-Acceleration/",
-  "image": "https://janezair.site/img/covers/GPU-Acceleration.jpg",
-  "datePublished": "2026-01-23T16:46:50.000Z",
-  "dateModified": "2026-07-07T19:04:55.064Z",
-  "author": [
-    {
-      "@type": "Person",
-      "name": "JaneZ",
-      "url": "https://janezair.site"
-    }
-  ]
-}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://janezair.site/2026/01/24/GPU-Acceleration/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
-    (() => {
-      
-    const saveToLocal = {
-      set: (key, value, ttl) => {
-        if (!ttl) return
-        const expiry = Date.now() + ttl * 86400000
-        localStorage.setItem(key, JSON.stringify({ value, expiry }))
-      },
-      get: key => {
-        const itemStr = localStorage.getItem(key)
-        if (!itemStr) return undefined
-        const { value, expiry } = JSON.parse(itemStr)
-        if (Date.now() > expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return value
-      }
-    }
+<!doctype html><html lang="en" class="no-js"><head><meta charset="utf-8"> <!-- begin SEO --><title>GPU Acceleration - Yihan Zhu</title><meta name="description" content="一份 GPU 加速入门分享稿，梳理 CPU/GPU 架构、并行编程与矩阵乘案例。"><meta property="article:published_time" content="2026-01-24T00:46:50+08:00"><link rel="canonical" href="https://janezair.site/2026/01/24/GPU-Acceleration/"> <script type="application/ld+json"> { "@context" : "http://schema.org", "@type" : "Person", "name" : "Yihan Zhu", "url" : "https://janezair.site", "sameAs" : null } </script> <!-- end SEO --> <!-- Open Graph protocol data (https://ogp.me/), used by social media --><meta property="og:locale" content="en-US"><meta property="og:site_name" content="Yihan Zhu"><meta property="og:title" content="GPU Acceleration"><meta property="og:type" content="article"><meta property="og:description" name="description" content="一份 GPU 加速入门分享稿，梳理 CPU/GPU 架构、并行编程与矩阵乘案例。"><meta property="og:url" content="https://janezair.site/2026/01/24/GPU-Acceleration/"> <!-- end Open Graph protocol --><link href="https://janezair.site/feed.xml" type="application/atom+xml" rel="alternate" title="Yihan Zhu Feed"><meta name="viewport" content="width=device-width, initial-scale=1.0"> <script> document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js '; </script> <!-- For all browsers --><link rel="stylesheet" href="https://janezair.site/assets/css/main.css"> <!-- start custom head snippets --> <!-- Support for Academicons --><link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"> <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"></noscript> <!-- Support for Font Awesome --><link rel="preload" href="https://janezair.site/assets/css/fontawesome.css" as="style" onload="this.onload=null;this.rel='stylesheet'"> <noscript><link rel="stylesheet" href="https://janezair.site/assets/css/fontawesome.css"></noscript> <!-- favicon from https://commons.wikimedia.org/wiki/File:OOjs_UI_icon_academic-progressive.svg --><link rel="apple-touch-icon" sizes="180x180" href="https://janezair.site/images/apple-touch-icon-180x180.png"/><link rel="icon" type="image/svg+xml" href="https://janezair.site/images/favicon.svg"/><link rel="icon" type="image/png" href="https://janezair.site/images/favicon-32x32.png" sizes="32x32"/><link rel="icon" type="image/png" href="https://janezair.site/images/favicon-192x192.png" sizes="192x192"/><link rel="manifest" href="https://janezair.site/images/manifest.json"/><link rel="icon" href="/images/favicon.ico"/><meta name="theme-color" content="var(--global-bg-color)"/> <!-- end custom head snippets --></head><body> <!--[if lt IE 9]><div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div><![endif]--><div class="masthead"><div class="masthead__inner-wrap"><div class="masthead__menu"><nav id="site-nav" class="greedy-nav"> <button><span class="navicon"></span></button><ul class="visible-links"><li class="masthead__menu-item masthead__menu-item--lg persist "> <a href="https://janezair.site/">Yihan Zhu</a></li><li class="masthead__menu-item "> <a href="https://janezair.site/">About</a></li><li class="masthead__menu-item "> <a href="https://janezair.site/projects/">Projects</a></li><li class="masthead__menu-item "> <a href="https://janezair.site/teaching/">Teaching</a></li><li class="masthead__menu-item "> <a href="https://janezair.site/blog/">Blog</a></li></ul><ul class="hidden-links hidden"></ul></nav></div></div></div><div id="main" role="main"><div class="sidebar sticky"><div itemscope itemtype="http://schema.org/Person"><div class="author__avatar"> <img src="https://janezair.site/images/profile.png" class="author__avatar" alt="Yihan Zhu" fetchpriority="high" /></div><div class="author__content"><h3 class="author__name">Yihan Zhu</h3><p class="author__bio">Member of ACM Class 2024 at Shanghai Jiao Tong University.</p></div><div class="author__urls-wrapper"> <button class="btn btn--inverse">Follow</button><ul class="author__urls social-icons"> <!-- Font Awesome icons / Biographic information --><li class="author__desktop"><i class="fas fa-fw fa-location-dot icon-pad-right" aria-hidden="true"></i>Shanghai, China</li><li class="author__desktop"><i class="fas fa-fw fa-building-columns icon-pad-right" aria-hidden="true"></i>Shanghai Jiao Tong University</li><li><a href="mailto:zhuyihan@sjtu.edu.cn"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i>Email</a></li><!-- Font Awesome and Academicons icons / Academic websites --> <!-- Font Awesome icons / Repositories and software development --><li><a href="https://github.com/JaneZ-2006"><i class="fab fa-fw fa-github icon-pad-right" aria-hidden="true"></i>GitHub</a></li><!-- Font Awesome icons / Social media --><li><a href="https://twitter.com/JaneZ0826"><i class="fab fa-fw fa-x-twitter icon-pad-right" aria-hidden="true"></i>X (formerly Twitter)</a></li></ul></div></div></div><article class="page" itemscope itemtype="http://schema.org/CreativeWork"><meta itemprop="headline" content="GPU Acceleration"><meta itemprop="description" content="给25级xpy 伟大思想的pre，一天时间搓出来的，放到blog上留作纪念。 也是第一次用vscode-marp 做ppt，终于摆脱office的阴间排版了。"><meta itemprop="datePublished" content="January 24, 2026"><div class="page__inner-wrap"><header><h1 class="page__title" itemprop="headline">GPU Acceleration</h1><p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> 5 minute read</p><p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2026-01-24T00:46:50+08:00">January 24, 2026</time></p></header><p class="page__translation"> <i class="fas fa-fw fa-language" aria-hidden="true"></i> <a href="/en/2026/01/24/GPU-Acceleration/">Read this post in English</a></p><section class="page__content" itemprop="text"><p>给25级xpy 伟大思想的pre，一天时间搓出来的，放到blog上留作纪念。 也是第一次用vscode-marp 做ppt，终于摆脱office的阴间排版了。</p><hr /><p>marp: true</p><p>theme: gaia</p><p>footer: ‘JaneZ 2025-10-14’</p><p>paginate: true</p><p>html: true</p><table><tbody><tr><td>style:</td></tr></tbody></table><p>section a {</p><p>font-size: 30px;</p><h2>}</h2><h1 id="gpu-acceleration">GPU Acceleration</h1><p>Yihan Zhu @JaneZ ACM Class 2024</p><p>2025.10.14</p><h2 id="overview">Overview</h2><ul><li>Basic Architecture of CPU, GPU, RAM, Cache</li><li>GPU Architecture</li><li>GPU Programming</li><li>Case study: Matrix Multiplication on GPU</li></ul><h2 id="what-is-a-gpu">What is a GPU?</h2><ul><li>CPU (中央处理器)<ul><li>拥有少量强大的核心 (Core)。</li><li>具有复杂的控制单元 (Control) 和多级缓存 (L1, L2, L3 Cache)。</li><li>擅长串行任务和复杂的控制逻辑。</li></ul></li></ul><h2 id="what-is-a-gpu-1">What is a GPU?</h2><ul><li>GPU (图形处理器)<ul><li>拥有大量简单的核心 (Core)。</li><li>适合处理并行任务和大规模数据。</li><li>常用于图形渲染和机器学习等领域。</li></ul></li></ul><h2 id="what-is-ram">What is RAM?</h2><ul><li>随机存取存储器 (RAM) 是计算机的主要内存，用于存储正在使用的数据和程序。<ul><li>动态随机存取存储器 (DRAM)：容量大，速度较慢，常用于主内存。</li><li>静态随机存取存储器 (SRAM)：速度快，容量小，常用于缓存(Cache)。</li></ul></li><li>CPU 可以直接、快速地访问内存中任何位置的数据，无需按顺序查找。内存只能在电脑通电时存储数据。一旦你关机、重启或断电，内存中的所有数据都会立刻消失。</li></ul><h2 id="what-is-cache">What is Cache?</h2><ul><li>缓存 (Cache) 是一种高速存储器，位于 CPU/GPU 和主内存(DRAM)之间。</li><li>CPU 的运行速度极快，但访问主内存（DRAM，即“内存条”）的速度相对慢得多。这就形成了一个巨大的“速度鸿沟”。缓存就是为了弥补这个速度差而生的。它只存储 CPU/GPU 最可能立即需要的数据和指令。</li><li>多级缓存结构是现代 CPU 高性能的基础。</li></ul><table><thead><tr><th>缓存级别</th><th>所属设备</th><th>速度 / 容量</th><th>数据共享范围</th></tr></thead><tbody><tr><td>L1 缓存（SRAM）</td><td>CPU / GPU 核心内部</td><td>最快 / 容量最小</td><td>核心独享（每个核心都有自己的 L1）</td></tr><tr><td>L2 缓存</td><td>CPU / GPU 核心附近</td><td>较快 / 适中</td><td>通常核心独享或小组共享</td></tr><tr><td>L3 缓存</td><td>CPU</td><td>较慢 / 容量最大</td><td>所有核心共享</td></tr><tr><td>共享内存</td><td>GPU</td><td>极快（用户可控）</td><td>线程块内部协作共享</td></tr></tbody></table><table><thead><tr><th>特性</th><th>CPU 缓存（L1 / L2 / L3）</th><th>GPU 缓存（L1 / L2 / 共享内存）</th></tr></thead><tbody><tr><td>设计核心目标</td><td>低延迟（Low Latency）：尽快完成单个复杂任务</td><td>高吞吐量（High Throughput）：同时处理大量简单任务</td></tr><tr><td>层级数</td><td>L1、L2、L3 三级</td><td>通常只有 L1、L2 两级</td></tr><tr><td>L3 缓存</td><td>有。容量大，供所有核心共享</td><td>基本无。架构上更依赖 L2 和共享内存</td></tr><tr><td>最特殊结构</td><td>L3 缓存（复杂数据共享）</td><td>共享内存（Shared Memory，程序员可控的高速存储）</td></tr><tr><td>数据共享方式</td><td>核心间通过 L3 缓存或总线进行数据同步</td><td>线程块内部通过共享内存直接快速协作</td></tr></tbody></table><h2 id="gpu-architecture">GPU Architecture</h2><p>现代 GPU（以 NVIDIA 的 CUDA 架构为例，如 Volta, Turing, Ampere, Hopper）从上到下可以分成三个主要层级：</p><ol><li>芯片级别：GPC (Graphics Processing Clusters) 整个 GPU 芯片由多个被称为 GPC (图形处理集群) 的大型单元组成。</li><li>集群级别：SM (Streaming Multiprocessors) 每个 GPC 内部包含多个 SM (流式多处理器)。</li></ol><p><strong>SM 是 GPU 的真正核心！ 它是执行并行计算的基本控制单元。</strong></p><h2 id="gpu-architecture-1">GPU Architecture</h2><ol><li>SM 内部：核心、Warp 和内存<ul><li>CUDAs 核心 (CUDA Cores)：大量（每个 SM 包含数十到数百个）。负责实际的数学运算（如加法、乘法）。</li><li>Warp Scheduler： SM 的真正指挥官，负责将接收到的任务（线程块）拆解成 Warp（线程束，32 个线程一组），并向所有 32 个线程同时广播指令（SIMT 模型）</li><li>共享内存/L1 缓存：供 SM 内的线程块协作共享数据。</li><li>寄存器堆：每个线程独享的高速存储单元。</li></ul></li></ol><h2 id="gpu-programming-modesimt">GPU Programming mode：SIMT</h2><p>Single instruction multiple threads (SIMT) 单指令多线程</p><ul><li>所有线程执行相同的代码，但它们可以根据程序中的分支或条件语句采取不同的执行路径（例如 if/else 结构）。</li><li>Thread (线程)：执行计算的基本单位。</li><li>Thread Block (线程块)：线程被分组到块中。同一块内的线程具有共享内存。</li><li>Grid (网格)：线程块又被分组到网格中。</li></ul><h2 id="simt-on-gpu-hardware">SIMT on GPU Hardware</h2><ul><li>一个 Grid 中的 Thread Blocks（线程块）会被分配到 GPU 的各个 SM 上执行。</li><li>当一个线程块被分配到 SM 上时，SM 内的调度器会首先将这个线程块中的所有线程（通常是 128、 256 或 1024 个）分成多个 Warp（每个 Warp 32 个线程）。</li><li>调度器的工作就是从就绪的 Warp 中选择一个，然后向该 Warp 中的所有 32 个线程同时发出相同的指令。</li><li>GPU 不会调度单个线程，也不会调度整个线程块，它只以 Warp 为单位进行操作。</li></ul><h2 id="cuda-cores">CUDA cores</h2><p>当一个 Warp 被调度时，它会同时被送往 SM 内部的 CUDA 核心。在理想情况下（没有分支冲突），Warp 中的 32 个线程会同时在 32 个不同的 CUDA 核心上执行同一条指令。</p><h2 id="we-keep-talking-about-cudathen-you-guys-may-ask-what-is-cuda">We keep talking about CUDA,then you guys may ask: What is CUDA?</h2><ul><li>CUDA (Compute Unified Device Architecture) 是 NVIDIA 提供的并行计算平台和编程模型。</li><li>它允许开发者使用 C/C++ 等高级语言编写程序，以充分利用 GPU 的强大计算能力。</li><li>CUDA 提供了一套丰富的 API 和库，使得在 GPU 上进行高性能计算变得更加简单和高效。</li></ul><h2 id="cuda-programming-example-vector-addition">CUDA Programming Example: Vector Addition</h2><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>void VecAddCPU(float* A, float *B, float* C, int n) {
+ for (int i = 0; i &lt; n; ++i) {
+   C[i] = A[i] + B[i];
+ }
+}
+</code></pre></div></div><h2 id="cuda-programming-example-vector-addition-1">CUDA Programming Example: Vector Addition</h2><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>__global__ void VecAddGPU(float* A, float *B, float* C, int n) {
+ int i = blockIdx.x * blockDim.x + threadIdx.x;
+ if (i &lt; n) {
+   C[i] = A[i] + B[i];
+ }
+}
+</code></pre></div></div><h2 id="vector-addition-host-code">Vector Addition (Host Code)</h2><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>void VecAddCUDA(float* Acpu, float *Bcpu, float* Ccpu, int n) {
+ float *dA, *dB, *dC;
+ cudaMalloc(&amp;dA, n * sizeof(float));
+ cudaMalloc(&amp;dB, n * sizeof(float));
+ cudaMalloc(&amp;dC, n * sizeof(float));
+ cudaMemcpy(dA, Acpu, n * sizeof(float), cudaMemcpyHostToDevice);
+ cudaMemcpy(dB, Bcpu, n * sizeof(float), cudaMemcpyHostToDevice);
+ int threads_per_block = 512;
+ int nblocks = (n + threads_per_block - 1) / threads_per_block;
+ VecAddKernel&lt;&lt;&lt;nblocks, thread_per_block&gt;&gt;&gt;(dA, dB, dC, n);
+ cudaMemcpy(Ccpu, dC, n * sizeof(float), cudaMemcpyDeviceToHost);
+ cudaFree(dA); cudaFree(dB); cudaFree(dC);
+}
+</code></pre></div></div><h2 id="case-study-matrix-multiplication-on-gpu">Case Study: Matrix Multiplication on GPU</h2><ul><li>Matrix Multiplication (GEMM) 是线性代数中最基本的操作之一，广泛应用于科学计算、图形处理和机器学习等领域。</li><li>Compute C = dot(A.T, B)</li></ul><h2 id="thread-level-register-tiling">Thread-level: register tiling</h2><p>大规模线程并行执行（多个线程），每个线程又极高效率地利用了寄存器（平铺）。</p><p>类似于缓存+分块的思想</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>__global__ void mm(float A[N][N], float B[N][N], float C[N][N]) {
+ int ybase = blockIdx.y * blockDim.y + threadIdx.y;
+ int xbase = blockIdx.x * blockDim.x + threadIdx.x;
+ float c[V][V] = {0};
+ float a[V], b[V];
+ for (int k = 0; k &lt; N; ++k) {
+ a[:] = A[k, ybase*V : ybase*V + V];
+ b[:] = B[k, xbase*V : xbase*V + V];
+ for (int y = 0; y &lt; V; ++y) {
+ for (int x = 0; x &lt; V; ++x) {
+ c[y][x] += a[y] * b[x];
+ }
+ }
+ }
+ C[ybase * V : ybase*V + V, xbase*V : xbase*V + V] = c[:];
+}
+</code></pre></div></div><h2 id="block-level-shared-memory-tiling">Block-level: shared memory tiling</h2><p>整个 Thread Block (线程块) 作为一个协作团队工作</p><h2 id="block-level-shared-memory-tiling-1">Block-level: shared memory tiling</h2><ul><li>平铺 (Tiling): 矩阵 A^T 和 B 被分解成大小为 L×S 或 S×L 的大块。</li><li>协作 (Cooperation): 线程块中的所有线程首先协同工作，将 A^T 和 B 的当前大块从慢速的全局内存（Global Memory）一次性搬运到快速的共享内存（Shared Memory）中。</li><li>重用 (Reuse): 一旦数据进入共享内存，块内的所有线程都可以多次、快速地访问这些数据，极大地提高了计算效率。</li></ul><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>__global__ void mm(float A[N][N], float B[N][N], float C[N][N]) {
+ __shared__ float sA[S][L], sB[S][L];
+ float c[V][V] = {0};
+ float a[V], b[V];
+ int yblock = blockIdx.y;
+ int xblock = blockIdx.x;
+ for (int ko = 0; ko &lt; N; ko += S) {
+ __syncthreads();
+ // needs to be implemented by thread cooperative fetching
+ sA[:, :] = A[k : k + S, yblock * L : yblock * L + L];
+ sB[:, :] = B[k : k + S, xblock * L : xblock * L + L];
+ __syncthreads();
+ for (int ki = 0; ki &lt; S; ++ ki) {
+ a[:] = sA[ki, threadIdx.y * V : threadIdx.y * V + V];
+ b[:] = sB[ki, threadIdx.x * V : threadIdx.x * V + V];
+ for (int y = 0; y &lt; V; ++y) {
+ for (int x = 0; x &lt; V; ++x) {
+ c[y][x] += a[y] * b[x];
+ }
+ }
+ }
+ }
+ int ybase = blockIdx.y * blockDim.y + threadIdx.y;
+ int xbase = blockIdx.x * blockDim.x + threadIdx.x;
+ C[ybase * V : ybase*V + V, xbase*V : xbase*V + V] = c[:];
+}
 
-    window.btf = {
-      saveToLocal,
-      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
-        const script = document.createElement('script')
-        script.src = url
-        script.async = true
-        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
-        script.onload = script.onreadystatechange = () => {
-          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
-        }
-        script.onerror = reject
-        document.head.appendChild(script)
-      }),
-      getCSS: (url, id) => new Promise((resolve, reject) => {
-        const link = document.createElement('link')
-        link.rel = 'stylesheet'
-        link.href = url
-        if (id) link.id = id
-        link.onload = link.onreadystatechange = () => {
-          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
-        }
-        link.onerror = reject
-        document.head.appendChild(link)
-      }),
-      addGlobalFn: (key, fn, name = false, parent = window) => {
-        if (!false && key.startsWith('pjax')) return
-        const globalFn = parent.globalFn || {}
-        globalFn[key] = globalFn[key] || {}
-        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
-        parent.globalFn = globalFn
-      }
-    }
-  
-      
-      const activateDarkMode = () => {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      const activateLightMode = () => {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-
-      btf.activateDarkMode = activateDarkMode
-      btf.activateLightMode = activateLightMode
-
-      const theme = saveToLocal.get('theme')
-    
-          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
-        
-      
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
-      }
-    
-      
-    const detectApple = () => {
-      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
-        document.documentElement.classList.add('apple')
-      }
-    }
-    detectApple()
-  
-    })()
-  </script><script>const GLOBAL_CONFIG = {
-  root: '/',
-  algolia: undefined,
-  localSearch: undefined,
-  translate: undefined,
-  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
-  copy: {
-    success: 'Copy Successful',
-    error: 'Copy Failed',
-    noSupport: 'Browser Not Supported'
-  },
-  relativeDate: {
-    homepage: false,
-    post: false
-  },
-  runtime: '',
-  dateSuffix: {
-    just: 'Just now',
-    min: 'minutes ago',
-    hour: 'hours ago',
-    day: 'days ago',
-    month: 'months ago'
-  },
-  copyright: undefined,
-  lightbox: 'null',
-  Snackbar: undefined,
-  infinitegrid: {
-    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
-    buttonText: 'Load More'
-  },
-  isPhotoFigcaption: false,
-  islazyloadPlugin: false,
-  isAnchor: false,
-  percent: {
-    toc: true,
-    rightside: false,
-  },
-  autoDarkmode: false
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: 'GPU Acceleration',
-  isHighlightShrink: false,
-  isToc: true,
-  pageType: 'post'
-}</script><link rel="stylesheet" href="/css/academic.css"><link rel="stylesheet" href="/css/air.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/%E8%AF%81%E4%BB%B6%E7%85%A71.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/academic/"><i class="fa-fw fas fa-graduation-cap"></i><span> Academic</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-image"></i><span> Gallery</span></a></div><div class="menus_item"><a class="site-page" href="/air/"><i class="fa-fw fas fa-plane"></i><span> Air</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/covers/GPU-Acceleration.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Brain of JaneZ in a Jar</span></a><a class="nav-page-title" href="/"><span class="site-name">GPU Acceleration</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/academic/"><i class="fa-fw fas fa-graduation-cap"></i><span> Academic</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> Links</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-image"></i><span> Gallery</span></a></div><div class="menus_item"><a class="site-page" href="/air/"><i class="fa-fw fas fa-plane"></i><span> Air</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">GPU Acceleration</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-01-23T16:46:50.000Z" title="发表于 2026-01-24 00:46:50">2026-01-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-07-07T19:04:55.064Z" title="更新于 2026-07-08 03:04:55">2026-07-08</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><div class="post-lang-switch"><a href="/en/2026/01/24/GPU-Acceleration/" title="Read in English"><i class="fas fa-language"></i><span> English</span></a></div><article class="container post-content" id="article-container"><p>给25级xpy 伟大思想的pre，一天时间搓出来的，放到blog上留作纪念。 也是第一次用vscode-marp 做ppt，终于摆脱office的阴间排版了。</p>
-<hr>
-<p>marp: true</p>
-<p>theme: gaia</p>
-<p>footer: ‘JaneZ 2025-10-14’</p>
-<p>paginate: true</p>
-<p>html: true</p>
-<p>style: |</p>
-<p>section a {</p>
-<p>font-size: 30px;</p>
-<h2 id=""><a href="#" class="headerlink" title="}"></a>}</h2><h1 id="GPU-Acceleration"><a href="#GPU-Acceleration" class="headerlink" title="GPU Acceleration"></a>GPU Acceleration</h1><p>Yihan Zhu @JaneZ ACM Class 2024</p>
-<p>2025.10.14</p>
-<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><ul>
-<li>Basic Architecture of CPU, GPU, RAM, Cache</li>
-<li>GPU Architecture</li>
-<li>GPU Programming</li>
-<li>Case study: Matrix Multiplication on GPU</li>
-</ul>
-<h2 id="What-is-a-GPU"><a href="#What-is-a-GPU" class="headerlink" title="What is a GPU?"></a>What is a GPU?</h2><ul>
-<li>CPU (中央处理器)<ul>
-<li>拥有少量强大的核心 (Core)。</li>
-<li>具有复杂的控制单元 (Control) 和多级缓存 (L1, L2, L3 Cache)。</li>
-<li>擅长串行任务和复杂的控制逻辑。</li>
-</ul>
-</li>
-</ul>
-<h2 id="What-is-a-GPU-1"><a href="#What-is-a-GPU-1" class="headerlink" title="What is a GPU?"></a>What is a GPU?</h2><ul>
-<li>GPU (图形处理器)<ul>
-<li>拥有大量简单的核心 (Core)。</li>
-<li>适合处理并行任务和大规模数据。</li>
-<li>常用于图形渲染和机器学习等领域。</li>
-</ul>
-</li>
-</ul>
-<h2 id="What-is-RAM"><a href="#What-is-RAM" class="headerlink" title="What is RAM?"></a>What is RAM?</h2><ul>
-<li>随机存取存储器 (RAM) 是计算机的主要内存，用于存储正在使用的数据和程序。<ul>
-<li>动态随机存取存储器 (DRAM)：容量大，速度较慢，常用于主内存。</li>
-<li>静态随机存取存储器 (SRAM)：速度快，容量小，常用于缓存(Cache)。</li>
-</ul>
-</li>
-<li>CPU 可以直接、快速地访问内存中任何位置的数据，无需按顺序查找。内存只能在电脑通电时存储数据。一旦你关机、重启或断电，内存中的所有数据都会立刻消失。</li>
-</ul>
-<h2 id="What-is-Cache"><a href="#What-is-Cache" class="headerlink" title="What is Cache?"></a>What is Cache?</h2><ul>
-<li>缓存 (Cache) 是一种高速存储器，位于 CPU&#x2F;GPU 和主内存(DRAM)之间。</li>
-<li>CPU 的运行速度极快，但访问主内存（DRAM，即“内存条”）的速度相对慢得多。这就形成了一个巨大的“速度鸿沟”。缓存就是为了弥补这个速度差而生的。它只存储 CPU&#x2F;GPU 最可能立即需要的数据和指令。</li>
-<li>多级缓存结构是现代 CPU 高性能的基础。</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>缓存级别</th>
-<th>所属设备</th>
-<th>速度 &#x2F; 容量</th>
-<th>数据共享范围</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>L1 缓存（SRAM）</td>
-<td>CPU &#x2F; GPU 核心内部</td>
-<td>最快 &#x2F; 容量最小</td>
-<td>核心独享（每个核心都有自己的 L1）</td>
-</tr>
-<tr>
-<td>L2 缓存</td>
-<td>CPU &#x2F; GPU 核心附近</td>
-<td>较快 &#x2F; 适中</td>
-<td>通常核心独享或小组共享</td>
-</tr>
-<tr>
-<td>L3 缓存</td>
-<td>CPU</td>
-<td>较慢 &#x2F; 容量最大</td>
-<td>所有核心共享</td>
-</tr>
-<tr>
-<td>共享内存</td>
-<td>GPU</td>
-<td>极快（用户可控）</td>
-<td>线程块内部协作共享</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>特性</th>
-<th>CPU 缓存（L1 &#x2F; L2 &#x2F; L3）</th>
-<th>GPU 缓存（L1 &#x2F; L2 &#x2F; 共享内存）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>设计核心目标</td>
-<td>低延迟（Low Latency）：尽快完成单个复杂任务</td>
-<td>高吞吐量（High Throughput）：同时处理大量简单任务</td>
-</tr>
-<tr>
-<td>层级数</td>
-<td>L1、L2、L3 三级</td>
-<td>通常只有 L1、L2 两级</td>
-</tr>
-<tr>
-<td>L3 缓存</td>
-<td>有。容量大，供所有核心共享</td>
-<td>基本无。架构上更依赖 L2 和共享内存</td>
-</tr>
-<tr>
-<td>最特殊结构</td>
-<td>L3 缓存（复杂数据共享）</td>
-<td>共享内存（Shared Memory，程序员可控的高速存储）</td>
-</tr>
-<tr>
-<td>数据共享方式</td>
-<td>核心间通过 L3 缓存或总线进行数据同步</td>
-<td>线程块内部通过共享内存直接快速协作</td>
-</tr>
-</tbody></table>
-<h2 id="GPU-Architecture"><a href="#GPU-Architecture" class="headerlink" title="GPU Architecture"></a>GPU Architecture</h2><p>现代 GPU（以 NVIDIA 的 CUDA 架构为例，如 Volta, Turing, Ampere, Hopper）从上到下可以分成三个主要层级：</p>
-<ol>
-<li>芯片级别：GPC (Graphics Processing Clusters) 整个 GPU 芯片由多个被称为 GPC (图形处理集群) 的大型单元组成。</li>
-<li>集群级别：SM (Streaming Multiprocessors) 每个 GPC 内部包含多个 SM (流式多处理器)。</li>
-</ol>
-<p><strong>SM 是 GPU 的真正核心！ 它是执行并行计算的基本控制单元。</strong></p>
-<h2 id="GPU-Architecture-1"><a href="#GPU-Architecture-1" class="headerlink" title="GPU Architecture"></a>GPU Architecture</h2><ol start="3">
-<li>SM 内部：核心、Warp 和内存</li>
-</ol>
-<ul>
-<li>CUDAs 核心 (CUDA Cores)：大量（每个 SM 包含数十到数百个）。负责实际的数学运算（如加法、乘法）。</li>
-<li>Warp Scheduler： SM 的真正指挥官，负责将接收到的任务（线程块）拆解成 Warp（线程束，32 个线程一组），并向所有 32 个线程同时广播指令（SIMT 模型）</li>
-<li>共享内存&#x2F;L1 缓存：供 SM 内的线程块协作共享数据。</li>
-<li>寄存器堆：每个线程独享的高速存储单元。</li>
-</ul>
-<h2 id="GPU-Programming-mode：SIMT"><a href="#GPU-Programming-mode：SIMT" class="headerlink" title="GPU Programming mode：SIMT"></a>GPU Programming mode：SIMT</h2><p>Single instruction multiple threads (SIMT) 单指令多线程</p>
-<ul>
-<li>所有线程执行相同的代码，但它们可以根据程序中的分支或条件语句采取不同的执行路径（例如 if&#x2F;else 结构）。</li>
-<li>Thread (线程)：执行计算的基本单位。</li>
-<li>Thread Block (线程块)：线程被分组到块中。同一块内的线程具有共享内存。</li>
-<li>Grid (网格)：线程块又被分组到网格中。</li>
-</ul>
-<h2 id="SIMT-on-GPU-Hardware"><a href="#SIMT-on-GPU-Hardware" class="headerlink" title="SIMT on GPU Hardware"></a>SIMT on GPU Hardware</h2><ul>
-<li>一个 Grid 中的 Thread Blocks（线程块）会被分配到 GPU 的各个 SM 上执行。</li>
-<li>当一个线程块被分配到 SM 上时，SM 内的调度器会首先将这个线程块中的所有线程（通常是 128、 256 或 1024 个）分成多个 Warp（每个 Warp 32 个线程）。</li>
-<li>调度器的工作就是从就绪的 Warp 中选择一个，然后向该 Warp 中的所有 32 个线程同时发出相同的指令。</li>
-<li>GPU 不会调度单个线程，也不会调度整个线程块，它只以 Warp 为单位进行操作。</li>
-</ul>
-<h2 id="CUDA-cores"><a href="#CUDA-cores" class="headerlink" title="CUDA cores"></a>CUDA cores</h2><p>当一个 Warp 被调度时，它会同时被送往 SM 内部的 CUDA 核心。在理想情况下（没有分支冲突），Warp 中的 32 个线程会同时在 32 个不同的 CUDA 核心上执行同一条指令。</p>
-<h2 id="We-keep-talking-about-CUDA-then-you-guys-may-ask-What-is-CUDA"><a href="#We-keep-talking-about-CUDA-then-you-guys-may-ask-What-is-CUDA" class="headerlink" title="We keep talking about CUDA,then you guys may ask: What is CUDA?"></a>We keep talking about CUDA,then you guys may ask: What is CUDA?</h2><ul>
-<li>CUDA (Compute Unified Device Architecture) 是 NVIDIA 提供的并行计算平台和编程模型。</li>
-<li>它允许开发者使用 C&#x2F;C++ 等高级语言编写程序，以充分利用 GPU 的强大计算能力。</li>
-<li>CUDA 提供了一套丰富的 API 和库，使得在 GPU 上进行高性能计算变得更加简单和高效。</li>
-</ul>
-<h2 id="CUDA-Programming-Example-Vector-Addition"><a href="#CUDA-Programming-Example-Vector-Addition" class="headerlink" title="CUDA Programming Example: Vector Addition"></a>CUDA Programming Example: Vector Addition</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">void VecAddCPU(float* A, float *B, float* C, int n) &#123;</span><br><span class="line"> for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">   C[i] = A[i] + B[i];</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="CUDA-Programming-Example-Vector-Addition-1"><a href="#CUDA-Programming-Example-Vector-Addition-1" class="headerlink" title="CUDA Programming Example: Vector Addition"></a>CUDA Programming Example: Vector Addition</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">__global__ void VecAddGPU(float* A, float *B, float* C, int n) &#123;</span><br><span class="line"> int i = blockIdx.x * blockDim.x + threadIdx.x;</span><br><span class="line"> if (i &lt; n) &#123;</span><br><span class="line">   C[i] = A[i] + B[i];</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Vector-Addition-Host-Code"><a href="#Vector-Addition-Host-Code" class="headerlink" title="Vector Addition (Host Code)"></a>Vector Addition (Host Code)</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">void VecAddCUDA(float* Acpu, float *Bcpu, float* Ccpu, int n) &#123;</span><br><span class="line"> float *dA, *dB, *dC;</span><br><span class="line"> cudaMalloc(&amp;dA, n * sizeof(float));</span><br><span class="line"> cudaMalloc(&amp;dB, n * sizeof(float));</span><br><span class="line"> cudaMalloc(&amp;dC, n * sizeof(float));</span><br><span class="line"> cudaMemcpy(dA, Acpu, n * sizeof(float), cudaMemcpyHostToDevice);</span><br><span class="line"> cudaMemcpy(dB, Bcpu, n * sizeof(float), cudaMemcpyHostToDevice);</span><br><span class="line"> int threads_per_block = 512;</span><br><span class="line"> int nblocks = (n + threads_per_block - 1) / threads_per_block;</span><br><span class="line"> VecAddKernel&lt;&lt;&lt;nblocks, thread_per_block&gt;&gt;&gt;(dA, dB, dC, n);</span><br><span class="line"> cudaMemcpy(Ccpu, dC, n * sizeof(float), cudaMemcpyDeviceToHost);</span><br><span class="line"> cudaFree(dA); cudaFree(dB); cudaFree(dC);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Case-Study-Matrix-Multiplication-on-GPU"><a href="#Case-Study-Matrix-Multiplication-on-GPU" class="headerlink" title="Case Study: Matrix Multiplication on GPU"></a>Case Study: Matrix Multiplication on GPU</h2><ul>
-<li>Matrix Multiplication (GEMM) 是线性代数中最基本的操作之一，广泛应用于科学计算、图形处理和机器学习等领域。</li>
-<li>Compute C &#x3D; dot(A.T, B)</li>
-</ul>
-<h2 id="Thread-level-register-tiling"><a href="#Thread-level-register-tiling" class="headerlink" title="Thread-level: register tiling"></a>Thread-level: register tiling</h2><p>大规模线程并行执行（多个线程），每个线程又极高效率地利用了寄存器（平铺）。</p>
-<p>类似于缓存+分块的思想</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">__global__ void mm(float A[N][N], float B[N][N], float C[N][N]) &#123;</span><br><span class="line"> int ybase = blockIdx.y * blockDim.y + threadIdx.y;</span><br><span class="line"> int xbase = blockIdx.x * blockDim.x + threadIdx.x;</span><br><span class="line"> float c[V][V] = &#123;0&#125;;</span><br><span class="line"> float a[V], b[V];</span><br><span class="line"> for (int k = 0; k &lt; N; ++k) &#123;</span><br><span class="line"> a[:] = A[k, ybase*V : ybase*V + V];</span><br><span class="line"> b[:] = B[k, xbase*V : xbase*V + V];</span><br><span class="line"> for (int y = 0; y &lt; V; ++y) &#123;</span><br><span class="line"> for (int x = 0; x &lt; V; ++x) &#123;</span><br><span class="line"> c[y][x] += a[y] * b[x];</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> C[ybase * V : ybase*V + V, xbase*V : xbase*V + V] = c[:];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Block-level-shared-memory-tiling"><a href="#Block-level-shared-memory-tiling" class="headerlink" title="Block-level: shared memory tiling"></a>Block-level: shared memory tiling</h2><p>整个 Thread Block (线程块) 作为一个协作团队工作</p>
-<h2 id="Block-level-shared-memory-tiling-1"><a href="#Block-level-shared-memory-tiling-1" class="headerlink" title="Block-level: shared memory tiling"></a>Block-level: shared memory tiling</h2><ul>
-<li>平铺 (Tiling): 矩阵 A^T 和 B 被分解成大小为 L×S 或 S×L 的大块。</li>
-<li>协作 (Cooperation): 线程块中的所有线程首先协同工作，将 A^T 和 B 的当前大块从慢速的全局内存（Global Memory）一次性搬运到快速的共享内存（Shared Memory）中。</li>
-<li>重用 (Reuse): 一旦数据进入共享内存，块内的所有线程都可以多次、快速地访问这些数据，极大地提高了计算效率。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">__global__ void mm(float A[N][N], float B[N][N], float C[N][N]) &#123;</span><br><span class="line"> __shared__ float sA[S][L], sB[S][L];</span><br><span class="line"> float c[V][V] = &#123;0&#125;;</span><br><span class="line"> float a[V], b[V];</span><br><span class="line"> int yblock = blockIdx.y;</span><br><span class="line"> int xblock = blockIdx.x;</span><br><span class="line"> for (int ko = 0; ko &lt; N; ko += S) &#123;</span><br><span class="line"> __syncthreads();</span><br><span class="line"> // needs to be implemented by thread cooperative fetching</span><br><span class="line"> sA[:, :] = A[k : k + S, yblock * L : yblock * L + L];</span><br><span class="line"> sB[:, :] = B[k : k + S, xblock * L : xblock * L + L];</span><br><span class="line"> __syncthreads();</span><br><span class="line"> for (int ki = 0; ki &lt; S; ++ ki) &#123;</span><br><span class="line"> a[:] = sA[ki, threadIdx.y * V : threadIdx.y * V + V];</span><br><span class="line"> b[:] = sB[ki, threadIdx.x * V : threadIdx.x * V + V];</span><br><span class="line"> for (int y = 0; y &lt; V; ++y) &#123;</span><br><span class="line"> for (int x = 0; x &lt; V; ++x) &#123;</span><br><span class="line"> c[y][x] += a[y] * b[x];</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> int ybase = blockIdx.y * blockDim.y + threadIdx.y;</span><br><span class="line"> int xbase = blockIdx.x * blockDim.x + threadIdx.x;</span><br><span class="line"> C[ybase * V : ybase*V + V, xbase*V : xbase*V + V] = c[:];</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="Thanks-for-listening"><a href="#Thanks-for-listening" class="headerlink" title="Thanks for listening!"></a>Thanks for listening!</h2><h2 id="Acknowledgements"><a href="#Acknowledgements" class="headerlink" title="Acknowledgements"></a>Acknowledgements</h2><p>CMU 10-414&#x2F;714: Deep Learning Systems by Prof. Tianqi Chen and Zico Kolter.</p>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://janezair.site">JaneZ</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://janezair.site/2026/01/24/GPU-Acceleration/">https://janezair.site/2026/01/24/GPU-Acceleration/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://janezair.site" target="_blank">Brain of JaneZ in a Jar</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/covers/GPU-Acceleration.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/01/24/25-Fall/" title="25 Fall"><img class="cover" src="/img/covers/25-Fall.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">25 Fall</div></div><div class="info-2"><div class="info-item-1">记录 25 Fall 学期里的学习、旅行和情绪波动，从课程压力到短途出走的真实片段。</div></div></div></a><a class="pagination-related" href="/2026/01/23/Mathematical-Logic-CT-Paper/" title="Mathematical Logic CT Paper"><img class="cover" src="/img/covers/Mathematical-Logic-CT-Paper.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Mathematical Logic CT Paper</div></div><div class="info-2"><div class="info-item-1">CS2950 数理逻辑课程总结与资料整理，面向后续同学复习使用。</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/%E8%AF%81%E4%BB%B6%E7%85%A71.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">JaneZ</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">10</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/JaneZ-2006"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Welcome to explore the Brain of JaneZ in a Jar!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">}</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GPU-Acceleration"><span class="toc-number"></span> <span class="toc-text">GPU Acceleration</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Overview"><span class="toc-number">1.</span> <span class="toc-text">Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-a-GPU"><span class="toc-number">2.</span> <span class="toc-text">What is a GPU?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-a-GPU-1"><span class="toc-number">3.</span> <span class="toc-text">What is a GPU?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-RAM"><span class="toc-number">4.</span> <span class="toc-text">What is RAM?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-Cache"><span class="toc-number">5.</span> <span class="toc-text">What is Cache?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GPU-Architecture"><span class="toc-number">6.</span> <span class="toc-text">GPU Architecture</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GPU-Architecture-1"><span class="toc-number">7.</span> <span class="toc-text">GPU Architecture</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GPU-Programming-mode%EF%BC%9ASIMT"><span class="toc-number">8.</span> <span class="toc-text">GPU Programming mode：SIMT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SIMT-on-GPU-Hardware"><span class="toc-number">9.</span> <span class="toc-text">SIMT on GPU Hardware</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CUDA-cores"><span class="toc-number">10.</span> <span class="toc-text">CUDA cores</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#We-keep-talking-about-CUDA-then-you-guys-may-ask-What-is-CUDA"><span class="toc-number">11.</span> <span class="toc-text">We keep talking about CUDA,then you guys may ask: What is CUDA?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CUDA-Programming-Example-Vector-Addition"><span class="toc-number">12.</span> <span class="toc-text">CUDA Programming Example: Vector Addition</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CUDA-Programming-Example-Vector-Addition-1"><span class="toc-number">13.</span> <span class="toc-text">CUDA Programming Example: Vector Addition</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vector-Addition-Host-Code"><span class="toc-number">14.</span> <span class="toc-text">Vector Addition (Host Code)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-Study-Matrix-Multiplication-on-GPU"><span class="toc-number">15.</span> <span class="toc-text">Case Study: Matrix Multiplication on GPU</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Thread-level-register-tiling"><span class="toc-number">16.</span> <span class="toc-text">Thread-level: register tiling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Block-level-shared-memory-tiling"><span class="toc-number">17.</span> <span class="toc-text">Block-level: shared memory tiling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Block-level-shared-memory-tiling-1"><span class="toc-number">18.</span> <span class="toc-text">Block-level: shared memory tiling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Thanks-for-listening"><span class="toc-number">19.</span> <span class="toc-text">Thanks for listening!</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Acknowledgements"><span class="toc-number">20.</span> <span class="toc-text">Acknowledgements</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/07/28/26-Summer/" title="夏日的光芒渐渐消失......"><img src="/img/covers/Pedri.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="夏日的光芒渐渐消失......"/></a><div class="content"><a class="title" href="/2026/07/28/26-Summer/" title="夏日的光芒渐渐消失......">夏日的光芒渐渐消失......</a><time datetime="2026-07-28T15:14:41.000Z" title="发表于 2026-07-28 23:14:41">2026-07-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/10/ArchLite/" title="ArchLite"><img src="/img/ArchLite.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ArchLite"/></a><div class="content"><a class="title" href="/2026/06/10/ArchLite/" title="ArchLite">ArchLite</a><time datetime="2026-06-10T12:50:20.000Z" title="发表于 2026-06-10 20:50:20">2026-06-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/05/01/ACMAPI/" title="ACMAPI"><img src="/img/covers/ACMAPI.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ACMAPI"/></a><div class="content"><a class="title" href="/2026/05/01/ACMAPI/" title="ACMAPI">ACMAPI</a><time datetime="2026-04-30T19:04:01.000Z" title="发表于 2026-05-01 03:04:01">2026-05-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/04/13/CPU-Scheduling/" title="CPU Scheduling"><img src="/img/covers/CPU-Scheduling.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CPU Scheduling"/></a><div class="content"><a class="title" href="/2026/04/13/CPU-Scheduling/" title="CPU Scheduling">CPU Scheduling</a><time datetime="2026-04-13T03:27:39.000Z" title="发表于 2026-04-13 11:27:39">2026-04-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/03/30/LaTeX-Tutorial/" title="LaTeX-Tutorial"><img src="/img/covers/LaTeX-Tutorial.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LaTeX-Tutorial"/></a><div class="content"><a class="title" href="/2026/03/30/LaTeX-Tutorial/" title="LaTeX-Tutorial">LaTeX-Tutorial</a><time datetime="2026-03-30T06:23:59.000Z" title="发表于 2026-03-30 14:23:59">2026-03-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By JaneZ</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4-b1"></script><script src="/js/main.js?v=5.5.4-b1"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+</code></pre></div></div><h2 id="thanks-for-listening">Thanks for listening!</h2><h2 id="acknowledgements">Acknowledgements</h2><p>CMU 10-414/714: Deep Learning Systems by Prof. Tianqi Chen and Zico Kolter.</p></section><footer class="page__meta"></footer><nav class="pagination"> <a href="https://janezair.site/en/2026/01/24/GPU-Acceleration/" class="pagination--pager" title="GPU Acceleration ">Previous</a> <a href="https://janezair.site/en/2026/01/24/25-Fall/" class="pagination--pager" title="25 Fall ">Next</a></nav></div></article><div class="page__related"><h4 class="page__related-title">You May Also Enjoy</h4><div class="grid__wrapper"><div class="grid__item"><article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork"><h2 class="archive__item-title" itemprop="headline"> <a href="https://janezair.site/2026/08/14/Flashinfer-Learning/" rel="permalink">Flashinfer-Learning </a></h2><p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> less than 1 minute read</p><p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2026-08-14T00:57:37+08:00">August 14, 2026</time></p><p class="archive__item-excerpt" itemprop="description"></p></article></div><div class="grid__item"><article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork"><h2 class="archive__item-title" itemprop="headline"> <a href="https://janezair.site/2026/07/28/26-Summer/" rel="permalink">夏日的光芒渐渐消失…… </a></h2><p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> less than 1 minute read</p><p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2026-07-28T23:14:41+08:00">July 28, 2026</time></p><p class="archive__item-excerpt" itemprop="description"><p>七月生活记录，关于旅行、科研、星露谷、暑校、投稿、世界杯与 F1。</p></p></article></div><div class="grid__item"><article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork"><h2 class="archive__item-title" itemprop="headline"> <a href="https://janezair.site/en/2026/07/28/26-Summer/" rel="permalink">The Glow of Summer Has Faded, Now… </a></h2><p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> 10 minute read</p><p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2026-07-28T23:14:41+08:00">July 28, 2026</time></p><p class="archive__item-excerpt" itemprop="description"><p>A July life record about travel, research, Stardew Valley, summer school, a first paper submission, the World Cup, and F1.</p></p></article></div><div class="grid__item"><article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork"><h2 class="archive__item-title" itemprop="headline"> <a href="https://janezair.site/2026/06/10/ArchLite/" rel="permalink">ArchLite </a></h2><p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> 3 minute read</p><p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published:</strong> <time datetime="2026-06-10T20:50:20+08:00">June 10, 2026</time></p><p class="archive__item-excerpt" itemprop="description"><p>ArchLite 机器学习大作业复盘，比较规则模型、小型 DNN 与 Qwen2.5 LoRA 在静态 load-level prefetching 决策上的表现。</p></p></article></div></div></div></div><div class="page__footer"><footer> <!-- start custom footer snippets --> <!-- Support for MathJax --> <script id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.js"></script> <!-- end custom footer snippets --><div class="page__footer-follow"><ul class="social-icons"><li><strong>Follow:</strong></li><li><a href="https://github.com/JaneZ-2006"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a></li><li><a href="https://janezair.site/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li></ul></div><div class="page__footer-copyright"> &copy; 2026 Yihan Zhu, Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>, a fork of <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.<br /> Site last updated 2026-09-06, <a href="/sitemap/" style="text-transform: uppercase;">Sitemap</a></div></footer></div><script type="module" src="https://janezair.site/assets/js/main.min.js"></script></body></html>

@@ -1,0 +1,1500 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://janezair.site/feed.xml" rel="self" type="application/atom+xml" /><link href="https://janezair.site/" rel="alternate" type="text/html" /><updated>2026-09-06T16:13:19+08:00</updated><id>https://janezair.site/feed.xml</id><title type="html">Yihan Zhu</title><subtitle>Yihan Zhu&apos;s academic homepage and blog</subtitle><author><name>Yihan Zhu</name><email>zhuyihan@sjtu.edu.cn</email></author><entry xml:lang="zh-CN"><title type="html">Flashinfer-Learning</title><link href="https://janezair.site/2026/08/14/Flashinfer-Learning/" rel="alternate" type="text/html" title="Flashinfer-Learning" /><published>2026-08-14T00:57:37+08:00</published><updated>2026-08-14T00:57:37+08:00</updated><id>https://janezair.site/2026/08/14/Flashinfer-Learning</id><content type="html" xml:base="https://janezair.site/2026/08/14/Flashinfer-Learning/"><![CDATA[]]></content><author><name>Yihan Zhu</name><email>zhuyihan@sjtu.edu.cn</email></author><summary type="html"><![CDATA[]]></summary></entry><entry xml:lang="en"><title type="html">The Glow of Summer Has Faded, Now…</title><link href="https://janezair.site/en/2026/07/28/26-Summer/" rel="alternate" type="text/html" title="The Glow of Summer Has Faded, Now…" /><published>2026-07-28T23:14:41+08:00</published><updated>2026-07-28T23:14:41+08:00</updated><id>https://janezair.site/en/2026/07/28/26-Summer-en</id><content type="html" xml:base="https://janezair.site/en/2026/07/28/26-Summer/"><![CDATA[<blockquote>
+  <p>The glow of summer has faded, now… and the moonlight jellies carry on toward the great unknown.</p>
+</blockquote>
+
+<div align="center">
+  <img src="/blog/images/Jellyfish.png" width="60%" />
+</div>
+
+<h1 id="the-great-unknown">The Great Unknown</h1>
+
+<p>It has been more than two months since I last wrote a blog post, and three or four months since my last <strong>Life Record</strong>. Now that it is already the end of July, and I happen to have had a remarkably eventful month, I decided to write it all down.</p>
+
+<p>At the beginning of July, I was “fortunate” enough to be among the first people to finish a pile of <strong>CRs</strong>. On a whim, I bought a ticket to Chongqing and set out on the first solo trip of my life. To be honest, I was not happy with the trip. Traveling alone only made someone who already tends to wake up at noon even more undisciplined. I really admire <a href="https://github.com/Alice-0131">badada</a> in this respect. Each day, I had only a few hours in the afternoon to explore. After two years of undergraduate life, my physical condition has deteriorated dramatically. I am more fragile than the chocolate shell of a Chocliz ice cream bar: more than ten minutes in the sun makes me dizzy and nauseous. Chongqing is famously a furnace, so I spent all three days feeling as if I were about to throw up. I also grew up in the waterways of Jiangnan, and every generation of my family is thoroughly from Jiangsu or Zhejiang. I simply cannot handle the numbing spice of Sichuan and Chongqing cuisine. On my first night there, I ordered <strong>wontons in chili oil</strong> for delivery, and my stomach hurt so badly that I could not sleep. After that I did not dare try any spicy Chongqing food, which of course meant missing quite a few local delicacies. That was a shame. Throughout the trip, I was also harassed by someone who made me <strong>physically uncomfortable</strong>, and I do not want to say more about that here. In short, the trip was unpleasant and left me rather wary of solo travel. Tomorrow, though, I am heading to Quanzhou and Fuzhou with my bestie.</p>
+
+<p>After returning to Shanghai, I got back to work in the lab. Finals week and all the major course projects had held up my research progress, and I was completely lost in my first meeting back. Thanks to a senior student’s guidance, I quickly found my footing and caught up. I then spent about ten days completing a fairly important component. My senior became busy rushing for the HPCA deadline, however, which left me with another gap of almost ten days. During those ten days, I became obsessed with Stardew Valley. That is also where the title of this post comes from. I had actually played Stardew Valley a long time ago, but it did not appeal to me then, and I quit after a few days. Seeing <a href="https://github.com/Jxint001">Yitiaoren</a> so addicted to it made me decide to try again, and just like that, I fell back into it. This time I completely understood what makes the game so wonderful, perhaps because of my state of mind at the moment. Last year I loved playing Honor of Kings, so a laid-back farming game that still required looking up guides on Xiaohongshu did not interest me. But after something very unpleasant happened at the beginning of this year, I never opened Honor of Kings again. Come to think of it, I started playing in third grade, which makes it ten years now. Over those ten years, I have picked it up and put it down many times, each time quitting because of something unpleasant. Stardew Valley, in my view, asks for a whole free evening: you need to clear your mind and immerse yourself completely. With last year’s intense workload, followed by the double assault of coursework and research in the first half of this year, I clearly could not do that. Now I have been lucky enough to find a quiet gap, and my mind is much more at peace. Before summer break, I was constantly anxious. I hoped to push my project forward at full speed over the summer, submit it in September, and use the experience to apply directly for summer research. I soon realized, though, that systems work cannot be completed overnight. My current project has gone through several major refactors and has only now begun to resemble a proper framework. It matters more to make the work solid before submitting it. There is no point rushing summer research applications either. SJTU and Fudan were both added to a blacklist a few days ago, which may mean that getting a J-1 visa will be difficult. If remote work is the only option, the barrier will naturally be somewhat lower. For now, I should focus on the work in front of me. My thoughts about the future have also begun to waver. Recently, HR representatives from several very well-known companies reached out to me, and we had a few conversations. On July 19, I also visited the WAIC exhibition and came away with the strong feeling that if I do not claim a share of this pie soon, there may be none left to claim.</p>
+
+<div align="center">
+  <img src="/blog/images/WAIC1.png" width="60%" />
+</div>
+
+<div align="center">
+  <img src="/blog/images/WAIC2.png" width="60%" />
+</div>
+
+<div align="center">
+  <img src="/blog/images/WAIC3.png" width="60%" />
+  <br />
+  <em>badada and I, two conference freeloaders, sweeping up souvenirs everywhere</em>
+</div>
+
+<p>Of course, I still have not figured out whether I want to enter industry and make money. I was born into a family that is not particularly short of money, so I do not have much to worry about materially. Yet since childhood, I have had an almost obsessive desire for <strong>financial independence</strong>. It was also why, when filling out my Gaokao university choices, I decisively gave up PKU’s Yan Garden, which had been my spiritual anchor throughout senior year. As for academia, I am deeply pessimistic about it and have no desire to linger there. The situation changes too quickly; even the direction of the next month is completely unknown. I love encountering new things and am always willing to try them. I love mathematics, especially algebra, which may be the only traditional thing I truly like. I work on systems, but I am completely uninterested in traditional systems and do not want to touch them. I have no regrets at all about choosing computer science as my major. As someone who loves being wherever the action is, how could I not respond enthusiastically to the trend of the era? Looking ahead, WAIC left me very interested in embodied AI and world models. Perhaps I could move into building the relevant infrastructure someday. As for my current multimodal work, I still cannot see what purpose <code class="language-plaintext highlighter-rouge">image2</code> serves beyond pleasing humans. But after reading a blog post, I came to feel that AI4fun is itself a deeply idealistic pursuit. I used to think OpenAI and Gemini should abandon it entirely. In fact, G seems to have already done so. On second thought, though, it has every reason to exist. I seem to have wandered off topic again. The final day of summer in Stardew Valley is the Dance of the Moonlight Jellies. At that moment, I felt as though I had found an anchor for my life right now: I must keep moving toward the great unknown.</p>
+
+<div align="center">
+  <img src="/blog/images/Jellyfish1.png" width="60%" />
+  <br />
+  <em>It really is beautiful. Sadly, I have no spouse in the game; apparently, if you do, you can watch the jellies dance together with your beloved.</em>
+</div>
+
+<p>From July 12 to July 24, I attended a computer science summer school jointly organized by SJTU, Tsinghua, and PKU. Being rather physically fragile, I took part in almost none of the off-campus visits and only attended a few classes with mandatory check-ins. The quality of the material varied wildly. Overall, it felt as if SJTU had thrown the courses together merely to tick a box, and I was not very satisfied. During the summer school, however, I met several students from the first-year Yao Class and the second-year information science program. Among them were winners of two NOI gold medals, a provincial Gaokao champion, and people whose spoken English was even better than mine. In my first nineteen years, the chance of encountering people like this was no more than 0.1%. They were all nice and outgoing, and I really enjoyed talking with them. I also look forward to possible academic collaboration in the future.</p>
+
+<div align="center">
+  <img src="/blog/images/summercamp.png" width="60%" />
+  <br />
+  <em>🥰🥰🥰</em>
+</div>
+
+<p>This summer, I also completed my first paper submission. After radically reworking my machine learning course project, I tossed the result into the AAAI lottery. My wish is simple: as long as it is not rejected early, that counts as a victory.</p>
+
+<p>And of course, there were the World Cup and F1. Continuing a tradition I started in 2018, I watched the showdown between Spain and Argentina. I have liked Cristiano Ronaldo since 2016. Since practically everyone in my WeChat Moments supports Messi, I hardly even dare admit that, so naturally I was not rooting for Argentina to win. I have also supported Manchester City since 2020. I am very fond of Rodri and De Bruyne, which made Spain versus Belgium painful to watch, and I like Pep Guardiola as well. Unsurprisingly, then, I was supporting Spain. I first noticed Pedri during the 2022 World Cup. Although I am not a Barcelona fan, I really like Pedri himself. A few days ago, during his China tour, I went to Suzhou and saw him in person, which made me incredibly excited. As for F1, the final race before the summer break finally ended the day before yesterday. Lando at last secured his first Grand Prix victory as LN1, and I was delighted. Ferrari’s strategy team, meanwhile, remains as disastrous as ever.</p>
+
+<div align="center">
+  <img src="/blog/images/Pedri1.png" width="60%" />
+</div>
+
+<div align="center">
+  <img src="/blog/images/Pedri2.png" width="60%" />
+</div>
+
+<div align="center">
+  <img src="/blog/images/Pedri3.png" width="60%" />
+</div>
+
+<div align="center">
+  <img src="/blog/images/covers/Pedri.png" width="60%" />
+  <br />
+  <em>Pedri really is so handsome.</em>
+</div>
+
+<p>Overall, I have been fairly relaxed this summer. On the one hand, I did reasonably well in my coursework last semester; on the other, I have also made substantial progress in research. I hope I can maintain this state through the rest of the summer and keep moving toward the great unknown.</p>
+
+<p>Finally, when my bestie and I were making travel plans, we were both so lazy that we kept putting everything off and still had no decent itinerary even today. That led me to begin developing <strong>Vagebot</strong>. Feel free to follow the project. I will finish and open-source it as soon as possible!</p>]]></content><author><name>Yihan Zhu</name><email>zhuyihan@sjtu.edu.cn</email></author><summary type="html"><![CDATA[A July life record about travel, research, Stardew Valley, summer school, a first paper submission, the World Cup, and F1.]]></summary></entry><entry xml:lang="zh-CN"><title type="html">夏日的光芒渐渐消失……</title><link href="https://janezair.site/2026/07/28/26-Summer/" rel="alternate" type="text/html" title="夏日的光芒渐渐消失……" /><published>2026-07-28T23:14:41+08:00</published><updated>2026-07-28T23:14:41+08:00</updated><id>https://janezair.site/2026/07/28/26-Summer</id><content type="html" xml:base="https://janezair.site/2026/07/28/26-Summer/"><![CDATA[<blockquote>
+  <p>夏日的光芒渐渐消失，而月光水母继续向着神秘的未知世界前行……</p>
+</blockquote>
+
+<div align="center">
+  <img src="/blog/images/Jellyfish.png" width="60%" />
+</div>
+
+<h1 id="神秘的未知世界">神秘的未知世界</h1>
+
+<p>笔者已经有两个多月没写博客了，更是有三四个月没写 <strong>Life Record</strong> 了。正好已经到七月底了，笔者碰巧也度过了一个非常精彩的 Jul，遂决定记录一下。</p>
+
+<p>七月刚开始，笔者“有幸”成为了最早完成一堆 <strong>cr</strong> 的人之一，于是即兴买了一张去重庆的机票，开始了人生中第一次 solo trip。说实话，笔者对这次旅行并不满意。solo trip 让长期中午起床的笔者愈发放纵（这一点真是非常佩服<a href="https://github.com/Alice-0131">badada</a>），一天只有下午几个小时的行程。而笔者在经过两年本科生活的摧残后身体素质极具下降，比巧乐兹外壳还脆，一旦在太阳下晒超过 10 分钟就会头晕恶心，重庆又是出了名的火炉，笔者这三天一直处在一种想吐的状态。另外，笔者自幼成长在江南水乡，祖祖辈辈清一色的都是江浙一代人，可以说非常原汁原味的江浙人，完全经受不住川渝麻辣的饮食习惯。到重庆的那一晚点了一个 <strong>红油抄手</strong> 外卖，胃痛的睡不着觉了。笔者便再不敢尝试任何重庆麻辣的食物了，当然也因此错过了不少美味，有些遗憾。旅行过程还持续遭受到<strong>令人生理不适</strong>的人的骚扰，笔者在此不想多说了。总之，这次旅行并不愉快，笔者也因此对 solo trip 产生了阴影（笔者明天和闺蜜一起去泉州/福州😻）。</p>
+
+<p>回上海后，就开始接着忙实验室的事了。期末周和各种大作业让笔者耽误了一些实验室的进度，回来的第一次 meet 让笔者十分摸不着头脑。感谢学长的指导让我很快找回了状态，也很快跟进了。后面花了 10 天左右完成了一个比较重要的板块，但学长赶 HPCA 去了，于是笔者又有了近 10 天的空窗期。在这 10 天中，笔者迷上了星露谷。这也是这篇博客标题的灵感来源。笔者其实在很久以前就玩过星露谷，但当时对这个游戏实在不是很感冒，玩了几天就弃坑了。但看到 <a href="https://github.com/Jxint001">一条人</a> 玩的如此上头，还是决定再试一次，于是就这么再次入坑了。笔者完全 get 到了这款游戏的精彩之处，可能也跟笔者当下的心态有关吧。去年笔者非常喜欢打农，因此对星露谷这种种田休闲还要各种小红书上查攻略的游戏并不感冒。但在今年年初发生的一件很不愉快的事情后，笔者再也没有打开过农。说起来笔者从小学三年级开始农，到如今已有十年了。笔者在这十年中曾多次拾起农又放下农，每次都是因为一些不愉快的事情而放下的😇。星露谷这个游戏，笔者认为是需要一整晚的空余时间，放空心情，完全沉浸在其中的。而显然去年高强度的学习和上半年学业+科研双重攻击下，笔者完全没法做到这一点。但如今笔者非常幸运地有了一段空窗期，心态上比较平和了。在暑假开始前，笔者一直在焦虑，希望暑假能把手上的工作猛猛推进，九月投出去，然后直接用这段经历去套暑研，但很快笔者意识到 sys 的工作并不是一蹴而就的。笔者现在的工作经历了几次比较大的 refactor，才到现在一个初具形态的 framework。把工作做扎实再投更为重要。关于暑研的事，笔者认为急也没用。前几天交复同时被列入黑名单，或许已经意味着 J1 签比较悬了。如果只能做 remote 的话，门槛自然会一定程度上降低一些。还是先忙好手上的活再说吧。而至于未来的出路，也发生了一些动摇。笔者最近收到了几位非常有名的企业的 hr 的联系并聊了一聊，and 笔者在 7.19 参观了 WAIC 的展览，深切地感受到这块蛋糕再不分或许就没的分了。</p>
+
+<div align="center">
+  <img src="/blog/images/WAIC1.png" width="60%" />
+</div>
+
+<div align="center">
+  <img src="/blog/images/WAIC2.png" width="60%" />
+</div>
+
+<div align="center">
+  <img src="/blog/images/WAIC3.png" width="60%" />
+  <br />
+  <em>和 badada 两只会议蝗虫就这样狂嫖纪念品</em>
+</div>
+
+<p>当然笔者在是否就业赚米这一点上同样没有想清楚。笔者出生在一个不怎么缺钞票的家庭，不存在什么后顾之忧。但笔者自幼就对<strong>经济独立</strong>有着近乎偏执的态度，这也是笔者在高考填志愿时毅然决然放弃作为高三一整年精神支柱的燕园的原因。至于学界，笔者对此非常悲观，也不愿驻足。局势变化太快，未来一个月的走势都是一种完全的未知状态。笔者非常喜欢接触新鲜事物，而非常愿意积极尝试。笔者很喜欢数学，尤为喜欢代数，这或许是笔者唯一喜欢的传统的东西了。笔者在做 sys，但对传统 sys 可以说是完全不感兴趣也不愿接触。笔者完全不后悔选择 computer science 作为 major，作为一个很爱凑热闹的人，时代的 trend 怎能不积极应对。至于未来，笔者在看过 WAIC 后，对具身和 world model 产生了较大的兴趣，或许未来可以转去做相关的 infra 建设。至于现在的多模态工作，笔者虽然始终没有找到 image2 除了取悦人类之外还有什么任何别的作用，但后来笔者阅读了一篇博客，又觉得 AI4fun 同样是一件非常理想主义的事，笔者本来觉得 openAI 和 gemini 应当完全放弃（事实上 g 好像已经放弃了），但仔细想想完全有存在的理由。好像不知不觉又扯远了。星露谷夏季的最后一天是月光水母节，好像在那一刻，我找到了当下生活的支点，要继续向着神秘的未知世界前进啊！</p>
+
+<div align="center">
+  <img src="/blog/images/Jellyfish1.png" width="60%" />
+  <br />
+  <em>真的很美啊，可惜我在游戏里没老婆，不然据说能触发和爱人一起看水母起舞🥰🥰</em>
+</div>
+
+<p>笔者在 7.12 - 7.24 参加了 SJTU-THU-PKU 联合举办的计算机科学暑校活动。笔者由于比较脆皮，几乎没有参与任何外出访学活动，只是听了几节强制签到的课程，讲的内容鱼龙混杂，总体来讲像是泥交为了应付而随意开设的，笔者并不是很满意。但笔者在暑校期间认识了几位来自大一姚班和大二信科的同学，其中不乏两块 noi au 得主、某省高考状元和英语口语比笔者还好的人（笔者在前 19 年遇到这类人的概率不超过 0.1%），他们都很 nice，也很开朗，笔者和他们的交流挺开心的，也期待未来在学术上能有一些合作。</p>
+
+<div align="center">
+  <img src="/blog/images/summercamp.png" width="60%" />
+  <br />
+  <em>🥰🥰🥰</em>
+</div>
+
+<p>笔者在这个暑假同样完成了自己的第一次投稿🤣 在爆改了 ML 大作业后，笔者把成果扔给了 AAAI，准备抽奖！许愿只要不被 early rej 就是胜利🤗</p>
+
+<p>哦当然还有世界杯和 F1。笔者延续了从 2018 年开始的习惯，观看了西班牙对战阿根廷的大战。笔者从 2016 年开始喜欢 C罗（出于 puq 清一色梅西球迷，笔者甚至几乎不敢透露这一点），自然不会支持阿根廷夺冠。另外笔者从 20 年开始就一直是曼城的球迷，非常喜欢罗德里和德布劳内（西班牙对比利时真是给我看难受了），也很喜欢瓜帅。故笔者毫不意外地支持西班牙夺冠。笔者在 22 年世界杯的时候认识了佩德里，虽然不是巴萨球迷，但还是很喜欢佩宝个人。于是前几天佩德里中国行笔者前往苏州见到了他本人，另笔者非常兴奋。至于 F1，前天终于结束了夏休前的最后一场比赛。Lando 终于拿下了属于 LN1 的首个分站冠军，笔者非常开心。但窝法依旧雷霆策略组。</p>
+
+<div align="center">
+  <img src="/blog/images/Pedri1.png" width="60%" />
+</div>
+
+<div align="center">
+  <img src="/blog/images/Pedri2.png" width="60%" />
+</div>
+
+<div align="center">
+  <img src="/blog/images/Pedri3.png" width="60%" />
+</div>
+
+<div align="center">
+  <img src="/blog/images/covers/Pedri.png" width="60%" />
+  <br />
+  <em>佩宝真的好帅吧🥰</em>
+</div>
+
+<p>总的来讲，笔者这个暑假心态上还是比较放松的，一方面笔者上学期的学业完成的还算不错，另一方面笔者在科研上也有了比较大的进展。笔者希望在接下来的暑假中能继续保持这种状态，向着神秘的未知世界前行啊！</p>
+
+<p>最后，笔者在和好闺蜜制定旅行计划时，由于都比较懒，故一拖再拖，到今天也没有一个比较好的计划。于是笔者开始了 <strong>Vagebot</strong> 的开发，欢迎各位的关注，笔者会尽快完成并开源！</p>]]></content><author><name>Yihan Zhu</name><email>zhuyihan@sjtu.edu.cn</email></author><category term="Life Record" /><summary type="html"><![CDATA[七月生活记录，关于旅行、科研、星露谷、暑校、投稿、世界杯与 F1。]]></summary></entry><entry xml:lang="en"><title type="html">ArchLite</title><link href="https://janezair.site/en/2026/06/10/ArchLite/" rel="alternate" type="text/html" title="ArchLite" /><published>2026-06-10T20:50:20+08:00</published><updated>2026-06-10T20:50:20+08:00</updated><id>https://janezair.site/en/2026/06/10/ArchLite-en</id><content type="html" xml:base="https://janezair.site/en/2026/06/10/ArchLite/"><![CDATA[<h1 id="archlite-do-static-microarchitecture-decisions-really-need-large-models">ArchLite: Do Static Microarchitecture Decisions Really Need Large Models?</h1>
+
+<p>In recent years, a hot direction in systems research has been <strong>Systems for AI</strong>: how to make large-model training and inference faster, more memory-efficient, and easier to deploy. ArchLite focuses on the opposite question: <strong>Can AI help systems themselves make decisions?</strong> Around April this year, I read the ASPLOS 2026 best paper <a href="https://fact-lab.hkust.edu.hk/publications/conference-paper/2025/xu-2025-pf-llm/3779212.3790202.pdf">PF-LLM: Large Language Model Hinted Hardware Prefetching</a>, and a question came up: why PF-LLM, but not PF-DNN? PF-LLM indeed achieved good results on prefetching decisions, but its model size and training cost are also nontrivial. This led to the machine-learning course project <strong>ArchLite</strong>, a comparative study of model scale for static load-level prefetching.</p>
+
+<p>More specifically, ArchLite tries to answer one question:</p>
+
+<blockquote>
+  <p>For static, local, structured microarchitecture decisions, do we really need large language models?</p>
+</blockquote>
+
+<p>This question was inspired by PF-LLM. PF-LLM models hardware prefetching decisions as prediction tasks over code context. ArchLite does not try to strictly reproduce PF-LLM. Instead, it uses PF-LLM as a case study and investigates model scale itself: on the same locally generated data and labels, it compares rule-based or linear models, compact DNNs, and Qwen2.5 LoRA.</p>
+
+<h2 id="task-predicting-prefetch-hints-from-assembly-context">Task: Predicting Prefetch Hints from Assembly Context</h2>
+
+<p>The concrete task chosen by ArchLite is static load-level prefetching. Each sample corresponds to a static load PC. The input is the assembly context around that load instruction, and the output is a structured label with three fields:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"PF Sel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"PF Degree"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"Filter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Where:</p>
+
+<ul>
+  <li><strong>PF Sel</strong>: which type of prefetcher to choose, such as <code class="language-plaintext highlighter-rouge">stream</code>, <code class="language-plaintext highlighter-rouge">sms</code>, <code class="language-plaintext highlighter-rouge">ip_stride</code>, or <code class="language-plaintext highlighter-rouge">sandbox</code>;</li>
+  <li><strong>PF Degree</strong>: the prefetch degree;</li>
+  <li><strong>Filter</strong>: whether to use a filtering strategy.</li>
+</ul>
+
+<p>This task is different from general code understanding. It does not require code generation or cross-file reasoning. It is a local supervised-learning problem with a limited output space. Therefore it is well suited for testing whether the scale advantage of large models is truly necessary.</p>
+
+<h2 id="how-the-data-is-generated">How the Data Is Generated</h2>
+
+<p>ArchLite’s labels are not manually annotated. They are generated through system simulation.</p>
+
+<p>The overall process is:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GAPBS graph workload
+        ↓
+Execution trace
+        ↓
+Extract static load instructions and assembly context
+        ↓
+ChampSim grid search over prefetch configurations
+        ↓
+Use the configuration with the lowest AMAT for each load PC as the label
+        ↓
+Train and compare LR, DNN, and Qwen2.5 LoRA
+</code></pre></div></div>
+
+<p>GAPBS is used because graph workloads often have irregular memory access patterns, making prefetching decisions nontrivial. ChampSim provides a controllable microarchitecture simulation environment. For each static load PC, ArchLite compares AMAT under different prefetcher configurations and selects the configuration with the lowest AMAT as the supervised label.</p>
+
+<p>The project constructs three datasets, differing in sample-filtering rules:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Dataset</th>
+      <th>Rule</th>
+      <th style="text-align: right">Balanced train</th>
+      <th style="text-align: right">Balanced test</th>
+      <th style="text-align: right">Original test</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>margin002</td>
+      <td><code class="language-plaintext highlighter-rouge">margin &gt;= 0.02</code>, <code class="language-plaintext highlighter-rouge">min count &gt;= 3</code></td>
+      <td style="text-align: right">556</td>
+      <td style="text-align: right">88</td>
+      <td style="text-align: right">192</td>
+    </tr>
+    <tr>
+      <td>nomargin</td>
+      <td>no margin, <code class="language-plaintext highlighter-rouge">min count &gt;= 3</code></td>
+      <td style="text-align: right">1240</td>
+      <td style="text-align: right">232</td>
+      <td style="text-align: right">508</td>
+    </tr>
+    <tr>
+      <td>mincount1_nomargin</td>
+      <td>no margin, <code class="language-plaintext highlighter-rouge">min count &gt;= 1</code></td>
+      <td style="text-align: right">4112</td>
+      <td style="text-align: right">592</td>
+      <td style="text-align: right">2355</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The balanced test split avoids majority-class dominance hiding model weaknesses, while the original test split preserves the natural distribution.</p>
+
+<h2 id="model-comparison">Model Comparison</h2>
+
+<p>ArchLite compares four types of models:</p>
+
+<ol>
+  <li><strong>Majority baseline</strong>: always predicts the most common label in the training set;</li>
+  <li><strong>Logistic Regression</strong>: hashed TF-IDF features over assembly tokens;</li>
+  <li><strong>Compact DNN</strong>: a small three-head MLP predicting the three fields;</li>
+  <li><strong>Qwen2.5 LoRA</strong>: LoRA fine-tuning of <code class="language-plaintext highlighter-rouge">Qwen2.5-Coder-0.5B-Instruct</code>.</li>
+</ol>
+
+<p>The most important results come from the largest dataset, <code class="language-plaintext highlighter-rouge">mincount1_nomargin</code>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Split</th>
+      <th>Model</th>
+      <th style="text-align: right">PF Sel</th>
+      <th style="text-align: right">PF Degree</th>
+      <th style="text-align: right">Filter</th>
+      <th style="text-align: right">Joint</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>balanced</td>
+      <td>Logistic regression</td>
+      <td style="text-align: right">0.5389</td>
+      <td style="text-align: right">0.6402</td>
+      <td style="text-align: right">0.6199</td>
+      <td style="text-align: right">0.2584</td>
+    </tr>
+    <tr>
+      <td>balanced</td>
+      <td>DNN</td>
+      <td style="text-align: right">0.6622</td>
+      <td style="text-align: right">0.6993</td>
+      <td style="text-align: right">0.6554</td>
+      <td style="text-align: right">0.4206</td>
+    </tr>
+    <tr>
+      <td>balanced</td>
+      <td>Qwen2.5 LoRA</td>
+      <td style="text-align: right">0.6858</td>
+      <td style="text-align: right">0.6520</td>
+      <td style="text-align: right">0.6436</td>
+      <td style="text-align: right">0.4291</td>
+    </tr>
+    <tr>
+      <td>original</td>
+      <td>Logistic regression</td>
+      <td style="text-align: right">0.5495</td>
+      <td style="text-align: right">0.6611</td>
+      <td style="text-align: right">0.6102</td>
+      <td style="text-align: right">0.2887</td>
+    </tr>
+    <tr>
+      <td>original</td>
+      <td>DNN</td>
+      <td style="text-align: right">0.6972</td>
+      <td style="text-align: right">0.7231</td>
+      <td style="text-align: right">0.6688</td>
+      <td style="text-align: right">0.4599</td>
+    </tr>
+    <tr>
+      <td>original</td>
+      <td>Qwen2.5 LoRA</td>
+      <td style="text-align: right">0.7227</td>
+      <td style="text-align: right">0.6985</td>
+      <td style="text-align: right">0.6450</td>
+      <td style="text-align: right">0.4603</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Qwen2.5 is clearly stronger than Logistic Regression, but it does not significantly dominate the compact DNN. On the balanced split, Qwen’s joint accuracy is only 0.0085 higher than DNN. On the original split, the two are nearly tied.</p>
+
+<p>This is ArchLite’s core observation: for such local, structured system tasks with clear supervised signals, large models are not necessarily the most cost-effective choice.</p>
+
+<h2 id="a-more-interesting-finding-local-context-is-better">A More Interesting Finding: Local Context Is Better</h2>
+
+<p>ArchLite also performs a context-window ablation. By default, the model can see the full assembly context. But if we keep only the local window around the target load, the result actually improves.</p>
+
+<p>On the largest balanced test split:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Context window</th>
+      <th style="text-align: right">PF Sel</th>
+      <th style="text-align: right">PF Degree</th>
+      <th style="text-align: right">Filter</th>
+      <th style="text-align: right">Joint</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>full</td>
+      <td style="text-align: right">0.6655</td>
+      <td style="text-align: right">0.6943</td>
+      <td style="text-align: right">0.6672</td>
+      <td style="text-align: right">0.4257</td>
+    </tr>
+    <tr>
+      <td>8 lines each side</td>
+      <td style="text-align: right">0.7044</td>
+      <td style="text-align: right">0.7078</td>
+      <td style="text-align: right">0.6875</td>
+      <td style="text-align: right">0.4764</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>In other words, by looking only at eight assembly lines before and after the target load, the compact DNN reaches 0.4764 joint accuracy, exceeding full-context DNN and also exceeding the current Qwen2.5 LoRA result of 0.4291.</p>
+
+<p>This suggests that effective signals for this task may be concentrated near the target instruction. For microarchitecture decisions, more context is not always better. A suitable local representation may match the problem structure more closely.</p>
+
+<h2 id="amat-proxy-not-just-classification-accuracy">AMAT Proxy: Not Just Classification Accuracy</h2>
+
+<p>Classification accuracy only tells us whether the model predicts the same label. But system tasks ultimately care about performance. Therefore ArchLite also computes an AMAT-level proxy: mapping the predicted prefetch configuration back to ChampSim results and estimating how much oracle prefetching benefit it recovers.</p>
+
+<p>Results:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Model</th>
+      <th style="text-align: right">Predicted AMAT</th>
+      <th style="text-align: right">Recovery vs no-prefetch</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Majority</td>
+      <td style="text-align: right">173.1443</td>
+      <td style="text-align: right">0.2252</td>
+    </tr>
+    <tr>
+      <td>Logistic regression</td>
+      <td style="text-align: right">147.6176</td>
+      <td style="text-align: right">0.4916</td>
+    </tr>
+    <tr>
+      <td>DNN</td>
+      <td style="text-align: right">127.4078</td>
+      <td style="text-align: right">0.6966</td>
+    </tr>
+    <tr>
+      <td>Qwen2.5 LoRA</td>
+      <td style="text-align: right">126.8828</td>
+      <td style="text-align: right">0.6960</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>DNN and Qwen2.5 have almost identical AMAT recovery. This further shows that the compact DNN is not merely close in classification metrics; it also achieves similar downstream performance proxy metrics.</p>
+
+<h2 id="archlites-conclusion">ArchLite’s Conclusion</h2>
+
+<p>ArchLite is not saying that LLMs have no value for architecture tasks. Large models may be more suitable for cross-function reasoning, source-code semantic understanding, low-sample transfer, explanation generation, and similar tasks.</p>
+
+<p>It emphasizes a finer judgment:</p>
+
+<blockquote>
+  <p>When the task is local, the output space is limited, and labels can be obtained through simulation or measurement, model scale should be treated as a system design parameter, not as something that is bigger by default.</p>
+</blockquote>
+
+<p>For tasks like static load-level prefetching, compact DNNs can already capture many learnable signals while being cheaper to train, infer, and deploy.</p>
+
+<h2 id="limitations-and-future-work">Limitations and Future Work</h2>
+
+<p>Current ArchLite is still a local-data study rather than a complete industrial system. Its main limitations include:</p>
+
+<ul>
+  <li>workloads mainly come from GAPBS and do not yet cover SPEC, server workloads, or broader programs;</li>
+  <li>labels come from ChampSim simulation and may differ from real hardware behavior;</li>
+  <li>the current split is closer to held-out input generalization than strict cross-program generalization;</li>
+  <li>Qwen, DNN, and LR have different hyperparameter search spaces, so the results should be interpreted as a controlled practical comparison rather than an exhaustive search.</li>
+</ul>
+
+<p>Future work can expand to more workloads, stricter cross-program tests, more realistic hardware validation, and more microarchitecture decisions, such as cache bypass, branch behavior, memory dependence, and load/store scheduling.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>ArchLite’s core value is not proposing a new prefetcher. It raises a system design question: does AI for Systems always need large models?</p>
+
+<p>At least on this static prefetching decision task, the answer is not absolute. Qwen2.5 LoRA is effective, but a compact DNN is already very close and even stronger under a local-context setting.</p>
+
+<p>This gives AI for Systems a practical lesson: before introducing LLMs into system optimization, we should carefully examine task granularity, label source, output space, and deployment cost. Many times, the truly suitable model is not the largest one, but the one that best matches the structure of the problem.</p>]]></content><author><name>Yihan Zhu</name><email>zhuyihan@sjtu.edu.cn</email></author><summary type="html"><![CDATA[A machine-learning course project review comparing rule-based models, compact DNNs, and Qwen2.5 LoRA on static load-level prefetching decisions.]]></summary></entry><entry xml:lang="zh-CN"><title type="html">ArchLite</title><link href="https://janezair.site/2026/06/10/ArchLite/" rel="alternate" type="text/html" title="ArchLite" /><published>2026-06-10T20:50:20+08:00</published><updated>2026-06-10T20:50:20+08:00</updated><id>https://janezair.site/2026/06/10/ArchLite</id><content type="html" xml:base="https://janezair.site/2026/06/10/ArchLite/"><![CDATA[<h1 id="archlite静态微体系结构决策真的需要大模型吗">ArchLite：静态微体系结构决策真的需要大模型吗？</h1>
+
+<p>过去几年，系统研究里一个很热的方向是 <strong>System for AI</strong>：怎样让大模型训练和推理更快、更省显存、更容易部署。ArchLite 关注的是反方向的问题：<strong>AI 能不能帮助系统本身做决策？</strong> 在今年四月份左右，笔者读了ASPLOS26 best paper <a href="https://fact-lab.hkust.edu.hk/publications/conference-paper/2025/xu-2025-pf-llm/3779212.3790202.pdf">PF-LLM: Large Language Model Hinted Hardware Prefetching</a>，产生了一个疑惑，why PF-LLM，but not PF-DNN？PF-LLM 的确在预取决策上取得了不错的效果，但它的模型规模和训练成本也不小。于是便有了这份机器学习大作业———— <strong>ArchLite</strong>，一个针对静态 load-level prefetching 任务的模型规模对比研究。</p>
+
+<p>更具体一点，ArchLite 想回答一个问题：</p>
+
+<blockquote>
+  <p>对于静态、局部、结构化的微体系结构决策，我们真的需要大语言模型吗？</p>
+</blockquote>
+
+<p>这个问题来自 PF-LLM 的启发。PF-LLM 将硬件预取相关决策建模成代码上下文上的预测任务。ArchLite 没有尝试严格复现 PF-LLM，而是把它作为一个案例，研究模型规模本身：在同一批本地生成的数据和标签上，比较规则/线性模型、小型 DNN 和 Qwen2.5 LoRA 的表现。</p>
+
+<h2 id="任务从汇编上下文预测预取-hint">任务：从汇编上下文预测预取 hint</h2>
+
+<p>ArchLite 选择的具体任务是静态 load-level prefetching。每个样本对应一个静态 load PC，输入是该 load 指令附近的汇编上下文，输出是一个三字段结构化标签：</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"PF Sel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"PF Degree"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"Filter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>其中：</p>
+
+<ul>
+  <li><strong>PF Sel</strong>：选择哪类预取器，例如 <code class="language-plaintext highlighter-rouge">stream</code>、<code class="language-plaintext highlighter-rouge">sms</code>、<code class="language-plaintext highlighter-rouge">ip_stride</code>、<code class="language-plaintext highlighter-rouge">sandbox</code> 等；</li>
+  <li><strong>PF Degree</strong>：预取程度；</li>
+  <li><strong>Filter</strong>：是否采用过滤策略。</li>
+</ul>
+
+<p>这个任务和通用代码理解不一样。它不要求生成代码，也不需要跨文件推理，而是一个局部的、有限输出空间的监督学习问题。因此它很适合用来检验：大模型的规模优势是否真的必要。</p>
+
+<h2 id="数据如何生成">数据如何生成</h2>
+
+<p>ArchLite 的标签不是人工标注的，而是通过系统模拟生成的。</p>
+
+<p>整体流程可以概括为：</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GAPBS 图算法 workload
+        ↓
+执行 trace
+        ↓
+提取静态 load 指令及其汇编上下文
+        ↓
+ChampSim 网格搜索不同预取配置
+        ↓
+用每个 load PC 上 AMAT 最低的配置作为标签
+        ↓
+训练并比较 LR、DNN、Qwen2.5 LoRA
+</code></pre></div></div>
+
+<p>这里使用 GAPBS 是因为图计算 workload 往往有不规则访存模式，预取决策并不容易。ChampSim 则提供可控的微体系结构模拟环境。对每个静态 load PC，ArchLite 会比较不同预取器配置下的 AMAT，然后选择 AMAT 最低的配置作为监督标签。</p>
+
+<p>项目中构造了三组数据集，区别在于样本过滤规则不同：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Dataset</th>
+      <th>规则</th>
+      <th style="text-align: right">Balanced train</th>
+      <th style="text-align: right">Balanced test</th>
+      <th style="text-align: right">Original test</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>margin002</td>
+      <td><code class="language-plaintext highlighter-rouge">margin &gt;= 0.02</code>, <code class="language-plaintext highlighter-rouge">min count &gt;= 3</code></td>
+      <td style="text-align: right">556</td>
+      <td style="text-align: right">88</td>
+      <td style="text-align: right">192</td>
+    </tr>
+    <tr>
+      <td>nomargin</td>
+      <td>no margin, <code class="language-plaintext highlighter-rouge">min count &gt;= 3</code></td>
+      <td style="text-align: right">1240</td>
+      <td style="text-align: right">232</td>
+      <td style="text-align: right">508</td>
+    </tr>
+    <tr>
+      <td>mincount1_nomargin</td>
+      <td>no margin, <code class="language-plaintext highlighter-rouge">min count &gt;= 1</code></td>
+      <td style="text-align: right">4112</td>
+      <td style="text-align: right">592</td>
+      <td style="text-align: right">2355</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>其中，balanced test 用于避免多数类掩盖模型缺陷，original test 则保留自然分布。</p>
+
+<h2 id="模型比较">模型比较</h2>
+
+<p>ArchLite 比较了四类模型：</p>
+
+<ol>
+  <li><strong>Majority baseline</strong>：总是预测训练集中最常见的标签；</li>
+  <li><strong>Logistic Regression</strong>：基于汇编 token 的 hashed TF-IDF 特征；</li>
+  <li><strong>Compact DNN</strong>：小型三头 MLP，预测三个字段；</li>
+  <li><strong>Qwen2.5 LoRA</strong>：对 <code class="language-plaintext highlighter-rouge">Qwen2.5-Coder-0.5B-Instruct</code> 做 LoRA 微调。</li>
+</ol>
+
+<p>最关键的结果来自最大数据集 <code class="language-plaintext highlighter-rouge">mincount1_nomargin</code>：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Split</th>
+      <th>Model</th>
+      <th style="text-align: right">PF Sel</th>
+      <th style="text-align: right">PF Degree</th>
+      <th style="text-align: right">Filter</th>
+      <th style="text-align: right">Joint</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>balanced</td>
+      <td>Logistic regression</td>
+      <td style="text-align: right">0.5389</td>
+      <td style="text-align: right">0.6402</td>
+      <td style="text-align: right">0.6199</td>
+      <td style="text-align: right">0.2584</td>
+    </tr>
+    <tr>
+      <td>balanced</td>
+      <td>DNN</td>
+      <td style="text-align: right">0.6622</td>
+      <td style="text-align: right">0.6993</td>
+      <td style="text-align: right">0.6554</td>
+      <td style="text-align: right">0.4206</td>
+    </tr>
+    <tr>
+      <td>balanced</td>
+      <td>Qwen2.5 LoRA</td>
+      <td style="text-align: right">0.6858</td>
+      <td style="text-align: right">0.6520</td>
+      <td style="text-align: right">0.6436</td>
+      <td style="text-align: right">0.4291</td>
+    </tr>
+    <tr>
+      <td>original</td>
+      <td>Logistic regression</td>
+      <td style="text-align: right">0.5495</td>
+      <td style="text-align: right">0.6611</td>
+      <td style="text-align: right">0.6102</td>
+      <td style="text-align: right">0.2887</td>
+    </tr>
+    <tr>
+      <td>original</td>
+      <td>DNN</td>
+      <td style="text-align: right">0.6972</td>
+      <td style="text-align: right">0.7231</td>
+      <td style="text-align: right">0.6688</td>
+      <td style="text-align: right">0.4599</td>
+    </tr>
+    <tr>
+      <td>original</td>
+      <td>Qwen2.5 LoRA</td>
+      <td style="text-align: right">0.7227</td>
+      <td style="text-align: right">0.6985</td>
+      <td style="text-align: right">0.6450</td>
+      <td style="text-align: right">0.4603</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Qwen2.5 明显强于 Logistic Regression，但它并没有显著压倒小型 DNN。在 balanced split 上，Qwen 的 joint accuracy 只比 DNN 高 0.0085；在 original split 上，两者几乎持平。</p>
+
+<p>这正是 ArchLite 的核心观察：对于这种局部、结构化、监督信号明确的系统任务，大模型并不一定是最划算的选择。</p>
+
+<h2 id="更有意思的发现局部上下文反而更好">更有意思的发现：局部上下文反而更好</h2>
+
+<p>ArchLite 还做了 context-window ablation。默认情况下，模型可以看到完整汇编上下文；但如果只保留目标 load 周围的局部窗口，结果反而更好。</p>
+
+<p>在最大 balanced test 上：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Context window</th>
+      <th style="text-align: right">PF Sel</th>
+      <th style="text-align: right">PF Degree</th>
+      <th style="text-align: right">Filter</th>
+      <th style="text-align: right">Joint</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>full</td>
+      <td style="text-align: right">0.6655</td>
+      <td style="text-align: right">0.6943</td>
+      <td style="text-align: right">0.6672</td>
+      <td style="text-align: right">0.4257</td>
+    </tr>
+    <tr>
+      <td>8 lines each side</td>
+      <td style="text-align: right">0.7044</td>
+      <td style="text-align: right">0.7078</td>
+      <td style="text-align: right">0.6875</td>
+      <td style="text-align: right">0.4764</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>也就是说，只看目标 load 前后各 8 行汇编，小型 DNN 的 joint accuracy 达到 0.4764，超过了 full-context DNN，也超过了当前 Qwen2.5 LoRA 的 0.4291。</p>
+
+<p>这说明这个任务的有效信号可能主要集中在目标指令附近。对微体系结构决策来说，更多上下文不一定更好；合适的局部表示反而更匹配问题本身。</p>
+
+<h2 id="amat-proxy不仅是分类准确率">AMAT proxy：不仅是分类准确率</h2>
+
+<p>分类准确率只能说明模型是否预测到同一个标签，但系统任务最终关心的是性能。因此 ArchLite 还计算了 AMAT-level proxy：把模型预测的预取配置映射回 ChampSim 结果，估计它能恢复多少 oracle prefetching benefit。</p>
+
+<p>结果如下：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Model</th>
+      <th style="text-align: right">Predicted AMAT</th>
+      <th style="text-align: right">Recovery vs no-prefetch</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Majority</td>
+      <td style="text-align: right">173.1443</td>
+      <td style="text-align: right">0.2252</td>
+    </tr>
+    <tr>
+      <td>Logistic regression</td>
+      <td style="text-align: right">147.6176</td>
+      <td style="text-align: right">0.4916</td>
+    </tr>
+    <tr>
+      <td>DNN</td>
+      <td style="text-align: right">127.4078</td>
+      <td style="text-align: right">0.6966</td>
+    </tr>
+    <tr>
+      <td>Qwen2.5 LoRA</td>
+      <td style="text-align: right">126.8828</td>
+      <td style="text-align: right">0.6960</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>DNN 和 Qwen2.5 的 AMAT recovery 几乎一样。这进一步说明，小型 DNN 不只是分类指标接近，在下游性能代理指标上也能达到相近效果。</p>
+
+<h2 id="archlite-的结论">ArchLite 的结论</h2>
+
+<p>ArchLite 并不是说 LLM 对体系结构任务没有价值。大模型可能更适合跨函数推理、源代码语义理解、低样本迁移、解释生成等任务。</p>
+
+<p>它想强调的是一个更细的判断：</p>
+
+<blockquote>
+  <p>当任务是局部的、输出空间有限的、标签可以通过模拟或测量获得时，模型规模应该是一个系统设计参数，而不是默认越大越好。</p>
+</blockquote>
+
+<p>对于静态 load-level prefetching 这样的任务，小型 DNN 已经能捕捉大量可学习信号，并且训练、推理和部署成本都更低。</p>
+
+<h2 id="局限与未来方向">局限与未来方向</h2>
+
+<p>当前 ArchLite 仍然是一个本地数据研究，而不是完整工业级系统。它的主要局限包括：</p>
+
+<ul>
+  <li>workload 主要来自 GAPBS，尚未覆盖 SPEC、server workload 等更广泛程序；</li>
+  <li>标签来自 ChampSim 模拟，和真实硬件行为可能存在差异；</li>
+  <li>当前 split 更接近 held-out input generalization，而不是严格的 cross-program generalization；</li>
+  <li>Qwen、DNN 和 LR 的调参空间不同，因此结果应理解为受控实践比较，而不是穷尽搜索。</li>
+</ul>
+
+<p>未来可以继续扩展到更多 workload、更严格的跨程序测试、更真实的硬件验证，以及更多微体系结构决策，例如 cache bypass、branch behavior、memory dependence、load/store scheduling 等。</p>
+
+<h2 id="总结">总结</h2>
+
+<p>ArchLite 的核心价值不在于提出一个新的预取器，而在于提出了一个系统设计问题：AI for Systems 是否总是需要大模型？</p>
+
+<p>至少在这个静态预取决策任务上，答案并不绝对。Qwen2.5 LoRA 有效，但小型 DNN 已经非常接近，甚至在局部上下文设置下更强。</p>
+
+<p>这给 AI for Systems 一个很实际的启发：在把 LLM 引入系统优化之前，应该先认真判断任务粒度、标签来源、输出空间和部署成本。很多时候，真正合适的模型不是最大的，而是最匹配问题结构的。</p>]]></content><author><name>Yihan Zhu</name><email>zhuyihan@sjtu.edu.cn</email></author><category term="mlsys" /><summary type="html"><![CDATA[ArchLite 机器学习大作业复盘，比较规则模型、小型 DNN 与 Qwen2.5 LoRA 在静态 load-level prefetching 决策上的表现。]]></summary></entry><entry xml:lang="en"><title type="html">ACMAPI</title><link href="https://janezair.site/en/2026/05/01/ACMAPI/" rel="alternate" type="text/html" title="ACMAPI" /><published>2026-05-01T03:04:01+08:00</published><updated>2026-05-01T03:04:01+08:00</updated><id>https://janezair.site/en/2026/05/01/ACMAPI-en</id><content type="html" xml:base="https://janezair.site/en/2026/05/01/ACMAPI/"><![CDATA[<h1 id="building-the-acmapi-relay">Building the ACMAPI Relay</h1>
+
+<h2 id="background">Background</h2>
+
+<p>The story began when I attended the <strong>ACM Honors Class midterm meeting</strong> at the end of April. At the meeting, senior wankupi said that no one in our class had volunteered to build an LLM API relay, so the sophomores collectively received yyu’s education once again. At that time, after being badly hit by <strong>Copilot Pro</strong> and <strong>Apple server bugs that prevented region changes</strong>, I was furious and started evaluating LLM relay services that could use the <strong>Opus</strong> series. I also became interested in building such a relay myself. Meanwhile, Parsifal told me that he wanted to earn money by building a relay. I was very tempted, because recently I had spent a large amount of money on tokens, servers, domains, IPs, and birthday gifts for many people. Even a young lady could not hold on forever, so I decided to earn some financial support myself. All these reasons led me to find senior kupi and take on the relay-building task. After nearly a full day of exploration on April 30, with P’s help, I had a fairly clear design and successfully ran it locally. So I decided to write a blog post recording the whole process of <strong>building an API relay from scratch</strong>.</p>
+
+<h2 id="initial">Initial</h2>
+
+<p>At first, the idea was to deploy the relay on an overseas server and let that server forward requests to an overseas static residential IP, in order to avoid Anthropic’s almost terrifying risk controls. Later, after learning that we could obtain access to an ACM class server, we decided to deploy the relay on that server first, then forward subsequent requests to an overseas static residential IP.</p>
+
+<h3 id="a-small-episode">A Small Episode</h3>
+
+<p>During the May Day holiday, I tried to work from home, but repeatedly failed to connect to the server. Later I learned that the IP under WSL was still my home IP, not the SJTU IP after connecting to the VPN, while the Windows IP was the SJTU IP. So I connected from Windows. Even after enabling Windows network mirroring for WSL, it still could not connect. This left another unresolved pitfall.</p>
+
+<h3 id="relay-framework">Relay Framework</h3>
+
+<p>Mainstream relay frameworks include <strong>oneAPI</strong>, <strong>newAPI</strong>, <strong>sub2API</strong>, and others. newAPI is the earliest and relatively most complete, but I had previously used an almost terrible site based on newAPI, so I did not have a good impression of it. In the end I chose sub2API, mainly because its code is relatively clean and its features are complete enough for our needs.</p>
+
+<h3 id="frontend-polishing">Frontend Polishing</h3>
+
+<p>I made some frontend beautification changes, turning sub2API into ACMAPI.</p>
+
+<h3 id="domain-and-intranet-tunneling">Domain and Intranet Tunneling</h3>
+
+<p>To let external users access the relay deployed on the server, we needed a domain and an intranet tunneling tool. We chose <strong>Cloudflare</strong> for tunneling because it is simple and provides free service. We registered a domain. A <code class="language-plaintext highlighter-rouge">.top</code> domain costs only 14 RMB, which made me wonder what my recently renewed 125 RMB <code class="language-plaintext highlighter-rouge">.site</code> domain even means. We pointed it to the address provided by Cloudflare, so external users could access our relay through the domain. It successfully ran locally.</p>
+
+<p>At that moment, I did not know that the real challenges were still ahead.</p>
+
+<h2 id="server-deployment">Server Deployment</h2>
+
+<p>First, sub2API has a somewhat strange frontend/backend structure. The frontend is written in TypeScript and uses <code class="language-plaintext highlighter-rouge">pnpm</code>, while the backend is written in Go.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>frontend
+pnpm <span class="nb">install
+</span>pnpm run build
+
+<span class="nb">cd</span> ../backend
+go build <span class="nt">-tags</span> embed <span class="nt">-o</span> sub2api ./cmd/server
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">pnpm</code> and <code class="language-plaintext highlighter-rouge">go build</code> were almost destructive for our ACM class server. The machine has very little memory and sits behind the SJTU firewall. <code class="language-plaintext highlighter-rouge">pnpm build</code> takes a lot of space, and the frontend exploded before compilation finished. The backend compilation was even worse. Go depends on many GitHub-hosted packages, and SJTU’s network environment is extremely unfriendly, causing dependency downloads to fail repeatedly and eventually breaking the build. After being stuck for a whole night, we changed strategy: compile everything locally and throw the results onto the server. Here we recommend <strong>rsync</strong> for data transfer. It is much, much more efficient than <strong>scp</strong>.</p>
+
+<p>Next we installed the database and related services on the server, then did another round of tunneling. At that point, the relay deployed on the ACM class server could already be accessed normally.</p>
+
+<p>Then we started considering IP proxy configuration. This was the biggest difficulty.</p>
+
+<p>We found that a server deployed behind the SJTU firewall simply could not connect normally to a static residential IP. Overseas static residential IPs usually require an extra overseas datacenter IP proxy before sending requests. Naturally, the idea became: <strong>add a proxy layer on the ACM class server</strong>. But if the server could not even access GitHub, how could we install Clash? This became a dead loop. After another night of exploration, we finally installed Clash through a temporary proxy. Because of SJTU DNS restrictions, not every subscription worked with Clash. For this, I was <strong>forced to obtain several more proxies</strong>. Eventually I found a few that could subscribe successfully. Then, as expected, something unexpected happened. After two proxy layers, we could successfully connect to the overseas residential IP, but the double proxy caused a strange issue: we could not access <strong>Anthropic</strong> or <strong>OpenAI</strong> at all. It seemed like they detected the SJTU IP or datacenter IP somewhere in the path and blocked it directly.</p>
+
+<p>So we concluded: <strong>it is not feasible to access Anthropic and OpenAI through a relay deployed on an on-campus server</strong>. Later, we tried the same setup on a Hong Kong server and succeeded. That became our current commercial relay, <strong>joypiggy</strong>. If you are interested, feel free to message me privately.</p>
+
+<p>Just when I had run out of options, Boss Zheng told me that we only needed to connect to an upstream relay. Bruh. If it was that simple, I had already done it long ago. What even was that.</p>
+
+<h2 id="jaccount-authentication">jAccount Authentication</h2>
+
+<p>This is the part I am proud of: from idea design to implementation and successful running, I completed it independently without outside intervention. jAccount authentication is an important feature of our relay. It ensures that only SJTU students can use it. The key is integrating with SJTU’s authentication system and verifying user identity information.</p>
+
+<p>If you are interested, you can read <a href="https://developer.sjtu.edu.cn/auth/jaccount.html">this article</a>. The final implementation added a jAccount login button on the frontend login page. After clicking it, users are redirected to SJTU’s authentication page, enter their jAccount username and password, and after successful authentication receive a token containing user information. Our relay verifies whether the token is valid, and if it is, allows the user to continue using the relay.</p>
+
+<h2 id="regrets-or-maybe-future-work">Regrets, or Maybe Future Work</h2>
+
+<p>Our original plan was to access it through <code class="language-plaintext highlighter-rouge">acm.sjtu.edu.cn/llmapi</code>, using an <strong>nginx</strong> reverse proxy configuration. Unfortunately, the backend base URL modification logic was too complex, and it seemed related to the jAccount authentication redirect URL. In the end, we could only use the domain I bought. Although that domain is cheap, I still want to solve this issue if there is a chance later.</p>
+
+<h2 id="website-operations">Website Operations</h2>
+
+<p>Before this, I had no website operations experience at all. During the process, I encountered many problems: server environment configuration, database installation and configuration, domain DNS, intranet tunneling, and so on. Every problem gave me headaches. But through constant learning and trial, I eventually built the relay successfully. This is also the part that gave me the strongest sense of achievement.</p>
+
+<p>Senior wankupi gave me many suggestions on website operations, including <strong>systemd service</strong> configuration and <strong>postgres</strong> database usage. Many thanks.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>The reason we spent so much effort building this relay is, frankly, Anthropic and OpenAI’s various restrictions. It is quite emotional. Has study and research really become a war over tokens? I do not understand.</p>
+
+<p>On April 30, 2026, I posted a topic on Shuiyuan: <strong>I want to know what fellow SJTU students think about API relays</strong>. https://shuiyuan.sjtu.edu.cn/t/topic/470419 SJTU students are welcome to vote.</p>
+
+<p>And, to repeat once more, if anyone is interested in a cheap, full-power Codex relay without watered-down models, please contact me. Our current commercial relay <strong>joypiggy</strong> is already online. Welcome to use it.</p>
+
+<p>Finally, thank you to all the seniors, classmates, and Shuiyuan friends who helped me. I am lucky to have you.</p>]]></content><author><name>Yihan Zhu</name><email>zhuyihan@sjtu.edu.cn</email></author><summary type="html"><![CDATA[A practical record of building an LLM API relay from scratch, including servers, domains, and network architecture.]]></summary></entry><entry xml:lang="zh-CN"><title type="html">ACMAPI</title><link href="https://janezair.site/2026/05/01/ACMAPI/" rel="alternate" type="text/html" title="ACMAPI" /><published>2026-05-01T03:04:01+08:00</published><updated>2026-05-01T03:04:01+08:00</updated><id>https://janezair.site/2026/05/01/ACMAPI</id><content type="html" xml:base="https://janezair.site/2026/05/01/ACMAPI/"><![CDATA[<h1 id="acmapi-中转站搭建">ACMAPI 中转站搭建</h1>
+
+<h2 id="bg">bg</h2>
+
+<p>事情的起因是这样的，笔者在四月末的某一天参加了 <strong>ACM班中期座谈会</strong>，会上 wankupi 学长说我们班没有人volunterr去搭建一个大模型的API 中转站，于是大二集体<strong>又又又</strong>接受了yyu的教育😆 彼时笔者在被 <strong>copilot pro</strong>和<strong>Apple 服务器出bug无法修改地区</strong> 狠狠阴了一把后，气急败坏，转头开始测评起了能用 <strong>opus</strong>系列的大模型中转站，当然也对搭建中转站本身产生了一些兴趣。同时Parsifal跟我说他想通过搭建中转站赚米，笔者听了十分心动，因为笔者近期在token、服务器、域名、ip、以及给一堆人买生日礼物身上花掉了大笔大笔的钱，即便是大小姐也撑不住了，决定要靠自己获得一些经济支持。种种原因就促成了笔者去找了 kupi学长，揽下了搭中转站的活。经过4月30号近一天的摸索，笔者在P老师的帮助下有了一个较为清晰的设计，在本机上也跑成功了，遂决定写一篇博客，记录一下 <strong>从 0 开始搭建API中转站</strong> 的全过程。</p>
+
+<h2 id="initial">Initial</h2>
+<p>最开始，想法是把中转站部署在一台海外服务器上，由海外服务器统一转发到一个海外静态住宅ip，以此来规避<strong>Anthropic</strong> 近乎恐怖的封控力度。但后来得知可以获得ACM班服务器的使用权限，我们最终选择了把中转站部署到这台服务器上，再后续将请求转发到海外静态住宅ip。</p>
+
+<h3 id="小插曲">小插曲</h3>
+<p>笔者五一回家期间试图在家干活，连服务器的时候却屡屡碰壁，后来才得知wsl下的ip一直是家里的ip而非连接交大VPN后的交大ip，但windows下的ip是交大ip，遂走了windows连。后来给wsl做了windows网络镜像后依然没法连上，也是留下了一个坑点了。</p>
+
+<h3 id="中转站框架">中转站框架</h3>
+<p>主流的中转站框架有 <strong>oneAPI</strong>、<strong>newAPI</strong>、<strong>sub2API</strong>等，newAPI是最早的也是相对功能最完善的，但笔者先前用过一个基于newAPI的近乎糟糕的站，所以对 newAPI的印象不太好，最终选择了sub2API，主要是因为它的代码相对简洁，且功能也比较完善，能够满足我们的需求。</p>
+
+<h3 id="前端修缮">前端修缮</h3>
+<p>作了一些前端的美化工作，turn sub2API to ACMAPI。</p>
+
+<h3 id="域名和内网穿透">域名和内网穿透</h3>
+<p>为了让外网能够访问到部署在服务器上的中转站，我们需要一个域名和内网穿透工具。我们选择了 <strong>cloudflare</strong> 作为内网穿透工具，因为它简单易用，且提供了免费的服务。我们注册了一个域名（.top居然只要14，我刚续费125的.site算什么），并将其解析到 cloudflare 提供的地址上，这样外网用户就可以通过这个域名访问我们的中转站了。成功在本机上跑通了。</p>
+
+<p>此时，还不知道，前方的挑战才刚刚开始。</p>
+
+<h2 id="服务器部署">服务器部署</h2>
+<p>首先，sub2api的前后端较为奇怪，前端采用 typescript 编写，用<code class="language-plaintext highlighter-rouge">pnpm</code>进行包管理，而后端则是 go 编写。</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>frontend
+pnpm <span class="nb">install
+</span>pnpm run build
+
+<span class="nb">cd</span> ../backend
+go build <span class="nt">-tags</span> embed <span class="nt">-o</span> sub2api ./cmd/server
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">pnpm</code> 和 <code class="language-plaintext highlighter-rouge">go build</code> 对我们的ACM班服务器来说简直是毁灭性的。这是一台内存极小并且在交大防火墙内的服务器，pnpm build需要占用很大的空间，前端还没编译完就炸了。更糟糕的是后端的编译。go语言基于github的依赖包太多，而交大的网络环境又极其不友好，导致编译过程中经常出现下载依赖包失败的情况，最终导致编译失败。被硬控了一个晚上后，我们转变思路，直接在本地编译好一切，统一扔到服务器上。这里我们推荐采用<strong>rsync</strong>的数据传输方式，效率比<strong>scp</strong>高很多很多。</p>
+
+<p>接下来就是在服务器上装数据库这些，并且又进行了一次内网穿透，至此其实部署在ACM班服务器上的中转站已经可以正常访问了。</p>
+
+<p>接着开始考虑ip代理配置。这也是遇到的最大的困难。</p>
+
+<p>我们发现，部署在交大防火墙内的服务器根本无法正常连接到静态住宅ip。海外静态住宅ip其实都需要加一层海外机房ip的代理后再发去请求。所以想法自然就来到了，<strong>在acm班服务器上加一层代理</strong>。然而连github都访问不了，又该如何装 clash 呢？就这样陷入了一个死循环。当然又经过了一个晚上的摸索，通过了临时代理的方式，成功装好了clash。同样受限于交大dns，并非所有的订阅都能用在clash上。为此笔者<strong>被迫又获得了好几个梯子</strong>（此处应有tieba_hehe），终于找到了几个能成功订阅的。不出意外又要出意外了，经过两次代理后，虽然能够实现成功连通到海外住宅ip上了，但两次代理又带来了很奇怪的问题，完全无法访问<strong>Anthropic</strong>和<strong>OpenAI</strong>，疑似是这两家检测出了轨迹上的交大ip或是机房ip，直接封了。</p>
+
+<p>所以我们得出结论：<strong>想通过部署在校内服务器上的中转站访问Anthropic和OpenAI是行不通的</strong>。后续，我们尝试在一台港区服务器上进行了同样的操作，大获成功，这也成了我们目前的商用中转站<strong>joypiggy</strong>（快乐小猪🐖），<strong>有兴趣的uu们私聊！</strong></p>
+
+<p>就在我实在没招了的时候，郑老板告知其实只需要实现连到上游中转站就行了，bur，这么简单，那我不早就搞定了吗？？？何意味。。。</p>
+
+<h2 id="jaccount-认证">jAccount 认证</h2>
+<p>值得骄傲啊，这是笔者从idea设计到实施跑通全部独立完成没有外人干预的一部分。jAccount认证是我们中转站的一个重要功能，它能够确保只有交大学生才能使用我们的中转站。实现这个功能的关键是要与交大的认证系统进行对接，验证用户的身份信息。</p>
+
+<p>感兴趣的可以阅读<a href="https://developer.sjtu.edu.cn/auth/jaccount.html">这篇文章</a>。最后的实现是在前端登录界面添加了一个jAccount登录按钮，用户点击后会跳转到交大的认证页面，用户输入自己的jAccount账号和密码进行认证，认证成功后会返回一个包含用户信息的token，我们的中转站会验证这个token的有效性，如果有效就允许用户继续使用中转站的功能。</p>
+
+<h2 id="遗憾也或许是future-work">遗憾（也或许是future work）</h2>
+<p>我们本来预期的想法是通过acm.sjtu.edu.cn/llmapi 来进行访问，基于<strong>nginx</strong>的反向代理配置，但很不幸后端base url 修改逻辑过于复杂，感觉跟jAccount认证的url 跳转有一定关系，导致我们最后还是只能通过我买的域名来访问了，虽然这个域名也很便宜，后续如果有机会的话还是想把这个问题解决掉的。</p>
+
+<h2 id="网站运维">网站运维</h2>
+<p>笔者在此之前完全没有过网站运维的经验。整个过程中遇到了很多问题，比如服务器的环境配置、数据库的安装和配置、域名解析、内网穿透等等，每一个问题都让我头疼不已。但是通过不断地学习和尝试，最终还是成功地搭建了这个中转站，这也是我觉得最有成就感的一部分。</p>
+
+<p>wankupi学长给我的网站运维提出了不少意见，包括<strong>systemd service</strong>的配置、<strong>postgres</strong>数据库的使用等，非常感谢！！！</p>
+
+<h2 id="结语">结语</h2>
+<p>我们这样费劲心思搭建的中转站，说白了还是因为 Anthropic 和 OpenAI 的种种限制，令人感慨，现在的学习科研难道真的成了 token 之争吗？我不明白。</p>
+
+<p>2026年4月30号我在水源上发了一个话题，<strong>想知道源友对API中转站的看法</strong>，https://shuiyuan.sjtu.edu.cn/t/topic/470419，也欢迎交大的同学前去投票。</p>
+
+<p>以及（再重复一遍），如果有同学对便宜且满血不掺水codex中转站感兴趣，欢迎联系我！我们目前的商用中转站<strong>joypiggy</strong>（快乐小猪🐖）已经上线了，欢迎大家使用！</p>
+
+<p>最后，感谢帮助过我的学长、同学和源友！有你们是我的幸运！</p>]]></content><author><name>Yihan Zhu</name><email>zhuyihan@sjtu.edu.cn</email></author><category term="My AI Usage" /><category term="Tools" /><summary type="html"><![CDATA[从零搭建大模型 API 中转站的实践记录，包含服务器、域名与网络架构思路。]]></summary></entry><entry xml:lang="en"><title type="html">CPU Scheduling</title><link href="https://janezair.site/en/2026/04/13/CPU-Scheduling/" rel="alternate" type="text/html" title="CPU Scheduling" /><published>2026-04-13T11:27:39+08:00</published><updated>2026-04-13T11:27:39+08:00</updated><id>https://janezair.site/en/2026/04/13/CPU-Scheduling-en</id><content type="html" xml:base="https://janezair.site/en/2026/04/13/CPU-Scheduling/"><![CDATA[<h1 id="operating-systems-deep-learning-notes-cpu-scheduling-chapter-5">Operating Systems Deep-Learning Notes: CPU Scheduling (Chapter 5)</h1>
+
+<h2 id="1-core-concepts-and-dispatch-mechanism">1. Core Concepts and Dispatch Mechanism</h2>
+
+<h3 id="cpu-io-burst-cycle">CPU-I/O Burst Cycle</h3>
+
+<p>A process does not occupy the CPU continuously. Instead, its execution consists of alternating <strong>CPU bursts</strong> and <strong>I/O bursts</strong>.</p>
+
+<p>Statistics over a large number of processes show that systems contain many short CPU-burst processes and only a small number of long CPU-burst processes. This distribution is an important basis for designing scheduling algorithms.</p>
+
+<h3 id="dispatcher--dispatch-latency">Dispatcher &amp; Dispatch Latency</h3>
+
+<p>The dispatcher is the module that actually performs the “switch” action. <strong>Dispatch latency</strong> is the time required to stop one process and start another.</p>
+
+<p>In systems with strict requirements, the <strong>conflict phase</strong> of dispatch latency is the main bottleneck. It includes two steps:</p>
+
+<ol>
+  <li>Preempt any process running in kernel mode.</li>
+  <li>Let low-priority processes release the system resources needed by high-priority processes.</li>
+</ol>
+
+<hr />
+
+<h2 id="2-core-scheduling-algorithms">2. Core Scheduling Algorithms</h2>
+
+<h3 id="fcfs-first-come-first-served">FCFS (First-Come, First-Served)</h3>
+
+<ul>
+  <li><strong>Pain point: the convoy effect</strong>. If a long CPU-bound process is at the front of the queue, a group of short I/O-bound processes behind it are forced to wait for a long time, reducing both CPU and I/O-device utilization.</li>
+</ul>
+
+<h3 id="sjf-shortest-job-first-and-burst-time-prediction">SJF (Shortest Job First) and Burst-Time Prediction</h3>
+
+<p>SJF theoretically gives the minimum average waiting time. The hard part is <strong>knowing how long the next CPU burst will be</strong>.</p>
+
+<p>Operating systems usually use historical data and <strong>exponential averaging</strong> to predict the next burst length:</p>
+
+<p>$\tau_{n+1} = \alpha t_n + (1-\alpha)\tau_n$</p>
+
+<ul>
+  <li>$t_n$: the actual length of the $n$-th CPU burst.</li>
+  <li>$\tau_n$: the predicted value for the $n$-th burst.</li>
+  <li>$\alpha$: the weight coefficient, often set to 1/2, determining how much recent history affects the prediction.</li>
+</ul>
+
+<h3 id="rr-round-robin">RR (Round Robin)</h3>
+
+<p>Designed for time-sharing systems. Each process receives a time quantum $q$, usually 10 to 100 milliseconds.</p>
+
+<ul>
+  <li><strong>Core constraint</strong>: the time quantum $q$ must be much larger than context-switch time, which is usually less than 10 microseconds. If $q$ is too small, most CPU time is wasted on context-switch overhead.</li>
+</ul>
+
+<h3 id="multilevel-feedback-queue">Multilevel Feedback Queue</h3>
+
+<p>This is the most complex but also the most general algorithm. It allows processes to move among multiple queues according to runtime behavior. A multilevel feedback queue scheduler needs these parameters:</p>
+
+<ul>
+  <li>The number of queues.</li>
+  <li>The scheduling algorithm inside each queue, for example RR at the top level and FCFS at the bottom.</li>
+  <li>The method for <strong>promoting</strong> a process to a higher-priority queue, such as aging.</li>
+  <li>The method for <strong>demoting</strong> a process to a lower-priority queue, such as using up its time quantum.</li>
+  <li>The method for deciding which queue a process enters initially.</li>
+</ul>
+
+<hr />
+
+<h2 id="3-thread-scheduling">3. Thread Scheduling</h2>
+
+<p>In systems that support threads, the actual scheduling unit is the thread. There are two contention scopes:</p>
+
+<ul>
+  <li><strong>PCS (Process Contention Scope)</strong>: the thread library schedules threads in user space, and threads within the same process compete with each other.</li>
+  <li><strong>SCS (System Contention Scope)</strong>: the operating-system kernel directly schedules kernel-level threads onto logical CPUs, and all threads in the system compete with each other.</li>
+</ul>
+
+<p>In the POSIX API (<code class="language-plaintext highlighter-rouge">pthread</code>), programmers can specify the contention scope using <code class="language-plaintext highlighter-rouge">PTHREAD_SCOPE_PROCESS</code> or <code class="language-plaintext highlighter-rouge">PTHREAD_SCOPE_SYSTEM</code>, but the final result depends on OS support. Linux and macOS support only SCS.</p>
+
+<hr />
+
+<h2 id="4-advanced-multiprocessor-and-multicore-scheduling">4. Advanced Multiprocessor and Multicore Scheduling</h2>
+
+<h3 id="modern-hardware-architecture">Modern Hardware Architecture</h3>
+
+<ul>
+  <li><strong>Physical Core</strong>: a real independent processing unit on the chip.</li>
+  <li><strong>Logical CPU</strong>: the execution unit seen by the OS when hardware multithreading, such as hyper-threading, is supported.</li>
+  <li><strong>Two-level scheduling model</strong>:
+    <ul>
+      <li><strong>Level 1 (OS layer)</strong>: decides which software thread runs on which logical CPU.</li>
+      <li><strong>Level 2 (hardware layer)</strong>: the physical core automatically switches which hardware thread to execute based on <strong>memory stalls</strong>, filling gaps while waiting for data.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="multicore-architecture-and-memory-stalls">Multicore Architecture and Memory Stalls</h3>
+
+<p>Modern CPUs often stall while waiting for memory data. To make use of these stall cycles, processors use <strong>hardware multithreading</strong>, such as hyper-threading. When one hardware thread experiences a memory stall, the physical core can quickly switch to executing instructions from another hardware thread.</p>
+
+<h3 id="numa-awareness">NUMA Awareness</h3>
+
+<p>In Non-Uniform Memory Access (NUMA) architectures, a CPU accesses local memory much faster than remote memory.</p>
+
+<p><strong>NUMA-aware scheduling</strong>: when scheduling, the operating system should not only allocate CPU time but also assign processes to processor domains whose memory nodes are closest to that CPU, reducing migration across physical nodes.</p>
+
+<hr />
+
+<h2 id="5-mathematical-constraints-in-real-time-cpu-scheduling">5. Mathematical Constraints in Real-Time CPU Scheduling</h2>
+
+<p>Real-time systems handle <strong>periodic tasks</strong>. These tasks have three core parameters:</p>
+
+<ul>
+  <li>$t$: processing time</li>
+  <li>$d$: deadline</li>
+  <li>$p$: period</li>
+</ul>
+
+<p><strong>Constraint</strong>: $0 \le t \le d \le p$. The task execution rate is $1/p$.</p>
+
+<h3 id="core-logic-of-two-real-time-algorithms">Core Logic of Two Real-Time Algorithms</h3>
+
+<ul>
+  <li><strong>RMS (Rate-Monotonic Scheduling)</strong>: static priority. Priority is determined by the reciprocal of the period. Shorter period means higher priority. Its drawback is that when CPU utilization is high, it cannot guarantee that every process meets its deadline.</li>
+  <li><strong>EDF (Earliest Deadline First)</strong>: dynamic priority. The system always checks which task has the nearest deadline, and that task immediately receives the highest priority.</li>
+  <li><strong>POSIX real-time standard</strong>: defines <code class="language-plaintext highlighter-rouge">SCHED_FIFO</code>, a FIFO policy without time slicing, and <code class="language-plaintext highlighter-rouge">SCHED_RR</code>, a round-robin policy with time slicing.</li>
+</ul>
+
+<hr />
+
+<h2 id="6-scheduler-implementations-in-three-major-operating-systems">6. Scheduler Implementations in Three Major Operating Systems</h2>
+
+<h3 id="linux-cfs-completely-fair-scheduler">Linux CFS (Completely Fair Scheduler)</h3>
+
+<ul>
+  <li><strong>Core idea</strong>: instead of allocating fixed time slices, allocate proportions of CPU usage.</li>
+  <li><strong>vruntime (virtual runtime)</strong>: records actual task runtime. It is scaled by the task’s <code class="language-plaintext highlighter-rouge">Nice</code> value, from -20 to +19. Tasks with lower <code class="language-plaintext highlighter-rouge">Nice</code> values, hence higher priority, have slower-growing <code class="language-plaintext highlighter-rouge">vruntime</code> and therefore receive more real CPU time.</li>
+  <li><strong>Data structure</strong>: runnable tasks are stored in a <strong>Red-Black Tree</strong> keyed by <code class="language-plaintext highlighter-rouge">vruntime</code>. The scheduler always selects the leftmost node, namely the node with the smallest <code class="language-plaintext highlighter-rouge">vruntime</code>, with $O(\log N)$ time complexity.</li>
+</ul>
+
+<h3 id="windows-preemptive-priority-scheduling">Windows (Preemptive Priority Scheduling)</h3>
+
+<ul>
+  <li><strong>Priority system</strong>: 32 levels. Levels 1-15 are variable priorities for normal programs, levels 16-31 are real-time priorities, and level 0 is reserved for memory management.</li>
+  <li><strong>Dynamic boost mechanism</strong>: when an event a thread is waiting for completes, especially foreground keyboard I/O, Windows gives the thread a large priority boost. The <strong>foreground active window</strong> also receives three times the time quantum.</li>
+  <li><strong>UMS (User-Mode Scheduling)</strong>: allows applications to manage a large number of concurrent threads independently of the kernel, greatly improving the efficiency of C++ concurrency frameworks.</li>
+</ul>
+
+<h3 id="solaris-a-peak-application-of-multilevel-feedback-queues">Solaris (A Peak Application of Multilevel Feedback Queues)</h3>
+
+<p>Solaris’s default time-sharing (TS) scheduler uses a complex <strong>Dispatch Table</strong> to achieve balance through state transitions:</p>
+
+<ul>
+  <li><strong>Time quantum expired penalty</strong>: if a process uses up its entire time quantum, indicating that it is compute-intensive, it is moved to a <strong>lower priority</strong>, but receives a <strong>longer time quantum</strong> next time.</li>
+  <li><strong>Return from sleep reward</strong>: if a process gives up the CPU early to wait for I/O, indicating interactivity, it is promoted to a <strong>higher priority</strong> when it wakes up and receives a <strong>shorter time quantum</strong>.</li>
+</ul>
+
+<hr />
+
+<h2 id="7-algorithm-evaluation-models">7. Algorithm Evaluation Models</h2>
+
+<p>To evaluate which scheduling algorithm best fits an operating system, common methods include:</p>
+
+<ul>
+  <li><strong>Queueing Models</strong>: describe the computer as a network of servers and use probability theory to compute steady-state performance. The most famous result is <strong>Little’s Law</strong>:
+$n = \lambda \times W$
+(average queue length $n$ = average arrival rate $\lambda$ $\times$ average waiting time $W$ in the queue)</li>
+  <li><strong>Simulations</strong>: build a model of the computer system through programming, then use real system event logs, called <strong>trace tapes</strong>, as input to drive the simulation and obtain highly accurate performance statistics.</li>
+</ul>]]></content><author><name>Yihan Zhu</name><email>zhuyihan@sjtu.edu.cn</email></author><summary type="html"><![CDATA[Operating-system notes on CPU scheduling, covering FCFS, SJF, RR, and multilevel feedback queues.]]></summary></entry><entry xml:lang="zh-CN"><title type="html">CPU Scheduling</title><link href="https://janezair.site/2026/04/13/CPU-Scheduling/" rel="alternate" type="text/html" title="CPU Scheduling" /><published>2026-04-13T11:27:39+08:00</published><updated>2026-04-13T11:27:39+08:00</updated><id>https://janezair.site/2026/04/13/CPU-Scheduling</id><content type="html" xml:base="https://janezair.site/2026/04/13/CPU-Scheduling/"><![CDATA[<h1 id="操作系统深度学习笔记cpu-调度-chapter-5">操作系统深度学习笔记：CPU 调度 (Chapter 5)</h1>
+
+<h2 id="1-核心概念与分派机制">1. 核心概念与分派机制</h2>
+
+<h3 id="cpu-io-爆发周期-burst-cycle">CPU-I/O 爆发周期 (Burst Cycle)</h3>
+<p>进程的执行并非一直占用 CPU，而是由 <strong>CPU 爆发 (CPU burst)</strong> 和 <strong>I/O 爆发 (I/O burst)</strong> 交替组成。
+通过对大量进程的统计发现：系统中存在海量的短 CPU 爆发进程，和极少量的长 CPU 爆发进程。这一分布规律是设计调度算法的重要依据。</p>
+
+<h3 id="分派器与分派延迟-dispatcher--dispatch-latency">分派器与分派延迟 (Dispatcher &amp; Dispatch Latency)</h3>
+<p>分派器是实际执行“切换”动作的模块。<strong>分派延迟</strong>是指停止一个进程并启动另一个进程所需的时间。
+在要求严格的系统中，分派延迟中的<strong>冲突阶段 (Conflict phase)</strong> 是主要瓶颈，它包括两步：</p>
+<ol>
+  <li>抢占在内核模式下运行的任何进程。</li>
+  <li>低优先级进程释放高优先级进程所需的系统资源。</li>
+</ol>
+
+<hr />
+
+<h2 id="2-核心调度算法深度解析">2. 核心调度算法深度解析</h2>
+
+<h3 id="fcfs-先来先服务">FCFS (先来先服务)</h3>
+<ul>
+  <li><strong>痛点：护送效应 (Convoy effect)</strong>。如果一个 CPU 密集型的长进程排在前面，后面一群 I/O 密集型的短进程只能被迫长时间等待，导致整体 CPU 和 I/O 设备利用率双双下降。</li>
+</ul>
+
+<h3 id="sjf-短作业优先-与爆发时间预测">SJF (短作业优先) 与爆发时间预测</h3>
+<p>SJF 在理论上能给出最小的平均等待时间。难点在于<strong>如何知道进程的下一个 CPU 爆发会有多长</strong>。
+操作系统通常利用历史数据，通过<strong>指数平均法 (Exponential Averaging)</strong> 来预测下一个爆发长度：
+$\tau_{n+1} = \alpha t_n + (1-\alpha)\tau_n$</p>
+<ul>
+  <li>$t_n$：第 $n$ 次实际的 CPU 爆发长度。</li>
+  <li>$\tau_n$：对第 $n$ 次的预测值。</li>
+  <li>$\alpha$：权重系数（通常设为 1/2），决定了近期历史数据对预测值的影响程度。</li>
+</ul>
+
+<h3 id="rr-时间片轮转">RR (时间片轮转)</h3>
+<p>专门为分时系统设计，给予每个进程一个时间片 $q$（通常 10-100 毫秒）。</p>
+<ul>
+  <li><strong>核心约束</strong>：时间片 $q$ 必须远大于上下文切换的时间（通常 &lt; 10 微秒）。如果 $q$ 太小，CPU 的大部分时间都会浪费在上下文切换的开销上。</li>
+</ul>
+
+<h3 id="多级反馈队列-multilevel-feedback-queue">多级反馈队列 (Multilevel Feedback Queue)</h3>
+<p>这是最复杂但也最通用的算法。它允许进程根据其运行行为在多个队列之间移动。定义一个多级反馈队列调度器需要设定以下详细参数：</p>
+<ul>
+  <li>队列的数量。</li>
+  <li>每个队列内部的调度算法（例如顶层用 RR，底层用 FCFS）。</li>
+  <li>决定何时将进程<strong>升级</strong>到高优先级队列的方法（例如老化机制）。</li>
+  <li>决定何时将进程<strong>降级</strong>到低优先级队列的方法（例如用光了时间片）。</li>
+  <li>决定进程初始进入时被放入哪个队列的方法。</li>
+</ul>
+
+<hr />
+
+<h2 id="3-线程调度-thread-scheduling">3. 线程调度 (Thread Scheduling)</h2>
+
+<p>在支持线程的系统中，实际调度的单位是线程。存在两种竞争范围：</p>
+<ul>
+  <li><strong>PCS (进程竞争范围)</strong>：由线程库在用户态进行调度，同一进程内的线程相互竞争。</li>
+  <li><strong>SCS (系统竞争范围)</strong>：由操作系统内核直接将内核级线程调度到逻辑 CPU 上，全系统的线程相互竞争。</li>
+</ul>
+
+<p>在 POSIX API (<code class="language-plaintext highlighter-rouge">pthread</code>) 中，程序员可以通过 <code class="language-plaintext highlighter-rouge">PTHREAD_SCOPE_PROCESS</code> 或 <code class="language-plaintext highlighter-rouge">PTHREAD_SCOPE_SYSTEM</code> 来指定竞争范围，但最终取决于操作系统的支持（如 Linux 和 macOS 仅支持 SCS）。</p>
+
+<hr />
+
+<h2 id="4-多处理器与多核调度进阶">4. 多处理器与多核调度进阶</h2>
+
+<h3 id="现代硬件架构">现代硬件架构</h3>
+<ul>
+  <li><strong>物理核心 (Physical Core)</strong>：芯片上真实的独立处理单元。</li>
+  <li><strong>逻辑 CPU (Logical CPU)</strong>：支持硬件多线程（如超线程）时，OS 看到的执行单元。</li>
+  <li><strong>两级调度模型</strong>：
+    <ul>
+      <li><strong>第一级 (OS层)</strong>：决定哪个软件线程在哪个逻辑 CPU 上运行。</li>
+      <li><strong>第二级 (硬件层)</strong>：物理核心根据<strong>内存停顿 (Memory Stall)</strong> 自动切换执行哪个硬件线程，以填补等待数据的空隙。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="多核架构与内存停顿-memory-stall">多核架构与内存停顿 (Memory Stall)</h3>
+<p>现代 CPU 往往由于等待访问内存数据而发生停顿。为了利用这些停顿周期，处理器采用<strong>硬件多线程</strong>（如超线程）。当一个硬件线程发生内存停顿时，物理核心可以迅速切换去执行另一个硬件线程的指令。</p>
+
+<h3 id="numa-系统感知">NUMA 系统感知</h3>
+<p>在非一致性内存访问 (NUMA) 架构中，CPU 访问本地内存的速度远快于访问远程内存。
+<strong>NUMA 感知调度</strong>：操作系统在调度时，不仅要分配 CPU，还要将进程分配给拥有离该 CPU 最近的内存节点的处理器域 (Domain)，尽量避免线程在不同物理节点间迁移。</p>
+
+<hr />
+
+<h2 id="5-实时-cpu-调度的数学约束">5. 实时 CPU 调度的数学约束</h2>
+
+<p>实时系统处理的是<strong>周期性任务</strong>。这些任务具有三个核心参数：</p>
+<ul>
+  <li>$t$：处理时间 (Processing time)</li>
+  <li>$d$：截止时间 (Deadline)</li>
+  <li>$p$：周期 (Period)
+<strong>约束条件</strong>：$0 \le t \le d \le p$。任务的执行速率即为 $1/p$。</li>
+</ul>
+
+<h3 id="两种实时算法的核心逻辑">两种实时算法的核心逻辑</h3>
+<ul>
+  <li><strong>RMS (速率单调调度)</strong>：静态优先级。优先级由周期的倒数决定。周期越短优先级越高。缺点是当 CPU 利用率较高时，无法保证所有进程不漏掉 Deadline。</li>
+  <li><strong>EDF (最早交期优先)</strong>：动态优先级。系统时刻检查哪个任务的截止时间最迫近，最迫近的任务立即获得最高优先级。</li>
+  <li><strong>POSIX 实时标准</strong>：定义了 <code class="language-plaintext highlighter-rouge">SCHED_FIFO</code>（先进先出无时间片）和 <code class="language-plaintext highlighter-rouge">SCHED_RR</code>（带时间片轮转）两种硬性调度策略。</li>
+</ul>
+
+<hr />
+
+<h2 id="6-三大操作系统调度器底层实现">6. 三大操作系统调度器底层实现</h2>
+
+<h3 id="linux-cfs-完全公平调度器">Linux CFS (完全公平调度器)</h3>
+<ul>
+  <li><strong>核心思想</strong>：不分配固定的时间片，而是分配 CPU 的使用比例。</li>
+  <li><strong>vruntime (虚拟运行时间)</strong>：记录任务实际运行时间。基于任务的 <code class="language-plaintext highlighter-rouge">Nice</code> 值（-20 到 +19）设有衰减因子。低 <code class="language-plaintext highlighter-rouge">Nice</code> 值（高优先级）的任务，其 <code class="language-plaintext highlighter-rouge">vruntime</code> 增长得慢，从而能获得更多的 CPU 实际时间。</li>
+  <li><strong>数据结构</strong>：采用<strong>红黑树 (Red-Black Tree)</strong> 存储可运行任务，键值为 <code class="language-plaintext highlighter-rouge">vruntime</code>。调度器总是取树最左侧的节点（即 <code class="language-plaintext highlighter-rouge">vruntime</code> 最小的节点）执行，时间复杂度为 $O(\log N)$。</li>
+</ul>
+
+<h3 id="windows-抢占式优先级调度">Windows (抢占式优先级调度)</h3>
+<ul>
+  <li><strong>优先级体系</strong>：共 32 级。1-15 级为可变优先级（普通程序），16-31 级为实时优先级，0 级保留给内存管理。</li>
+  <li><strong>动态提升机制</strong>：当线程等待的事件完成时（尤其是键盘 I/O 等前台交互），Windows 会给予巨大的优先级提升奖励；同时，<strong>前台活动窗口</strong>会获得 3 倍的时间片调度量。</li>
+  <li><strong>UMS (用户模式调度)</strong>：允许应用程序独立于内核管理大量并发线程，大幅提高 C++ 并发框架的效率。</li>
+</ul>
+
+<h3 id="solaris-多级反馈队列的巅峰应用">Solaris (多级反馈队列的巅峰应用)</h3>
+<p>Solaris 的默认分时 (TS) 调度采用了一个复杂的<strong>分派表 (Dispatch Table)</strong>，通过状态转换来实现完美平衡：</p>
+<ul>
+  <li><strong>时间片耗尽惩罚 (Time quantum expired)</strong>：如果进程一口气用完了时间片（说明是计算密集型），会被丢到<strong>低优先级</strong>，但下次分配<strong>长时间片</strong>。</li>
+  <li><strong>睡眠唤醒奖励 (Return from sleep)</strong>：如果进程提前放弃 CPU 去等待 I/O（说明是交互型），唤醒时会被提升到<strong>高优先级</strong>，并分配<strong>短时间片</strong>。</li>
+</ul>
+
+<hr />
+
+<h2 id="7-算法评估模型">7. 算法评估模型</h2>
+
+<p>评估哪种调度算法最适合当前操作系统，通常采用以下方法：</p>
+<ul>
+  <li><strong>排队模型 (Queueing Models)</strong>：将计算机描述为服务器网络，利用概率论计算稳态性能。最著名的是 <strong>利特尔法则 (Little’s Law)</strong>：
+$n = \lambda \times W$ 
+(平均队列长度 $n$ = 平均到达率 $\lambda$ $\times$ 队列中的平均等待时间 $W$)</li>
+  <li><strong>模拟 (Simulations)</strong>：通过编程建立计算机系统的模型，并使用真实的系统事件日志——<strong>跟踪磁带 (Trace tapes)</strong> 作为输入数据来驱动模拟，从而获得高度精确的性能统计。</li>
+</ul>]]></content><author><name>Yihan Zhu</name><email>zhuyihan@sjtu.edu.cn</email></author><category term="os" /><summary type="html"><![CDATA[操作系统 CPU 调度笔记，详细总结 FCFS、SJF、RR 与多级反馈队列机制。]]></summary></entry><entry xml:lang="en"><title type="html">LaTeX-Tutorial</title><link href="https://janezair.site/en/2026/03/30/LaTeX-Tutorial/" rel="alternate" type="text/html" title="LaTeX-Tutorial" /><published>2026-03-30T14:23:59+08:00</published><updated>2026-03-30T14:23:59+08:00</updated><id>https://janezair.site/en/2026/03/30/LaTeX-Tutorial-en</id><content type="html" xml:base="https://janezair.site/en/2026/03/30/LaTeX-Tutorial/"><![CDATA[<p>After more than half a year, I picked up LaTeX again to write algorithm homework and found that I had forgotten a ridiculous number of symbols. So I wrote this tutorial to record common LaTeX mathematical symbols and environments for future reference.</p>
+
+<h1 id="latex-tutorial">LaTeX Tutorial</h1>
+
+<h2 id="1-basic-syntax">1. Basic Syntax</h2>
+
+<h3 id="11-document-structure">1.1 Document Structure</h3>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\documentclass</span><span class="p">{</span>article<span class="p">}</span>  <span class="c">% Document type</span>
+<span class="k">\usepackage</span><span class="p">{</span>amsmath<span class="p">}</span>     <span class="c">% Math package</span>
+<span class="k">\usepackage</span><span class="p">{</span>amssymb<span class="p">}</span>     <span class="c">% Math symbol package</span>
+
+<span class="nt">\begin{document}</span>
+<span class="c">% Document content</span>
+<span class="nt">\end{document}</span>
+</code></pre></div></div>
+
+<h3 id="12-text-formatting">1.2 Text Formatting</h3>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\textbf</span><span class="p">{</span>bold text<span class="p">}</span>        <span class="c">% Bold</span>
+<span class="k">\textit</span><span class="p">{</span>italic text<span class="p">}</span>      <span class="c">% Italic</span>
+<span class="k">\underline</span><span class="p">{</span>underline<span class="p">}</span>     <span class="c">% Underline</span>
+<span class="k">\texttt</span><span class="p">{</span>monospace text<span class="p">}</span>   <span class="c">% Typewriter font</span>
+</code></pre></div></div>
+
+<h2 id="2-math-mode">2. Math Mode</h2>
+
+<h3 id="21-inline-and-display-formulas">2.1 Inline and Display Formulas</h3>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Inline formula: <span class="p">$</span><span class="nb">E </span><span class="o">=</span><span class="nb"> mc</span><span class="p">^</span><span class="m">2</span><span class="p">$</span>
+Display formula: <span class="p">$$</span><span class="nb">E </span><span class="o">=</span><span class="nb"> mc</span><span class="p">^</span><span class="m">2</span><span class="p">$$</span>
+Or:
+<span class="p">\[</span><span class="nb"> E </span><span class="o">=</span><span class="nb"> mc</span><span class="p">^</span><span class="m">2</span><span class="nb"> </span><span class="p">\]</span>
+</code></pre></div></div>
+
+<h3 id="22-equation-environment">2.2 equation Environment</h3>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">\begin{equation}</span>
+  E = mc<span class="p">^</span>2
+<span class="nt">\end{equation}</span>
+
+<span class="c">% Without numbering</span>
+<span class="nt">\begin{equation*}</span>
+  E = mc<span class="p">^</span>2
+<span class="nt">\end{equation*}</span>
+</code></pre></div></div>
+
+<h2 id="3-common-mathematical-symbols">3. Common Mathematical Symbols</h2>
+
+<h3 id="31-greek-letters">3.1 Greek Letters</h3>
+
+<p><strong>Lowercase letters:</strong></p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\alpha</span>    α       <span class="k">\beta</span>     β       <span class="k">\gamma</span>    γ
+<span class="k">\delta</span>    δ       <span class="k">\epsilon</span>  ε       <span class="k">\zeta</span>     ζ
+<span class="k">\eta</span>      η       <span class="k">\theta</span>    θ       <span class="k">\iota</span>     ι
+<span class="k">\kappa</span>    κ       <span class="k">\lambda</span>   λ       <span class="k">\mu</span>       μ
+<span class="k">\nu</span>       ν       <span class="k">\xi</span>       ξ       <span class="k">\pi</span>       π
+<span class="k">\rho</span>      ρ       <span class="k">\sigma</span>    σ       <span class="k">\tau</span>      τ
+<span class="k">\upsilon</span>  υ       <span class="k">\phi</span>      φ       <span class="k">\chi</span>      χ
+<span class="k">\psi</span>      ψ       <span class="k">\omega</span>    ω
+</code></pre></div></div>
+
+<p><strong>Uppercase letters:</strong></p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\Gamma</span>    Γ       <span class="k">\Delta</span>    Δ       <span class="k">\Theta</span>    Θ
+<span class="k">\Lambda</span>   Λ       <span class="k">\Xi</span>       Ξ       <span class="k">\Pi</span>       Π
+<span class="k">\Sigma</span>    Σ       <span class="k">\Upsilon</span>  Υ       <span class="k">\Phi</span>      Φ
+<span class="k">\Psi</span>      Ψ       <span class="k">\Omega</span>    Ω
+</code></pre></div></div>
+
+<h3 id="32-operators">3.2 Operators</h3>
+
+<p><strong>Basic operations:</strong></p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+         plus    -         minus   <span class="k">\times</span>    ×
+<span class="k">\div</span>      ÷       <span class="k">\pm</span>       ±       <span class="k">\mp</span>       ∓
+<span class="k">\cdot</span>     ·       <span class="k">\ast</span>      *       <span class="k">\star</span>     ⋆
+</code></pre></div></div>
+
+<p><strong>Relational operators:</strong></p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code>=         =       <span class="k">\neq</span>      ≠       &lt;         &lt;
+&gt;         &gt;       <span class="k">\leq</span>      ≤       <span class="k">\geq</span>      ≥
+<span class="k">\ll</span>       ≪       <span class="k">\gg</span>       ≫       <span class="k">\approx</span>   ≈
+<span class="k">\equiv</span>    ≡       <span class="k">\sim</span>      ∼       <span class="k">\simeq</span>    ≃
+<span class="k">\propto</span>   ∝       <span class="k">\in</span>       ∈       <span class="k">\notin</span>    ∉
+<span class="k">\subset</span>   ⊂       <span class="k">\subseteq</span> ⊆       <span class="k">\supset</span>   ⊃
+</code></pre></div></div>
+
+<p><strong>Logical symbols:</strong></p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\land</span>     ∧       <span class="k">\lor</span>      ∨       <span class="k">\neg</span>      ¬
+<span class="k">\implies</span>  ⟹       <span class="k">\iff</span>      ⟺       <span class="k">\forall</span>   ∀
+<span class="k">\exists</span>   ∃       <span class="k">\nexists</span>  ∄       <span class="k">\emptyset</span> ∅
+</code></pre></div></div>
+
+<h3 id="33-superscripts-and-subscripts">3.3 Superscripts and Subscripts</h3>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code>x<span class="p">^</span>2              <span class="c">% Superscript</span>
+x<span class="p">_</span>i              <span class="c">% Subscript</span>
+x<span class="p">^{</span>2y<span class="p">}</span>           <span class="c">% Multi-character superscript</span>
+x<span class="p">_{</span>ij<span class="p">}</span>           <span class="c">% Multi-character subscript</span>
+x<span class="p">_</span>i<span class="p">^</span>2            <span class="c">% Superscript and subscript together</span>
+</code></pre></div></div>
+
+<h3 id="34-fractions-and-roots">3.4 Fractions and Roots</h3>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\frac</span><span class="p">{</span>a<span class="p">}{</span>b<span class="p">}</span>      <span class="c">% Fraction</span>
+<span class="k">\dfrac</span><span class="p">{</span>a<span class="p">}{</span>b<span class="p">}</span>     <span class="c">% Display-style fraction</span>
+<span class="k">\tfrac</span><span class="p">{</span>a<span class="p">}{</span>b<span class="p">}</span>     <span class="c">% Text-style fraction</span>
+<span class="k">\sqrt</span><span class="p">{</span>x<span class="p">}</span>         <span class="c">% Square root</span>
+<span class="k">\sqrt</span><span class="na">[n]</span><span class="p">{</span>x<span class="p">}</span>      <span class="c">% n-th root</span>
+</code></pre></div></div>
+
+<h3 id="35-summation-integrals-and-limits">3.5 Summation, Integrals, and Limits</h3>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\sum</span><span class="p">_{</span>i=1<span class="p">}^{</span>n<span class="p">}</span>          <span class="c">% Summation</span>
+<span class="k">\prod</span><span class="p">_{</span>i=1<span class="p">}^{</span>n<span class="p">}</span>         <span class="c">% Product</span>
+<span class="k">\int</span><span class="p">_{</span>a<span class="p">}^{</span>b<span class="p">}</span>            <span class="c">% Integral</span>
+<span class="k">\iint</span>                   <span class="c">% Double integral</span>
+<span class="k">\iiint</span>                  <span class="c">% Triple integral</span>
+<span class="k">\oint</span>                   <span class="c">% Contour integral</span>
+<span class="k">\lim</span><span class="p">_{</span>x <span class="k">\to</span> <span class="k">\infty</span><span class="p">}</span>     <span class="c">% Limit</span>
+</code></pre></div></div>
+
+<h3 id="36-brackets">3.6 Brackets</h3>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code>()                       <span class="c">% Parentheses</span>
+[]                       <span class="c">% Square brackets</span>
+<span class="k">\{\}</span>                     <span class="c">% Braces</span>
+<span class="k">\langle</span> <span class="k">\rangle</span>          <span class="c">% Angle brackets</span>
+<span class="k">\lfloor</span> <span class="k">\rfloor</span>          <span class="c">% Floor</span>
+<span class="k">\lceil</span> <span class="k">\rceil</span>            <span class="c">% Ceiling</span>
+</code></pre></div></div>
+
+<p><strong>Automatic sizing:</strong></p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\left</span>( <span class="k">\frac</span><span class="p">{</span>a<span class="p">}{</span>b<span class="p">}</span> <span class="k">\right</span>)
+<span class="k">\left</span><span class="na">[ \frac{a}{b} \right]</span>
+<span class="k">\left\{</span> <span class="k">\frac</span><span class="p">{</span>a<span class="p">}{</span>b<span class="p">}</span> <span class="k">\right\}</span>
+</code></pre></div></div>
+
+<h2 id="4-matrices">4. Matrices</h2>
+
+<h3 id="41-basic-matrices">4.1 Basic Matrices</h3>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">% Matrix without brackets</span>
+<span class="nt">\begin{matrix}</span>
+  a <span class="p">&amp;</span> b <span class="k">\\</span>
+  c <span class="p">&amp;</span> d
+<span class="nt">\end{matrix}</span>
+
+<span class="c">% Parenthesized matrix</span>
+<span class="nt">\begin{pmatrix}</span>
+  a <span class="p">&amp;</span> b <span class="k">\\</span>
+  c <span class="p">&amp;</span> d
+<span class="nt">\end{pmatrix}</span>
+
+<span class="c">% Square-bracket matrix</span>
+<span class="nt">\begin{bmatrix}</span>
+  a <span class="p">&amp;</span> b <span class="k">\\</span>
+  c <span class="p">&amp;</span> d
+<span class="nt">\end{bmatrix}</span>
+
+<span class="c">% Brace matrix</span>
+<span class="nt">\begin{Bmatrix}</span>
+  a <span class="p">&amp;</span> b <span class="k">\\</span>
+  c <span class="p">&amp;</span> d
+<span class="nt">\end{Bmatrix}</span>
+
+<span class="c">% Single-vertical-line matrix</span>
+<span class="nt">\begin{vmatrix}</span>
+  a <span class="p">&amp;</span> b <span class="k">\\</span>
+  c <span class="p">&amp;</span> d
+<span class="nt">\end{vmatrix}</span>
+
+<span class="c">% Double-vertical-line matrix</span>
+<span class="nt">\begin{Vmatrix}</span>
+  a <span class="p">&amp;</span> b <span class="k">\\</span>
+  c <span class="p">&amp;</span> d
+<span class="nt">\end{Vmatrix}</span>
+</code></pre></div></div>
+
+<h3 id="42-ellipses">4.2 Ellipses</h3>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\dots</span>    <span class="c">% Low ellipsis</span>
+<span class="k">\cdots</span>   <span class="c">% Centered ellipsis</span>
+<span class="k">\vdots</span>   <span class="c">% Vertical ellipsis</span>
+<span class="k">\ddots</span>   <span class="c">% Diagonal ellipsis</span>
+</code></pre></div></div>
+
+<h2 id="5-multi-line-formulas">5. Multi-Line Formulas</h2>
+
+<h3 id="51-align-environment">5.1 align Environment</h3>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">\begin{align}</span>
+  x <span class="p">&amp;</span>= a + b <span class="k">\\</span>
+  y <span class="p">&amp;</span>= c + d <span class="k">\\</span>
+  z <span class="p">&amp;</span>= e + f
+<span class="nt">\end{align}</span>
+</code></pre></div></div>
+
+<h3 id="52-cases-environment">5.2 cases Environment</h3>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code>f(x) = <span class="nt">\begin{cases}</span>
+  x<span class="p">^</span>2 <span class="p">&amp;</span> <span class="k">\text</span><span class="p">{</span>if <span class="p">}</span> x <span class="k">\geq</span> 0 <span class="k">\\</span>
+  -x  <span class="p">&amp;</span> <span class="k">\text</span><span class="p">{</span>if <span class="p">}</span> x &lt; 0
+<span class="nt">\end{cases}</span>
+</code></pre></div></div>
+
+<h3 id="53-split-environment">5.3 split Environment</h3>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">\begin{equation}</span>
+<span class="nt">\begin{split}</span>
+  f(x) <span class="p">&amp;</span>= (x+1)<span class="p">^</span>2 <span class="k">\\</span>
+       <span class="p">&amp;</span>= x<span class="p">^</span>2 + 2x + 1
+<span class="nt">\end{split}</span>
+<span class="nt">\end{equation}</span>
+</code></pre></div></div>
+
+<h2 id="6-special-symbols">6. Special Symbols</h2>
+
+<h3 id="61-arrows">6.1 Arrows</h3>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\rightarrow</span>  →       <span class="k">\leftarrow</span>   ←
+<span class="k">\Rightarrow</span>  ⇒       <span class="k">\Leftarrow</span>   ⇐
+<span class="k">\leftrightarrow</span> ↔    <span class="k">\Leftrightarrow</span> ⇔
+<span class="k">\uparrow</span>     ↑       <span class="k">\downarrow</span>   ↓
+<span class="k">\Uparrow</span>     ⇑       <span class="k">\Downarrow</span>   ⇓
+<span class="k">\mapsto</span>      ↦       <span class="k">\longmapsto</span>  ⟼
+<span class="k">\longrightarrow</span> ⟶    <span class="k">\Longrightarrow</span> ⟹
+</code></pre></div></div>
+
+<h3 id="62-other-common-symbols">6.2 Other Common Symbols</h3>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\infty</span>       ∞       <span class="k">\partial</span>     ∂
+<span class="k">\nabla</span>       ∇       <span class="k">\hbar</span>        ℏ
+<span class="k">\prime</span>       ′       <span class="k">\ldots</span>       …
+<span class="k">\cdots</span>       ⋯       <span class="k">\vdots</span>       ⋮
+<span class="k">\ddots</span>       ⋱       <span class="k">\angle</span>       ∠
+<span class="k">\degree</span>      °       <span class="k">\circ</span>        ∘
+<span class="k">\bullet</span>      •       <span class="k">\cap</span>         ∩
+<span class="k">\cup</span>         ∪       <span class="k">\triangle</span>    △
+</code></pre></div></div>
+
+<h3 id="63-fonts">6.3 Fonts</h3>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\mathbb</span><span class="p">{</span>R<span class="p">}</span>          <span class="c">% Blackboard bold</span>
+<span class="k">\mathcal</span><span class="p">{</span>A<span class="p">}</span>         <span class="c">% Calligraphic</span>
+<span class="k">\mathfrak</span><span class="p">{</span>A<span class="p">}</span>        <span class="c">% Fraktur</span>
+<span class="k">\mathbf</span><span class="p">{</span>A<span class="p">}</span>          <span class="c">% Bold</span>
+<span class="k">\mathrm</span><span class="p">{</span>A<span class="p">}</span>          <span class="c">% Roman</span>
+<span class="k">\mathit</span><span class="p">{</span>A<span class="p">}</span>          <span class="c">% Italic</span>
+<span class="k">\mathsf</span><span class="p">{</span>A<span class="p">}</span>          <span class="c">% Sans-serif</span>
+<span class="k">\mathtt</span><span class="p">{</span>A<span class="p">}</span>          <span class="c">% Typewriter</span>
+</code></pre></div></div>
+
+<h2 id="7-spacing-control">7. Spacing Control</h2>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a<span class="k">\ </span>b              <span class="c">% Normal space</span>
+a<span class="k">\,</span>b              <span class="c">% Small space</span>
+a<span class="k">\:</span>b              <span class="c">% Medium space</span>
+a<span class="k">\;</span>b              <span class="c">% Large space</span>
+a<span class="k">\quad</span> b          <span class="c">% 1em space</span>
+a<span class="k">\qquad</span> b         <span class="c">% 2em space</span>
+a<span class="k">\!</span>b              <span class="c">% Negative space</span>
+</code></pre></div></div>
+
+<h2 id="8-text-comments">8. Text Comments</h2>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\text</span><span class="p">{</span>text content<span class="p">}</span>           <span class="c">% Insert text inside a formula</span>
+<span class="k">\mbox</span><span class="p">{</span>text content<span class="p">}</span>           <span class="c">% Text box</span>
+</code></pre></div></div>
+
+<h2 id="9-accents">9. Accents</h2>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\hat</span><span class="p">{</span>a<span class="p">}</span>      â       <span class="k">\bar</span><span class="p">{</span>a<span class="p">}</span>      ā
+<span class="k">\tilde</span><span class="p">{</span>a<span class="p">}</span>    ã       <span class="k">\dot</span><span class="p">{</span>a<span class="p">}</span>      ȧ
+<span class="k">\ddot</span><span class="p">{</span>a<span class="p">}</span>     ä       <span class="k">\vec</span><span class="p">{</span>a<span class="p">}</span>      ā⃗
+<span class="k">\widehat</span><span class="p">{</span>ab<span class="p">}</span>         <span class="k">\widetilde</span><span class="p">{</span>ab<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="10-common-theorem-environments">10. Common Theorem Environments</h2>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\usepackage</span><span class="p">{</span>amsthm<span class="p">}</span>
+
+<span class="k">\newtheorem</span><span class="p">{</span>theorem<span class="p">}{</span>Theorem<span class="p">}</span>
+<span class="k">\newtheorem</span><span class="p">{</span>lemma<span class="p">}{</span>Lemma<span class="p">}</span>
+<span class="k">\newtheorem</span><span class="p">{</span>proposition<span class="p">}{</span>Proposition<span class="p">}</span>
+<span class="k">\newtheorem</span><span class="p">{</span>corollary<span class="p">}{</span>Corollary<span class="p">}</span>
+<span class="k">\newtheorem</span><span class="p">{</span>definition<span class="p">}{</span>Definition<span class="p">}</span>
+
+<span class="nt">\begin{theorem}</span>
+  Theorem content
+<span class="nt">\end{theorem}</span>
+
+<span class="nt">\begin{proof}</span>
+  Proof content
+<span class="nt">\end{proof}</span>
+</code></pre></div></div>
+
+<h2 id="11-common-tips">11. Common Tips</h2>
+
+<h3 id="111-alignment">11.1 Alignment</h3>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">\begin{aligned}</span>
+  <span class="p">&amp;</span><span class="k">\text</span><span class="p">{</span>left aligned<span class="p">}</span> <span class="k">\\</span>
+  <span class="p">&amp;</span><span class="k">\text</span><span class="p">{</span>content<span class="p">}</span>
+<span class="nt">\end{aligned}</span>
+</code></pre></div></div>
+
+<h3 id="112-numbering-control">11.2 Numbering Control</h3>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\tag</span><span class="p">{</span>1<span class="p">}</span>              <span class="c">% Manual tag</span>
+<span class="k">\notag</span>               <span class="c">% Remove numbering</span>
+<span class="k">\nonumber</span>            <span class="c">% Remove numbering</span>
+</code></pre></div></div>
+
+<h3 id="113-colors">11.3 Colors</h3>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\usepackage</span><span class="p">{</span>xcolor<span class="p">}</span>
+<span class="k">\textcolor</span><span class="p">{</span>red<span class="p">}{</span>red text<span class="p">}</span>
+<span class="k">\colorbox</span><span class="p">{</span>yellow<span class="p">}{</span>yellow background<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="12-best-practices">12. Best Practices</h2>
+
+<ol>
+  <li><strong>Matching brackets</strong>: use <code class="language-plaintext highlighter-rouge">\left</code> and <code class="language-plaintext highlighter-rouge">\right</code> to automatically adjust bracket size.</li>
+  <li><strong>Long formulas</strong>: use <code class="language-plaintext highlighter-rouge">align</code> or <code class="language-plaintext highlighter-rouge">split</code> to break lines.</li>
+  <li><strong>Matrices</strong>: choose an appropriate bracket type.</li>
+  <li><strong>Spacing</strong>: use <code class="language-plaintext highlighter-rouge">\,</code>, <code class="language-plaintext highlighter-rouge">\quad</code>, and similar commands to adjust spacing.</li>
+  <li><strong>Text</strong>: use <code class="language-plaintext highlighter-rouge">\text{}</code> to insert text in formulas.</li>
+  <li><strong>Symbols</strong>: define macros for complex symbols to simplify input.</li>
+</ol>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">% Custom command examples</span>
+<span class="k">\newcommand</span><span class="p">{</span><span class="k">\R</span><span class="p">}{</span><span class="k">\mathbb</span><span class="p">{</span>R<span class="p">}}</span>
+<span class="k">\newcommand</span><span class="p">{</span><span class="k">\norm</span><span class="p">}</span>[1]<span class="p">{</span><span class="k">\left\|</span> #1 <span class="k">\right\|</span><span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://www.overleaf.com/learn">Overleaf Documentation</a></li>
+  <li><a href="https://en.wikibooks.org/wiki/LaTeX">LaTeX Wikibook</a></li>
+  <li><a href="http://detexify.kirelabs.org/classify.html">Detexify</a> - handwritten LaTeX symbol recognition</li>
+</ul>]]></content><author><name>Yihan Zhu</name><email>zhuyihan@sjtu.edu.cn</email></author><summary type="html"><![CDATA[A quick reference for common LaTeX math syntax, covering document structure, formula environments, and symbol examples.]]></summary></entry></feed>
